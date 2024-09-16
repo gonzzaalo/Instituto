@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstitutoApp.Views.CarrerasView"
+             Title="CarrerasView">
+    <VerticalStackLayout>
+            <Label 
+                Text="Lista de Carreras"
+                FontSize="Header"
+                VerticalOptions="Start" 
+                HorizontalOptions="Center" />
+            <ActivityIndicator IsRunning="{Binding ActivityStart}" />
+        <CollectionView
+                    ItemsSource="{Binding Carreras}"
+                    SelectedItem="{Binding CarreraCurrent}"
+                    SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,*" >
+                        <Label Text="{Binding Nombre}" Grid.Column="0" />
+                        <Label Text="{Binding Sigla}" Grid.Column="1" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        <Button Text="Agregar" WidthRequest="150"
+                    Command="{Binding AgregarCommand}"/>
+            <Button Text="Editar" WidthRequest="150"
+                    Command="{Binding EditarCommand}"/>
+            <Button Text="Eliminar" WidthRequest="150"
+                    Command="{Binding EliminarCommand}" />
+            
+        </VerticalStackLayout>
+
+</ContentPage>

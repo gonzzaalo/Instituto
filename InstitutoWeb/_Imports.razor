@@ -1,0 +1,40 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.JSInterop
+@using System.Threading.Tasks;
+@using InstitutoWeb
+@using InstitutoWeb.Layout
+@using InstitutoServices.Models.Commons
+@using InstitutoServices.Models.Inscripciones
+@using InstitutoServices.Models.MesasExamenes
+@using InstitutoServices.Models.Horarios
+@using InstitutoServices.Enums
+
+@using InstitutoServices.Services
+@using InstitutoServices.Services.Horarios
+@using InstitutoServices.Services.Commons
+
+@using InstitutoServices.Interfaces
+@using InstitutoServices.Interfaces.Commons
+@using InstitutoServices.Interfaces.MesasExamenes
+@using InstitutoServices.Interfaces.Inscripciones
+@using InstitutoServices.Interfaces.Horarios
+
+
+@using InstitutoWeb.ExtensionMethod
+@using InstitutoWeb.Components.Commons
+@using InstitutoWeb.Components.MesasExamenes
+@using InstitutoWeb.Components.Inscripciones
+@using InstitutoWeb.Components.Horarios
+@using InstitutoWeb.Components.NuevoDetalleInscripcion
+@using InstitutoWeb.Services.Login
+
+@using System.Text.Json.Serialization
+@using CurrieTechnologies.Razor.SweetAlert2

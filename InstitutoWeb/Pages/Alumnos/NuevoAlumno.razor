@@ -1,0 +1,42 @@
+﻿@page "/nuevoalumno"
+@inject IGenericService<Alumno> alumnoService
+@inject NavigationManager NavigationManager
+
+@if (alumno == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <h3>Editando un alumno </h3>
+    <EditForm Model="alumno" OnValidSubmit="GuardarAlumno">
+        <DataAnnotationsValidator />
+        <label class="form-label mb-2" >Alumno:</label>
+        <InputText class="form-control mb-2" type="text" @bind-Value="alumno.ApellidoNombre"/>
+        <label class="form-label mb-2">Dirección:</label>
+        <InputText class="form-control mb-2" type="text" @bind-Value="alumno.Direccion" />
+        <label class="form-label mb-2">Teléfono:</label>
+        <InputText class="form-control mb-2" type="tel" @bind-Value="alumno.Telefono" />
+        <label class="form-label mb-2">Email:</label>
+        <InputText class="form-control mb-2" type="email" @bind-Value="alumno.Email" />
+        <ValidationSummary />
+        <button class="btn btn-primary mb-2" type="submit">Guardar</button>
+        <button class="btn btn-primary mb-2" type="button" @onclick="@(()=>NavigationManager.NavigateTo("/alumnos"))">Volver a la lista</button>
+    </EditForm>
+}
+@code {
+
+    public Alumno? alumno { get; set; } 
+
+    protected override void OnInitialized()
+    {
+        alumno = new Alumno();
+    }
+
+    private async Task GuardarAlumno()
+    {
+        await alumnoService.AddAsync(alumno);
+        NavigationManager.NavigateTo($"/alumnos");
+    }
+}
+

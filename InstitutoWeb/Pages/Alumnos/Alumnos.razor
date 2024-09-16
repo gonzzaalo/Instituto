@@ -1,0 +1,58 @@
+﻿@page "/alumnos"
+@inject IGenericService<Alumno> alumnoService
+
+<PageTitle>Alumnos</PageTitle>
+
+<ComponenteTitulo Titulo="Alumnos"/>
+
+<p>Alumnos del sitio web.</p>
+
+@if (students == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <NavLink class="nav-link" href="nuevoalumno">
+        Nuevo Alumno
+    </NavLink>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Apellido y Nombre</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in students)
+            {
+                <tr>
+                    <td>@student.ApellidoNombre</td>
+                    <td>@student.Telefono</td>
+                    <td>@student.Direccion</td>
+                    <td>@student.Email</td>
+                    <td>
+                        <NavLink class="nav-link" href=@($"editaralumno?idAlumno={student.Id}")>
+                            Editar
+                        </NavLink>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Alumno>? students;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        students =  await alumnoService.GetAllAsync();
+    }
+
+
+}

@@ -1,0 +1,81 @@
+﻿@page "/carreras"
+
+@inject IGenericService<Carrera> carreraService
+@inject SweetAlertService SweetAlert
+
+<PageTitle>Carreras</PageTitle>
+<h1>Carreras</h1>
+
+@if (carreras == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <NavLink class="nav-link" href="nuevacarrera">
+        Nueva Carrera
+    </NavLink>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Sigla</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var carrera in carreras)
+            {
+                <tr>
+                    <td>@carrera.Id</td>
+                    <td>@carrera.Nombre</td>
+                    <td>@carrera.Sigla</td>
+                    <td>
+                        <NavLink class="nav-link" href=@($"anioscarreras?idCarrera={@carrera.Id}&nombreCarrera={carrera.Nombre}")>
+                            Años carrera
+                        </NavLink>
+                    </td>
+                    <td>
+                        <NavLink class="nav-link" href=@($"editarcarrera?idCarrera={@carrera.Id}")>
+                            Editar
+                        </NavLink>
+                    </td>
+                    <td>
+                        <button title="Eliminar" class="btn btn-danger" @onclick="@(()=>Eliminar(carrera))">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Carrera>? carreras;
+
+    protected override async Task OnInitializedAsync()
+    {
+        carreras = await carreraService.GetAllAsync();
+    }
+
+    private async void Eliminar(Carrera carrera)
+    {
+        SweetAlertResult respuesta = await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Borrando Carrera",
+                Text = $"¿Está seguro que desea borrar a la carrera {carrera.Nombre}",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Si, quiero borrarlo!",
+                CancelButtonText = "No, espera"
+            });
+        if (respuesta.IsConfirmed)
+        {
+            await carreraService.DeleteAsync(carrera.Id);
+            carreras = await carreraService.GetAllAsync();
+            StateHasChanged();
+        }
+    }
+}

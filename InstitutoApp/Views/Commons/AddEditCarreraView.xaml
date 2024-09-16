@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:InstitutoApp.ViewModels.Commons"
+             x:Class="InstitutoApp.Views.Commons.AddEditCarreraView"
+             Title="AddEditCarreraView">
+    <ContentPage.BindingContext>
+        <viewModels:AddEditCarreraViewModel/>
+    </ContentPage.BindingContext>
+    
+    <VerticalStackLayout>
+        <Label 
+            Text="Agregar/Editar Carrera"
+            FontSize="Header"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Grid RowDefinitions="2*,2*,*" ColumnDefinitions="*,*">
+            <Label Text="Nombre:" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End"/>
+            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Nombre}"
+                   Placeholder="Ingrese el nombre de la carrera" />
+            <Label Text="Sigla:" Grid.Row="1" Grid.Column="0"  VerticalTextAlignment="End"/>
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Sigla}"
+       Placeholder="Ingrese la sigle de la carrera" />
+            <Button Text="Guardar" Command="{Binding GuardarCommand}" Grid.Column="0" Grid.Row="2"/>
+            <Button Text="Cancelar" Command="{Binding CancelarCommand}" Grid.Column="1" Grid.Row="2"/>
+            
+
+
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

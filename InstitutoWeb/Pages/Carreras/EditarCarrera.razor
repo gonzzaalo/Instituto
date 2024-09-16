@@ -1,0 +1,41 @@
+﻿@page "/editarcarrera"
+@inject IGenericService<Carrera> carreraService
+@inject NavigationManager NavigationManager
+
+@if (carrera == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <h3>Editando carrera @carrera.Nombre</h3>
+    <EditForm Model="carrera" OnValidSubmit="GuardarCarrera" >
+        <DataAnnotationsValidator />
+        <label class="form-label mb-2" for="txtCarrera">Carrera:</label>
+        <InputText class="form-control mb-2" type="text" @bind-Value="carrera.Nombre" />
+        <label class="form-label mb-2" for="txtCarrera">Sigla:</label>
+        <InputText class="form-control mb-2" type="text" @bind-Value="carrera.Sigla" />
+        <ValidationSummary />
+        <button class="btn btn-primary mb-2" type="submit">Guardar</button>
+        <button class="btn btn-primary mb-2" type="button" @onclick="@(()=>NavigationManager.NavigateTo("/carreras"))">Volver a la lista</button>
+    </EditForm>
+}
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string? idCarrera { get; set; }
+
+    public Carrera? carrera { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        carrera = await carreraService.GetByIdAsync(int.Parse(idCarrera));
+    }
+
+    private async Task GuardarCarrera()
+    {
+        await carreraService.UpdateAsync(carrera);
+        NavigationManager.NavigateTo("/carreras");
+    }
+}
+
