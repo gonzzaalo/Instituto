@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243005933117",
+    "project_id": "instituto20-435114",
+    "storage_bucket": "instituto20-435114.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243005933117:android:9ae2838fd5d0aab5008c54",
+        "android_client_info": {
+          "package_name": "com.isp20.institutoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLPkmzvqIWwmhKQkNapfWd-x-_0WCvudk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

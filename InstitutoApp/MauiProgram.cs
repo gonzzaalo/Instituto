@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Firebase.Auth.Providers;
+using Firebase.Auth;
+using Microsoft.Extensions.Logging;
 
 namespace InstitutoApp
 {
@@ -15,8 +17,18 @@ namespace InstitutoApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton(new FirebaseAuthClient(new FirebaseAuthConfig()
+            {
+                ApiKey = "AIzaSyDLPkmzvqIWwmhKQkNapfWd-x-_0WCvudk",
+                AuthDomain = "instituto20-435114.firebaseapp.com",
+                Providers = new Firebase.Auth.Providers.FirebaseAuthProvider[]
+    {
+                new EmailProvider(),
+                new GoogleProvider()
+    }
+            }));
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

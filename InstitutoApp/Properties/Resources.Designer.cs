@@ -61,7 +61,7 @@ namespace InstitutoApp.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a 243005933117-e52fokln20bheqfa61sg9cbgd2n104rn.apps.googleusercontent.com.
+        ///   Busca una cadena traducida similar a 243005933117-9jrpnqa9f296itha7jlaa3nmh23et4vu.
         /// </summary>
         internal static string client_id {
             get {

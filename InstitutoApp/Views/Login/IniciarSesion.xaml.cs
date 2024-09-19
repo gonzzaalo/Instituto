@@ -1,18 +1,16 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Auth.OAuth2.Flows;
-using Google.Apis.Auth.OAuth2.Responses;
-using Google.Apis.Util.Store;
+
+using Firebase.Auth;
+using Firebase.Auth.Providers;
+using System.Net.Http.Json;
 
 namespace InstitutoApp.Views.Login;
 
 public partial class IniciarSesion : ContentPage
 {
-    private readonly string _clientId = Properties.Resources.client_id;
-
-    private readonly string _clientSecret = "your_client_secret";
-    private readonly string _redirectUri = "com.isp20.institutoapp:/oauth2redirect";
+    private readonly string _clientId = Properties.Resources.client_id+ ".apps.googleusercontent.com";
+    private readonly string _redirectUri = $"com.googleusercontent.apps.{Properties.Resources.client_id}:/oauth2redirect";
+    private readonly string _authUri = "https://accounts.google.com/o/oauth2/v2/auth";
+    private readonly string _tokenUri = "https://oauth2.googleapis.com/token";
 
     public IniciarSesion()
 	{
@@ -23,27 +21,35 @@ public partial class IniciarSesion : ContentPage
     {
         try
         {
-            // Definimos la URL de autenticación con OAuth2
-            var authUrl = new Uri($"https://accounts.google.com/o/oauth2/v2/auth?" +
-                                  $"client_id={_clientId}&" +
-                                  "response_type=code&" +
-                                  "scope=openid%20profile%20email&" +
-                                  $"redirect_uri={_redirectUri}");
+            var authUrl = $"{_authUri}?client_id={_clientId}&redirect_uri={_redirectUri}&response_type=code&scope=email%20profile&access_type=offline";
 
-            // URL de redirección, usando el nuevo esquema recomendado
-            var callbackUrl = new Uri(_redirectUri);
+            // Abre el navegador para el inicio de sesión
+            var authResult = await WebAuthenticator.AuthenticateAsync(
+                new Uri(authUrl),
+                new Uri(_redirectUri));
 
-            // Llamada a WebAuthenticator para manejar el flujo OAuth
-            var result = await WebAuthenticator.Default.AuthenticateAsync(authUrl, callbackUrl);
+            // Obtener el código de autorización
+            var authCode = authResult.Properties["code"];
 
-            // Extraemos el código de autorización recibido
-            var authorizationCode = result?.Properties["code"];
+            // Intercambiar el código por un token de acceso
+            var accessToken = await ExchangeAuthCodeForToken(authCode);
 
-            // Intercambiamos el código de autorización por un token de acceso
-            var accessToken = await ExchangeCodeForToken(authorizationCode);
-
+            // Iniciar sesión con Firebase usando el token de acceso
+            //await SignInWithFirebase(accessToken);
             // Aquí puedes manejar el token de acceso (guardar, usar para solicitar datos, etc.)
-            await DisplayAlert("Login", $"se conectó correctamente el access token es {accessToken}", "OK");
+            try
+            {
+
+                // Paso 2: Intercambia el access token de Google por un token de Firebase
+                var nameUser = await SignInWithGoogleAccessToken(accessToken);
+
+                // El usuario ha sido registrado correctamente en Firebase y obtienes el ID Token de Firebase
+                Console.WriteLine($"Usuario registrado exitosamente en Firebase. Firebase Nombre usuario: {nameUser}");
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error al registrar al usuario en Firebase: {ex.Message}");
+            }
         }
         catch (Exception ex)
         {
@@ -52,75 +58,70 @@ public partial class IniciarSesion : ContentPage
         }
     }
 
-    private async Task<string> ExchangeCodeForToken(string authCode)
+    // Método para intercambiar el código de autorización por un token de acceso
+    private async Task<string> ExchangeAuthCodeForToken(string authCode)
     {
-        var httpClient = new HttpClient();
-        var content = new FormUrlEncodedContent(new Dictionary<string, string>
+        using (var client = new HttpClient())
         {
-            { "code", authCode },
-            { "client_id", _clientId },
-            { "client_secret", _clientSecret },
-            { "redirect_uri", _redirectUri },
-            { "grant_type", "authorization_code" }
-        });
+            var tokenRequest = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("code", authCode),
+                new KeyValuePair<string, string>("client_id", _clientId),
+                new KeyValuePair<string, string>("redirect_uri", _redirectUri),
+                new KeyValuePair<string, string>("grant_type", "authorization_code"),
+            });
 
-        var response = await httpClient.PostAsync("https://oauth2.googleapis.com/token", content);
-        var jsonResponse = await response.Content.ReadAsStringAsync();
+            var response = await client.PostAsync(_tokenUri, tokenRequest);
+            response.EnsureSuccessStatusCode();
 
-        var tokenResponse = JsonSerializer.Deserialize<OAuthTokenResponse>(jsonResponse);
-        return tokenResponse.AccessToken;
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var tokenData = System.Text.Json.JsonDocument.Parse(jsonResponse).RootElement;
+
+            return tokenData.GetProperty("id_token").GetString();
+        }
     }
-    //Método para intercambiar el código de autorización por un token de acceso
-    //private async Task<string> ExchangeAuthorizationCodeForTokenAsync(string authorizationCode)
-    //{
-    //    var tokenRequestUrl = "https://oauth2.googleapis.com/token";
-    //    var requestData = new Dictionary<string, string>
-    //        {
-    //            { "client_id", _clientId },
-    //            { "client_secret", _clientSecret },
-    //            { "code", authorizationCode },
-    //            { "grant_type", "authorization_code" },
-    //            { "redirect_uri", _redirectUri }
-    //        };
 
-    //    var content = new FormUrlEncodedContent(requestData);
-    //    var response = await new HttpClient().PostAsync(tokenRequestUrl, content);
-    //    var responseContent = await response.Content.ReadAsStringAsync();
+    // ...
 
-    //    // Procesamos la respuesta JSON para obtener el token de acceso
-    //    var json = JsonDocument.Parse(responseContent);
-    //    return json.RootElement.GetProperty("access_token").GetString();
-    //}
+    private readonly string _firebaseApiKey = "AIzaSyDLPkmzvqIWwmhKQkNapfWd-x-_0WCvudk";
 
-    public class OAuthTokenResponse
+    // Método para registrar al usuario en Firebase usando el access token de Google
+    public async Task<string> SignInWithGoogleAccessToken(string googleAccessToken)
     {
-        [JsonPropertyName("access_token")]
-        public string AccessToken { get; set; }
+        var firebaseUrl = $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key={_firebaseApiKey}";
 
-        [JsonPropertyName("refresh_token")]
-        public string RefreshToken { get; set; }
+        var requestData = new
+        {
+            postBody = $"id_token={googleAccessToken}&providerId=google.com",
+            requestUri = "http://localhost", // Este campo es necesario, pero no se usa
+            returnSecureToken = true
+        };
 
-        [JsonPropertyName("expires_in")]
-        public int ExpiresIn { get; set; }
+        using var httpClient = new HttpClient();
+        var response = await httpClient.PostAsJsonAsync(firebaseUrl, requestData);
 
-        [JsonPropertyName("token_type")]
-        public string TokenType { get; set; }
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonResponse = await response.Content.ReadFromJsonAsync<FirebaseSignInResponse>();
+            return jsonResponse?.DisplayName; // Devuelve el ID Token de Firebase si el registro es exitoso
+        }
+        else
+        {
+            var errorResponse = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Error al registrar el usuario: {errorResponse}");
+            throw new HttpRequestException($"Error al registrar el usuario en Firebase: {response.ReasonPhrase}");
+        }
+        
     }
-    //private async Task<string> ExchangeAuthorizationCodeForTokenAsync(string authorizationCode)
-    //{
-    //    var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
-    //    {
-    //        ClientSecrets = new ClientSecrets
-    //        {
-    //            ClientId = _clientId,
-    //            ClientSecret = _clientSecret
-    //        },
-    //        Scopes = new[] { "openid", "profile", "email" },
-    //        DataStore = new FileDataStore("Tokens") // Almacena los tokens en un archivo local
-    //    });
-
-    //    var tokenResponse = await flow.ExchangeCodeForTokenAsync(_clientId, authorizationCode,_redirectUri, CancellationToken.None);
-
-    //    return tokenResponse.AccessToken;
-    //}
 }
+// Clase para deserializar la respuesta de Firebase
+public class FirebaseSignInResponse
+{
+    public string IdToken { get; set; }
+    public string RefreshToken { get; set; }
+    public string LocalId { get; set; }
+    public string Email { get; set; }
+    public bool EmailVerified { get; set; }
+    public string DisplayName { get; set; }
+}
+
