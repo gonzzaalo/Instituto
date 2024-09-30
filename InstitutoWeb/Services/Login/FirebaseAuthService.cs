@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using InstitutoServices.Models.Login;
+using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
 namespace InstitutoWeb.Services.Login
@@ -14,22 +15,39 @@ namespace InstitutoWeb.Services.Login
             _jsRuntime = jsRuntime;
         }
 
-        public async Task<string> SignInWithEmailPassword(string email, string password, bool rememberPassword)
+        public async Task<FirebaseUser> LoginWithGoogle()
         {
-            var userId = await _jsRuntime.InvokeAsync<string>("firebaseAuth.signInWithEmailPassword", email, password);
-            if (userId != null)
+            var user = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.loginWithGoogle");
+
+            if (user != null)
+            {
+
+                await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user);
+                OnChangeLogin?.Invoke();
+            }
+            return user;
+        }
+
+        public async Task<FirebaseUser> SignInWithEmailPassword(string email, string password, bool rememberPassword)
+        {
+            var user = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.signInWithEmailPassword", email, password);
+            if (user.EmailVerified == false)
+            {
+                return user;
+            } 
+            if (user != null)
             {
                 if (rememberPassword)
                 {
-                    await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, userId);
+                    await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user);
                 }
                 else
                 {
-                    await _jsRuntime.InvokeVoidAsync("sesionStorageHelper.setItem", UserIdKey, userId);
+                    await _jsRuntime.InvokeVoidAsync("sesionStorageHelper.setItem", UserIdKey, user);
                 }
                 OnChangeLogin?.Invoke();
             }
-            return userId;
+            return user;
         }
 
         public async Task<string> createUserWithEmailAndPassword(string email, string password)

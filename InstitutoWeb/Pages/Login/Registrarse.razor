@@ -31,7 +31,7 @@
     private async Task Registro()
     {
         var userId=await AuthService.createUserWithEmailAndPassword(usuario.Email, usuario.Password);
-        logger.LogInformation($"Usuario creado con id {userId}");
+        logger.LogInformation(userId);
         NavigationManager.NavigateTo("/login");
     }
         

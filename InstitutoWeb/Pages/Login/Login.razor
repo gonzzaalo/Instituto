@@ -1,6 +1,8 @@
 ﻿@page "/login"
 @inject FirebaseAuthService AuthService
 @inject NavigationManager NavigationManager
+@inject SweetAlertService SweetAlert
+@using InstitutoServices.Models.Login;
 
 
 @if (!IsAuthenticated)
@@ -24,8 +26,10 @@
 
         <ValidationSummary />
         <button type="submit" class="btn btn-primary">Ingresar</button>
-        <button class="btn btn-primary" @onclick="Registrarse">Registrarse</button>
+        <button class="btn btn-secondary" @onclick="Registrarse">Registrarse</button>
+        
     </EditForm>
+        <button class="btn btn-dark" @onclick="LoginGoogle">Google</button>
 }
 else
 {
@@ -48,7 +52,20 @@ else
 
     private async Task IniciarSesion()
     {
-        await AuthService.SignInWithEmailPassword(usuario.Email, usuario.Password, remenberPassword);
+        FirebaseUser user= await AuthService.SignInWithEmailPassword(usuario.Email, usuario.Password, remenberPassword);
+        //logger.LogInformation($"la confirmación del email es igual a:{user.EmailVerified}");
+        if(!user.EmailVerified)
+        {
+            await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Verificación de email",
+                Text = $"Debe verificar su email para poder continuar",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
+        }
+        
         IsAuthenticated = await AuthService.IsUserAuthenticated();
         StateHasChanged();
     }
@@ -65,5 +82,11 @@ else
     {
         NavigationManager.NavigateTo("/registrarse");
     }
-        
+
+    private async Task LoginGoogle()
+    {
+        await AuthService.LoginWithGoogle();
+        IsAuthenticated = await AuthService.IsUserAuthenticated();
+        StateHasChanged();
+    }        
 }
