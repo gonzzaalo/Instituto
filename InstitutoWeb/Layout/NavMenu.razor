@@ -70,16 +70,47 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
-        @if (userFirebaseAuthenticate!=null)
-        {
-                <h4>Hola @userFirebaseAuthenticate.DisplayName</h4>
-                    
-                    }
-        
-            <NavLink class="nav-link" href="login">
-                <span class="bi-box-arrow-in-right" aria-hidden="true"></span> @textoMenuLogin
-            </NavLink>
+            @if (userFirebaseAuthenticate != null)
+            {
+                <div class="user-info-container d-flex flex-column align-items-center p-3">
+                    <img src="@userFirebaseAuthenticate?.PhotoUrl" class="rounded-circle user-photo mb-2" />
+                    <span class="user-name">@userFirebaseAuthenticate?.DisplayName</span>
+                    <button class="logout-button btn btn-outline-light mt-2" @onclick="CerrarSesion">
+                        <span class="bi-box-arrow-in-right" aria-hidden="true"></span> @textoMenuLogin
+                    </button>
+                </div>
+            }
+            else
+            {
+                <NavLink class="nav-link" href="login">
+                    <span class="bi-box-arrow-in-right" aria-hidden="true"></span> @textoMenuLogin
+                </NavLink>
+            }
         </div>
+
+        <style>
+            .user-info-container {
+                background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+                border-radius: 10px;
+                text-align: center;
+                width: 180px;
+            }
+
+            .user-photo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .user-name {
+                font-weight: bold;
+                color: #ffffff;
+            }
+
+            .logout-button {
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+        </style>
 
     </nav>
 </div>
@@ -113,5 +144,11 @@
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
 
+    }
+    private async Task CerrarSesion()
+    {
+        await AuthService.SignOut();
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
+        StateHasChanged();
     }
 }

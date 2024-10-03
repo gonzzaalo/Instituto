@@ -48,6 +48,7 @@ else
     protected async override Task OnInitializedAsync()
     {
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
+        AuthService.OnChangeLogin += ChequeoEstadoLogin;
 
     }
 
@@ -89,5 +90,17 @@ else
         await AuthService.LoginWithGoogle();
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
-    }        
+    } 
+    
+    public async void ChequeoEstadoLogin()
+    {
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
+        StateHasChanged();
+
+    }
+    public void Dispose()
+    {
+        AuthService.OnChangeLogin -= ChequeoEstadoLogin;
+    }
+
 }
