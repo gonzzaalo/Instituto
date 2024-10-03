@@ -5,7 +5,7 @@
 @using InstitutoServices.Models.Login;
 
 
-@if (!IsAuthenticated)
+@if (userFirebaseAuthenticate==null)
 {
     <h3>Iniciar sesión</h3>
 
@@ -33,6 +33,7 @@
 }
 else
 {
+    <h1>Bienvenido @userFirebaseAuthenticate.DisplayName</h1>
     <button class="btn btn-primary" @onclick="CerrarSesion">Cerrar sesión</button>
 }
 
@@ -42,11 +43,11 @@ else
 
     bool remenberPassword { get; set; } = false;
 
-    bool IsAuthenticated { get; set; }=false;
+    FirebaseUser? userFirebaseAuthenticate { get; set; }=null;
 
     protected async override Task OnInitializedAsync()
     {
-        IsAuthenticated = await AuthService.IsUserAuthenticated();
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
 
     }
 
@@ -59,14 +60,14 @@ else
             await SweetAlert.FireAsync(new SweetAlertOptions
             {
                 Title = "Verificación de email",
-                Text = $"Debe verificar su email para poder continuar",
+                Text = $"{user.DisplayName} Debe verificar su email para poder continuar",
                 Icon = SweetAlertIcon.Warning,
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
             });
         }
         
-        IsAuthenticated = await AuthService.IsUserAuthenticated();
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
     }
 
@@ -74,7 +75,7 @@ else
     {
         await AuthService.SignOut();
         usuario = new Usuario();
-        IsAuthenticated = await AuthService.IsUserAuthenticated();
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
     }
 
@@ -86,7 +87,7 @@ else
     private async Task LoginGoogle()
     {
         await AuthService.LoginWithGoogle();
-        IsAuthenticated = await AuthService.IsUserAuthenticated();
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
     }        
 }

@@ -30,7 +30,7 @@
 
     private async Task Registro()
     {
-        var userId=await AuthService.createUserWithEmailAndPassword(usuario.Email, usuario.Password);
+        var userId=await AuthService.createUserWithEmailAndPassword(usuario.Email, usuario.Password, usuario.User);
         logger.LogInformation(userId);
         NavigationManager.NavigateTo("/login");
     }

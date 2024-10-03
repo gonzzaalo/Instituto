@@ -1,5 +1,6 @@
 ﻿using InstitutoServices.Models.Login;
 using Microsoft.JSInterop;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace InstitutoWeb.Services.Login
@@ -7,7 +8,7 @@ namespace InstitutoWeb.Services.Login
     public class FirebaseAuthService
     {
         private readonly IJSRuntime _jsRuntime;
-        private const string UserIdKey = "firebaseUserId";
+        private const string UserFirebase = "firebaseUser";
         public event Action OnChangeLogin;
 
         public FirebaseAuthService(IJSRuntime jsRuntime)
@@ -21,8 +22,6 @@ namespace InstitutoWeb.Services.Login
 
             if (user != null)
             {
-
-                await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user);
                 OnChangeLogin?.Invoke();
             }
             return user;
@@ -30,58 +29,35 @@ namespace InstitutoWeb.Services.Login
 
         public async Task<FirebaseUser> SignInWithEmailPassword(string email, string password, bool rememberPassword)
         {
-            var user = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.signInWithEmailPassword", email, password);
+            var user = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.signInWithEmailPassword", email, password, rememberPassword);
             if (user.EmailVerified == false)
             {
                 return user;
             } 
             if (user != null)
             {
-                if (rememberPassword)
-                {
-                    await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user);
-                }
-                else
-                {
-                    await _jsRuntime.InvokeVoidAsync("sesionStorageHelper.setItem", UserIdKey, user);
-                }
                 OnChangeLogin?.Invoke();
             }
             return user;
         }
 
-        public async Task<string> createUserWithEmailAndPassword(string email, string password)
+        public async Task<string> createUserWithEmailAndPassword(string email, string password, string displayName)
         {
-            var userId = await _jsRuntime.InvokeAsync<string>("firebaseAuth.createUserWithEmailAndPassword", email, password);
+            var userId = await _jsRuntime.InvokeAsync<string>("firebaseAuth.createUserWithEmailAndPassword", email, password, displayName);
             return userId;
         }
 
         public async Task SignOut()
         {
             await _jsRuntime.InvokeVoidAsync("firebaseAuth.signOut");
-            await _jsRuntime.InvokeVoidAsync("localStorageHelper.removeItem", UserIdKey);
-            await _jsRuntime.InvokeVoidAsync("sesionStorageHelper.removeItem", UserIdKey);
             OnChangeLogin?.Invoke();
         }
 
 
-        public async Task<string> GetUserIdInLocalStorage()
+        public async Task<FirebaseUser?> GetUserAuthenticated()
         {
-            return await _jsRuntime.InvokeAsync<string>("localStorageHelper.getItem", UserIdKey);
-        }
-        public async Task<string> GetUserIdInSesionStorage()
-        {
-            return await _jsRuntime.InvokeAsync<string>("sesionStorageHelper.getItem", UserIdKey);
-        }
-
-        public async Task<bool> IsUserAuthenticated()
-        {
-            var userId = await GetUserIdInLocalStorage();
-            if (string.IsNullOrEmpty(userId))
-            {
-                userId = await GetUserIdInSesionStorage();
-            }
-            return !string.IsNullOrEmpty(userId);
+            var user= await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.getUserFirebase");
+            return user;
         }
     }
 }
