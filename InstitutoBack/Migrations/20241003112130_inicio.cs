@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InstitutoBack.Migrations
 {
     /// <inheritdoc />
-    public partial class inicioproyecto : Migration
+    public partial class inicio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -216,6 +216,8 @@ namespace InstitutoBack.Migrations
                     User = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     TipoUsuario = table.Column<int>(type: "int", nullable: false),
                     AlumnoId = table.Column<int>(type: "int", nullable: true),
@@ -628,7 +630,7 @@ namespace InstitutoBack.Migrations
             migrationBuilder.InsertData(
                 table: "inscripciones",
                 columns: new[] { "Id", "AlumnoId", "CarreraId", "CicloLectivoId", "Eliminado", "Fecha" },
-                values: new object[] { 1, 1, 1, 1, false, new DateTime(2024, 8, 29, 10, 41, 16, 543, DateTimeKind.Local).AddTicks(5313) });
+                values: new object[] { 1, 1, 1, 1, false, new DateTime(2024, 10, 3, 8, 21, 29, 451, DateTimeKind.Local).AddTicks(9250) });
 
             migrationBuilder.InsertData(
                 table: "inscriptoscarreras",
@@ -637,8 +639,8 @@ namespace InstitutoBack.Migrations
 
             migrationBuilder.InsertData(
                 table: "usuarios",
-                columns: new[] { "Id", "AlumnoId", "DocenteId", "Eliminado", "Email", "TipoUsuario", "User" },
-                values: new object[] { 1, null, 1, false, "admin@gmail.com", 2, "admin" });
+                columns: new[] { "Id", "AlumnoId", "DocenteId", "Eliminado", "Email", "Password", "TipoUsuario", "User" },
+                values: new object[] { 1, null, 1, false, "admin@gmail.com", "", 2, "admin" });
 
             migrationBuilder.InsertData(
                 table: "materias",

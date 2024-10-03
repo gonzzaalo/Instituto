@@ -91,6 +91,7 @@
 
 .logout-button {
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 @media (min-width: 641px) {
     .navbar-toggler {
