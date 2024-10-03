@@ -1,6 +1,7 @@
 ﻿using InstitutoServices.Models.Login;
 using Microsoft.JSInterop;
 using System.Diagnostics;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace InstitutoWeb.Services.Login
@@ -26,19 +27,15 @@ namespace InstitutoWeb.Services.Login
             }
             return user;
         }
-
-        public async Task<FirebaseUser> SignInWithEmailPassword(string email, string password, bool rememberPassword)
+       
+        public async Task<LoginResponse> SignInWithEmailPassword(string email, string password, bool rememberPassword)
         {
-            var user = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.signInWithEmailPassword", email, password, rememberPassword);
-            if (user.EmailVerified == false)
-            {
-                return user;
-            } 
-            if (user != null)
-            {
-                OnChangeLogin?.Invoke();
-            }
-            return user;
+
+                var response = await _jsRuntime.InvokeAsync<LoginResponse>("firebaseAuth.signInWithEmailPassword", email, password, rememberPassword);
+            OnChangeLogin?.Invoke();
+
+            return response;
+
         }
 
         public async Task<string> createUserWithEmailAndPassword(string email, string password, string displayName)
@@ -57,7 +54,16 @@ namespace InstitutoWeb.Services.Login
         public async Task<FirebaseUser?> GetUserAuthenticated()
         {
             var user= await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.getUserFirebase");
-            return user;
+            //chequeo que el usuario haya verificado su correo
+            if (user != null && user.EmailVerified)
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
+
     }
 }

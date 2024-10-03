@@ -54,14 +54,27 @@ else
 
     private async Task IniciarSesion()
     {
-        FirebaseUser user= await AuthService.SignInWithEmailPassword(usuario.Email, usuario.Password, remenberPassword);
+
+        LoginResponse response= await AuthService.SignInWithEmailPassword(usuario.Email, usuario.Password, remenberPassword);
         //logger.LogInformation($"la confirmación del email es igual a:{user.EmailVerified}");
-        if(!user.EmailVerified)
+        if(response.User==null)  
+        {
+            await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Error inicio de sesión",
+                Text = $"Error:{response.Error}",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
+        }
+        else
+        if(!response.User.EmailVerified)
         {
             await SweetAlert.FireAsync(new SweetAlertOptions
             {
                 Title = "Verificación de email",
-                Text = $"{user.DisplayName} Debe verificar su email para poder continuar",
+                Text = $"{response.User.DisplayName} Debe verificar su email para poder continuar",
                 Icon = SweetAlertIcon.Warning,
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
@@ -101,6 +114,20 @@ else
     public void Dispose()
     {
         AuthService.OnChangeLogin -= ChequeoEstadoLogin;
+    }
+
+    [JSInvokable]
+    public async void ManejarError(string error)
+    {
+        // Manejar error
+        await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Error inicio de sesión",
+                Text = $"Error:{error}",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
     }
 
 }

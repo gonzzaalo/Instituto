@@ -57,10 +57,9 @@
                             await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
                         }
                         const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-                        return userCredential.user;
+                        return { Error: "", User: userCredential.user };
                     } catch (error) {
-                        console.error("Error en autenticación:", error.message);
-                        return null;
+                        return { Error: error.message, User: null };
                     }
                 },
                 createUserWithEmailAndPassword: async function (email, password, displayName) {
