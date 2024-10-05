@@ -39,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Components\Commons\ListCardEnum.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Update="Pages\Horas\Horas.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>

@@ -28,6 +28,7 @@ builder.Services.AddScoped<IDetalleInscripcionService, DetalleInscripcionService
 builder.Services.AddScoped<IMesaExamenService, MesaExamenService>();
 builder.Services.AddScoped<IHorarioService, HorarioService>();
 builder.Services.AddScoped<IDetalleHorarioService, DetalleHorarioService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<FirebaseAuthService>();
 
 builder.Services.AddSweetAlert2();

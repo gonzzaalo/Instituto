@@ -19,6 +19,7 @@
             <label for="clave">Contraseña</label>
             <InputText class="form-control mb-2" type="password" @bind-Value="usuario.Password" />
         </div>
+        
         <div class="form-group">
             <label>Recordar Contraseña</label>
             <InputCheckbox @bind-Value="remenberPassword" />
@@ -30,6 +31,8 @@
         
     </EditForm>
         <button class="btn btn-dark" @onclick="LoginGoogle">Google</button>
+    <button class="btn btn-dark" @onclick="ResetearPassword">Olvidé mi contraseña</button>
+
 }
 else
 {
@@ -54,7 +57,6 @@ else
 
     private async Task IniciarSesion()
     {
-
         LoginResponse response= await AuthService.SignInWithEmailPassword(usuario.Email, usuario.Password, remenberPassword);
         //logger.LogInformation($"la confirmación del email es igual a:{user.EmailVerified}");
         if(response.User==null)  
@@ -109,25 +111,44 @@ else
     {
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
-
+        //si ya hay alguien autenticado lo envio al componente perfilUsuario
+        if(userFirebaseAuthenticate!=null)
+        {
+            NavigationManager.NavigateTo("/perfilusuario");
+        }
     }
+
     public void Dispose()
     {
         AuthService.OnChangeLogin -= ChequeoEstadoLogin;
     }
 
-    [JSInvokable]
-    public async void ManejarError(string error)
+    private async Task ResetearPassword()
     {
-        // Manejar error
-        await SweetAlert.FireAsync(new SweetAlertOptions
+        bool reseteo = await AuthService.SendPasswordResetEmail(usuario.Email);
+        if(reseteo)
+        {
+            await SweetAlert.FireAsync(new SweetAlertOptions
             {
-                Title = "Error inicio de sesión",
-                Text = $"Error:{error}",
+                Title = "Resetear contraseña",
+                Text = $"Se envió un email a {usuario.Email} para resetear la contraseña",
+                Icon = SweetAlertIcon.Info,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
+        }
+        else
+        {
+            await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Resetear contraseña",
+                Text = $"Error al enviar el email a {usuario.Email} para resetear la contraseña",
                 Icon = SweetAlertIcon.Warning,
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
             });
+        }
+        
     }
 
 }

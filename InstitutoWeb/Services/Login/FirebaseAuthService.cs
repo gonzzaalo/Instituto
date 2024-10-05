@@ -64,6 +64,10 @@ namespace InstitutoWeb.Services.Login
                 return null;
             }
         }
+        public async Task<bool> SendPasswordResetEmail(string email)
+        {
+            return await _jsRuntime.InvokeAsync<bool> ("firebaseAuth.sendPasswordResetEmail", email);
+        }
 
     }
 }

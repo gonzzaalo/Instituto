@@ -1,5 +1,6 @@
 ﻿@using InstitutoServices.Models.Login
 @inject FirebaseAuthService AuthService
+@inject NavigationManager NavigationManager
 @inject ILogger<NavMenu> logger
 
 <div class="top-row ps-3 navbar navbar-dark">
@@ -73,8 +74,12 @@
             @if (userFirebaseAuthenticate != null)
             {
                 <div class="user-info-container d-flex flex-column align-items-center p-3">
-                    <img src="@userFirebaseAuthenticate?.PhotoUrl" class="rounded-circle user-photo mb-2" />
-                    <span class="user-name">@userFirebaseAuthenticate?.DisplayName</span>
+                    <a href="perfilusuario">
+                        <img src="@userFirebaseAuthenticate?.PhotoUrl" class="rounded-circle user-photo mb-2" />
+                    </a>
+
+                        <span class="user-name">@userFirebaseAuthenticate?.DisplayName</span>
+                    
                     <button class="logout-button btn btn-outline-light mt-2" @onclick="CerrarSesion">
                         <span class="bi-box-arrow-in-right" aria-hidden="true"></span> @textoMenuLogin
                     </button>
@@ -87,10 +92,6 @@
                 </NavLink>
             }
         </div>
-
-        <style>
-            
-        </style>
 
     </nav>
 </div>
@@ -123,7 +124,11 @@
     {
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
-
+        //si ya hay alguien autenticado lo envio al componente perfilUsuario
+        if (userFirebaseAuthenticate != null)
+        {
+            NavigationManager.NavigateTo("/perfilusuario");
+        }
     }
     private async Task CerrarSesion()
     {

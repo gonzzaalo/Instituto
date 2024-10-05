@@ -1,0 +1,113 @@
+﻿@page "/perfilusuario"
+
+@inject NavigationManager NavigationManager
+@inject FirebaseAuthService AuthService
+@inject IUsuarioService usuarioService
+@inject SweetAlertService SweetAlert
+
+<PageTitle>Perfil de Usuario</PageTitle>
+
+@if (userFirebaseAuthenticate == null)
+{
+    <p><em>Cargando información del usuario...</em></p>
+}
+else
+{
+    <h3>Hola @userFirebaseAuthenticate.DisplayName</h3>
+    @if(usuario!=null)
+    {
+        <p>Nombre: @usuario.User</p>
+        <p>Email: @usuario.Email</p>
+        <p>Tipo de usuario: @tipoUsuario</p>
+
+    }
+    else
+    {
+        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil para ofrecerte todas las posibilidades de nuestro sitio web</em></p>
+        @if(tipoUsuario == 0)
+        {
+            <ListCardEnum EnumType="typeof(TipoUsuarioEnum)" TituloCard="Tipo de Usuario" OnSeleccionar="HandleSeleccionarTipoUsuario" />
+        }else
+        {
+            @if (tipoUsuario == TipoUsuarioEnum.Alumno)
+            {
+                @if (alumno == null)
+                {
+                    <FormAlumno ApellidoNombre="@userFirebaseAuthenticate.DisplayName" Email="@userFirebaseAuthenticate.Email" OnGuardarAlumno="GuardarAlumno" />
+                }
+                else //muestro los datos del alumno
+                {
+                    <p>Nombre: @alumno.ApellidoNombre</p>
+                    <p>Dirección: @alumno.Direccion</p>
+                    <p>Teléfono: @alumno.Telefono</p>
+                    <p>Email: @alumno.Email</p>
+                }
+            }           }
+        
+
+    }
+
+}
+
+@code {
+    FirebaseUser? userFirebaseAuthenticate { get; set; } = null;
+    Usuario? usuario { get; set; } 
+    Alumno? alumno { get; set;}
+    TipoUsuarioEnum tipoUsuario { get; set; } 
+    int idAlumno { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
+        usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
+        AuthService.OnChangeLogin += ChequeoEstadoLogin;
+
+
+    }
+    public async void ChequeoEstadoLogin()
+    {
+        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
+        StateHasChanged();
+        //si no hay usuario autenticado lo redirijo a la página de login
+        if (userFirebaseAuthenticate == null)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+    private async Task GuardarAlumno(Alumno alumno)
+    {
+        idAlumno = alumno.Id;
+        this.alumno=alumno;
+        
+    }
+
+    private async Task HandleSeleccionarTipoUsuario(Enum value)
+    {
+        if (value is TipoUsuarioEnum tipoUsuario)
+        {
+            this.tipoUsuario = tipoUsuario;
+        }
+
+        // if (value is TipoUsuarioEnum tipoUsuario)
+        // {
+        //     this.tipoUsuario = tipoUsuario;
+        //     usuario = new Usuario()
+        //     {
+        //         Email = userFirebaseAuthenticate.Email,
+        //         User = userFirebaseAuthenticate.DisplayName,
+        //         TipoUsuario = tipoUsuario
+        //     };
+        //     await usuarioService.AddAsync(usuario);
+        //     await SweetAlert.FireAsync(new SweetAlertOptions
+        //         {
+        //             Title = "Usuario creado con éxito",
+        //             Text = $"El usuario {usuario.User} fue creado correctamente",
+        //             Icon = SweetAlertIcon.Info,
+        //             ShowCancelButton = false,
+        //             ConfirmButtonText = "Ok",
+        //         });
+            
+        // }
+    }
+
+}
