@@ -17,6 +17,9 @@
         public static string Horario { get; set; } = "apihorarios";
         public static string DetalleHorario { get; set; } = "apidetalleshorarios";
         public static string Usuario { get; set; } = "apiusuarios";
+        public static string InscriptoCarrera { get; set; } = "apiinscriptoscarreras";
+
+
 
 
         public static string GetEndpoint(string name)
@@ -38,6 +41,7 @@
                 nameof(Horario) => Horario,
                 nameof(DetalleHorario) => DetalleHorario,
                 nameof(Usuario) => Usuario,
+                nameof(InscriptoCarrera) => InscriptoCarrera,
                 _ => throw new ArgumentException($"Endpoint '{name}' no está definido.")
             };
         }

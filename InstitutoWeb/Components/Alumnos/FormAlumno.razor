@@ -33,8 +33,8 @@
     }
     private async Task HandleGuardarAlumno()
     {
-        await alumnoService.AddAsync(alumno);
-        await OnGuardarAlumno.InvokeAsync(alumno);
+        var nuevoAlumno=await alumnoService.AddAsync(alumno);
+        await OnGuardarAlumno.InvokeAsync(nuevoAlumno);
     }
 }
 

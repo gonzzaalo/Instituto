@@ -4,6 +4,7 @@
 @inject FirebaseAuthService AuthService
 @inject IUsuarioService usuarioService
 @inject SweetAlertService SweetAlert
+@inject ILogger<PerfilUsuario> logger
 
 <PageTitle>Perfil de Usuario</PageTitle>
 
@@ -16,36 +17,31 @@ else
     <h3>Hola @userFirebaseAuthenticate.DisplayName</h3>
     @if(usuario!=null)
     {
-        <p>Nombre: @usuario.User</p>
-        <p>Email: @usuario.Email</p>
-        <p>Tipo de usuario: @tipoUsuario</p>
-
+        <UsuarioData usuario="@usuario" />
     }
     else
     {
         <p><em>Eres un nuevo usuario, necesitamos completar tu perfil para ofrecerte todas las posibilidades de nuestro sitio web</em></p>
-        @if(tipoUsuario == 0)
+        @if(tipoUsuario==0)
         {
             <ListCardEnum EnumType="typeof(TipoUsuarioEnum)" TituloCard="Tipo de Usuario" OnSeleccionar="HandleSeleccionarTipoUsuario" />
-        }else
+        }
+        
+    }
+    @if (tipoUsuario == TipoUsuarioEnum.Alumno)
+    {
+        @if (alumno == null)
         {
-            @if (tipoUsuario == TipoUsuarioEnum.Alumno)
-            {
-                @if (alumno == null)
-                {
-                    <FormAlumno ApellidoNombre="@userFirebaseAuthenticate.DisplayName" Email="@userFirebaseAuthenticate.Email" OnGuardarAlumno="GuardarAlumno" />
-                }
-                else //muestro los datos del alumno
-                {
-                    <p>Nombre: @alumno.ApellidoNombre</p>
-                    <p>Dirección: @alumno.Direccion</p>
-                    <p>Teléfono: @alumno.Telefono</p>
-                    <p>Email: @alumno.Email</p>
-                }
-            }           }
+            <FormAlumno ApellidoNombre="@userFirebaseAuthenticate.DisplayName" Email="@userFirebaseAuthenticate.Email" OnGuardarAlumno="GuardarAlumno" />
+        }
+        else //muestro los datos del alumno
+        {
+            <AlumnoData alumno="@alumno" />
+        }
+    }           
         
 
-    }
+    
 
 }
 
@@ -61,12 +57,14 @@ else
     {
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
+        logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
         if(usuario!=null)
         {
             tipoUsuario = usuario.TipoUsuario;
             if(tipoUsuario == TipoUsuarioEnum.Alumno)
             {
                 alumno = usuario.Alumno;
+
             }
             if(tipoUsuario == TipoUsuarioEnum.Docente)
             {
@@ -91,7 +89,24 @@ else
     {
         idAlumno = alumno.Id;
         this.alumno=alumno;
-        
+        usuario = new Usuario()
+        {
+            Email = userFirebaseAuthenticate.Email,
+            User = userFirebaseAuthenticate.DisplayName,
+            TipoUsuario = tipoUsuario,
+            AlumnoId = alumno.Id
+        };
+        //logger.LogInformation($"Guardando usuario={usuario.PropertiesToString()}{Environment.NewLine} el alumno a guardar es={alumno.PropertiesToString()}");
+        await usuarioService.AddAsync(usuario);
+        await SweetAlert.FireAsync(new SweetAlertOptions
+        {
+            Title = "Usuario creado con éxito",
+            Text = $"El usuario {usuario.User} fue creado correctamente",
+            Icon = SweetAlertIcon.Info,
+            ShowCancelButton = false,
+            ConfirmButtonText = "Ok",
+        });
+        StateHasChanged();
     }
 
     private async Task HandleSeleccionarTipoUsuario(Enum value)
@@ -100,27 +115,6 @@ else
         {
             this.tipoUsuario = tipoUsuario;
         }
-
-        // if (value is TipoUsuarioEnum tipoUsuario)
-        // {
-        //     this.tipoUsuario = tipoUsuario;
-        //     usuario = new Usuario()
-        //     {
-        //         Email = userFirebaseAuthenticate.Email,
-        //         User = userFirebaseAuthenticate.DisplayName,
-        //         TipoUsuario = tipoUsuario
-        //     };
-        //     await usuarioService.AddAsync(usuario);
-        //     await SweetAlert.FireAsync(new SweetAlertOptions
-        //         {
-        //             Title = "Usuario creado con éxito",
-        //             Text = $"El usuario {usuario.User} fue creado correctamente",
-        //             Icon = SweetAlertIcon.Info,
-        //             ShowCancelButton = false,
-        //             ConfirmButtonText = "Ok",
-        //         });
-            
-        // }
     }
 
 }
