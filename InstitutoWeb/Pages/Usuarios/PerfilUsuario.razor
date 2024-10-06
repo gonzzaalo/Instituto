@@ -53,6 +53,7 @@ else
     FirebaseUser? userFirebaseAuthenticate { get; set; } = null;
     Usuario? usuario { get; set; } 
     Alumno? alumno { get; set;}
+    Docente? docente { get; set; }
     TipoUsuarioEnum tipoUsuario { get; set; } 
     int idAlumno { get; set; }
 
@@ -60,6 +61,18 @@ else
     {
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
+        if(usuario!=null)
+        {
+            tipoUsuario = usuario.TipoUsuario;
+            if(tipoUsuario == TipoUsuarioEnum.Alumno)
+            {
+                alumno = usuario.Alumno;
+            }
+            if(tipoUsuario == TipoUsuarioEnum.Docente)
+            {
+                docente = usuario.Docente;
+            }
+        }
         AuthService.OnChangeLogin += ChequeoEstadoLogin;
 
 
