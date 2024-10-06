@@ -1,0 +1,31 @@
+@inject IGenericService<Docente> docenteService
+
+@if(docentes==null)
+{
+    <p><em>Cargando información de los docentes...</em></p>
+}
+else
+{
+    <h4>Selecciona el docente</h4>
+    <TableIdNombreSelection ListEntity="@(docentes.Cast<IEntityIdNombre>().ToList())" OnSeleccionar="HandleSeleccionarDocente" />
+}
+
+
+@code {
+
+
+    [Parameter]
+    public EventCallback<Docente> OnSeleccionarDocente { get; set; }
+    List<Docente> docentes = new List<Docente>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        docentes = await docenteService.GetAllAsync();
+        
+    }
+    private async Task HandleSeleccionarDocente(IEntityIdNombre docente)
+    {
+        await OnSeleccionarDocente.InvokeAsync((Docente)docente);
+    }
+}
+

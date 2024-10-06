@@ -1,3 +1,5 @@
+@inject IUsuarioService usuarioService
+@inject SweetAlertService SweetAlert
 
 @if (usuario != null)
 {
@@ -7,7 +9,98 @@
         <p>Tipo de usuario: @usuario.TipoUsuario</p>
     </div>
 }
+@if (tipoUsuario == TipoUsuarioEnum.Alumno)
+{
+    @if (alumno == null)
+    {
+        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil ingresa tus datos de alumno</em></p>
+        <FormAlumno ApellidoNombre="@usuarioFirebase?.DisplayName" Email="@usuarioFirebase?.Email" OnGuardarAlumno="GuardarAlumno" />
+    }
+    else //muestro los datos del alumno
+    {
+        <AlumnoData alumno="@alumno" />
+    }
+}
+@if (tipoUsuario == TipoUsuarioEnum.Docente)
+{
+    @if (docente == null)
+    {
+        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona que docente eres</em></p>
+        <FormDocente OnSeleccionarDocente="SeleccionarDocente" />
+    }
+    else //muestro los datos del docente
+    {
+        <DocenteData docente="@docente" />
+    }
+}
 @code {
     [Parameter]
     public Usuario usuario { get; set; }
+
+    [Parameter]
+    public FirebaseUser? usuarioFirebase { get; set; } = null;
+
+    [Parameter]
+    public TipoUsuarioEnum tipoUsuario { get; set; }
+
+    Alumno? alumno { get; set; }
+    Docente? docente { get; set; }
+    int idDocente { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (usuario != null)
+        {
+            tipoUsuario = usuario.TipoUsuario;
+            alumno = usuario.Alumno;
+            docente = usuario.Docente;
+        }
+    }
+
+    private async Task GuardarAlumno(Alumno alumno)
+    {
+        this.alumno = alumno;
+        usuario = new Usuario()
+            {
+                Email = usuarioFirebase?.Email,
+                User = alumno.ApellidoNombre,
+                TipoUsuario = tipoUsuario,
+                AlumnoId = alumno.Id
+            };
+        //logger.LogInformation($"Guardando usuario={usuario.PropertiesToString()}{Environment.NewLine} el alumno a guardar es={alumno.PropertiesToString()}");
+        await usuarioService.AddAsync(usuario);
+        await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Usuario creado con éxito",
+                Text = $"El usuario {usuario.User} fue creado correctamente",
+                Icon = SweetAlertIcon.Info,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
+        StateHasChanged();
+    }
+    private async Task SeleccionarDocente(Docente docente)
+    {
+        this.docente = docente;
+        usuario = new Usuario()
+            {
+                Email = usuarioFirebase?.Email,
+                User = usuarioFirebase?.DisplayName,
+                TipoUsuario = tipoUsuario,
+                DocenteId = docente.Id
+            };
+        //logger.LogInformation($"Guardando usuario={usuario.PropertiesToString()}{Environment.NewLine} el alumno a guardar es={alumno.PropertiesToString()}");
+        await usuarioService.AddAsync(usuario);
+        await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Usuario creado con éxito",
+                Text = $"El usuario {usuario.User} fue creado correctamente",
+                Icon = SweetAlertIcon.Info,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
+        StateHasChanged();
+    }
+
 }

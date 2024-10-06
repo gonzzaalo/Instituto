@@ -3,6 +3,7 @@
 @inject NavigationManager NavigationManager
 @inject FirebaseAuthService AuthService
 @inject IUsuarioService usuarioService
+
 @inject SweetAlertService SweetAlert
 @inject ILogger<PerfilUsuario> logger
 
@@ -15,62 +16,32 @@
 else
 {
     <h3>Hola @userFirebaseAuthenticate.DisplayName</h3>
-    @if(usuario!=null)
+    @if(usuario==null&&tipoUsuario==0)
     {
-        <UsuarioData usuario="@usuario" />
+        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona el tipo de usuario que eres</em></p>
+        <ListCardEnum EnumType="typeof(TipoUsuarioEnum)" TituloCard="Tipo de Usuario" OnSeleccionar="HandleSeleccionarTipoUsuario" />
     }
     else
     {
-        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil para ofrecerte todas las posibilidades de nuestro sitio web</em></p>
-        @if(tipoUsuario==0)
-        {
-            <ListCardEnum EnumType="typeof(TipoUsuarioEnum)" TituloCard="Tipo de Usuario" OnSeleccionar="HandleSeleccionarTipoUsuario" />
-        }
-        
+        <UsuarioData usuario="@usuario" usuarioFirebase="@userFirebaseAuthenticate" tipoUsuario="@tipoUsuario"/>
     }
-    @if (tipoUsuario == TipoUsuarioEnum.Alumno)
-    {
-        @if (alumno == null)
-        {
-            <FormAlumno ApellidoNombre="@userFirebaseAuthenticate.DisplayName" Email="@userFirebaseAuthenticate.Email" OnGuardarAlumno="GuardarAlumno" />
-        }
-        else //muestro los datos del alumno
-        {
-            <AlumnoData alumno="@alumno" />
-        }
-    }           
-        
-
-    
+           
 
 }
 
 @code {
     FirebaseUser? userFirebaseAuthenticate { get; set; } = null;
     Usuario? usuario { get; set; } 
-    Alumno? alumno { get; set;}
-    Docente? docente { get; set; }
+
     TipoUsuarioEnum tipoUsuario { get; set; } 
-    int idAlumno { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
-        logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
-        if(usuario!=null)
-        {
-            tipoUsuario = usuario.TipoUsuario;
-            if(tipoUsuario == TipoUsuarioEnum.Alumno)
-            {
-                alumno = usuario.Alumno;
+        //logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
 
-            }
-            if(tipoUsuario == TipoUsuarioEnum.Docente)
-            {
-                docente = usuario.Docente;
-            }
-        }
         AuthService.OnChangeLogin += ChequeoEstadoLogin;
 
 
@@ -85,29 +56,7 @@ else
             NavigationManager.NavigateTo("/login");
         }
     }
-    private async Task GuardarAlumno(Alumno alumno)
-    {
-        idAlumno = alumno.Id;
-        this.alumno=alumno;
-        usuario = new Usuario()
-        {
-            Email = userFirebaseAuthenticate.Email,
-            User = userFirebaseAuthenticate.DisplayName,
-            TipoUsuario = tipoUsuario,
-            AlumnoId = alumno.Id
-        };
-        //logger.LogInformation($"Guardando usuario={usuario.PropertiesToString()}{Environment.NewLine} el alumno a guardar es={alumno.PropertiesToString()}");
-        await usuarioService.AddAsync(usuario);
-        await SweetAlert.FireAsync(new SweetAlertOptions
-        {
-            Title = "Usuario creado con éxito",
-            Text = $"El usuario {usuario.User} fue creado correctamente",
-            Icon = SweetAlertIcon.Info,
-            ShowCancelButton = false,
-            ConfirmButtonText = "Ok",
-        });
-        StateHasChanged();
-    }
+    
 
     private async Task HandleSeleccionarTipoUsuario(Enum value)
     {
