@@ -13,7 +13,7 @@
 {
     @if (alumno == null)
     {
-        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil ingresa tus datos de alumno</em></p>
+        <p><em>Eres un nuevo alumno, necesitamos completar tu perfil ingresa tus datos de alumno</em></p>
         <FormAlumno ApellidoNombre="@usuarioFirebase?.DisplayName" Email="@usuarioFirebase?.Email" OnGuardarAlumno="GuardarAlumno" />
     }
     else //muestro los datos del alumno
@@ -25,7 +25,7 @@
 {
     @if (docente == null)
     {
-        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona que docente eres, si no te encuentras pidele a un directivo o jefe de sección que te cargue en el sistema</em></p>
+        <p><em>Eres un nuevo usuario del sistema, necesitamos completar tu perfil selecciona que docente eres, si no te encuentras pidele a un directivo o jefe de sección que te cargue en el sistema</em></p>
         <FormDocente OnSeleccionarDocente="SeleccionarDocente" />
     }
     else //muestro los datos del docente
@@ -37,7 +37,7 @@
 {
     @if (docente == null)
     {
-        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona que docente eres, , si no te encuentras pidele a un directivo o jefe de sección que te cargue en el sistema</em></p>
+        <p><em>Eres un nuevo usuario del sistema, necesitamos completar tu perfil selecciona que docente eres, , si no te encuentras pidele a un directivo o jefe de sección que te cargue en el sistema</em></p>
         <FormJefeSeccion OnSeleccionarDocente="SeleccionarDocente" />
     }
     else //muestro los datos del docente
@@ -49,7 +49,7 @@
 {
     @if (docente == null)
     {
-        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona que docente eres</em></p>
+        <p><em>Eres un nuevo usuario del sistema, necesitamos completar tu perfil selecciona que docente eres</em></p>
         <FormDirectivo OnSeleccionarDocente="SeleccionarDocente" />
     }
     else //muestro los datos del docente
@@ -96,8 +96,8 @@
         await usuarioService.AddAsync(usuario);
         await SweetAlert.FireAsync(new SweetAlertOptions
             {
-                Title = "Usuario creado con éxito",
-                Text = $"El usuario {usuario.User} fue creado correctamente",
+                Title = $"{tipoUsuario} creado con éxito",
+                Text = $"El {tipoUsuario} {usuario.User} fue creado correctamente",
                 Icon = SweetAlertIcon.Info,
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
@@ -118,8 +118,8 @@
         await usuarioService.AddAsync(usuario);
         await SweetAlert.FireAsync(new SweetAlertOptions
             {
-                Title = "Usuario creado con éxito",
-                Text = $"El usuario {usuario.User} fue creado correctamente",
+                Title = $"{tipoUsuario} creado con éxito",
+                Text = $"El {tipoUsuario} {usuario.User} fue creado correctamente",
                 Icon = SweetAlertIcon.Info,
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",

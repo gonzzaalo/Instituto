@@ -99,6 +99,11 @@
                     return new Promise((resolve, reject) => {
                         firebase.auth().onAuthStateChanged((user) => {
                             if (user) {
+                                console.log(user.providerData[0].providerId);
+                                if (user.providerData[0].providerId == "facebook.com")
+                                {
+                                    user._delegate.emailVerified = true;
+                                }
                                 resolve(user);
                             } else {
                                 resolve(null);
@@ -127,6 +132,24 @@
                     try {
                         const result = await firebase.auth().signInWithPopup(provider);
                         const user = result.user;
+                        console.log(user);
+                        return user;
+                    } catch (error) {
+                        console.error("Error durante el inicio de sesión:", error);
+                        return null;
+                    }
+                },
+                loginWithFacebook: async function () {
+                    var provider = new firebase.auth.FacebookAuthProvider();
+                    provider.setCustomParameters({
+                        prompt: 'select_account' // Forzar selección de cuenta
+                    });
+                    await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+                    try {
+                        const result = await firebase.auth().signInWithPopup(provider);
+                        const user = result.user;
+                        console.log(user);   
                         return user;
                     } catch (error) {
                         console.error("Error durante el inicio de sesión:", error);

@@ -27,7 +27,18 @@ namespace InstitutoWeb.Services.Login
             }
             return user;
         }
-       
+
+        public async Task<FirebaseUser> LoginWithFacebook()
+        {
+            var user = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.loginWithFacebook");
+
+            if (user != null)
+            {
+                OnChangeLogin?.Invoke();
+            }
+            return user;
+        }
+
         public async Task<LoginResponse> SignInWithEmailPassword(string email, string password, bool rememberPassword)
         {
 

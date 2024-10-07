@@ -12,18 +12,13 @@
 <button class="btn btn-primary" @onclick="()=>HandleInscribirseACarrera()">Seleccionar @tituloTableCarrera</button>
 @if (inscripcionesACarreras==null||inscripcionesACarreras.Count==0)
 {
-    <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona la o las carreras que cursas</em></p>
+    <p><em>Eres un nuevo alumno, necesitamos completar tu perfil selecciona la o las carreras que cursas</em></p>
 }
 else
 {
     <h4>@tituloTableCarrera en la que estás inscripto</h4>
    
     <table class="table">
-        <thead>
-            <tr>
-                <th>@tituloTableCarrera</th>
-            </tr>
-        </thead>
         <tbody>
             @foreach (var inscripcion in inscripcionesACarreras)
             {
