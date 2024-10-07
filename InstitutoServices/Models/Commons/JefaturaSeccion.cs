@@ -1,6 +1,6 @@
 ﻿namespace InstitutoServices.Models.Commons
 {
-    public class JefeSeccion
+    public class JefaturaSeccion
     {
         public int Id { get; set; }
         public int? DocenteId { get; set; }
