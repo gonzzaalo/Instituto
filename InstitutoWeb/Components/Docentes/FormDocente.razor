@@ -7,7 +7,7 @@
 else
 {
     <h4>Selecciona el docente</h4>
-    <TableIdNombreSelection ListEntity="@(docentes.Cast<IEntityIdNombre>().ToList())" OnSeleccionar="HandleSeleccionarDocente" />
+    <TableIdNombreSelectionWithFilter ListEntity="@(docentes.Cast<IEntityIdNombre>().ToList())" OnSeleccionar="HandleSeleccionarDocente" />
 }
 
 
