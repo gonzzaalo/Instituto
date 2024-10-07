@@ -25,6 +25,30 @@
 {
     @if (docente == null)
     {
+        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona que docente eres, si no te encuentras pidele a un directivo o jefe de sección que te cargue en el sistema</em></p>
+        <FormDocente OnSeleccionarDocente="SeleccionarDocente" />
+    }
+    else //muestro los datos del docente
+    {
+        <DocenteData docente="@docente" />
+    }
+}
+@if (tipoUsuario == TipoUsuarioEnum.Jefe_sección)
+{
+    @if (docente == null)
+    {
+        <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona que docente eres, , si no te encuentras pidele a un directivo o jefe de sección que te cargue en el sistema</em></p>
+        <FormDocente OnSeleccionarDocente="SeleccionarDocente" />
+    }
+    else //muestro los datos del docente
+    {
+        <JefeSeccionData docente="@docente" />
+    }
+}
+@if (tipoUsuario == TipoUsuarioEnum.Directivo)
+{
+    @if (docente == null)
+    {
         <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona que docente eres</em></p>
         <FormDocente OnSeleccionarDocente="SeleccionarDocente" />
     }

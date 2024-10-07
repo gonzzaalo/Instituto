@@ -28,5 +28,16 @@ namespace InstitutoServices.Services.Commons
             }
             return JsonSerializer.Deserialize<Usuario>(content, options); ;
         }
+
+        public async Task<Usuario?> GetUserByDocente(int? docenteId)
+        {
+            var response = await client.GetAsync($"{_endpoint}/getByDocente?docenteId={docenteId}");
+            var content = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            return JsonSerializer.Deserialize<Usuario>(content, options); ;
+        }
     }
 }

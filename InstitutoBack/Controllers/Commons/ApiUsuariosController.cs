@@ -64,6 +64,20 @@ namespace InstitutoBack.Controllers.Commons
             return Ok(user);
         }
 
+        [HttpGet("getByDocente")]
+        public async Task<ActionResult<Usuario>> GetUserByDocente([FromQuery] int docenteId)
+        {
+
+            var user = await _context.usuarios.Include(u => u.Alumno).Include(u => u.Docente).Where(u => u.DocenteId.Equals(docenteId)).FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return NotFound("Usuario no encontrado.");
+            }
+
+            return Ok(user);
+        }
+
         // PUT: api/ApiUsuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
