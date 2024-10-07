@@ -9,6 +9,10 @@
 }
 else
 {
+    <div class="form-group">
+        <label for="docente">Password Jefe Sección:</label>
+        <input type="password" class="form-control" @bind-value="PasswordJefeSeccion" />
+    </div>
     <h4>Selecciona el docente</h4>
     <TableIdNombreSelectionWithFilter ListEntity="@(docentes.Cast<IEntityIdNombre>().ToList())" OnSeleccionar="HandleSeleccionarDocente" />
 }
@@ -20,6 +24,7 @@ else
     [Parameter]
     public EventCallback<Docente> OnSeleccionarDocente { get; set; }
     List<Docente> docentes = new List<Docente>();
+    public string PasswordJefeSeccion { get; set; } = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -28,6 +33,18 @@ else
     }
     private async Task HandleSeleccionarDocente(IEntityIdNombre docente)
     {
+        if(PasswordJefeSeccion!="jefeISP20")
+        {
+            await SweetAlert.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Password incorrecto",
+                    Text = $"El password del jefe de sección es incorrecto",
+                    Icon = SweetAlertIcon.Error,
+                    ShowCancelButton = false,
+                    ConfirmButtonText = "Ok",
+                });
+            return;
+        }
         var usuario=await usuarioService.GetUserByDocente(docente.Id);
         if(usuario!=null)
         {

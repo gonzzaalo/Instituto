@@ -2,7 +2,7 @@
 @inject FirebaseAuthService AuthService
 @inject NavigationManager NavigationManager
 @inject SweetAlertService SweetAlert
-@using InstitutoServices.Models.Login;
+@inject IUsuarioService usuarioService
 
 
 @if (userFirebaseAuthenticate==null)
@@ -125,6 +125,31 @@ else
 
     private async Task ResetearPassword()
     {
+        if(!Helper.IsEmailValid(usuario.Email))
+        {
+            await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Resetear contraseña",
+                    Text = $"Error, debe ingresar un email válido en el formulario, email=\"{usuario.Email}\"",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
+            return;
+        }
+        var usuarioExistente=await usuarioService.GetUserByEmail(usuario.Email);
+        if(usuarioExistente==null)
+        {
+            await SweetAlert.FireAsync(new SweetAlertOptions
+            {
+                Title = "Resetear contraseña",
+                Text = $"Error, no existe un usuario con el email {usuario.Email}",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = false,
+                ConfirmButtonText = "Ok",
+            });
+            return;
+        }
         bool reseteo = await AuthService.SendPasswordResetEmail(usuario.Email);
         if(reseteo)
         {
