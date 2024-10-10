@@ -4,6 +4,7 @@ using InstitutoBack.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstitutoBack.Migrations
 {
     [DbContext(typeof(InstitutoContext))]
-    partial class InstitutoContextModelSnapshot : ModelSnapshot
+    [Migration("20241010173225_cambiohoras")]
+    partial class cambiohoras
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -4553,7 +4556,7 @@ namespace InstitutoBack.Migrations
                             CarreraId = 1,
                             CicloLectivoId = 1,
                             Eliminado = false,
-                            Fecha = new DateTime(2024, 10, 10, 14, 43, 50, 165, DateTimeKind.Local).AddTicks(6805)
+                            Fecha = new DateTime(2024, 10, 10, 14, 32, 19, 423, DateTimeKind.Local).AddTicks(5940)
                         });
                 });
 
