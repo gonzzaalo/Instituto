@@ -99,8 +99,10 @@
                     return new Promise((resolve, reject) => {
                         firebase.auth().onAuthStateChanged((user) => {
                             if (user) {
-                                console.log(user.providerData[0].providerId);
-                                if (user.providerData[0].providerId == "facebook.com")
+                                provider = user.providerData[0].providerId;
+                                console.log(provider);
+
+                                if (provider == "facebook.com" || provider == "google.com")
                                 {
                                     user._delegate.emailVerified = true;
                                 }
