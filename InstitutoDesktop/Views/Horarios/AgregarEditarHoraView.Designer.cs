@@ -35,8 +35,8 @@
             chkRecreo = new CheckBox();
             label2 = new Label();
             label3 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            dateTimeDesde = new DateTimePicker();
+            dateTimeHasta = new DateTimePicker();
             SuspendLayout();
             // 
             // txtNombre
@@ -123,29 +123,31 @@
             label3.TabIndex = 16;
             label3.Text = "Desde:";
             // 
-            // dateTimePicker1
+            // dateTimeDesde
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Time;
-            dateTimePicker1.Location = new Point(228, 69);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(243, 23);
-            dateTimePicker1.TabIndex = 17;
+            dateTimeDesde.Format = DateTimePickerFormat.Time;
+            dateTimeDesde.Location = new Point(228, 69);
+            dateTimeDesde.Name = "dateTimeDesde";
+            dateTimeDesde.Size = new Size(243, 23);
+            dateTimeDesde.TabIndex = 17;
+            dateTimeDesde.Leave += dateTimeDesde_Leave;
             // 
-            // dateTimePicker2
+            // dateTimeHasta
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Time;
-            dateTimePicker2.Location = new Point(228, 165);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(243, 23);
-            dateTimePicker2.TabIndex = 18;
+            dateTimeHasta.Format = DateTimePickerFormat.Time;
+            dateTimeHasta.Location = new Point(228, 165);
+            dateTimeHasta.Name = "dateTimeHasta";
+            dateTimeHasta.Size = new Size(243, 23);
+            dateTimeHasta.TabIndex = 18;
+            dateTimeHasta.Leave += dateTimeHasta_Leave;
             // 
             // AgregarEditarHoraView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(837, 497);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dateTimeHasta);
+            Controls.Add(dateTimeDesde);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(chkRecreo);
@@ -169,7 +171,7 @@
         private CheckBox chkRecreo;
         private Label label2;
         private Label label3;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimeDesde;
+        private DateTimePicker dateTimeHasta;
     }
 }
