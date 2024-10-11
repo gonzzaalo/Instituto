@@ -17,7 +17,7 @@ namespace InstitutoDesktop
 {
     public partial class MenuPrincipalView : Form
     {
-        bool logueado=false;
+        bool logueado = false;
 
         public MenuPrincipalView()
         {
@@ -88,19 +88,26 @@ namespace InstitutoDesktop
 
         private void MenuPrincipalView_Activated(object sender, EventArgs e)
         {
-            if(!logueado)
+            if (!logueado)
             {
                 IniciarSesionView iniciarSesionView = new IniciarSesionView();
                 iniciarSesionView.ShowDialog();
                 if (!iniciarSesionView.loginSuccessfull)
                 {
                     Application.Exit();
-                }else
+                }
+                else
                 {
                     logueado = true;
                 }
             }
-            
+
+        }
+
+        private void iconMenuItem8_Click(object sender, EventArgs e)
+        {
+            HorariosView horariosView = new HorariosView();
+            horariosView.ShowDialog();
         }
     }
 }
