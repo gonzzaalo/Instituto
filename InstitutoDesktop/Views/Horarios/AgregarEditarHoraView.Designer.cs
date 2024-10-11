@@ -96,12 +96,13 @@
             // 
             chkRecreo.AutoSize = true;
             chkRecreo.Location = new Point(278, 309);
-            chkRecreo.Margin = new Padding(4, 4, 4, 4);
+            chkRecreo.Margin = new Padding(4);
             chkRecreo.Name = "chkRecreo";
             chkRecreo.Size = new Size(91, 29);
             chkRecreo.TabIndex = 14;
             chkRecreo.Text = "Recreo";
             chkRecreo.UseVisualStyleBackColor = true;
+            chkRecreo.CheckedChanged += chkRecreo_CheckedChanged;
             // 
             // dateTimeDesde
             // 
@@ -110,6 +111,7 @@
             dateTimeDesde.Name = "dateTimeDesde";
             dateTimeDesde.Size = new Size(155, 31);
             dateTimeDesde.TabIndex = 15;
+            dateTimeDesde.Leave += dateTimeDesde_Leave;
             // 
             // dateTimeHasta
             // 
@@ -118,6 +120,7 @@
             dateTimeHasta.Name = "dateTimeHasta";
             dateTimeHasta.Size = new Size(155, 31);
             dateTimeHasta.TabIndex = 16;
+            dateTimeHasta.Leave += dateTimeHasta_Leave;
             // 
             // label2
             // 
@@ -155,7 +158,7 @@
             Controls.Add(label1);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "AgregarEditarHoraView";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Agregar/Editar";

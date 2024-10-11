@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using InstitutoServices.Services.Commons;
 using InstitutoServices.Models.Horarios;
+using InstitutoDesktop.ExtensionMethods;
 
 namespace InstitutoDesktop.Views.Horarios
 {
@@ -23,11 +24,13 @@ namespace InstitutoDesktop.Views.Horarios
         {
             InitializeComponent();
             dataGridHoras.DataSource = listaHoras;
+            
             CargarGrilla();
         }
         private async Task CargarGrilla()
         {
             listaHoras.DataSource = await horaService.GetAllAsync();
+            dataGridHoras.OcultarColumnas(new string[] { "Desde", "Hasta", "Eliminado" });
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

@@ -42,6 +42,9 @@
     <Content Update="Components\Commons\ListCardEnum.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
+    <Content Update="Components\Horarios\TableHoras.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Update="Pages\Horas\Horas.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
