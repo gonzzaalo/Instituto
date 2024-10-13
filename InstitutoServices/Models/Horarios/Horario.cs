@@ -14,9 +14,9 @@ namespace InstitutoServices.Models.Horarios
         public bool Eliminado { get; set; } = false;
 
 
-        public ICollection<DetalleHorario> DetallesHorario { get; set; }
+        public ICollection<DetalleHorario>? DetallesHorario { get; set; }
 
-        public ICollection<IntegranteHorario> IntegrantesHorario { get; set; }
+        public ICollection<IntegranteHorario>? IntegrantesHorario { get; set; }
 
         public override string ToString()
         {

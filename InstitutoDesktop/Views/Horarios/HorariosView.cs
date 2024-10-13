@@ -109,13 +109,13 @@ namespace InstitutoDesktop.Views
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (horarioCurrent.IntegrantesHorario.Count == 0)
+            if (horarioCurrent?.IntegrantesHorario?.Count == 0)
             {
                 MessageBox.Show("Debe definirse al menos un docente para el horario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (horarioCurrent.DetallesHorario.Count == 0)
+            if (horarioCurrent?.DetallesHorario?.Count == 0)
             {
                 MessageBox.Show("Debe definirse al menos una hora para el horario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -124,6 +124,7 @@ namespace InstitutoDesktop.Views
             {
                 horarioCurrent.MateriaId = (int)cboMaterias.SelectedValue;
                 horarioCurrent.CicloLectivoId = (int)cboCiclosLectivos.SelectedValue;
+                horarioCurrent.CantidadHoras = horarioCurrent.DetallesHorario.Count(h=>h.Hora.EsRecreo.Equals(false));
                 if (horarioCurrent.Id == 0)
                 {
                     await horarioService.AddAsync(horarioCurrent);

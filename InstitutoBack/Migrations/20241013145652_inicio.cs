@@ -95,8 +95,8 @@ namespace InstitutoBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Desde = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Hasta = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     EsRecreo = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Eliminado = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -204,6 +204,32 @@ namespace InstitutoBack.Migrations
                         principalTable: "cicloslectivos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "jefaturassecciones",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    DocenteId = table.Column<int>(type: "int", nullable: true),
+                    CarreraId = table.Column<int>(type: "int", nullable: true),
+                    Eliminado = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_jefaturassecciones", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_jefaturassecciones_carreras_CarreraId",
+                        column: x => x.CarreraId,
+                        principalTable: "carreras",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_jefaturassecciones_docentes_DocenteId",
+                        column: x => x.DocenteId,
+                        principalTable: "docentes",
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -542,52 +568,6 @@ namespace InstitutoBack.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "horas",
-                columns: new[] { "Id", "Eliminado", "EsRecreo", "Nombre" },
-                values: new object[,]
-                {
-                    { 1, false, false, "08:00 a 08:40" },
-                    { 2, false, false, "08:40 a 09:20" },
-                    { 3, false, false, "09:20 a 10:00" },
-                    { 4, false, false, "10:00 a 10:40" },
-                    { 5, false, true, "10:00 a 10:10" },
-                    { 6, false, false, "10:10 a 10:50" },
-                    { 7, false, true, "10:40 a 10:50" },
-                    { 8, false, false, "10:50 a 11:30" },
-                    { 9, false, false, "11:10 a 11:50" },
-                    { 10, false, false, "11:30 a 12:10" },
-                    { 11, false, false, "11:50 a 12:30" },
-                    { 12, false, false, "12:10 a 12:50" },
-                    { 13, false, false, "12:30 a 13:10" },
-                    { 14, false, false, "12:50 a 13:30" },
-                    { 15, false, false, "13:10 a 13:50" },
-                    { 16, false, false, "13:50 a 14:30" },
-                    { 17, false, false, "14:30 a 15:10" },
-                    { 18, false, false, "15:10 a 15:50" },
-                    { 19, false, true, "15:50 a 16:00" },
-                    { 20, false, true, "15:50 a 16:10" },
-                    { 21, false, false, "16:00 a 16:40" },
-                    { 22, false, false, "16:10 a 16:50" },
-                    { 23, false, false, "16:40 a 17:20" },
-                    { 24, false, false, "16:50 a 17:30" },
-                    { 25, false, false, "17:20 a 18:00" },
-                    { 26, false, false, "17:30 a 18:10" },
-                    { 27, false, false, "18:00 a 18:40" },
-                    { 28, false, false, "18:10 a 18:50" },
-                    { 29, false, false, "18:40 a 19:20" },
-                    { 30, false, false, "18:50 a 19:30" },
-                    { 31, false, false, "19:00 a 19:40" },
-                    { 32, false, false, "19:20 a 20:00" },
-                    { 33, false, true, "19:30 a 19:40" },
-                    { 34, false, false, "19:40 a 20:20" },
-                    { 35, false, false, "20:00 a 20:40" },
-                    { 36, false, false, "20:20 a 21:00" },
-                    { 37, false, false, "20:40 a 21:20" },
-                    { 38, false, false, "21:00 a 21:40" },
-                    { 39, false, false, "21:20 a 22:00" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "turnosexamenes",
                 columns: new[] { "Id", "Eliminado", "Nombre" },
                 values: new object[] { 1, false, "Julio/Agosto 2024" });
@@ -630,7 +610,7 @@ namespace InstitutoBack.Migrations
             migrationBuilder.InsertData(
                 table: "inscripciones",
                 columns: new[] { "Id", "AlumnoId", "CarreraId", "CicloLectivoId", "Eliminado", "Fecha" },
-                values: new object[] { 1, 1, 1, 1, false, new DateTime(2024, 10, 3, 8, 21, 29, 451, DateTimeKind.Local).AddTicks(9250) });
+                values: new object[] { 1, 1, 1, 1, false, new DateTime(2024, 10, 13, 11, 56, 51, 520, DateTimeKind.Local).AddTicks(368) });
 
             migrationBuilder.InsertData(
                 table: "inscriptoscarreras",
@@ -640,7 +620,7 @@ namespace InstitutoBack.Migrations
             migrationBuilder.InsertData(
                 table: "usuarios",
                 columns: new[] { "Id", "AlumnoId", "DocenteId", "Eliminado", "Email", "Password", "TipoUsuario", "User" },
-                values: new object[] { 1, null, 1, false, "admin@gmail.com", "", 2, "admin" });
+                values: new object[] { 1, null, 1, false, "admin@gmail.com", "", 4, "admin" });
 
             migrationBuilder.InsertData(
                 table: "materias",
@@ -946,40 +926,6 @@ namespace InstitutoBack.Migrations
                 values: new object[] { 1, false, 1, 1, 0 });
 
             migrationBuilder.InsertData(
-                table: "horarios",
-                columns: new[] { "Id", "CantidadHoras", "CicloLectivoId", "Eliminado", "MateriaId" },
-                values: new object[,]
-                {
-                    { 1, 3, 1, false, 7 },
-                    { 2, 4, 1, false, 135 },
-                    { 3, 4, 1, false, 134 },
-                    { 4, 4, 1, false, 130 },
-                    { 5, 3, 1, false, 133 },
-                    { 6, 4, 1, false, 131 },
-                    { 7, 3, 1, false, 127 },
-                    { 8, 3, 1, false, 132 },
-                    { 9, 1, 1, false, 264 },
-                    { 10, 5, 1, false, 141 },
-                    { 11, 3, 1, false, 138 },
-                    { 12, 4, 1, false, 144 },
-                    { 13, 3, 1, false, 142 },
-                    { 14, 3, 1, false, 140 },
-                    { 15, 3, 1, false, 139 },
-                    { 16, 3, 1, false, 143 },
-                    { 17, 3, 1, false, 136 },
-                    { 18, 1, 1, false, 265 },
-                    { 19, 5, 1, false, 148 },
-                    { 20, 3, 1, false, 153 },
-                    { 21, 3, 1, false, 145 },
-                    { 22, 3, 1, false, 152 },
-                    { 23, 3, 1, false, 151 },
-                    { 24, 3, 1, false, 147 },
-                    { 25, 3, 1, false, 149 },
-                    { 26, 3, 1, false, 150 },
-                    { 27, 1, 1, false, 266 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "mesasexamenes",
                 columns: new[] { "Id", "Eliminado", "Horario", "Llamado1", "Llamado2", "MateriaId", "TurnoExamenId" },
                 values: new object[,]
@@ -1122,97 +1068,6 @@ namespace InstitutoBack.Migrations
                     { 136, false, "8 HS", new DateTime(2024, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 219, 1 },
                     { 137, false, "8 HS", new DateTime(2024, 7, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 221, 1 },
                     { 138, false, "11 HS", new DateTime(2024, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 218, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "detalleshorarios",
-                columns: new[] { "Id", "Dia", "Eliminado", "HoraId", "HorarioId" },
-                values: new object[,]
-                {
-                    { 1, 1, false, 24, 1 },
-                    { 2, 1, false, 26, 1 },
-                    { 3, 1, false, 28, 1 },
-                    { 4, 2, false, 24, 2 },
-                    { 5, 2, false, 26, 2 },
-                    { 6, 4, false, 28, 2 },
-                    { 7, 4, false, 30, 2 },
-                    { 8, 0, false, 28, 3 },
-                    { 9, 0, false, 30, 3 },
-                    { 10, 3, false, 34, 3 },
-                    { 11, 3, false, 36, 3 },
-                    { 12, 1, false, 34, 4 },
-                    { 13, 1, false, 36, 4 },
-                    { 14, 1, false, 38, 4 },
-                    { 15, 1, false, 38, 4 },
-                    { 16, 0, false, 34, 5 },
-                    { 17, 0, false, 36, 5 },
-                    { 18, 0, false, 38, 5 },
-                    { 19, 2, false, 28, 6 },
-                    { 20, 2, false, 30, 6 },
-                    { 21, 3, false, 28, 6 },
-                    { 22, 3, false, 30, 6 },
-                    { 23, 2, false, 34, 7 },
-                    { 24, 2, false, 36, 7 },
-                    { 25, 2, false, 38, 7 },
-                    { 26, 4, false, 34, 8 },
-                    { 27, 4, false, 36, 8 },
-                    { 28, 4, false, 38, 8 },
-                    { 29, 0, false, 33, 9 },
-                    { 30, 0, false, 26, 10 },
-                    { 31, 0, false, 28, 10 },
-                    { 32, 0, false, 30, 10 },
-                    { 33, 1, false, 28, 10 },
-                    { 34, 1, false, 30, 10 },
-                    { 35, 2, false, 26, 11 },
-                    { 36, 2, false, 28, 11 },
-                    { 37, 2, false, 30, 11 },
-                    { 38, 3, false, 26, 12 },
-                    { 39, 3, false, 28, 12 },
-                    { 40, 3, false, 30, 12 },
-                    { 41, 3, false, 34, 12 },
-                    { 42, 4, false, 26, 13 },
-                    { 43, 4, false, 28, 13 },
-                    { 44, 4, false, 30, 13 },
-                    { 45, 0, false, 34, 14 },
-                    { 46, 0, false, 36, 14 },
-                    { 47, 0, false, 38, 14 },
-                    { 48, 1, false, 34, 15 },
-                    { 49, 1, false, 36, 15 },
-                    { 50, 1, false, 38, 15 },
-                    { 51, 2, false, 34, 16 },
-                    { 52, 2, false, 36, 16 },
-                    { 53, 2, false, 38, 16 },
-                    { 54, 4, false, 34, 17 },
-                    { 55, 4, false, 36, 17 },
-                    { 56, 4, false, 38, 17 },
-                    { 57, 0, false, 33, 18 },
-                    { 58, 0, false, 26, 19 },
-                    { 59, 0, false, 28, 19 },
-                    { 60, 3, false, 26, 19 },
-                    { 61, 3, false, 28, 19 },
-                    { 62, 3, false, 30, 19 },
-                    { 63, 1, false, 26, 20 },
-                    { 64, 1, false, 28, 20 },
-                    { 65, 1, false, 30, 20 },
-                    { 66, 2, false, 26, 21 },
-                    { 67, 2, false, 28, 21 },
-                    { 68, 2, false, 30, 21 },
-                    { 69, 4, false, 26, 22 },
-                    { 70, 4, false, 28, 22 },
-                    { 71, 4, false, 30, 22 },
-                    { 72, 0, false, 30, 23 },
-                    { 73, 0, false, 34, 23 },
-                    { 74, 0, false, 36, 23 },
-                    { 75, 1, false, 34, 24 },
-                    { 76, 1, false, 36, 24 },
-                    { 77, 1, false, 38, 24 },
-                    { 78, 2, false, 34, 25 },
-                    { 79, 2, false, 36, 25 },
-                    { 80, 2, false, 38, 25 },
-                    { 81, 4, false, 34, 26 },
-                    { 82, 4, false, 36, 26 },
-                    { 83, 4, false, 38, 26 },
-                    { 84, 0, false, 33, 27 }
                 });
 
             migrationBuilder.InsertData(
@@ -1774,37 +1629,6 @@ namespace InstitutoBack.Migrations
                     { 552, 12, false, 138, 3 }
                 });
 
-            migrationBuilder.InsertData(
-                table: "integranteshorarios",
-                columns: new[] { "Id", "DocenteId", "Eliminado", "HorarioId" },
-                values: new object[,]
-                {
-                    { 1, 34, false, 1 },
-                    { 2, 2, false, 2 },
-                    { 3, 67, false, 3 },
-                    { 4, 36, false, 4 },
-                    { 5, 47, false, 5 },
-                    { 6, 48, false, 6 },
-                    { 7, 31, false, 7 },
-                    { 8, 64, false, 8 },
-                    { 9, 17, false, 10 },
-                    { 10, 34, false, 11 },
-                    { 11, 29, false, 12 },
-                    { 12, 34, false, 13 },
-                    { 13, 60, false, 14 },
-                    { 14, 37, false, 15 },
-                    { 15, 34, false, 16 },
-                    { 16, 63, false, 17 },
-                    { 17, 33, false, 19 },
-                    { 18, 29, false, 20 },
-                    { 19, 67, false, 21 },
-                    { 20, 18, false, 22 },
-                    { 21, 18, false, 23 },
-                    { 22, 29, false, 24 },
-                    { 23, 47, false, 25 },
-                    { 24, 18, false, 26 }
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_anioscarreras_CarreraId",
                 table: "anioscarreras",
@@ -1886,6 +1710,16 @@ namespace InstitutoBack.Migrations
                 column: "HorarioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_jefaturassecciones_CarreraId",
+                table: "jefaturassecciones",
+                column: "CarreraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_jefaturassecciones_DocenteId",
+                table: "jefaturassecciones",
+                column: "DocenteId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_materias_AnioCarreraId",
                 table: "materias",
                 column: "AnioCarreraId");
@@ -1928,6 +1762,9 @@ namespace InstitutoBack.Migrations
 
             migrationBuilder.DropTable(
                 name: "integranteshorarios");
+
+            migrationBuilder.DropTable(
+                name: "jefaturassecciones");
 
             migrationBuilder.DropTable(
                 name: "usuarios");

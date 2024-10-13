@@ -302,7 +302,7 @@
             dataGridHorarios.ReadOnly = true;
             dataGridHorarios.RowHeadersWidth = 62;
             dataGridHorarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridHorarios.Size = new Size(804, 468);
+            dataGridHorarios.Size = new Size(812, 468);
             dataGridHorarios.TabIndex = 0;
             // 
             // tabPageAgregarEditar
