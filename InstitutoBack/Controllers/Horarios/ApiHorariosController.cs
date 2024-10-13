@@ -72,7 +72,35 @@ namespace InstitutoBack.Controllers.Horarios
                 return BadRequest();
             }
 
+            // Marcar el horario como modificado
             _context.Entry(horario).State = EntityState.Modified;
+
+            // Obtener el horario actual de la base de datos
+            var horarioExistente = await _context.horarios
+                .Include(h => h.DetallesHorario)
+                .Include(h => h.IntegrantesHorario)
+                .FirstOrDefaultAsync(h => h.Id == id);
+
+            if (horarioExistente == null)
+            {
+                return NotFound();
+            }
+
+            // Actualizar los detalles del horario
+            _context.detalleshorarios.RemoveRange(horarioExistente.DetallesHorario);
+            foreach (var detalle in horario.DetallesHorario)
+            {
+                detalle.HorarioId = id;
+                _context.detalleshorarios.Add(detalle);
+            }
+
+            // Actualizar los integrantes del horario
+            _context.integranteshorarios.RemoveRange(horarioExistente.IntegrantesHorario);
+            foreach (var integrante in horario.IntegrantesHorario)
+            {
+                integrante.HorarioId = id;
+                _context.integranteshorarios.Add(integrante);
+            }
 
             try
             {
@@ -99,6 +127,21 @@ namespace InstitutoBack.Controllers.Horarios
         public async Task<ActionResult<Horario>> PostHorario(Horario horario)
         {
             _context.horarios.Add(horario);
+            await _context.SaveChangesAsync();
+
+            // Ahora que el horario tiene un ID, puedes agregar los detalles y los integrantes
+            foreach (var detalle in horario.DetallesHorario)
+            {
+                detalle.HorarioId = horario.Id;
+                _context.detalleshorarios.Add(detalle);
+            }
+
+            foreach (var integrante in horario.IntegrantesHorario)
+            {
+                integrante.HorarioId = horario.Id;
+                _context.integranteshorarios.Add(integrante);
+            }
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetHorario", new { id = horario.Id }, horario);

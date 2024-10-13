@@ -8,7 +8,6 @@ using InstitutoDesktop.Views.Commons.Alumnos;
 using InstitutoDesktop.Views.Commons;
 using InstitutoDesktop.Views.Commons.AnioCarreras;
 using InstitutoDesktop.Views.Commons.Materias;
-using InstitutoDesktop.Views.AniosCarrera;
 
 
 
@@ -80,7 +79,7 @@ namespace InstitutoDesktop
 
         private void iconMenuItemAniosCarrera_Click(object sender, EventArgs e)
         {
-            AniosCarreraView aniosCarreraView = new AniosCarreraView();
+            AnioCarrerasView aniosCarreraView = new AnioCarrerasView();
             aniosCarreraView.ShowDialog();
 
 

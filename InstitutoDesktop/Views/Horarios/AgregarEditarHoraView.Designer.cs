@@ -42,21 +42,21 @@
             // txtNombre
             // 
             txtNombre.Font = new Font("Segoe UI", 11F);
-            txtNombre.Location = new Point(385, 243);
+            txtNombre.Location = new Point(308, 194);
             txtNombre.Margin = new Padding(2);
             txtNombre.Name = "txtNombre";
             txtNombre.ReadOnly = true;
-            txtNombre.Size = new Size(320, 37);
+            txtNombre.Size = new Size(257, 32);
             txtNombre.TabIndex = 12;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F);
-            label1.Location = new Point(278, 250);
+            label1.Location = new Point(222, 200);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(66, 30);
+            label1.Size = new Size(57, 25);
             label1.TabIndex = 11;
             label1.Text = "Hora:";
             // 
@@ -67,10 +67,10 @@
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             btnCancelar.IconSize = 30;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(532, 386);
-            btnCancelar.Margin = new Padding(4, 5, 4, 5);
+            btnCancelar.Location = new Point(426, 309);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(159, 50);
+            btnCancelar.Size = new Size(127, 40);
             btnCancelar.TabIndex = 10;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -83,10 +83,10 @@
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             btnGuardar.IconSize = 30;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(330, 386);
-            btnGuardar.Margin = new Padding(4, 5, 4, 5);
+            btnGuardar.Location = new Point(264, 309);
+            btnGuardar.Margin = new Padding(3, 4, 3, 4);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(159, 50);
+            btnGuardar.Size = new Size(127, 40);
             btnGuardar.TabIndex = 9;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -95,10 +95,9 @@
             // chkRecreo
             // 
             chkRecreo.AutoSize = true;
-            chkRecreo.Location = new Point(278, 309);
-            chkRecreo.Margin = new Padding(4);
+            chkRecreo.Location = new Point(222, 247);
             chkRecreo.Name = "chkRecreo";
-            chkRecreo.Size = new Size(91, 29);
+            chkRecreo.Size = new Size(77, 24);
             chkRecreo.TabIndex = 14;
             chkRecreo.Text = "Recreo";
             chkRecreo.UseVisualStyleBackColor = true;
@@ -107,18 +106,22 @@
             // dateTimeDesde
             // 
             dateTimeDesde.Format = DateTimePickerFormat.Time;
-            dateTimeDesde.Location = new Point(385, 80);
+            dateTimeDesde.Location = new Point(308, 64);
+            dateTimeDesde.Margin = new Padding(2, 2, 2, 2);
             dateTimeDesde.Name = "dateTimeDesde";
-            dateTimeDesde.Size = new Size(155, 31);
+            dateTimeDesde.ShowUpDown = true;
+            dateTimeDesde.Size = new Size(125, 27);
             dateTimeDesde.TabIndex = 15;
             dateTimeDesde.Leave += dateTimeDesde_Leave;
             // 
             // dateTimeHasta
             // 
             dateTimeHasta.Format = DateTimePickerFormat.Time;
-            dateTimeHasta.Location = new Point(385, 145);
+            dateTimeHasta.Location = new Point(308, 116);
+            dateTimeHasta.Margin = new Padding(2, 2, 2, 2);
             dateTimeHasta.Name = "dateTimeHasta";
-            dateTimeHasta.Size = new Size(155, 31);
+            dateTimeHasta.ShowUpDown = true;
+            dateTimeHasta.Size = new Size(125, 27);
             dateTimeHasta.TabIndex = 16;
             dateTimeHasta.Leave += dateTimeHasta_Leave;
             // 
@@ -126,10 +129,10 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11F);
-            label2.Location = new Point(285, 80);
+            label2.Location = new Point(228, 64);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(79, 30);
+            label2.Size = new Size(68, 25);
             label2.TabIndex = 17;
             label2.Text = "Desde:";
             // 
@@ -137,18 +140,18 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11F);
-            label3.Location = new Point(285, 145);
+            label3.Location = new Point(228, 116);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(72, 30);
+            label3.Size = new Size(63, 25);
             label3.TabIndex = 18;
             label3.Text = "Hasta:";
             // 
             // AgregarEditarHoraView
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(952, 589);
+            ClientSize = new Size(762, 471);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(dateTimeHasta);
@@ -158,7 +161,6 @@
             Controls.Add(label1);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
-            Margin = new Padding(4);
             Name = "AgregarEditarHoraView";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Agregar/Editar";
