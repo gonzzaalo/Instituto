@@ -7,7 +7,7 @@ else
     //var horariosAgrupadosPorAnio = Horarios.OrderBy(h=>h.DetallesHorario).GroupBy(m => m.Materia.AnioCarreraId);
     var horariosAgrupadosPorAnio = DetallesHorarios
     .OrderBy(d => d.Horario.Materia.AnioCarreraId) // 
-    .ThenBy(h => h.Hora.Nombre)
+    .ThenBy(h => h.Hora.Desde)
     .ThenBy(h=>h.Dia)// Ordena por la primera hora de cada horario
     .GroupBy(h=>h.Horario.Materia.AnioCarreraId)
     .ToList();
