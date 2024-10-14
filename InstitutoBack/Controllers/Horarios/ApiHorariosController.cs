@@ -54,7 +54,10 @@ namespace InstitutoBack.Controllers.Horarios
                 }    
             }
                 
-            return await _context.horarios.ToListAsync();
+            return await _context.horarios.Include(h => h.DetallesHorario).ThenInclude(d => d.Hora)
+                            .Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera)
+                            .Include(h => h.IntegrantesHorario).ThenInclude(i => i.Docente)
+                            .ToListAsync();
         }
 
         // GET: api/ApiHorarios/5
@@ -88,26 +91,16 @@ namespace InstitutoBack.Controllers.Horarios
             _context.Entry(horario).State = EntityState.Modified;
 
 
-            // Obtener el horario actual de la base de datos
-            var horarioExistente = await _context.horarios
-                .Include(h => h.DetallesHorario)
-                .Include(h => h.IntegrantesHorario)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(h => h.Id == id);
+            //busco los detalles existentes
+            var detallesExistentes = _context.detalleshorarios.Where(d => d.HorarioId.Equals(horario.Id)).AsNoTracking().ToList();
+            //busco los integrantes existentes
+            var integrantesExistentes = _context.integranteshorarios.Where(i => i.HorarioId.Equals(horario.Id)).AsNoTracking().ToList();
 
-            if (horarioExistente == null)
-            {
-                return NotFound();
-            }
-            //busco detalles e integrantes a borrar
-            var detallesABorrar = horarioExistente.DetallesHorario.Where(d => !horario.DetallesHorario.Any(dh => dh.Id == d.Id)).ToList();
-            var integrantesABorrar = horarioExistente.IntegrantesHorario.Where(i => !horario.IntegrantesHorario.Any(ih => ih.Id == i.Id)).ToList();
+            //busco los detalles que se eliminaron
+            var detallesEliminados = detallesExistentes.Where(d => !horario.DetallesHorario.Any(dh => dh.Id == d.Id)).ToList();
+            //busco los integrantes que se eliminaron
+            var integrantesEliminados = integrantesExistentes.Where(i => !horario.IntegrantesHorario.Any(ih => ih.Id == i.Id)).ToList();
 
-            // borro los detalles del horario
-            _context.detalleshorarios.RemoveRange(detallesABorrar);
-            // borro los integrantes del horario
-            _context.integranteshorarios.RemoveRange(integrantesABorrar);
-            //recorro los detalles y los marco como modificados
             foreach (var detalle in horario.DetallesHorario)
             {
                 if (detalle.Id == 0)
@@ -131,6 +124,14 @@ namespace InstitutoBack.Controllers.Horarios
                 {
                     _context.Entry(integrante).State = EntityState.Modified;
                 }
+            }
+            foreach (var detalle in detallesEliminados)
+            {
+                _context.detalleshorarios.Remove(detalle);
+            }
+            foreach (var integrante in integrantesEliminados)
+            {
+                _context.integranteshorarios.Remove(integrante);
             }
 
             try

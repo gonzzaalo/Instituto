@@ -40,7 +40,7 @@ namespace InstitutoDesktop.Views
             dataGridHorarios.DataSource = bindingHorarios;
             ObtenerListas();
 
-            CargarGrilla();
+            
         }
 
         private void CargarCombos()
@@ -71,6 +71,7 @@ namespace InstitutoDesktop.Views
 
             cboDias.DataSource = Enum.GetValues(typeof(DiaEnum));
 
+            CargarGrilla();
         }
 
         private async void ObtenerListas()
@@ -94,8 +95,10 @@ namespace InstitutoDesktop.Views
             CargarCombos();
         }
 
+
         private async Task CargarGrilla()
         {
+            if(listaHorarios != null && listaHorarios.Count > 0)
             bindingHorarios.DataSource = listaHorarios.Where(h => h.CicloLectivoId.Equals((int)cboCiclosLectivos.SelectedValue) &&
                                                             h.Materia.AnioCarrera.CarreraId.Equals((int)cboCarreras.SelectedValue) &&
                                                             h.Materia.AnioCarreraId.Equals((int)cboAniosCarreras.SelectedValue));
@@ -125,6 +128,11 @@ namespace InstitutoDesktop.Views
                 horarioCurrent.MateriaId = (int)cboMaterias.SelectedValue;
                 horarioCurrent.CicloLectivoId = (int)cboCiclosLectivos.SelectedValue;
                 horarioCurrent.CantidadHoras = horarioCurrent.DetallesHorario.Count(h=>h.Hora.EsRecreo.Equals(false));
+                horarioCurrent.Materia = null;
+                horarioCurrent.CicloLectivo = null;
+                horarioCurrent.IntegrantesHorario.ToList().ForEach(i => i.Docente = null);
+                horarioCurrent.DetallesHorario.ToList().ForEach(d => d.Hora = null);
+                
                 if (horarioCurrent.Id == 0)
                 {
                     await horarioService.AddAsync(horarioCurrent);
@@ -134,8 +142,24 @@ namespace InstitutoDesktop.Views
                     await horarioService.UpdateAsync(horarioCurrent);
                 }
             }
+            await actualizarListaHorarios();
             await CargarGrilla();
             tabControl.SelectTab(tabPageLista);
+        }
+
+        private async Task actualizarListaHorarios()
+        {
+            ShowInActivity.Show("Actualizando lista de horarios");
+            //pongo todos los métodos en paralelo para que se ejecuten al mismo tiempo
+            var tareas = new List<Task>
+            {
+                Task.Run(async () => listaHorarios = await horarioService.GetAllAsync())
+            };
+            bindingHorarios.DataSource = listaHorarios;
+            //cuando terminan todas las tareas, cierro el showInActivity y cargo los combos
+            await Task.WhenAll(tareas);
+            ShowInActivity.Hide();
+
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -147,9 +171,9 @@ namespace InstitutoDesktop.Views
 
         private void ActualizarTabAgregarEditar()
         {
-            cboMaterias.SelectedValue = horarioCurrent.MateriaId;
-            dataGridDocentes.DataSource = horarioCurrent.IntegrantesHorario;
-            dataGridHoras.DataSource = horarioCurrent.DetallesHorario;
+            cboMaterias.SelectedValue = horarioCurrent?.MateriaId ?? 0;
+            dataGridDocentes.DataSource = horarioCurrent?.IntegrantesHorario??null;
+            dataGridHoras.DataSource = horarioCurrent?.DetallesHorario??null;
         }
 
         private async void btnEliminar_Click(object sender, EventArgs e)
@@ -209,12 +233,12 @@ namespace InstitutoDesktop.Views
         private void btnAgregarHora_Click(object sender, EventArgs e)
         {
             var hora = (Hora)cboHoras.SelectedItem;
-            if (horarioCurrent.DetallesHorario.Any(h => h.HoraId.Equals(hora.Id)))
+            if (horarioCurrent.DetallesHorario.Any(d => d.HoraId.Equals(hora.Id)&& d.Dia.Equals(cboDias.SelectedValue)))
             {
-                MessageBox.Show("La hora ya se encuentra asignada al horario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"La hora {hora.Nombre} en el día {cboDias.SelectedValue} ya se encuentra asignada al horario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            horarioCurrent.DetallesHorario.Add(new DetalleHorario { HoraId = hora.Id, Hora = hora });
+            horarioCurrent.DetallesHorario.Add(new DetalleHorario { HoraId = hora.Id, Hora = hora, Dia=(DiaEnum)cboDias.SelectedValue, HorarioId=horarioCurrent.Id });
             dataGridHoras.DataSource = null;
             dataGridHoras.DataSource = horarioCurrent.DetallesHorario;
             dataGridHoras.OcultarColumnas(new string[] { "Horario","HoraId", "HorarioId", "Id", "Eliminado" });
@@ -223,8 +247,13 @@ namespace InstitutoDesktop.Views
 
         private void btnQuitarDocente_Click(object sender, EventArgs e)
         {
-            var docente = (Docente)dataGridDocentes.CurrentRow.DataBoundItem;
-            horarioCurrent.IntegrantesHorario.Remove(horarioCurrent.IntegrantesHorario.First(d => d.DocenteId.Equals(docente.Id)));
+            if(dataGridDocentes.CurrentRow == null)
+            {
+                MessageBox.Show("Debe seleccionar un docente para quitar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var integranteHorario = (IntegranteHorario)dataGridDocentes.CurrentRow.DataBoundItem;
+            horarioCurrent.IntegrantesHorario.Remove(horarioCurrent.IntegrantesHorario.First(d => d.Id.Equals(integranteHorario.Id)));
             dataGridDocentes.DataSource = null;
             dataGridDocentes.DataSource = horarioCurrent.IntegrantesHorario;
 
@@ -232,8 +261,13 @@ namespace InstitutoDesktop.Views
 
         private void btnQuitarHora_Click(object sender, EventArgs e)
         {
-            var hora = (Hora)dataGridHoras.CurrentRow.DataBoundItem;
-            horarioCurrent.DetallesHorario.Remove(horarioCurrent.DetallesHorario.First(h => h.HoraId.Equals(hora.Id)));
+            if(dataGridHoras.CurrentRow == null)
+            {
+                MessageBox.Show("Debe seleccionar una hora para quitar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var detalleHorario = (DetalleHorario)dataGridHoras.CurrentRow.DataBoundItem;
+            horarioCurrent.DetallesHorario.Remove(horarioCurrent.DetallesHorario.First(h => h.Id.Equals(detalleHorario.Id)));
             dataGridHoras.DataSource = null;
             dataGridHoras.DataSource = horarioCurrent.DetallesHorario;
 
@@ -241,8 +275,11 @@ namespace InstitutoDesktop.Views
 
         private void cboAniosCarreras_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboAniosCarreras.SelectedValue != null && cboAniosCarreras.SelectedValue.GetType() == typeof(int))
+            if (cboAniosCarreras.SelectedValue != null && cboAniosCarreras.SelectedValue.GetType() == typeof(int))
+            {
                 cboMaterias.DataSource = listaMaterias.Where(m => m.AnioCarreraId.Equals(cboAniosCarreras.SelectedValue)).ToList();
+                CargarGrilla();
+            }
         }
     }
 }
