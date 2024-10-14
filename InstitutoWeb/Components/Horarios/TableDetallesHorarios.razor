@@ -28,7 +28,7 @@ else
             </thead>
             <tbody>
                 @{
-                    var horariosAgrupadosPorHora = grupoAnio.OrderBy(h => h.Hora.Nombre)
+                    var horariosAgrupadosPorHora = grupoAnio.OrderBy(h => h.Hora.Desde)
                                             .GroupBy(h=>h.HoraId).ToList();
                     string hora,lunes, martes, miercoles, jueves, viernes;
                 }
