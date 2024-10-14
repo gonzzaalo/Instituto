@@ -217,7 +217,7 @@ namespace InstitutoDesktop.Views
             horarioCurrent.DetallesHorario.Add(new DetalleHorario { HoraId = hora.Id, Hora = hora });
             dataGridHoras.DataSource = null;
             dataGridHoras.DataSource = horarioCurrent.DetallesHorario;
-            dataGridHoras.OcultarColumnas(new string[] { "Horario", "HorarioId", "Id", "Eliminado" });
+            dataGridHoras.OcultarColumnas(new string[] { "Horario","HoraId", "HorarioId", "Id", "Eliminado" });
 
         }
 

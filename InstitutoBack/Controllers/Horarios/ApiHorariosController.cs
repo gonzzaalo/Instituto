@@ -28,19 +28,28 @@ namespace InstitutoBack.Controllers.Horarios
         {
             if (idAnioCarrera != null && idCicloLectivo!=null)
             {
-                return await _context.horarios.Include(h=>h.DetallesHorario).ThenInclude(d=>d.Hora).Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera).Where(h => h.Materia.AnioCarreraId.Equals(idAnioCarrera)&&h.CicloLectivoId.Equals(idCicloLectivo)).ToListAsync();
+                return await _context.horarios.Include(h=>h.DetallesHorario).ThenInclude(d=>d.Hora).
+                                               Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera).
+                                               Include(h=> h.IntegrantesHorario).ThenInclude(i => i.Docente)
+                                               .Where(h => h.Materia.AnioCarreraId.Equals(idAnioCarrera)&&h.CicloLectivoId.Equals(idCicloLectivo)).ToListAsync();
             }
             else
             {
                 if (idCarrera != null && idCicloLectivo != null)
                 {
-                    return await _context.horarios.Include(h => h.DetallesHorario).ThenInclude(d => d.Hora).Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera).Where(h => h.Materia.AnioCarrera.CarreraId.Equals(idCarrera) && h.CicloLectivoId.Equals(idCicloLectivo)).ToListAsync();
+                    return await _context.horarios.Include(h => h.DetallesHorario).ThenInclude(d => d.Hora)
+                                               .Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera)
+                                               .Include(h => h.IntegrantesHorario).ThenInclude(i => i.Docente)
+                                               .Where(h => h.Materia.AnioCarrera.CarreraId.Equals(idCarrera) && h.CicloLectivoId.Equals(idCicloLectivo)).ToListAsync();
                 }
                 else
                 {
                     if(idCicloLectivo != null)
                     {
-                        return await _context.horarios.Include(h => h.DetallesHorario).ThenInclude(d => d.Hora).Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera).Where(h => h.CicloLectivoId.Equals(idCicloLectivo)).ToListAsync();
+                        return await _context.horarios.Include(h => h.DetallesHorario).ThenInclude(d => d.Hora)
+                            .Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera)
+                            .Include(h => h.IntegrantesHorario).ThenInclude(i => i.Docente)
+                            .Where(h => h.CicloLectivoId.Equals(idCicloLectivo)).ToListAsync();
                     }
                 }    
             }
@@ -52,7 +61,11 @@ namespace InstitutoBack.Controllers.Horarios
         [HttpGet("{id}")]
         public async Task<ActionResult<Horario>> GetHorario(int id)
         {
-            var horario = await _context.horarios.FindAsync(id);
+            var horario = await _context.horarios
+                .Include(h => h.DetallesHorario).ThenInclude(d => d.Hora)
+                            .Include(h => h.Materia).ThenInclude(m => m.AnioCarrera).ThenInclude(a => a.Carrera)
+                            .Include(h => h.IntegrantesHorario).ThenInclude(i => i.Docente)
+                .Where(h=>h.Id.Equals(id)).FirstOrDefaultAsync();
 
             if (horario == null)
             {
@@ -71,39 +84,57 @@ namespace InstitutoBack.Controllers.Horarios
             {
                 return BadRequest();
             }
-
             // Marcar el horario como modificado
             _context.Entry(horario).State = EntityState.Modified;
+
 
             // Obtener el horario actual de la base de datos
             var horarioExistente = await _context.horarios
                 .Include(h => h.DetallesHorario)
                 .Include(h => h.IntegrantesHorario)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(h => h.Id == id);
 
             if (horarioExistente == null)
             {
                 return NotFound();
             }
+            //busco detalles e integrantes a borrar
+            var detallesABorrar = horarioExistente.DetallesHorario.Where(d => !horario.DetallesHorario.Any(dh => dh.Id == d.Id)).ToList();
+            var integrantesABorrar = horarioExistente.IntegrantesHorario.Where(i => !horario.IntegrantesHorario.Any(ih => ih.Id == i.Id)).ToList();
 
-            // Actualizar los detalles del horario
-            _context.detalleshorarios.RemoveRange(horarioExistente.DetallesHorario);
+            // borro los detalles del horario
+            _context.detalleshorarios.RemoveRange(detallesABorrar);
+            // borro los integrantes del horario
+            _context.integranteshorarios.RemoveRange(integrantesABorrar);
+            //recorro los detalles y los marco como modificados
             foreach (var detalle in horario.DetallesHorario)
             {
-                detalle.HorarioId = id;
-                _context.detalleshorarios.Add(detalle);
+                if (detalle.Id == 0)
+                {
+                    _context.detalleshorarios.Add(detalle);
+                }
+                else
+                {
+                    _context.Entry(detalle).State = EntityState.Modified;
+                }
             }
 
-            // Actualizar los integrantes del horario
-            _context.integranteshorarios.RemoveRange(horarioExistente.IntegrantesHorario);
+            //recorro los integrantes y los marco como modificados
             foreach (var integrante in horario.IntegrantesHorario)
             {
-                integrante.HorarioId = id;
-                _context.integranteshorarios.Add(integrante);
+                if (integrante.Id == 0)
+                {
+                    _context.integranteshorarios.Add(integrante);
+                }
+                else
+                {
+                    _context.Entry(integrante).State = EntityState.Modified;
+                }
             }
 
             try
-            {
+            {               
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -127,20 +158,6 @@ namespace InstitutoBack.Controllers.Horarios
         public async Task<ActionResult<Horario>> PostHorario(Horario horario)
         {
             _context.horarios.Add(horario);
-            await _context.SaveChangesAsync();
-
-            // Ahora que el horario tiene un ID, puedes agregar los detalles y los integrantes
-            foreach (var detalle in horario.DetallesHorario)
-            {
-                detalle.HorarioId = horario.Id;
-                _context.detalleshorarios.Add(detalle);
-            }
-
-            foreach (var integrante in horario.IntegrantesHorario)
-            {
-                integrante.HorarioId = horario.Id;
-                _context.integranteshorarios.Add(integrante);
-            }
 
             await _context.SaveChangesAsync();
 
