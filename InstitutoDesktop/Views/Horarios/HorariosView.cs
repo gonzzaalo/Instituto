@@ -179,7 +179,9 @@ namespace InstitutoDesktop.Views
         {
             cboMaterias.SelectedValue = horarioCurrent?.MateriaId ?? 0;
             dataGridDocentes.DataSource = horarioCurrent?.IntegrantesHorario ?? null;
+            dataGridDocentes.OcultarColumnas(new string[] { "Horario", "HorarioId", "Id", "Eliminado" });
             dataGridHoras.DataSource = horarioCurrent?.DetallesHorario ?? null;
+            dataGridHoras.OcultarColumnas(new string[] { "Horario", "HoraId", "HorarioId", "Id", "Eliminado" });
         }
 
         private async void btnEliminar_Click(object sender, EventArgs e)
