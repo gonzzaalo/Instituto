@@ -38,7 +38,7 @@ namespace InstitutoDesktop.Views
         {
             InitializeComponent();
             dataGridHorarios.DataSource = bindingHorarios;
-            tabPageAgregarEditar.Enabled= false;
+            //tabPageAgregarEditar.Enabled= false;
             ObtenerListas();
 
 
