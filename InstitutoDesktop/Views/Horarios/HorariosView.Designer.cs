@@ -136,7 +136,7 @@
             // cboCiclosLectivos
             // 
             cboCiclosLectivos.FormattingEnabled = true;
-            cboCiclosLectivos.Location = new Point(235, 32);
+            cboCiclosLectivos.Location = new Point(235, 30);
             cboCiclosLectivos.Name = "cboCiclosLectivos";
             cboCiclosLectivos.Size = new Size(151, 28);
             cboCiclosLectivos.TabIndex = 2;
@@ -201,6 +201,7 @@
             iconButtonSalir.Text = "&Salir";
             iconButtonSalir.TextAlign = ContentAlignment.MiddleRight;
             iconButtonSalir.UseVisualStyleBackColor = false;
+            iconButtonSalir.Click += iconButtonSalir_Click;
             // 
             // BtnBuscar
             // 
@@ -342,7 +343,7 @@
             btnQuitarHora.Location = new Point(680, 403);
             btnQuitarHora.Margin = new Padding(2);
             btnQuitarHora.Name = "btnQuitarHora";
-            btnQuitarHora.Size = new Size(97, 46);
+            btnQuitarHora.Size = new Size(93, 46);
             btnQuitarHora.TabIndex = 16;
             btnQuitarHora.Text = "Quitar";
             btnQuitarHora.TextAlign = ContentAlignment.MiddleRight;
@@ -359,7 +360,7 @@
             btnQuitarDocente.Location = new Point(680, 191);
             btnQuitarDocente.Margin = new Padding(2);
             btnQuitarDocente.Name = "btnQuitarDocente";
-            btnQuitarDocente.Size = new Size(97, 46);
+            btnQuitarDocente.Size = new Size(93, 46);
             btnQuitarDocente.TabIndex = 15;
             btnQuitarDocente.Text = "Quitar";
             btnQuitarDocente.TextAlign = ContentAlignment.MiddleRight;
@@ -389,7 +390,7 @@
             btnAgregarHora.IconColor = Color.Black;
             btnAgregarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarHora.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarHora.Location = new Point(520, 286);
+            btnAgregarHora.Location = new Point(541, 280);
             btnAgregarHora.Margin = new Padding(2);
             btnAgregarHora.Name = "btnAgregarHora";
             btnAgregarHora.Size = new Size(120, 46);
@@ -402,7 +403,7 @@
             // cboDias
             // 
             cboDias.FormattingEnabled = true;
-            cboDias.Location = new Point(352, 297);
+            cboDias.Location = new Point(92, 290);
             cboDias.Name = "cboDias";
             cboDias.Size = new Size(144, 28);
             cboDias.TabIndex = 12;
@@ -410,17 +411,17 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(302, 300);
+            label9.Location = new Point(44, 293);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(45, 20);
+            label9.Size = new Size(35, 20);
             label9.TabIndex = 11;
-            label9.Text = "Hora:";
+            label9.Text = "Día:";
             // 
             // cboHoras
             // 
             cboHoras.FormattingEnabled = true;
-            cboHoras.Location = new Point(117, 296);
+            cboHoras.Location = new Point(316, 290);
             cboHoras.Name = "cboHoras";
             cboHoras.Size = new Size(180, 28);
             cboHoras.TabIndex = 10;
@@ -428,7 +429,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(41, 300);
+            label8.Location = new Point(262, 293);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
             label8.Size = new Size(45, 20);
@@ -458,7 +459,7 @@
             btnAgregarDocente.IconColor = Color.Black;
             btnAgregarDocente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarDocente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarDocente.Location = new Point(520, 81);
+            btnAgregarDocente.Location = new Point(541, 81);
             btnAgregarDocente.Margin = new Padding(2);
             btnAgregarDocente.Name = "btnAgregarDocente";
             btnAgregarDocente.Size = new Size(120, 46);

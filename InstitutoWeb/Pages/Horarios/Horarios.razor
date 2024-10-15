@@ -44,10 +44,28 @@ else
     private int? idCicloLectivoSeleccionado;
     private int? idCarreraSeleccionada;
 
+    //from query
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int IdCicloLectivo { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int IdCarrera { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         ciclosLectivos = await cicloLectivoService.GetAllAsync();
         carreras = await carreraService.GetAllAsync();
+        if(IdCicloLectivo!=0)
+        {
+            idCicloLectivoSeleccionado = IdCicloLectivo;
+        }
+        if(IdCarrera!=0)
+        {
+            idCarreraSeleccionada = IdCarrera;
+            detallesHorarios = await detalleHorarioService.GetByCarreraAsync(idCicloLectivoSeleccionado, idCarreraSeleccionada);
+        }
 
     }
 
