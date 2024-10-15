@@ -268,6 +268,8 @@ namespace InstitutoDesktop.Views
             horarioCurrent.IntegrantesHorario.Remove(horarioCurrent.IntegrantesHorario.First(d => d.Id.Equals(integranteHorario.Id)));
             dataGridDocentes.DataSource = null;
             dataGridDocentes.DataSource = horarioCurrent.IntegrantesHorario;
+            dataGridDocentes.OcultarColumnas(new string[] { "Horario", "HorarioId", "Id", "Eliminado" });
+
 
         }
 
@@ -282,7 +284,7 @@ namespace InstitutoDesktop.Views
             horarioCurrent.DetallesHorario.Remove(horarioCurrent.DetallesHorario.First(h => h.Id.Equals(detalleHorario.Id)));
             dataGridHoras.DataSource = null;
             dataGridHoras.DataSource = horarioCurrent.DetallesHorario;
-
+            dataGridHoras.OcultarColumnas(new string[] { "Horario", "HoraId", "HorarioId", "Id", "Eliminado" });
         }
 
         private void cboAniosCarreras_SelectedIndexChanged(object sender, EventArgs e)
