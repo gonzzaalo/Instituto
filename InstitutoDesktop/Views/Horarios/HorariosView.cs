@@ -65,10 +65,29 @@ namespace InstitutoDesktop.Views
             cboDocentes.DataSource = listaDocentes.ToList();
             cboDocentes.DisplayMember = "Nombre";
             cboDocentes.ValueMember = "Id";
+            AutoCompleteStringCollection autoCompletadoDocentes = new AutoCompleteStringCollection();
+            foreach (Docente docente in listaDocentes.ToList())
+            {
+                autoCompletadoDocentes.Add(docente.Nombre.ToString());
+            }
+            cboDocentes.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboDocentes.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            cboDocentes.AutoCompleteCustomSource = autoCompletadoDocentes;
+
+
 
             cboHoras.DataSource = listaHoras.ToList();
             cboHoras.DisplayMember = "Nombre";
             cboHoras.ValueMember = "Id";
+            AutoCompleteStringCollection autoCompletadoHoras = new AutoCompleteStringCollection();
+            foreach (Hora hora in listaHoras.ToList())
+            {
+                autoCompletadoHoras.Add(hora.Nombre.ToString());
+            }
+            cboHoras.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboHoras.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            cboHoras.AutoCompleteCustomSource = autoCompletadoHoras;
+
 
             cboDias.DataSource = Enum.GetValues(typeof(DiaEnum));
 
