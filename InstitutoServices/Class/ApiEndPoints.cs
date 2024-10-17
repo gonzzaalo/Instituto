@@ -1,4 +1,6 @@
-﻿namespace InstitutoServices.Class
+﻿using InstitutoServices.Models.Commons;
+
+namespace InstitutoServices.Class
 {
     public static class ApiEndpoints
     {
@@ -19,6 +21,7 @@
         public static string Usuario { get; set; } = "apiusuarios";
         public static string InscriptoCarrera { get; set; } = "apiinscriptoscarreras";
         public static string JefaturaSeccion { get; set; } = "apijefaturassecciones";
+        public static string Aula { get; set; } = "apiaulas";
 
 
 
@@ -44,6 +47,7 @@
                 nameof(Usuario) => Usuario,
                 nameof(InscriptoCarrera) => InscriptoCarrera,
                 nameof(JefaturaSeccion) => JefaturaSeccion,
+                nameof(Aula) => Aula,
                 _ => throw new ArgumentException($"Endpoint '{name}' no está definido.")
             };
         }

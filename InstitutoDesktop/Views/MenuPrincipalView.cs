@@ -8,6 +8,7 @@ using InstitutoDesktop.Views.Commons.Alumnos;
 using InstitutoDesktop.Views.Commons;
 using InstitutoDesktop.Views.Commons.AnioCarreras;
 using InstitutoDesktop.Views.Commons.Materias;
+using InstitutoDesktop.Views.Commons.Aulas;
 
 
 
@@ -107,6 +108,12 @@ namespace InstitutoDesktop
         {
             HorariosView horariosView = new HorariosView();
             horariosView.ShowDialog();
+        }
+
+        private void iconMenuItem10_Click(object sender, EventArgs e)
+        {
+            AulasView aulasView = new AulasView();
+            aulasView.ShowDialog();
         }
     }
 }
