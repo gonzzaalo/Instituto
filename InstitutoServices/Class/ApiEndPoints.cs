@@ -20,6 +20,8 @@
         public static string InscriptoCarrera { get; set; } = "apiinscriptoscarreras";
         public static string JefaturaSeccion { get; set; } = "apijefaturassecciones";
 
+        public static string Aula { get; set; } = "apiAulas";   
+
 
 
 
@@ -44,6 +46,7 @@
                 nameof(Usuario) => Usuario,
                 nameof(InscriptoCarrera) => InscriptoCarrera,
                 nameof(JefaturaSeccion) => JefaturaSeccion,
+                nameof(Aula) => Aula,
                 _ => throw new ArgumentException($"Endpoint '{name}' no está definido.")
             };
         }
