@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InstitutoBack.Migrations
 {
     /// <inheritdoc />
-    public partial class aulacondatacontext : Migration
+    public partial class aulacontext : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Aula",
+                name: "aulas",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -24,7 +24,7 @@ namespace InstitutoBack.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Aula", x => x.Id);
+                    table.PrimaryKey("PK_aulas", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -33,21 +33,21 @@ namespace InstitutoBack.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Fecha",
-                value: new DateTime(2024, 10, 17, 16, 13, 15, 290, DateTimeKind.Local).AddTicks(4829));
+                value: new DateTime(2024, 10, 17, 16, 30, 40, 457, DateTimeKind.Local).AddTicks(7465));
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Aula");
+                name: "aulas");
 
             migrationBuilder.UpdateData(
                 table: "inscripciones",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Fecha",
-                value: new DateTime(2024, 10, 17, 16, 10, 21, 664, DateTimeKind.Local).AddTicks(7009));
+                value: new DateTime(2024, 10, 17, 16, 22, 41, 679, DateTimeKind.Local).AddTicks(4420));
         }
     }
 }

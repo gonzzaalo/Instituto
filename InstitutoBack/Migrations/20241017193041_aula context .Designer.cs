@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstitutoBack.Migrations
 {
     [DbContext(typeof(InstitutoContext))]
-    [Migration("20241017191316_aula con datacontext")]
-    partial class aulacondatacontext
+    [Migration("20241017193041_aula context ")]
+    partial class aulacontext
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -308,7 +308,7 @@ namespace InstitutoBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Aula");
+                    b.ToTable("aulas");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Commons.Carrera", b =>
@@ -3267,7 +3267,7 @@ namespace InstitutoBack.Migrations
                             CarreraId = 1,
                             CicloLectivoId = 1,
                             Eliminado = false,
-                            Fecha = new DateTime(2024, 10, 17, 16, 13, 15, 290, DateTimeKind.Local).AddTicks(4829)
+                            Fecha = new DateTime(2024, 10, 17, 16, 30, 40, 457, DateTimeKind.Local).AddTicks(7465)
                         });
                 });
 

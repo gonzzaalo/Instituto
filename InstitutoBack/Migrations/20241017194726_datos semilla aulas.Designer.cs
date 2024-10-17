@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstitutoBack.Migrations
 {
     [DbContext(typeof(InstitutoContext))]
-    [Migration("20241017191022_aula")]
-    partial class aula
+    [Migration("20241017194726_datos semilla aulas")]
+    partial class datossemillaaulas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -288,6 +288,130 @@ namespace InstitutoBack.Migrations
                             CarreraId = 8,
                             Eliminado = false,
                             Nombre = "4to año"
+                        });
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Commons.Aula", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("aulas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Eliminado = false,
+                            Nombre = "Aula 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Eliminado = false,
+                            Nombre = "Aula 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Eliminado = false,
+                            Nombre = "Aula 3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Eliminado = false,
+                            Nombre = "Aula 4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Eliminado = false,
+                            Nombre = "Aula 5"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Eliminado = false,
+                            Nombre = "Aula 6"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Eliminado = false,
+                            Nombre = "Aula 7"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Eliminado = false,
+                            Nombre = "Aula 8"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Eliminado = false,
+                            Nombre = "Aula 9"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Eliminado = false,
+                            Nombre = "Aula 10"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Eliminado = false,
+                            Nombre = "Aula 11"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Eliminado = false,
+                            Nombre = "Sala Informática/Aula 12"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Eliminado = false,
+                            Nombre = "Sala Hardware"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Eliminado = false,
+                            Nombre = "Sala Lab Software"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Eliminado = false,
+                            Nombre = "Sala Educación Tecnológica"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Eliminado = false,
+                            Nombre = "Sala de Centro De Recursos Tecnológicos"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Eliminado = false,
+                            Nombre = "Sala Sum"
                         });
                 });
 
@@ -3247,7 +3371,7 @@ namespace InstitutoBack.Migrations
                             CarreraId = 1,
                             CicloLectivoId = 1,
                             Eliminado = false,
-                            Fecha = new DateTime(2024, 10, 17, 16, 10, 21, 664, DateTimeKind.Local).AddTicks(7009)
+                            Fecha = new DateTime(2024, 10, 17, 16, 47, 25, 631, DateTimeKind.Local).AddTicks(4537)
                         });
                 });
 

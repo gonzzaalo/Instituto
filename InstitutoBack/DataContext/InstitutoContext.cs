@@ -1032,6 +1032,29 @@ namespace InstitutoBack.DataContext
 
             modelBuilder.Entity<Usuario>().HasData(usuario);
             #endregion
+            #region datos semillas Aulas
+            modelBuilder.Entity<Aula>().HasData(
+             new Aula { Id = 1, Nombre = "Aula 1", },
+            new Aula { Id = 2, Nombre = "Aula 2", },
+            new Aula { Id = 3, Nombre = "Aula 3", },
+             new Aula { Id = 4, Nombre = "Aula 4", },
+             new Aula { Id = 5, Nombre = "Aula 5", },
+             new Aula { Id = 6, Nombre = "Aula 6", },
+             new Aula { Id = 7, Nombre = "Aula 7", },
+             new Aula { Id = 8, Nombre = "Aula 8", },
+             new Aula { Id = 9, Nombre = "Aula 9", },
+             new Aula { Id = 10, Nombre = "Aula 10", },
+             new Aula { Id = 11, Nombre = "Aula 11", },
+             new Aula { Id = 13, Nombre = "Sala Informática/Aula 12", },
+             new Aula { Id = 14, Nombre = "Sala Hardware", },
+             new Aula { Id = 15, Nombre = "Sala Lab Software", },
+             new Aula { Id = 16, Nombre = "Sala Educación Tecnológica", },
+             new Aula { Id = 17, Nombre = "Sala de Centro De Recursos Tecnológicos", },
+             new Aula { Id = 18, Nombre = "Sala Sum", }
+            );
+
+
+            #endregion
         }
 
         public virtual DbSet<Alumno> alumnos { get; set; }
@@ -1054,7 +1077,7 @@ namespace InstitutoBack.DataContext
         public virtual DbSet<JefaturaSeccion> jefaturassecciones { get; set; }
         public virtual DbSet<InscripcionExamen> inscripcionesExamenes { get; set; }
         public virtual DbSet<DetalleInscripcionExamen> detallesInscripcionesExamenes { get; set; }
-        public DbSet<InstitutoServices.Models.Commons.Aula> Aula { get; set; } = default!;
+        public DbSet<Aula> aulas { get; set; }
 
 
     }
