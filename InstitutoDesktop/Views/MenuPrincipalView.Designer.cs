@@ -39,9 +39,10 @@
             iconMenuItemAniosCarrera = new FontAwesome.Sharp.IconMenuItem();
             turnoExamenesToolStripMenuItem = new ToolStripMenuItem();
             iconMenuItem9 = new FontAwesome.Sharp.IconMenuItem();
+            iconMenuItem8 = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
-            iconMenuItem8 = new FontAwesome.Sharp.IconMenuItem();
+            iconMenuItem10 = new FontAwesome.Sharp.IconMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             // 
             // iconMenuItem2
             // 
-            iconMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { iconMenuItem7, iconMenuItem6, btnAlumnos, iconMenuItem5, iconDocente, iconMenuItemAniosCarrera, turnoExamenesToolStripMenuItem, iconMenuItem9, iconMenuItem8 });
+            iconMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { iconMenuItem7, iconMenuItem6, btnAlumnos, iconMenuItem5, iconDocente, iconMenuItemAniosCarrera, turnoExamenesToolStripMenuItem, iconMenuItem9, iconMenuItem8, iconMenuItem10 });
             iconMenuItem2.IconChar = FontAwesome.Sharp.IconChar.Database;
             iconMenuItem2.IconColor = Color.Black;
             iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -153,6 +154,16 @@
             iconMenuItem9.Text = "Materias";
             iconMenuItem9.Click += iconMenuItem9_Click;
             // 
+            // iconMenuItem8
+            // 
+            iconMenuItem8.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconMenuItem8.IconColor = Color.Black;
+            iconMenuItem8.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconMenuItem8.Name = "iconMenuItem8";
+            iconMenuItem8.Size = new Size(228, 30);
+            iconMenuItem8.Text = "Horarios";
+            iconMenuItem8.Click += iconMenuItem8_Click;
+            // 
             // iconMenuItem3
             // 
             iconMenuItem3.DropDownItems.AddRange(new ToolStripItem[] { iconMenuItem4 });
@@ -173,15 +184,15 @@
             iconMenuItem4.Text = "Salir del sistema";
             iconMenuItem4.Click += iconMenuItem4_Click;
             // 
-            // iconMenuItem8
+            // iconMenuItem10
             // 
-            iconMenuItem8.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconMenuItem8.IconColor = Color.Black;
-            iconMenuItem8.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconMenuItem8.Name = "iconMenuItem8";
-            iconMenuItem8.Size = new Size(228, 30);
-            iconMenuItem8.Text = "Horarios";
-            iconMenuItem8.Click += iconMenuItem8_Click;
+            iconMenuItem10.IconChar = FontAwesome.Sharp.IconChar.ShopLock;
+            iconMenuItem10.IconColor = Color.Black;
+            iconMenuItem10.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconMenuItem10.Name = "iconMenuItem10";
+            iconMenuItem10.Size = new Size(228, 30);
+            iconMenuItem10.Text = "Aulas";
+            iconMenuItem10.Click += iconMenuItem10_Click;
             // 
             // MenuPrincipalView
             // 
@@ -224,5 +235,6 @@
 
         private FontAwesome.Sharp.IconMenuItem iconMenuItem9;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem8;
+        private FontAwesome.Sharp.IconMenuItem iconMenuItem10;
     }
 }
