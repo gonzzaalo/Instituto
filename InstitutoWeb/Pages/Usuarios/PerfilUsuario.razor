@@ -1,4 +1,5 @@
 ﻿@page "/perfilusuario"
+@using InstitutoServices.Models.Login
 
 @inject NavigationManager NavigationManager
 @inject FirebaseAuthService AuthService
@@ -76,12 +77,12 @@ else
     {
         // if (context.TargetLocation == "horarios" || context.TargetLocation == "carreras")
         // {
-        logger.LogInformation($"context.TargetLocation={context.TargetLocation}");
-        logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
-            context.PreventNavigation();
-        logger.LogInformation($"tipousuario={tipoUsuario}");
-            await SweetAlert.FireAsync("Advertencia", "No puedes salir de esta página hasta que completes tu perfil.", SweetAlertIcon.Warning);
-        StateHasChanged();
+        // logger.LogInformation($"context.TargetLocation={context.TargetLocation}");
+        // logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
+        //     context.PreventNavigation();
+        // logger.LogInformation($"tipousuario={tipoUsuario}");
+        //     await SweetAlert.FireAsync("Advertencia", "No puedes salir de esta página hasta que completes tu perfil.", SweetAlertIcon.Warning);
+        // StateHasChanged();
 
         // }
         
