@@ -8,6 +8,7 @@
 @inject ILogger<PerfilUsuario> logger
 
 <PageTitle>Perfil de Usuario</PageTitle>
+<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
 
 @if (userFirebaseAuthenticate == null)
 {
@@ -40,9 +41,14 @@ else
     {
         userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
+        if (usuario != null)
+        {
+            tipoUsuario = usuario.TipoUsuario;
+        }
         //logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
 
         AuthService.OnChangeLogin += ChequeoEstadoLogin;
+
 
 
     }
@@ -56,7 +62,7 @@ else
             NavigationManager.NavigateTo("/login");
         }
     }
-    
+
 
     private async Task HandleSeleccionarTipoUsuario(Enum value)
     {
@@ -64,6 +70,22 @@ else
         {
             this.tipoUsuario = tipoUsuario;
         }
+    }
+
+    private async void OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        // if (context.TargetLocation == "horarios" || context.TargetLocation == "carreras")
+        // {
+        logger.LogInformation($"context.TargetLocation={context.TargetLocation}");
+        logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
+            context.PreventNavigation();
+        logger.LogInformation($"tipousuario={tipoUsuario}");
+            await SweetAlert.FireAsync("Advertencia", "No puedes salir de esta página hasta que completes tu perfil.", SweetAlertIcon.Warning);
+        StateHasChanged();
+
+        // }
+        
+
     }
 
 }

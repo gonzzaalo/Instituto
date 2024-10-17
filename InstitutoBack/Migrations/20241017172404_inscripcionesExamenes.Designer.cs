@@ -4,6 +4,7 @@ using InstitutoBack.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstitutoBack.Migrations
 {
     [DbContext(typeof(InstitutoContext))]
-    partial class InstitutoContextModelSnapshot : ModelSnapshot
+    [Migration("20241017172404_inscripcionesExamenes")]
+    partial class inscripcionesExamenes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -3244,7 +3247,7 @@ namespace InstitutoBack.Migrations
                             CarreraId = 1,
                             CicloLectivoId = 1,
                             Eliminado = false,
-                            Fecha = new DateTime(2024, 10, 17, 15, 16, 56, 133, DateTimeKind.Local).AddTicks(7196)
+                            Fecha = new DateTime(2024, 10, 17, 14, 24, 3, 291, DateTimeKind.Local).AddTicks(531)
                         });
                 });
 
@@ -9411,7 +9414,7 @@ namespace InstitutoBack.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InstitutoServices.Models.MesasExamenes.TurnoExamen", "TurnoExamen")
+                    b.HasOne("InstitutoServices.Models.MesasExamenes.TurnoExamen", "Turno")
                         .WithMany()
                         .HasForeignKey("TurnoExamenId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -9421,7 +9424,7 @@ namespace InstitutoBack.Migrations
 
                     b.Navigation("Carrera");
 
-                    b.Navigation("TurnoExamen");
+                    b.Navigation("Turno");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.MesasExamenes.MesaExamen", b =>
