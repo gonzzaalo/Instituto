@@ -4,6 +4,7 @@ using InstitutoBack.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstitutoBack.Migrations
 {
     [DbContext(typeof(InstitutoContext))]
-    partial class InstitutoContextModelSnapshot : ModelSnapshot
+    [Migration("20241021180210_ActializamosModeloTurnoExamen")]
+    partial class ActializamosModeloTurnoExamen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3159,9 +3162,6 @@ namespace InstitutoBack.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AulaId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Dia")
                         .HasColumnType("int");
 
@@ -3175,8 +3175,6 @@ namespace InstitutoBack.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AulaId");
 
                     b.HasIndex("HoraId");
 
@@ -3273,9 +3271,6 @@ namespace InstitutoBack.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Actual")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
 
@@ -3291,7 +3286,6 @@ namespace InstitutoBack.Migrations
                         new
                         {
                             Id = 1,
-                            Actual = false,
                             Eliminado = false,
                             Nombre = "2024"
                         });
@@ -3377,11 +3371,7 @@ namespace InstitutoBack.Migrations
                             CarreraId = 1,
                             CicloLectivoId = 1,
                             Eliminado = false,
-
-
-                            Fecha = new DateTime(2024, 10, 21, 14, 59, 35, 807, DateTimeKind.Local).AddTicks(4700)
-
-
+                            Fecha = new DateTime(2024, 10, 21, 15, 2, 6, 680, DateTimeKind.Local).AddTicks(744)
                         });
                 });
 
@@ -9411,10 +9401,6 @@ namespace InstitutoBack.Migrations
 
             modelBuilder.Entity("InstitutoServices.Models.Horarios.DetalleHorario", b =>
                 {
-                    b.HasOne("InstitutoServices.Models.Commons.Aula", "aula")
-                        .WithMany()
-                        .HasForeignKey("AulaId");
-
                     b.HasOne("InstitutoServices.Models.Horarios.Hora", "Hora")
                         .WithMany()
                         .HasForeignKey("HoraId");
@@ -9426,8 +9412,6 @@ namespace InstitutoBack.Migrations
                     b.Navigation("Hora");
 
                     b.Navigation("Horario");
-
-                    b.Navigation("aula");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Horarios.Horario", b =>
