@@ -210,7 +210,7 @@ namespace InstitutoDesktop.Views
             dataGridDocentes.OcultarColumnas(new string[] { "Horario", "HorarioId", "Id", "Eliminado" });
             dataGridHoras.DataSource = horarioCurrent?.DetallesHorario.OrderBy(d=>d.Dia).ThenBy(d=>d.Hora.Desde).ToList() ?? null;
             cboAulas.SelectedValue = horarioCurrent?.DetallesHorario.FirstOrDefault()?.AulaId ?? 0;
-            dataGridHoras.OcultarColumnas(new string[] { "Horario", "HoraId", "HorarioId", "Id", "Eliminado" });
+            dataGridHoras.OcultarColumnas(new string[] { "AulaId","Horario", "HoraId", "HorarioId", "Id", "Eliminado" });
         }
 
         private async void btnEliminar_Click(object sender, EventArgs e)
