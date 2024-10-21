@@ -19,30 +19,33 @@ namespace InstitutoDesktop.Views.MesasExamenes
     {
         IGenericService<TurnoExamen> turnoexamenesService = new GenericService<TurnoExamen>();
         private TurnoExamen turnoexamen;
+
         public AgregarEditarTurnoExamenesView()
         {
             InitializeComponent();
             turnoexamen = new TurnoExamen();
         }
+
         public AgregarEditarTurnoExamenesView(TurnoExamen turnoexamen)
         {
             InitializeComponent();
             this.turnoexamen = turnoexamen;
             CargarDatosEnPantalla();
         }
+
         private async void CargarDatosEnPantalla()
         {
             txtNombre.Text = turnoexamen.Nombre;
+            checkBox1.Checked = turnoexamen.Actual; // Cargar el estado del checkbox
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
             turnoexamen.Nombre = txtNombre.Text;
-
+            turnoexamen.Actual = checkBox1.Checked;
             if (turnoexamen.Id == 0)
             {
                 await turnoexamenesService.AddAsync(turnoexamen);
-
             }
             else
             {
@@ -50,13 +53,13 @@ namespace InstitutoDesktop.Views.MesasExamenes
             }
 
             this.Close();
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
+
+    
     }
 }

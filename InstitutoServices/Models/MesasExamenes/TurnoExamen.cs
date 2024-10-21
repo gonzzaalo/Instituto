@@ -1,9 +1,4 @@
-﻿//using InstitutoServices.Interfaces.Commons;
-
-
-//using InstitutoServices.Interfaces.Commons;
-
-using InstitutoServices.Interfaces.MesasExamenes;
+﻿using InstitutoServices.Interfaces.MesasExamenes;
 
 namespace InstitutoServices.Models.MesasExamenes
 {
@@ -13,6 +8,7 @@ namespace InstitutoServices.Models.MesasExamenes
         public string Nombre { get; set; } = string.Empty;
         public bool Eliminado { get; set; } = false;
 
+        public bool Actual { get; set; } = false;
 
         public override string ToString()
         {
