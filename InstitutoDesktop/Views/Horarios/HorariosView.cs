@@ -23,6 +23,7 @@ namespace InstitutoDesktop.Views
         IMateriaService materiaService = new MateriaService();
         IGenericService<Docente> docenteService = new GenericService<Docente>();
         IGenericService<Hora> horaService = new GenericService<Hora>();
+        IGenericService<Aula> aulaService = new GenericService<Aula>();
 
         BindingSource bindingHorarios = new BindingSource();
         List<CicloLectivo>? listaCicloLectivos = new List<CicloLectivo>();
@@ -32,6 +33,7 @@ namespace InstitutoDesktop.Views
         List<Docente>? listaDocentes = new List<Docente>();
         List<Hora>? listaHoras = new List<Hora>();
         List<Horario>? listaHorarios = new List<Horario>();
+        List<Aula>? listaAulas = new List<Aula>();
         Horario horarioCurrent;
 
         public HorariosView()
@@ -65,6 +67,11 @@ namespace InstitutoDesktop.Views
             cboDocentes.DataSource = listaDocentes.ToList();
             cboDocentes.DisplayMember = "Nombre";
             cboDocentes.ValueMember = "Id";
+
+            cboAulas.DataSource = listaAulas.ToList();
+            cboAulas.DisplayMember = "Nombre";
+            cboAulas.ValueMember = "Id";
+
             AutoCompleteStringCollection autoCompletadoDocentes = new AutoCompleteStringCollection();
             foreach (Docente docente in listaDocentes.ToList())
             {
@@ -106,7 +113,8 @@ namespace InstitutoDesktop.Views
                 Task.Run(async () => listaMaterias = await materiaService.GetAllAsync()),
                 Task.Run(async () => listaDocentes = await docenteService.GetAllAsync()),
                 Task.Run(async () => listaHoras = await horaService.GetAllAsync()),
-                Task.Run(async () => listaHorarios = await horarioService.GetAllAsync())
+                Task.Run(async () => listaHorarios = await horarioService.GetAllAsync()),
+                Task.Run(async () => listaAulas = await aulaService.GetAllAsync())
             };
             bindingHorarios.DataSource = listaHorarios;
             //cuando terminan todas las tareas, cierro el showInActivity y cargo los combos
@@ -158,6 +166,7 @@ namespace InstitutoDesktop.Views
                 horarioCurrent.CicloLectivo = null;
                 horarioCurrent.IntegrantesHorario.ToList().ForEach(i => i.Docente = null);
                 horarioCurrent.DetallesHorario.ToList().ForEach(d => d.Hora = null);
+                horarioCurrent.DetallesHorario.ToList().ForEach(d => d.Aula = null);
 
                 if (horarioCurrent.Id == 0)
                 {
@@ -199,7 +208,8 @@ namespace InstitutoDesktop.Views
             cboMaterias.SelectedValue = horarioCurrent?.MateriaId ?? 0;
             dataGridDocentes.DataSource = horarioCurrent?.IntegrantesHorario ?? null;
             dataGridDocentes.OcultarColumnas(new string[] { "Horario", "HorarioId", "Id", "Eliminado" });
-            dataGridHoras.DataSource = horarioCurrent?.DetallesHorario ?? null;
+            dataGridHoras.DataSource = horarioCurrent?.DetallesHorario.OrderBy(d=>d.Dia).ThenBy(d=>d.Hora.Desde).ToList() ?? null;
+            cboAulas.SelectedValue = horarioCurrent?.DetallesHorario.FirstOrDefault()?.AulaId ?? 0;
             dataGridHoras.OcultarColumnas(new string[] { "Horario", "HoraId", "HorarioId", "Id", "Eliminado" });
         }
 
@@ -269,10 +279,13 @@ namespace InstitutoDesktop.Views
                 MessageBox.Show($"La hora {hora.Nombre} en el día {cboDias.SelectedValue} ya se encuentra asignada al horario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            horarioCurrent.DetallesHorario.Add(new DetalleHorario { HoraId = hora.Id, Hora = hora, Dia = (DiaEnum)cboDias.SelectedValue, HorarioId = horarioCurrent.Id });
+            var aula = (Aula)cboAulas.SelectedItem;
+            horarioCurrent.DetallesHorario.Add(new DetalleHorario { HoraId = hora.Id, Hora = hora, Dia = (DiaEnum)cboDias.SelectedValue, HorarioId = horarioCurrent.Id, AulaId=aula.Id, Aula=aula });
             dataGridHoras.DataSource = null;
-            dataGridHoras.DataSource = horarioCurrent.DetallesHorario;
-            dataGridHoras.OcultarColumnas(new string[] { "Horario", "HoraId", "HorarioId", "Id", "Eliminado" });
+            dataGridHoras.DataSource = horarioCurrent.DetallesHorario.OrderBy(d=>d.Dia).ThenBy(d=>d.Hora.Desde).ToList();
+            dataGridHoras.OcultarColumnas(new string[] { "AulaId","Horario", "HoraId", "HorarioId", "Id", "Eliminado" });
+            
+            
 
         }
 

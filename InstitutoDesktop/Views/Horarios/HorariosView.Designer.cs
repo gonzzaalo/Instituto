@@ -47,6 +47,8 @@
             btnAgregar = new FontAwesome.Sharp.IconButton();
             dataGridHorarios = new DataGridView();
             tabPageAgregarEditar = new TabPage();
+            cboAulas = new ComboBox();
+            label10 = new Label();
             btnQuitarHora = new FontAwesome.Sharp.IconButton();
             btnQuitarDocente = new FontAwesome.Sharp.IconButton();
             dataGridHoras = new DataGridView();
@@ -161,7 +163,7 @@
             tabControl.Margin = new Padding(2);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(961, 566);
+            tabControl.Size = new Size(961, 572);
             tabControl.TabIndex = 1;
             // 
             // tabPageLista
@@ -178,7 +180,7 @@
             tabPageLista.Margin = new Padding(2);
             tabPageLista.Name = "tabPageLista";
             tabPageLista.Padding = new Padding(2);
-            tabPageLista.Size = new Size(953, 533);
+            tabPageLista.Size = new Size(953, 539);
             tabPageLista.TabIndex = 0;
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
@@ -308,6 +310,8 @@
             // 
             // tabPageAgregarEditar
             // 
+            tabPageAgregarEditar.Controls.Add(cboAulas);
+            tabPageAgregarEditar.Controls.Add(label10);
             tabPageAgregarEditar.Controls.Add(btnQuitarHora);
             tabPageAgregarEditar.Controls.Add(btnQuitarDocente);
             tabPageAgregarEditar.Controls.Add(dataGridHoras);
@@ -328,10 +332,28 @@
             tabPageAgregarEditar.Margin = new Padding(2);
             tabPageAgregarEditar.Name = "tabPageAgregarEditar";
             tabPageAgregarEditar.Padding = new Padding(2);
-            tabPageAgregarEditar.Size = new Size(953, 533);
+            tabPageAgregarEditar.Size = new Size(953, 539);
             tabPageAgregarEditar.TabIndex = 1;
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
+            // 
+            // cboAulas
+            // 
+            cboAulas.FormattingEnabled = true;
+            cboAulas.Location = new Point(90, 305);
+            cboAulas.Name = "cboAulas";
+            cboAulas.Size = new Size(204, 28);
+            cboAulas.TabIndex = 18;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(46, 308);
+            label10.Margin = new Padding(2, 0, 2, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(42, 20);
+            label10.TabIndex = 17;
+            label10.Text = "Aula:";
             // 
             // btnQuitarHora
             // 
@@ -340,7 +362,7 @@
             btnQuitarHora.IconColor = Color.Black;
             btnQuitarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnQuitarHora.ImageAlign = ContentAlignment.MiddleLeft;
-            btnQuitarHora.Location = new Point(680, 403);
+            btnQuitarHora.Location = new Point(824, 413);
             btnQuitarHora.Margin = new Padding(2);
             btnQuitarHora.Name = "btnQuitarHora";
             btnQuitarHora.Size = new Size(93, 46);
@@ -357,7 +379,7 @@
             btnQuitarDocente.IconColor = Color.Black;
             btnQuitarDocente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnQuitarDocente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnQuitarDocente.Location = new Point(680, 191);
+            btnQuitarDocente.Location = new Point(824, 183);
             btnQuitarDocente.Margin = new Padding(2);
             btnQuitarDocente.Name = "btnQuitarDocente";
             btnQuitarDocente.Size = new Size(93, 46);
@@ -380,7 +402,7 @@
             dataGridHoras.ReadOnly = true;
             dataGridHoras.RowHeadersWidth = 62;
             dataGridHoras.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridHoras.Size = new Size(617, 169);
+            dataGridHoras.Size = new Size(774, 175);
             dataGridHoras.TabIndex = 14;
             // 
             // btnAgregarHora
@@ -390,7 +412,7 @@
             btnAgregarHora.IconColor = Color.Black;
             btnAgregarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarHora.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarHora.Location = new Point(541, 280);
+            btnAgregarHora.Location = new Point(697, 292);
             btnAgregarHora.Margin = new Padding(2);
             btnAgregarHora.Name = "btnAgregarHora";
             btnAgregarHora.Size = new Size(120, 46);
@@ -403,7 +425,7 @@
             // cboDias
             // 
             cboDias.FormattingEnabled = true;
-            cboDias.Location = new Point(92, 290);
+            cboDias.Location = new Point(339, 305);
             cboDias.Name = "cboDias";
             cboDias.Size = new Size(144, 28);
             cboDias.TabIndex = 12;
@@ -411,7 +433,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(44, 293);
+            label9.Location = new Point(299, 310);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
             label9.Size = new Size(35, 20);
@@ -421,15 +443,15 @@
             // cboHoras
             // 
             cboHoras.FormattingEnabled = true;
-            cboHoras.Location = new Point(316, 290);
+            cboHoras.Location = new Point(547, 302);
             cboHoras.Name = "cboHoras";
-            cboHoras.Size = new Size(180, 28);
+            cboHoras.Size = new Size(140, 28);
             cboHoras.TabIndex = 10;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(262, 293);
+            label8.Location = new Point(497, 308);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
             label8.Size = new Size(45, 20);
@@ -443,13 +465,13 @@
             dataGridDocentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridDocentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridDocentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridDocentes.Location = new Point(44, 157);
+            dataGridDocentes.Location = new Point(46, 144);
             dataGridDocentes.Margin = new Padding(2);
             dataGridDocentes.Name = "dataGridDocentes";
             dataGridDocentes.ReadOnly = true;
             dataGridDocentes.RowHeadersWidth = 62;
             dataGridDocentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridDocentes.Size = new Size(617, 112);
+            dataGridDocentes.Size = new Size(771, 118);
             dataGridDocentes.TabIndex = 8;
             // 
             // btnAgregarDocente
@@ -459,7 +481,7 @@
             btnAgregarDocente.IconColor = Color.Black;
             btnAgregarDocente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarDocente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarDocente.Location = new Point(541, 81);
+            btnAgregarDocente.Location = new Point(521, 67);
             btnAgregarDocente.Margin = new Padding(2);
             btnAgregarDocente.Name = "btnAgregarDocente";
             btnAgregarDocente.Size = new Size(120, 46);
@@ -472,7 +494,7 @@
             // cboDocentes
             // 
             cboDocentes.FormattingEnabled = true;
-            cboDocentes.Location = new Point(120, 90);
+            cboDocentes.Location = new Point(122, 77);
             cboDocentes.Name = "cboDocentes";
             cboDocentes.Size = new Size(376, 28);
             cboDocentes.TabIndex = 6;
@@ -480,7 +502,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(44, 94);
+            label7.Location = new Point(46, 81);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
             label7.Size = new Size(68, 20);
@@ -490,7 +512,7 @@
             // cboMaterias
             // 
             cboMaterias.FormattingEnabled = true;
-            cboMaterias.Location = new Point(120, 31);
+            cboMaterias.Location = new Point(122, 18);
             cboMaterias.Name = "cboMaterias";
             cboMaterias.Size = new Size(376, 28);
             cboMaterias.TabIndex = 4;
@@ -530,7 +552,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(44, 35);
+            label2.Location = new Point(46, 22);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(63, 20);
@@ -598,5 +620,7 @@
         private Label label9;
         private FontAwesome.Sharp.IconButton btnQuitarHora;
         private FontAwesome.Sharp.IconButton btnQuitarDocente;
+        private ComboBox cboAulas;
+        private Label label10;
     }
 }
