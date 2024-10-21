@@ -10,6 +10,8 @@
         public bool Eliminado { get; set; } = false;
 
 
+
+
         public override string ToString()
         {
             return ApellidoNombre;

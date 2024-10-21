@@ -1,6 +1,8 @@
 @inject IInscriptoCarreraService inscriptoCarreraService
 @inject IGenericService<Carrera> carreraService
 @inject ILogger<AlumnoData> logger
+@inject NavigationManager NavigationManager
+@inject SweetAlertService SweetAlert
 
 <div>
     <h4>Datos del Alumno</h4>
@@ -8,7 +10,7 @@
     <p>Dirección: @alumno.Direccion</p>
     <p>Teléfono: @alumno.Telefono</p>
 </div>
-
+<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
 <button class="btn btn-primary" @onclick="()=>HandleInscribirseACarrera()">Seleccionar @tituloTableCarrera</button>
 @if (inscripcionesACarreras==null||inscripcionesACarreras.Count==0)
 {
@@ -86,4 +88,24 @@ else
         
         StateHasChanged();
     }
+
+    private  Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        if(inscripcionesACarreras.Count==0)
+        {
+            SweetAlert.FireAsync("Error perfil incompleto", "Debes definir la o las carreras en las que estás inscripto.", SweetAlertIcon.Warning);
+            context.PreventNavigation();
+        }  
+        return Task.CompletedTask;
+    }
+    // private Task OnBeforeInternalNavigation(LocationChangingContext context)
+    // {
+    //     // Lógica para evitar la navegación si es necesario.
+    //     if (context.TargetLocation.Contains("restricted"))
+    //     {
+    //         context.PreventNavigation(); // Evita la navegación si es necesario.
+    //     }
+
+    //     return Task.CompletedTask;
+    // }
 }
