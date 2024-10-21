@@ -2,8 +2,10 @@
 @using InstitutoServices.Models.Login
 
 @inject NavigationManager NavigationManager
-@inject FirebaseAuthService AuthService
+@inject AuthenticationService AuthService
 @inject IUsuarioService usuarioService
+@inject IUsuarioStateService usuarioStateService
+
 
 @inject SweetAlertService SweetAlert
 @inject ILogger<PerfilUsuario> logger
@@ -18,14 +20,14 @@
 else
 {
     <h3>Hola @userFirebaseAuthenticate.DisplayName</h3>
-    @if(usuario==null&&tipoUsuario==0)
+    @if(usuarioStateService.Usuario==null&&tipoUsuario==0)
     {
         <p><em>Eres un nuevo usuario, necesitamos completar tu perfil selecciona el tipo de usuario que eres</em></p>
         <ListCardEnum EnumType="typeof(TipoUsuarioEnum)" TituloCard="Tipo de Usuario" OnSeleccionar="HandleSeleccionarTipoUsuario" />
     }
     else
     {
-        <UsuarioData usuario="@usuario" usuarioFirebase="@userFirebaseAuthenticate" tipoUsuario="@tipoUsuario"/>
+        <UsuarioData usuario="@usuarioStateService.Usuario" usuarioFirebase="@userFirebaseAuthenticate" tipoUsuario="@tipoUsuario" />
     }
            
 
@@ -33,35 +35,33 @@ else
 
 @code {
     FirebaseUser? userFirebaseAuthenticate { get; set; } = null;
-    Usuario? usuario { get; set; } 
 
     TipoUsuarioEnum tipoUsuario { get; set; } 
 
 
     protected override async Task OnInitializedAsync()
     {
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
-        if (usuario != null)
+        userFirebaseAuthenticate = usuarioStateService.FirebaseUser;
+        //usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
+        if (usuarioStateService.Usuario != null)
         {
-            tipoUsuario = usuario.TipoUsuario;
+            tipoUsuario = usuarioStateService.Usuario.TipoUsuario;
         }
         //logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
 
-        AuthService.OnChangeLogin += ChequeoEstadoLogin;
+        usuarioStateService.OnChange += ChequeoEstadoLogin;
 
 
 
     }
     public async void ChequeoEstadoLogin()
     {
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        StateHasChanged();
-        //si no hay usuario autenticado lo redirijo a la página de login
-        if (userFirebaseAuthenticate == null)
+        if (usuarioStateService.Usuario == null)
         {
             NavigationManager.NavigateTo("/login");
-        }
+        }else
+        StateHasChanged();
+        
     }
 
 

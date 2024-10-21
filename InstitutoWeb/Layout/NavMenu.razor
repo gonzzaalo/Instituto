@@ -1,9 +1,11 @@
 ﻿@using InstitutoServices.Models.Login
-@inject FirebaseAuthService AuthService
+@inject AuthenticationService AuthService
 @inject NavigationManager NavigationManager
 @inject IUsuarioService usuarioService
 @inject IInscriptoCarreraService inscriptoCarreraService
 @inject ILogger<NavMenu> logger
+@inject IUsuarioStateService usuarioStateService
+
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
@@ -24,7 +26,7 @@
 
 
 
-        @if (userFirebaseAuthenticate!=null)
+        @if (usuarioStateService.Usuario != null)
         {
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="turnosexamenes">
@@ -75,7 +77,7 @@
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Mesas de exámenes
             </NavLink>
         </div>
-        @if(usuario?.TipoUsuario==TipoUsuarioEnum.Alumno)
+        @if (usuarioStateService.Usuario?.TipoUsuario == TipoUsuarioEnum.Alumno)
         {
             var idcarrera=inscripcionesACarreras?.FirstOrDefault()?.CarreraId;
             <div class="nav-item px-3">
@@ -94,14 +96,14 @@
         }
 
         <div class="nav-item px-3">
-            @if (userFirebaseAuthenticate != null)
+            @if (usuarioStateService.Usuario != null)
             {
                 <div class="user-info-container d-flex flex-column align-items-center p-3">
                     <a href="perfilusuario">
-                        <img src="@userFirebaseAuthenticate?.PhotoUrl" class="rounded-circle user-photo mb-2" />
+                        <img src="@usuarioStateService.FirebaseUser?.PhotoUrl" class="rounded-circle user-photo mb-2" />
                     </a>
 
-                        <span class="user-name">@userFirebaseAuthenticate?.DisplayName</span>
+                    <span class="user-name">@usuarioStateService.FirebaseUser?.DisplayName</span>
                     
                     <button class="logout-button btn btn-outline-light mt-2" @onclick="CerrarSesion">
                         <span class="bi-box-arrow-in-right" aria-hidden="true"></span> @textoMenuLogin
@@ -121,14 +123,11 @@
 
 @code {
     private bool collapseNavMenu = true;
-    Usuario? usuario { get; set; }
     public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    FirebaseUser? userFirebaseAuthenticate { get; set; } = null;
-
-    private string textoMenuLogin => userFirebaseAuthenticate!=null ? "Cerrar sesión" : "Iniciar sesión";
+    private string textoMenuLogin => usuarioStateService?.Usuario != null ? "Cerrar sesión" : "Iniciar sesión";
 
     private void ToggleNavMenu()
     {
@@ -137,34 +136,33 @@
 
     protected async override Task OnInitializedAsync()
     {
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
-        if(usuario!=null&&usuario.TipoUsuario==TipoUsuarioEnum.Alumno)
+        if (usuarioStateService?.FirebaseUser==null)
         {
-            inscripcionesACarreras = await inscriptoCarreraService.GetByAlumno(usuario.AlumnoId);
+            await AuthService.GetUserAuthenticated();
         }
+        usuarioStateService.OnChange += ChequeoEstadoLogin;
 
-        AuthService.OnChangeLogin += ChequeoEstadoLogin;
     }
 
     public void Dispose()
     {
-        AuthService.OnChangeLogin -= ChequeoEstadoLogin;
+        usuarioStateService.OnChange -= ChequeoEstadoLogin;
+
     }
     public async void ChequeoEstadoLogin()
     {
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
         StateHasChanged();
         //si ya hay alguien autenticado lo envio al componente perfilUsuario
-        if (userFirebaseAuthenticate != null)
+        if (usuarioStateService.Usuario != null)
         {
             NavigationManager.NavigateTo("/perfilusuario");
-        }
+        }else
+        {
+            NavigationManager.NavigateTo("/login");
+        }   
     }
     private async Task CerrarSesion()
     {
         await AuthService.SignOut();
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        StateHasChanged();
     }
 }

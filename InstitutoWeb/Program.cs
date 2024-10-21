@@ -13,6 +13,7 @@ using InstitutoServices.Interfaces.MesasExamenes;
 using InstitutoWeb.Services.Login;
 using InstitutoServices.Services.MesasExamenes;
 using InstitutoServices.Services.Inscripciones;
+using InstitutoWeb.Interfaces;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -31,9 +32,13 @@ builder.Services.AddScoped<IMesaExamenService, MesaExamenService>();
 builder.Services.AddScoped<IHorarioService, HorarioService>();
 builder.Services.AddScoped<IDetalleHorarioService, DetalleHorarioService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<UsuarioService>(); // Añade esta línea
+
 builder.Services.AddScoped<IInscriptoCarreraService, InscriptoCarreraService>();
 builder.Services.AddScoped<IJefaturaSeccionService, JefaturaSeccionService>();
-builder.Services.AddScoped<FirebaseAuthService>();
+builder.Services.AddSingleton<IUsuarioStateService, UsuarioStateService>();
+builder.Services.AddScoped<AuthenticationService>();
+
 
 builder.Services.AddSweetAlert2();
 await builder.Build().RunAsync();
