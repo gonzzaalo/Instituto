@@ -23,7 +23,7 @@ namespace InstitutoServices.Class
         public static string JefaturaSeccion { get; set; } = "apijefaturassecciones";
         public static string Aula { get; set; } = "apiaulas";
 
-        public static string Aula { get; set; } = "apiAulas";   
+      
 
 
 
