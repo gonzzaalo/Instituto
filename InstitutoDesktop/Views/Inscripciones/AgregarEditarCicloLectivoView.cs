@@ -33,17 +33,18 @@ namespace InstitutoDesktop.Views.Inscripciones
 
         private async void CargarDatosCicloLectivoAEditar()
         {
-          
-           
-                txtNombre.Text = cicloLectivo.Nombre;
-               
-          
+
+
+            txtNombre.Text = cicloLectivo.Nombre;
+            chkActual.Checked = cicloLectivo.Actual;
+
 
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
             cicloLectivo.Nombre = txtNombre.Text;
+            cicloLectivo.Actual = chkActual.Checked;
 
             if (cicloLectivo.Id == 0)
             {
@@ -53,6 +54,7 @@ namespace InstitutoDesktop.Views.Inscripciones
             {
                 await ciclolectivoService.UpdateAsync(cicloLectivo);
             }
+
             this.Close();
         }
 
@@ -60,5 +62,8 @@ namespace InstitutoDesktop.Views.Inscripciones
         {
             this.Close();
         }
+
+
+
     }
 }
