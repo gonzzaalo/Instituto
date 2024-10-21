@@ -52,6 +52,15 @@ namespace InstitutoBack.Controllers.MesasExamenes
             {
                 return BadRequest();
             }
+            if (turnoExamen.Actual)
+            {
+                var turnos = _context.turnosexamenes.Where(x => x.Actual).ToList();
+                foreach (var item in turnos)
+                {
+                    item.Actual = false;
+                    _context.turnosexamenes.Update(item);
+                }
+            }
 
             _context.Entry(turnoExamen).State = EntityState.Modified;
 
@@ -79,6 +88,16 @@ namespace InstitutoBack.Controllers.MesasExamenes
         [HttpPost]
         public async Task<ActionResult<TurnoExamen>> PostTurnoExamen(TurnoExamen turnoExamen)
         {
+            if(turnoExamen.Actual)
+            {
+                var turnos = _context.turnosexamenes.Where(x => x.Actual).ToList();
+                foreach (var item in turnos)
+                {
+                    item.Actual = false;
+                    _context.turnosexamenes.Update(item);
+                }
+            }
+
             _context.turnosexamenes.Add(turnoExamen);
             await _context.SaveChangesAsync();
 
