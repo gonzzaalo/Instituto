@@ -1,4 +1,5 @@
 ﻿using InstitutoServices.Enums;
+using InstitutoServices.Models.Commons;
 
 namespace InstitutoServices.Models.Horarios
 {
@@ -7,6 +8,8 @@ namespace InstitutoServices.Models.Horarios
         public int Id { get; set; }
         public int? HorarioId { get; set; }
         public Horario? Horario { get; set; } = null;
+        public int? AulaId { get; set; }
+        public Aula? Aula { get; set; } = null;
         public DiaEnum Dia { get; set; } = 0;
         public int? HoraId { get; set; }
         public Hora? Hora { get; set; }

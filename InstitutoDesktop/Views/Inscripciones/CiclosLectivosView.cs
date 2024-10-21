@@ -36,6 +36,7 @@ namespace InstitutoDesktop.Views.Inscripciones
         {
             AgregarEditarCicloLectivoView agregarEditarCicloLectivoView = new AgregarEditarCicloLectivoView();
             agregarEditarCicloLectivoView.ShowDialog();
+
             await CargarGrilla();
         }
 
@@ -50,7 +51,7 @@ namespace InstitutoDesktop.Views.Inscripciones
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
             var ciclolectivo = (CicloLectivo)listaCicloLectivos.Current;
-          
+
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar el Ciclo Lectivo {ciclolectivo.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
