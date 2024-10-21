@@ -1,11 +1,13 @@
 ﻿@page "/login"
 @using InstitutoServices.Models.Login
 @using InstitutoServices.Util
-@inject FirebaseAuthService AuthService
+@inject AuthenticationService AuthService
 @inject NavigationManager NavigationManager
 @inject SweetAlertService SweetAlert
 @inject ILogger<Login> logger
 @inject IUsuarioService usuarioService
+@inject IUsuarioStateService usuarioStateService
+
 
 
 @if (userFirebaseAuthenticate==null)
@@ -49,17 +51,17 @@ else
 
 
 @code {
-    Usuario usuario { get; set; } =new Usuario();
+    Usuario? usuario { get; set; } =new Usuario();
 
     bool remenberPassword { get; set; } = false;
 
     FirebaseUser? userFirebaseAuthenticate { get; set; }=null;
 
+
     protected async override Task OnInitializedAsync()
     {
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-
-        AuthService.OnChangeLogin += ChequeoEstadoLogin;
+        //userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
+        usuarioStateService.OnChange += ChequeoEstadoLogin;
 
     }
 
@@ -77,6 +79,7 @@ else
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
             });
+            return;
         }
         else
         if(!response.User.EmailVerified)
@@ -89,18 +92,15 @@ else
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
             });
+            return;
         }
-        
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        StateHasChanged();
+
     }
 
     private async Task CerrarSesion()
     {
         await AuthService.SignOut();
         usuario = new Usuario();
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        StateHasChanged();
     }
 
     private async Task Registrarse()
@@ -110,25 +110,20 @@ else
 
     private async Task LoginGoogle()
     {
-        await AuthService.LoginWithGoogle();
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        StateHasChanged();
+        userFirebaseAuthenticate= await AuthService.LoginWithGoogle();
     } 
 
     private async Task LoginFacebook()
     {
-        await AuthService.LoginWithFacebook();
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        StateHasChanged();
+        userFirebaseAuthenticate=await AuthService.LoginWithFacebook();
     }
 
     public async void ChequeoEstadoLogin()
     {
-        userFirebaseAuthenticate = await AuthService.GetUserAuthenticated();
-        // logger.LogInformation($"userFirebaseAuthenticate={userFirebaseAuthenticate.PropertiesToString()}");
+
         StateHasChanged();
         //si ya hay alguien autenticado lo envio al componente perfilUsuario
-        if(userFirebaseAuthenticate!=null)
+        if (usuarioStateService.FirebaseUser != null)
         {
             NavigationManager.NavigateTo("/perfilusuario");
         }
@@ -136,7 +131,7 @@ else
 
     public void Dispose()
     {
-        AuthService.OnChangeLogin -= ChequeoEstadoLogin;
+        usuarioStateService.OnChange -= ChequeoEstadoLogin;
     }
 
     private async Task ResetearPassword()

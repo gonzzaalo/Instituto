@@ -1,4 +1,5 @@
 @inject IUsuarioService usuarioService
+@inject IUsuarioStateService usuarioStateService
 @inject SweetAlertService SweetAlert
 
 @if (usuario != null)
@@ -102,6 +103,7 @@
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
             });
+        usuarioStateService.SetUsuario(usuario, usuarioFirebase);
         StateHasChanged();
     }
     private async Task SeleccionarDocente(Docente docente)
@@ -124,6 +126,7 @@
                 ShowCancelButton = false,
                 ConfirmButtonText = "Ok",
             });
+        usuarioStateService.SetUsuario(usuario, usuarioFirebase);
         StateHasChanged();
     }
 
