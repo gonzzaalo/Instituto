@@ -1,0 +1,97 @@
+﻿using InstitutoServices.Interfaces.Commons;
+using InstitutoServices.Models.Login;
+using InstitutoServices.Services.Commons;
+using InstitutoWeb.Interfaces;
+using Microsoft.JSInterop;
+using System.Diagnostics;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace InstitutoWeb.Services.Login
+{
+    public class AuthenticationService
+    {
+        private readonly IJSRuntime _jsRuntime;
+        IUsuarioStateService _usuarioStateService;
+        IUsuarioService _usuarioService;
+
+        public AuthenticationService(IJSRuntime jsRuntime, IUsuarioStateService usuarioStateService, IUsuarioService usuarioService)
+        {
+            _jsRuntime = jsRuntime;
+            _usuarioStateService = usuarioStateService;
+            _usuarioService = usuarioService;
+        }
+
+        public async Task<FirebaseUser?> LoginWithGoogle()
+        {
+            var userFirebase = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.loginWithGoogle");
+
+            if (userFirebase != null)
+            {
+                var usuario = await _usuarioService.GetUserByEmail(userFirebase.Email);
+                _usuarioStateService.SetUsuario(usuario, userFirebase);
+
+            }
+            return userFirebase;
+        }
+
+        public async Task<FirebaseUser?> LoginWithFacebook()
+        {
+            var userFirebase = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.loginWithFacebook");
+            if (userFirebase != null)
+            {
+                var usuario = await _usuarioService.GetUserByEmail(userFirebase.Email);
+                _usuarioStateService.SetUsuario(usuario, userFirebase);
+            }
+            return userFirebase;
+        }
+
+        public async Task<LoginResponse> SignInWithEmailPassword(string email, string password, bool rememberPassword)
+        {
+
+                LoginResponse response = await _jsRuntime.InvokeAsync<LoginResponse>("firebaseAuth.signInWithEmailPassword", email, password, rememberPassword);
+            if(response.User!=null)
+            {
+                var usuario = await _usuarioService.GetUserByEmail(response.User.Email);
+                _usuarioStateService.SetUsuario(usuario, response.User);
+            }
+
+            return response;
+
+        }
+
+        public async Task<string> createUserWithEmailAndPassword(string email, string password, string displayName)
+        {
+            var userId = await _jsRuntime.InvokeAsync<string>("firebaseAuth.createUserWithEmailAndPassword", email, password, displayName);
+            return userId;
+        }
+
+        public async Task SignOut()
+        {
+            await _jsRuntime.InvokeVoidAsync("firebaseAuth.signOut");
+            _usuarioStateService.SetUsuario(null, null);
+        }
+
+
+        public async Task<FirebaseUser?> GetUserAuthenticated()
+        {
+            var userFirebase= await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.getUserFirebase");
+            //chequeo que el usuario haya verificado su correo
+            if (userFirebase != null && userFirebase.EmailVerified)
+            {
+                var usuario = await _usuarioService.GetUserByEmail(userFirebase.Email);
+                _usuarioStateService.SetUsuario(usuario, userFirebase);
+                return userFirebase;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public async Task<bool> SendPasswordResetEmail(string email)
+        {
+            return await _jsRuntime.InvokeAsync<bool> ("firebaseAuth.sendPasswordResetEmail", email);
+        }
+
+    }
+}
