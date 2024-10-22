@@ -38,25 +38,25 @@ else
 
 
 @code {
-    [Parameter]
-    public Alumno alumno { get; set; }
-    public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
-    bool seleccionarCarreras { get; set; }=false;
-    List<Carrera> carreras { get; set; }
-    string tituloTableCarrera => inscripcionesACarreras?.Count > 1 ? "Carreras" : "Carrera";
+        [Parameter]
+        public Alumno alumno { get; set; }
+        public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
+        bool seleccionarCarreras { get; set; }=false;
+        List<Carrera> carreras { get; set; }
+        string tituloTableCarrera => inscripcionesACarreras?.Count > 1 ? "Carreras" : "Carrera";
 
 
     protected override async Task OnInitializedAsync()
     {
         carreras = await carreraService.GetAllAsync();
-        inscripcionesACarreras = await inscriptoCarreraService.GetByAlumno(alumno.Id);
-        logger.LogInformation(inscripcionesACarreras.Count().ToString());
+        inscripcionesACarreras = (List<InscriptoCarrera>) alumno.InscripcionesACarreras;
+        //inscripcionesACarreras = await inscriptoCarreraService.GetByAlumno(alumno.Id);
+        logger.LogInformation("inscripciones "+inscripcionesACarreras.Count().ToString());
         //marco las carreras que ya están inscriptas usando el campo Eliminado
         foreach (var carrera in carreras)
         {
             carrera.Eliminado = inscripcionesACarreras.Any(i => i.CarreraId == carrera.Id);
         }
-
 
     }
 
