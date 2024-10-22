@@ -5,6 +5,8 @@
 @inject IDetalleHorarioService detalleHorarioService
 @inject SweetAlertService SweetAlert
 @inject ILogger<Horarios> logger
+@inject IMemoryCacheService MemoryCacheService
+
 
 <PageTitle>Horarios</PageTitle>
 <h1>Horarios</h1>
@@ -55,11 +57,11 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        ciclosLectivos = await cicloLectivoService.GetAllAsync();
-        carreras = await carreraService.GetAllAsync();
-        if(IdCicloLectivo!=0)
+        ciclosLectivos = MemoryCacheService.CiclosLectivos;
+        carreras = MemoryCacheService.Carreras;
+        if (MemoryCacheService.CiclosLectivos.Any(c=>c.Actual))
         {
-            idCicloLectivoSeleccionado = IdCicloLectivo;
+            idCicloLectivoSeleccionado = MemoryCacheService.CiclosLectivos.Where(c => c.Actual).FirstOrDefault().Id;
         }
         if(IdCarrera!=0)
         {

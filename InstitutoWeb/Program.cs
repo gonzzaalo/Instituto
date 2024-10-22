@@ -14,6 +14,7 @@ using InstitutoWeb.Services.Login;
 using InstitutoServices.Services.MesasExamenes;
 using InstitutoServices.Services.Inscripciones;
 using InstitutoWeb.Interfaces;
+using InstitutoWeb.Services.Commons;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -37,6 +38,7 @@ builder.Services.AddScoped<UsuarioService>(); // Añade esta línea
 builder.Services.AddScoped<IInscriptoCarreraService, InscriptoCarreraService>();
 builder.Services.AddScoped<IJefaturaSeccionService, JefaturaSeccionService>();
 builder.Services.AddSingleton<IUsuarioStateService, UsuarioStateService>();
+builder.Services.AddSingleton<IMemoryCacheService, MemoryCacheService>();
 builder.Services.AddScoped<AuthenticationService>();
 
 

@@ -1,5 +1,6 @@
 ﻿@inject IGenericService<CicloLectivo> cicloLectivoService
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
 
 
 @if (cicloLectivoEdit == null )
@@ -63,9 +64,10 @@ else
         // logger.LogInformation($"la variable isEditing={isEditing} y el anio lectivo={anioLectivoEdit?.ToString()}");
         if (isEditing)
                 await cicloLectivoService.UpdateAsync(cicloLectivoEdit);
-            else
+        else
             await cicloLectivoService.AddAsync(cicloLectivoEdit);
-            await OnGuardar.InvokeAsync();
+        MemoryCacheService.CiclosLectivos = await cicloLectivoService.GetAllAsync();
+        await OnGuardar.InvokeAsync();
     }
 
     private async Task HandleCancelar()

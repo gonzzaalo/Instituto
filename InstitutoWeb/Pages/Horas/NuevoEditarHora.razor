@@ -1,5 +1,6 @@
 ﻿@inject IGenericService<Hora> horaService
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
 
 
 @if (horaEdit == null )
@@ -83,6 +84,7 @@ else
                 await horaService.UpdateAsync(horaEdit);
             else
             await horaService.AddAsync(horaEdit);
+        MemoryCacheService.Horas = await horaService.GetAllAsync();
        await OnGuardar.InvokeAsync();
     }
 

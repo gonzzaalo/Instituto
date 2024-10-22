@@ -2,6 +2,7 @@
 
 @inject IGenericService<Docente> docenteService
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
 
 <PageTitle>Docentes</PageTitle>
 <h1>Docentes</h1>
@@ -22,7 +23,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        docentes = await docenteService.GetAllAsync();
+        docentes= MemoryCacheService.Docentes;
+        //docentes = await docenteService.GetAllAsync();
     }
 
     private async void Eliminar(IEntityIdNombre entity)
@@ -40,13 +42,15 @@ else
         if (respuesta.IsConfirmed)
         {
             await docenteService.DeleteAsync(docente.Id);
-            docentes = await docenteService.GetAllAsync();
+            MemoryCacheService.Docentes = await docenteService.GetAllAsync();
+            docentes = MemoryCacheService.Docentes;
             StateHasChanged();
         }
     }
     private async Task Guardar()
     {
-        docentes = await docenteService.GetAllAsync();
+        MemoryCacheService.Docentes = await docenteService.GetAllAsync();
+        docentes = MemoryCacheService.Docentes;
         currentDocente = null;
         StateHasChanged();
 

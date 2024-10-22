@@ -3,6 +3,8 @@
 @inject ILogger<AlumnoData> logger
 @inject NavigationManager NavigationManager
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
+
 
 <div>
     <h4>Datos del Alumno</h4>
@@ -39,16 +41,16 @@ else
 
 @code {
         [Parameter]
-        public Alumno alumno { get; set; }
+        public Alumno? alumno { get; set; }
         public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
         bool seleccionarCarreras { get; set; }=false;
-        List<Carrera> carreras { get; set; }
+        List<Carrera>? carreras { get; set; }
         string tituloTableCarrera => inscripcionesACarreras?.Count > 1 ? "Carreras" : "Carrera";
 
 
     protected override async Task OnInitializedAsync()
     {
-        carreras = await carreraService.GetAllAsync();
+        carreras = MemoryCacheService.Carreras;
         inscripcionesACarreras = (List<InscriptoCarrera>) alumno.InscripcionesACarreras;
         //inscripcionesACarreras = await inscriptoCarreraService.GetByAlumno(alumno.Id);
         logger.LogInformation("inscripciones "+inscripcionesACarreras.Count().ToString());

@@ -1,10 +1,13 @@
 ﻿@using InstitutoServices.Models.Login
+@using InstitutoWeb.Services.Commons
 @inject AuthenticationService AuthService
 @inject NavigationManager NavigationManager
 @inject IUsuarioService usuarioService
 @inject IInscriptoCarreraService inscriptoCarreraService
 @inject ILogger<NavMenu> logger
 @inject IUsuarioStateService usuarioStateService
+@inject IMemoryCacheService MemoryCacheService
+
 
 
 <div class="top-row ps-3 navbar navbar-dark">
@@ -77,23 +80,13 @@
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Mesas de exámenes
             </NavLink>
         </div>
-        @if (usuarioStateService.Usuario?.TipoUsuario == TipoUsuarioEnum.Alumno)
-        {
-            var idcarrera=inscripcionesACarreras?.FirstOrDefault()?.CarreraId;
-            <div class="nav-item px-3">
-                <a class="nav-link" href="horarios?IdCicloLectivo=1&IdCarrera=@idcarrera">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Horarios
-                </a>
-            </div>
-        }
-        else
-        {
+
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="horarios">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Horarios
                 </NavLink>
             </div>
-        }
+     
 
         <div class="nav-item px-3">
             @if (usuarioStateService.Usuario != null)

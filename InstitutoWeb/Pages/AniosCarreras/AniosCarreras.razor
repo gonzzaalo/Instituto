@@ -2,6 +2,7 @@
 
 @inject IAnioCarreraService aniocarreraService
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
 
 <PageTitle>Años carreras</PageTitle>
 <h1>@nombreCarrera</h1>
@@ -63,7 +64,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        anioscarreras = await aniocarreraService.GetByCarreraAsync(idCarrera);
+        anioscarreras = MemoryCacheService.AniosCarreras.Where(a => a.CarreraId.Equals(idCarrera)).ToList();
+        //anioscarreras = await aniocarreraService.GetByCarreraAsync(idCarrera);
     }
 
     private async void Eliminar(AnioCarrera anioCarrera)
@@ -80,7 +82,8 @@ else
         if (respuesta.IsConfirmed)
         {
             await aniocarreraService.DeleteAsync(anioCarrera.Id);
-            anioscarreras = await aniocarreraService.GetByCarreraAsync(idCarrera);
+            MemoryCacheService.AniosCarreras = await aniocarreraService.GetAllAsync();
+            anioscarreras = MemoryCacheService.AniosCarreras.Where(a => a.CarreraId.Equals(idCarrera)).ToList();
             StateHasChanged();
         }
     }

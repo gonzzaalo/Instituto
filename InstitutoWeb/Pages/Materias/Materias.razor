@@ -2,6 +2,8 @@
 
 @inject IMateriaService materiaService
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
+
 
 <PageTitle>Materias</PageTitle>
 <h1>@nombreAnioCarrera</h1>
@@ -56,7 +58,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        materias = await materiaService.GetByAnioCarreraAsync(idAnioCarrera);
+        materias= MemoryCacheService.Materias.Where(m=>m.AnioCarreraId.Equals(idAnioCarrera)).ToList();
+        //materias = await materiaService.GetByAnioCarreraAsync(idAnioCarrera);
     }
 
     private async void Eliminar(Materia materia)
@@ -73,7 +76,8 @@ else
         if (respuesta.IsConfirmed)
         {
             await materiaService.DeleteAsync(materia.Id);
-            materias = await materiaService.GetByAnioCarreraAsync(idAnioCarrera);
+            MemoryCacheService.Materias = await materiaService.GetAllAsync();
+            materias = MemoryCacheService.Materias.Where(m => m.AnioCarreraId.Equals(idAnioCarrera)).ToList();
             StateHasChanged();
         }
     }
