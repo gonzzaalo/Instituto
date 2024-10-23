@@ -20,5 +20,8 @@ namespace InstitutoWeb.Services.Commons
         List<MesaExamen>? MesasExamenes { get; set; }
         List<DetalleMesaExamen>? DetallesMesasExamenes { get; set; }
         List<Aula>? Aulas { get; set; }
+        List<Horario>? Horarios { get; set; }
+        List<DetalleHorario>? DetallesHorarios { get; set; }
+        List<IntegranteHorario>? IntegrantesHorarios { get; set; }
     }
 }

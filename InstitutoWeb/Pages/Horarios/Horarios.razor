@@ -6,6 +6,7 @@
 @inject SweetAlertService SweetAlert
 @inject ILogger<Horarios> logger
 @inject IMemoryCacheService MemoryCacheService
+@inject IUsuarioStateService usuarioStateService
 
 
 <PageTitle>Horarios</PageTitle>
@@ -13,7 +14,7 @@
 
 @if (ciclosLectivos == null && carreras==null)
 {
-    <p><em>Cargando...</em></p>
+    <p><em>Cargando ciclos lectivos y carreras...</em></p>
 }
 else
 {
@@ -32,7 +33,14 @@ else
             <div class="text-end">
                 <button class="btn btn-info" @onclick="VolverAListaCarreras">Volver a lista de carreras</button>
             </div>
-            <TableDetallesHorarios DetallesHorarios="@detallesHorarios" />
+            if(usuarioStateService.Usuario.TipoUsuario==TipoUsuarioEnum.Alumno)
+            {
+                <TableDetallesHorarios DetallesHorarios="@detallesHorarios" />
+            }else
+            {
+                <TableDetallesHorariosDocente DetallesHorarios="@detallesHorarios" />
+            }
+
         }
         
     }
@@ -63,10 +71,41 @@ else
         {
             idCicloLectivoSeleccionado = MemoryCacheService.CiclosLectivos.Where(c => c.Actual).FirstOrDefault().Id;
         }
-        if(IdCarrera!=0)
+        else
+        {
+            logger.LogError("No hay ciclo lectivo seleccionado como actual");
+        }
+        if(usuarioStateService.Usuario!=null&&usuarioStateService.Usuario.TipoUsuario==TipoUsuarioEnum.Alumno)
+        {
+            if(usuarioStateService.Usuario.Alumno.InscripcionesACarreras.Count>1)
+            {
+                carreras = MemoryCacheService.Carreras.Where(c=>usuarioStateService.Usuario.Alumno.InscripcionesACarreras.Select(i=>i.CarreraId).Contains(c.Id)).ToList();
+            }
+            else if (idCicloLectivoSeleccionado != null) {
+                idCarreraSeleccionada = usuarioStateService.Usuario.Alumno.InscripcionesACarreras.FirstOrDefault().CarreraId;
+                //muestro por consola cuantos detalles horarios hay
+                logger.LogInformation($"Detalles Horarios: {MemoryCacheService.DetallesHorarios.Count}");
+                detallesHorarios = MemoryCacheService.DetallesHorarios.Where(d => d.Horario?.Materia.AnioCarrera.CarreraId == idCarreraSeleccionada && d.Horario.CicloLectivoId == idCicloLectivoSeleccionado).ToList();
+            }
+            //detallesHorarios = await detalleHorarioService.GetByCarreraAsync(idCicloLectivoSeleccionado, idCarreraSeleccionada);
+        }
+        if(usuarioStateService.Usuario!=null&&usuarioStateService.Usuario.TipoUsuario==TipoUsuarioEnum.Docente)
+        {
+            //selecciono los horarios del docente logueado comprobando que no contenga nulos
+            detallesHorarios = MemoryCacheService.DetallesHorarios
+            .Where(d => d.Horario?.IntegrantesHorario?.Any(i => i.DocenteId == usuarioStateService.Usuario.Docente.Id) == true && d.Horario?.CicloLectivoId == idCicloLectivoSeleccionado)
+            .ToList();
+            idCarreraSeleccionada = 0;
+
+            
+                
+            
+            //detallesHorarios = await detalleHorarioService.GetByCarreraAsync(idCicloLectivoSeleccionado, idCarreraSeleccionada);
+        }
+        if (IdCarrera != 0 && idCicloLectivoSeleccionado!=null)
         {
             idCarreraSeleccionada = IdCarrera;
-            detallesHorarios = await detalleHorarioService.GetByCarreraAsync(idCicloLectivoSeleccionado, idCarreraSeleccionada);
+            detallesHorarios = MemoryCacheService.DetallesHorarios.Where(d => d.Horario?.Materia.AnioCarrera.CarreraId == idCarreraSeleccionada && d.Horario.CicloLectivoId == idCicloLectivoSeleccionado).ToList();
         }
 
     }
@@ -80,8 +119,8 @@ else
     private async Task SeleccionarCarrera(int idCarrera)
     {
         idCarreraSeleccionada = idCarrera;
-        detallesHorarios = await detalleHorarioService.GetByCarreraAsync(idCicloLectivoSeleccionado, idCarreraSeleccionada);
-        logger.LogInformation(detallesHorarios.Count.ToString());
+        
+        detallesHorarios = MemoryCacheService.DetallesHorarios.Where(d => d.Horario?.Materia.AnioCarrera.CarreraId == idCarreraSeleccionada && d.Horario.CicloLectivoId == idCicloLectivoSeleccionado).ToList();
         StateHasChanged();
     }
 

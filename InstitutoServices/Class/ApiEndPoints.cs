@@ -18,10 +18,12 @@ namespace InstitutoServices.Class
         public static string Hora { get; set; } = "apihoras";
         public static string Horario { get; set; } = "apihorarios";
         public static string DetalleHorario { get; set; } = "apidetalleshorarios";
+        public static string IntegranteHorario { get; set; } = "apiintegranteshorarios";
         public static string Usuario { get; set; } = "apiusuarios";
         public static string InscriptoCarrera { get; set; } = "apiinscriptoscarreras";
         public static string JefaturaSeccion { get; set; } = "apijefaturassecciones";
         public static string Aula { get; set; } = "apiaulas";
+
 
 
 
@@ -44,6 +46,7 @@ namespace InstitutoServices.Class
                 nameof(Hora) => Hora,
                 nameof(Horario) => Horario,
                 nameof(DetalleHorario) => DetalleHorario,
+                nameof(IntegranteHorario) => IntegranteHorario,
                 nameof(Usuario) => Usuario,
                 nameof(InscriptoCarrera) => InscriptoCarrera,
                 nameof(JefaturaSeccion) => JefaturaSeccion,

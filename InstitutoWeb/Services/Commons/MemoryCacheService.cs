@@ -4,6 +4,7 @@ using InstitutoServices.Models.Horarios;
 using InstitutoServices.Models.Inscripciones;
 using InstitutoServices.Models.MesasExamenes;
 using InstitutoServices.Services.Commons;
+using InstitutoServices.Services.MesasExamenes;
 
 namespace InstitutoWeb.Services.Commons
 {
@@ -22,6 +23,10 @@ namespace InstitutoWeb.Services.Commons
         IGenericService<MesaExamen> MesaExamenService = new GenericService<MesaExamen>();
         IGenericService<DetalleMesaExamen> DetalleMesaExamenService = new GenericService<DetalleMesaExamen>();
         IGenericService<Aula> AulaService = new GenericService<Aula>();
+        IGenericService<Horario> HorarioService = new GenericService<Horario>();
+        IGenericService<DetalleHorario> DetalleHorarioService = new GenericService<DetalleHorario>();
+        IGenericService<IntegranteHorario> IntegranteHorarioService = new GenericService<IntegranteHorario>();
+
 
         public List<Carrera>? Carreras { get; set; } = new List<Carrera>();
         public List<AnioCarrera>? AniosCarreras { get; set; } = new List<AnioCarrera>();
@@ -36,6 +41,9 @@ namespace InstitutoWeb.Services.Commons
         public List<MesaExamen>? MesasExamenes { get; set; } = new List<MesaExamen>();
         public List<DetalleMesaExamen>? DetallesMesasExamenes { get; set; } = new List<DetalleMesaExamen>();
         public List<Aula>? Aulas { get; set; } = new List<Aula>();
+        public List<Horario>? Horarios { get; set; } = new List<Horario>();
+        public List<DetalleHorario>? DetallesHorarios { get; set; } = new List<DetalleHorario>();
+        public List<IntegranteHorario>? IntegrantesHorarios { get; set; } = new List<IntegranteHorario>();
 
         public  MemoryCacheService()
         {
@@ -59,6 +67,12 @@ namespace InstitutoWeb.Services.Commons
                 Task.Run(async () => Docentes = await DocenteService.GetAllAsync()),
                 Task.Run(async () => JefaturasSecciones = await JefaturaSeccionService.GetAllAsync()),
                 Task.Run(async () => Aulas = await AulaService.GetAllAsync()),
+                Task.Run(async () => MesasExamenes = await MesaExamenService.GetAllAsync()),
+                Task.Run(async () => DetallesMesasExamenes = await DetalleMesaExamenService.GetAllAsync()),
+                Task.Run(async () => Horarios = await HorarioService.GetAllAsync()),
+                Task.Run(async () => DetallesHorarios = await DetalleHorarioService.GetAllAsync()),
+                Task.Run(async () => IntegrantesHorarios = await IntegranteHorarioService.GetAllAsync())
+
             };
             await Task.WhenAll(tareas);
         }
