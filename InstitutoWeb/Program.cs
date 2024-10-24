@@ -43,4 +43,10 @@ builder.Services.AddScoped<AuthenticationService>();
 
 
 builder.Services.AddSweetAlert2();
+AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
+{
+    var exception = eventArgs.ExceptionObject as Exception;
+    // Aquí puedes personalizar el mensaje o registrar la excepción
+    Console.WriteLine($"Excepción no manejada: {exception?.Message}");
+};
 await builder.Build().RunAsync();

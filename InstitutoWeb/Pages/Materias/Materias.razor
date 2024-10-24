@@ -14,9 +14,12 @@
 }
 else
 {
-    <NavLink class="nav-link" href=@($"nuevamateria?idAnioCarrera={idAnioCarrera}&nombreAnioCarrera={nombreAnioCarrera}")>  
+    <NavLink class="btn btn-primary" href=@($"nuevamateria?idAnioCarrera={idAnioCarrera}&nombreAnioCarrera={nombreAnioCarrera}")>  
         Nuevo Materia
     </NavLink>
+    @* <NavLink class="btn btn-primary" href=@($"anioscarreras?idCarrera={materias.First().AnioCarrera.CarreraId}&nombreCarrera={materias.First().AnioCarrera.Carrera.Nombre}")>
+        Volver a @materias.First().AnioCarrera.Carrera.Nombre
+    </NavLink> *@
     <table class="table">
         <thead>
             <tr>
