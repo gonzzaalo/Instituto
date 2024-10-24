@@ -1,4 +1,6 @@
-﻿namespace InstitutoServices.Models.Commons
+﻿using InstitutoServices.Models.Inscripciones;
+
+namespace InstitutoServices.Models.Commons
 {
     public class Alumno
     {
@@ -8,6 +10,8 @@
         public string Direccion { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public bool Eliminado { get; set; } = false;
+
+        public ICollection<InscriptoCarrera> InscripcionesACarreras { get; set; } = new List<InscriptoCarrera>();
 
 
         public override string ToString()

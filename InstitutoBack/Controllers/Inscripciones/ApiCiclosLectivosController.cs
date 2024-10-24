@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using InstitutoServices.Models;
 using InstitutoBack.DataContext;
 using InstitutoServices.Models.Inscripciones;
+using InstitutoServices.Models.MesasExamenes;
 
 namespace InstitutoBack.Controllers.Inscripciones
 {
@@ -52,6 +53,15 @@ namespace InstitutoBack.Controllers.Inscripciones
             {
                 return BadRequest();
             }
+            if (cicloLectivo.Actual)
+            {
+                var ciclos = _context.cicloslectivos.Where(x => x.Actual).ToList();
+                foreach (var item in ciclos)
+                {
+                    item.Actual = false;
+                    _context.cicloslectivos.Update(item);
+                }
+            }
 
             _context.Entry(cicloLectivo).State = EntityState.Modified;
 
@@ -79,6 +89,15 @@ namespace InstitutoBack.Controllers.Inscripciones
         [HttpPost]
         public async Task<ActionResult<CicloLectivo>> PostCicloLectivo(CicloLectivo cicloLectivo)
         {
+            if (cicloLectivo.Actual)
+            {
+                var ciclos = _context.cicloslectivos.Where(x => x.Actual).ToList();
+                foreach (var item in ciclos)
+                {
+                    item.Actual = false;
+                    _context.cicloslectivos.Update(item);
+                }
+            }
             _context.cicloslectivos.Add(cicloLectivo);
             await _context.SaveChangesAsync();
 
@@ -94,7 +113,7 @@ namespace InstitutoBack.Controllers.Inscripciones
             {
                 return NotFound();
             }
-            cicloLectivo.Eliminado=true;
+            cicloLectivo.Eliminado = true;
             _context.cicloslectivos.Update(cicloLectivo);
             await _context.SaveChangesAsync();
 

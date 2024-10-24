@@ -3,13 +3,17 @@ using InstitutoDesktop.Util;
 using InstitutoServices.Interfaces;
 using InstitutoServices.Models.MesasExamenes;
 using InstitutoServices.Services.Commons;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace InstitutoDesktop.Views.MesasExamenes
 {
     public partial class TurnoExamenesView : Form
     {
-        IGenericService<TurnoExamen> turnoexamenesService = new GenericService<TurnoExamen>();
-        BindingSource listaTurnos = new BindingSource();
+        private readonly IGenericService<TurnoExamen> turnoexamenesService = new GenericService<TurnoExamen>();
+        private BindingSource listaTurnos = new BindingSource();
+
         public TurnoExamenesView()
         {
             InitializeComponent();
@@ -24,36 +28,48 @@ namespace InstitutoDesktop.Views.MesasExamenes
             dataGridTurnoExamenes.OcultarColumnas(new string[] { "Eliminado" });
             ShowInActivity.Hide();
         }
+
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
-            var turnoexamenes = (TurnoExamen)listaTurnos.Current;
-            var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar el Ciclo Lectivo {turnoexamenes.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var turnoexamen = (TurnoExamen)listaTurnos.Current;
+            if (turnoexamen == null)
+            {
+                MessageBox.Show("Debe seleccionar un turno de examen para eliminar.");
+                return;
+            }
+
+            var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar el Ciclo Lectivo {turnoexamen.Nombre}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await turnoexamenesService.DeleteAsync(turnoexamenes.Id);
+                await turnoexamenesService.DeleteAsync(turnoexamen.Id);
                 await CargarGrilla();
             }
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = new AgregarEditarTurnoExamenesView();
-            agregarEditarTurnoExamenesView.ShowDialog();
-            await CargarGrilla();
+            using (AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = new AgregarEditarTurnoExamenesView())
+            {
+                if (agregarEditarTurnoExamenesView.ShowDialog() == DialogResult.OK)
+                {
+                    await CargarGrilla();
+                }
+            }
         }
 
         private async void btnEditar_Click(object sender, EventArgs e)
         {
-
             var turnoexamen = (TurnoExamen)listaTurnos.Current;
             if (turnoexamen == null)
             {
                 MessageBox.Show("Debe seleccionar un valor de la grilla");
                 return;
             }
+
             AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = new AgregarEditarTurnoExamenesView(turnoexamen);
             agregarEditarTurnoExamenesView.ShowDialog();
-            await CargarGrilla();
+
+                    await CargarGrilla();
 
         }
 

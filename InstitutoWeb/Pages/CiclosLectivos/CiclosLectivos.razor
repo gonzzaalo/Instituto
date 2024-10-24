@@ -2,6 +2,7 @@
 
 @inject IGenericService<CicloLectivo> cicloLectivoService
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
 
 <PageTitle>Ciclos Lectivos</PageTitle>
 <h1>Ciclos Lectivos</h1>
@@ -17,12 +18,13 @@ else
 }
 
 @code {
-    private List<CicloLectivo> ciclosLectivos;
-    private CicloLectivo currentCicloLectivo;
+    private List<CicloLectivo>? ciclosLectivos;
+    private CicloLectivo? currentCicloLectivo;
 
     protected override async Task OnInitializedAsync()
     {
-        ciclosLectivos = await cicloLectivoService.GetAllAsync();
+        ciclosLectivos = MemoryCacheService.CiclosLectivos;
+        //ciclosLectivos = await cicloLectivoService.GetAllAsync();
     }
 
     private async void Eliminar(IEntityIdNombre entity)
@@ -40,13 +42,15 @@ else
         if (respuesta.IsConfirmed)
         {
             await cicloLectivoService.DeleteAsync(cicloLectivo.Id);
-            ciclosLectivos = await cicloLectivoService.GetAllAsync();
+            MemoryCacheService.CiclosLectivos = await cicloLectivoService.GetAllAsync();
+            ciclosLectivos = MemoryCacheService.CiclosLectivos;
             StateHasChanged();
         }
     }
     private async Task Guardar()
     {
-        ciclosLectivos = await cicloLectivoService.GetAllAsync();
+        MemoryCacheService.CiclosLectivos = await cicloLectivoService.GetAllAsync();
+        ciclosLectivos = MemoryCacheService.CiclosLectivos;
         currentCicloLectivo = null;
         StateHasChanged();
 

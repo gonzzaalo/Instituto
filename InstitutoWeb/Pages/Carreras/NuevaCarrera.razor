@@ -1,6 +1,7 @@
 ﻿@page "/nuevacarrera"
 @inject IGenericService<Carrera> carreraService
 @inject NavigationManager NavigationManager
+@inject IMemoryCacheService MemoryCacheService
 
 @if (carrera == null)
 {
@@ -32,6 +33,7 @@ else
     private async Task GuardarCarrera()
     {
         var response = await carreraService.AddAsync(carrera);
+        MemoryCacheService.Carreras= await carreraService.GetAllAsync();
         NavigationManager.NavigateTo("/carreras");
     }
 }

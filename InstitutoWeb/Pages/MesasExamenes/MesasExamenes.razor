@@ -5,6 +5,8 @@
 @inject IMesaExamenService mesaExamenService
 @inject SweetAlertService SweetAlert
 @inject ILogger<MesasExamenes> logger
+@inject IMemoryCacheService MemoryCacheService
+
 
 <PageTitle>Mesas de exámenes</PageTitle>
 <h1>Mesas de exámenes</h1>
@@ -46,8 +48,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        turnosExamenes = await turnoExamenService.GetAllAsync();
-        carreras = await carreraService.GetAllAsync();
+        turnosExamenes = MemoryCacheService.TurnosExamenes;
+        carreras = MemoryCacheService.Carreras;
 
     }
 
@@ -60,7 +62,8 @@ else
     private async Task SeleccionarCarrera(int idCarrera)
     {
         idCarreraSeleccionada = idCarrera;
-        mesasExamenes = await mesaExamenService.GetByTurnoAndCarreraAsync(idTurnoExamenSeleccionado, idCarreraSeleccionada);
+        mesasExamenes= MemoryCacheService.MesasExamenes.Where(m=>m.TurnoExamenId==idTurnoExamenSeleccionado && m.Materia.AnioCarrera.CarreraId==idCarreraSeleccionada).ToList();
+        //mesasExamenes = await mesaExamenService.GetByTurnoAndCarreraAsync(idTurnoExamenSeleccionado, idCarreraSeleccionada);
         logger.LogInformation(mesasExamenes.Count.ToString());
         StateHasChanged();
     }

@@ -1,4 +1,6 @@
 ﻿@inject IGenericService<Docente> docenteService
+@inject IMemoryCacheService MemoryCacheService
+
 
 @if (docenteEdit == null )
 {
@@ -59,6 +61,7 @@ else
             await docenteService.UpdateAsync(docenteEdit);
         else
             await docenteService.AddAsync(docenteEdit);
+        MemoryCacheService.Docentes = await docenteService.GetAllAsync();
         await OnGuardar.InvokeAsync();
     }
 

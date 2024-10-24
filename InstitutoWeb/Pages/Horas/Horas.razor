@@ -2,6 +2,8 @@
 
 @inject IGenericService<Hora> horaService
 @inject SweetAlertService SweetAlert
+@inject IMemoryCacheService MemoryCacheService
+
 
 <PageTitle>Horas</PageTitle>
 <h1>Horas</h1>
@@ -22,7 +24,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        horas = await horaService.GetAllAsync();
+        horas= MemoryCacheService.Horas;
+        //horas = await horaService.GetAllAsync();
     }
 
     private async void Eliminar(Hora hora)
@@ -39,13 +42,15 @@ else
         if (respuesta.IsConfirmed)
         {
             await horaService.DeleteAsync(hora.Id);
-            horas = await horaService.GetAllAsync();
+            MemoryCacheService.Horas = await horaService.GetAllAsync();
+            horas = MemoryCacheService.Horas;
             StateHasChanged();
         }
     }
     private async Task Guardar()
     {
-        horas = await horaService.GetAllAsync();
+        MemoryCacheService.Horas = await horaService.GetAllAsync();
+        horas = MemoryCacheService.Horas;
         currentHora = null;
         StateHasChanged();
 

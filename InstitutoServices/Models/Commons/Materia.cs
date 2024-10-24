@@ -12,6 +12,7 @@ namespace InstitutoServices.Models.Commons
         public int AnioCarreraId { get; set; }
         [Display(Name = "Año carrera")]
         public AnioCarrera? AnioCarrera { get; set; }
+        public bool EsRecreo { get; set; } = false;
         public bool Eliminado { get; set; } = false;
 
 

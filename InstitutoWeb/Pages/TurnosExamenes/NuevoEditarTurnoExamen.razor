@@ -1,5 +1,7 @@
 ﻿@inject IGenericService<TurnoExamen> turnoExamenService
 @inject ILogger<NuevoEditarTurnoExamen> logger
+@inject IMemoryCacheService MemoryCacheService
+
 
 @if (turnoExamenEdit == null )
 {
@@ -62,6 +64,7 @@ else
                 await turnoExamenService.UpdateAsync(turnoExamenEdit);
             else
             await turnoExamenService.AddAsync(turnoExamenEdit);
+        MemoryCacheService.TurnosExamenes= await turnoExamenService.GetAllAsync();
             await OnGuardar.InvokeAsync();
     }
 

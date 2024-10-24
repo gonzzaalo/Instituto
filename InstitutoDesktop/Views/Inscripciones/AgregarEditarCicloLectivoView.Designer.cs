@@ -32,25 +32,26 @@
             label1 = new Label();
             btnCancelar = new FontAwesome.Sharp.IconButton();
             btnGuardar = new FontAwesome.Sharp.IconButton();
+            chkActual = new CheckBox();
             SuspendLayout();
             // 
             // txtNombre
             // 
             txtNombre.Font = new Font("Segoe UI", 11F);
-            txtNombre.Location = new Point(302, 163);
+            txtNombre.Location = new Point(264, 122);
             txtNombre.Margin = new Padding(2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(257, 32);
+            txtNombre.Size = new Size(225, 27);
             txtNombre.TabIndex = 12;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F);
-            label1.Location = new Point(203, 168);
+            label1.Location = new Point(178, 126);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(90, 25);
+            label1.Size = new Size(71, 20);
             label1.TabIndex = 11;
             label1.Text = "Nombre :";
             // 
@@ -61,10 +62,9 @@
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             btnCancelar.IconSize = 30;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(405, 306);
-            btnCancelar.Margin = new Padding(3, 4, 3, 4);
+            btnCancelar.Location = new Point(354, 230);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(127, 40);
+            btnCancelar.Size = new Size(111, 30);
             btnCancelar.TabIndex = 10;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -77,24 +77,35 @@
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             btnGuardar.IconSize = 30;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(243, 306);
-            btnGuardar.Margin = new Padding(3, 4, 3, 4);
+            btnGuardar.Location = new Point(213, 230);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(127, 40);
+            btnGuardar.Size = new Size(111, 30);
             btnGuardar.TabIndex = 9;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
+            // chkActual
+            // 
+            chkActual.AutoSize = true;
+            chkActual.Location = new Point(271, 179);
+            chkActual.Name = "chkActual";
+            chkActual.Size = new Size(60, 19);
+            chkActual.TabIndex = 13;
+            chkActual.Text = "Actual";
+            chkActual.UseVisualStyleBackColor = true;
+            // 
             // AgregarEditarCicloLectivoView
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
+            Controls.Add(chkActual);
             Controls.Add(txtNombre);
             Controls.Add(label1);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AgregarEditarCicloLectivoView";
             StartPosition = FormStartPosition.CenterParent;
             Text = "AgregarEditarCicloLectivoView";
@@ -107,5 +118,6 @@
         private Label label1;
         private FontAwesome.Sharp.IconButton btnCancelar;
         private FontAwesome.Sharp.IconButton btnGuardar;
+        private CheckBox chkActual;
     }
 }

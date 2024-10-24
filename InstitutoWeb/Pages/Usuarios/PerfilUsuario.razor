@@ -11,7 +11,7 @@
 @inject ILogger<PerfilUsuario> logger
 
 <PageTitle>Perfil de Usuario</PageTitle>
-<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
 
 @if (userFirebaseAuthenticate == null)
 {
@@ -73,20 +73,5 @@ else
         }
     }
 
-    private async void OnBeforeInternalNavigation(LocationChangingContext context)
-    {
-        // if (context.TargetLocation == "horarios" || context.TargetLocation == "carreras")
-        // {
-        // logger.LogInformation($"context.TargetLocation={context.TargetLocation}");
-        // logger.LogInformation($"usuario={usuario?.PropertiesToString()}");
-        //     context.PreventNavigation();
-        // logger.LogInformation($"tipousuario={tipoUsuario}");
-        //     await SweetAlert.FireAsync("Advertencia", "No puedes salir de esta página hasta que completes tu perfil.", SweetAlertIcon.Warning);
-        // StateHasChanged();
-
-        // }
-        
-
-    }
 
 }
