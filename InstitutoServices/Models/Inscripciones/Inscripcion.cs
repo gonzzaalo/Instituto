@@ -1,10 +1,11 @@
-﻿using InstitutoServices.Models.Commons;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstitutoServices.Models.Inscripciones
 {
-    public class Inscripcion
+    public class Inscripcion : IEntityWithId
     {
         public int Id { get; set; }
         [DataType(DataType.Date)]

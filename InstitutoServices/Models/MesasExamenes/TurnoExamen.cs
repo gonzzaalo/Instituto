@@ -1,8 +1,9 @@
-﻿using InstitutoServices.Interfaces.MesasExamenes;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Interfaces.MesasExamenes;
 
 namespace InstitutoServices.Models.MesasExamenes
 {
-    public class TurnoExamen : IEntityIdNombre
+    public class TurnoExamen : IEntityIdNombre, IEntityWithId
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;

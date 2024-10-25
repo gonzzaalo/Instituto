@@ -47,6 +47,7 @@
             btnAgregar = new FontAwesome.Sharp.IconButton();
             dataGridHorarios = new DataGridView();
             tabPageAgregarEditar = new TabPage();
+            BtnEditar = new FontAwesome.Sharp.IconButton();
             cboAulas = new ComboBox();
             label10 = new Label();
             btnQuitarHora = new FontAwesome.Sharp.IconButton();
@@ -87,70 +88,76 @@
             panel1.Location = new Point(1, 1);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(961, 60);
+            panel1.Size = new Size(1201, 75);
             panel1.TabIndex = 0;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(733, 36);
+            label6.Location = new Point(916, 45);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(89, 20);
+            label6.Size = new Size(107, 25);
             label6.TabIndex = 7;
             label6.Text = "Año carrera:";
             // 
             // cboAniosCarreras
             // 
             cboAniosCarreras.FormattingEnabled = true;
-            cboAniosCarreras.Location = new Point(828, 30);
+            cboAniosCarreras.Location = new Point(1035, 38);
+            cboAniosCarreras.Margin = new Padding(4);
             cboAniosCarreras.Name = "cboAniosCarreras";
-            cboAniosCarreras.Size = new Size(119, 28);
+            cboAniosCarreras.Size = new Size(148, 33);
             cboAniosCarreras.TabIndex = 6;
             cboAniosCarreras.SelectedIndexChanged += cboAniosCarreras_SelectedIndexChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(397, 36);
+            label5.Location = new Point(496, 45);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(60, 20);
+            label5.Size = new Size(72, 25);
             label5.TabIndex = 5;
             label5.Text = "Carrera:";
             // 
             // cboCarreras
             // 
             cboCarreras.FormattingEnabled = true;
-            cboCarreras.Location = new Point(463, 30);
+            cboCarreras.Location = new Point(579, 38);
+            cboCarreras.Margin = new Padding(4);
             cboCarreras.Name = "cboCarreras";
-            cboCarreras.Size = new Size(253, 28);
+            cboCarreras.Size = new Size(315, 33);
             cboCarreras.TabIndex = 4;
             cboCarreras.SelectedIndexChanged += cboCarreras_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(136, 38);
+            label4.Location = new Point(170, 48);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(93, 20);
+            label4.Size = new Size(110, 25);
             label4.TabIndex = 3;
             label4.Text = "Ciclo lectivo:";
             // 
             // cboCiclosLectivos
             // 
             cboCiclosLectivos.FormattingEnabled = true;
-            cboCiclosLectivos.Location = new Point(235, 30);
+            cboCiclosLectivos.Location = new Point(294, 38);
+            cboCiclosLectivos.Margin = new Padding(4);
             cboCiclosLectivos.Name = "cboCiclosLectivos";
-            cboCiclosLectivos.Size = new Size(151, 28);
+            cboCiclosLectivos.Size = new Size(188, 33);
             cboCiclosLectivos.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(9, 6);
+            label1.Location = new Point(11, 8);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(129, 37);
+            label1.Size = new Size(149, 45);
             label1.TabIndex = 0;
             label1.Text = "Horarios";
             // 
@@ -159,11 +166,11 @@
             tabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl.Controls.Add(tabPageLista);
             tabControl.Controls.Add(tabPageAgregarEditar);
-            tabControl.Location = new Point(1, 65);
+            tabControl.Location = new Point(1, 81);
             tabControl.Margin = new Padding(2);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(961, 572);
+            tabControl.Size = new Size(1201, 715);
             tabControl.TabIndex = 1;
             // 
             // tabPageLista
@@ -176,11 +183,11 @@
             tabPageLista.Controls.Add(btnModificar);
             tabPageLista.Controls.Add(btnAgregar);
             tabPageLista.Controls.Add(dataGridHorarios);
-            tabPageLista.Location = new Point(4, 29);
+            tabPageLista.Location = new Point(4, 34);
             tabPageLista.Margin = new Padding(2);
             tabPageLista.Name = "tabPageLista";
             tabPageLista.Padding = new Padding(2);
-            tabPageLista.Size = new Size(953, 539);
+            tabPageLista.Size = new Size(1193, 677);
             tabPageLista.TabIndex = 0;
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
@@ -195,10 +202,10 @@
             iconButtonSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButtonSalir.IconSize = 44;
             iconButtonSalir.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButtonSalir.Location = new Point(824, 228);
-            iconButtonSalir.Margin = new Padding(3, 4, 3, 4);
+            iconButtonSalir.Location = new Point(1030, 285);
+            iconButtonSalir.Margin = new Padding(4, 5, 4, 5);
             iconButtonSalir.Name = "iconButtonSalir";
-            iconButtonSalir.Size = new Size(123, 54);
+            iconButtonSalir.Size = new Size(154, 68);
             iconButtonSalir.TabIndex = 14;
             iconButtonSalir.Text = "&Salir";
             iconButtonSalir.TextAlign = ContentAlignment.MiddleRight;
@@ -214,10 +221,10 @@
             BtnBuscar.IconColor = Color.White;
             BtnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnBuscar.Location = new Point(827, 18);
-            BtnBuscar.Margin = new Padding(3, 4, 3, 4);
+            BtnBuscar.Location = new Point(1034, 22);
+            BtnBuscar.Margin = new Padding(4, 5, 4, 5);
             BtnBuscar.Name = "BtnBuscar";
-            BtnBuscar.Size = new Size(123, 51);
+            BtnBuscar.Size = new Size(154, 64);
             BtnBuscar.TabIndex = 13;
             BtnBuscar.Text = "&Buscar";
             BtnBuscar.TextAlign = ContentAlignment.MiddleRight;
@@ -227,17 +234,19 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(27, 21);
+            label3.Location = new Point(34, 26);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(121, 20);
+            label3.Size = new Size(143, 25);
             label3.TabIndex = 12;
             label3.Text = "Buscar localidad:";
             // 
             // txtFiltro
             // 
-            txtFiltro.Location = new Point(179, 18);
+            txtFiltro.Location = new Point(224, 22);
+            txtFiltro.Margin = new Padding(4);
             txtFiltro.Name = "txtFiltro";
-            txtFiltro.Size = new Size(483, 27);
+            txtFiltro.Size = new Size(603, 31);
             txtFiltro.TabIndex = 11;
             txtFiltro.TextChanged += txtFiltro_TextChanged;
             // 
@@ -248,10 +257,10 @@
             btnEliminar.IconColor = Color.Black;
             btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEliminar.Location = new Point(827, 176);
+            btnEliminar.Location = new Point(1034, 220);
             btnEliminar.Margin = new Padding(2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(120, 46);
+            btnEliminar.Size = new Size(150, 58);
             btnEliminar.TabIndex = 5;
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
@@ -265,10 +274,10 @@
             btnModificar.IconColor = Color.Black;
             btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnModificar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnModificar.Location = new Point(827, 126);
+            btnModificar.Location = new Point(1034, 158);
             btnModificar.Margin = new Padding(2);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(120, 46);
+            btnModificar.Size = new Size(150, 58);
             btnModificar.TabIndex = 4;
             btnModificar.Text = "Modificar";
             btnModificar.TextAlign = ContentAlignment.MiddleRight;
@@ -282,10 +291,10 @@
             btnAgregar.IconColor = Color.Black;
             btnAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregar.Location = new Point(827, 75);
+            btnAgregar.Location = new Point(1034, 94);
             btnAgregar.Margin = new Padding(2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(120, 46);
+            btnAgregar.Size = new Size(150, 58);
             btnAgregar.TabIndex = 3;
             btnAgregar.Text = "Agregar";
             btnAgregar.TextAlign = ContentAlignment.MiddleRight;
@@ -299,17 +308,18 @@
             dataGridHorarios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridHorarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridHorarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridHorarios.Location = new Point(6, 63);
+            dataGridHorarios.Location = new Point(8, 79);
             dataGridHorarios.Margin = new Padding(2);
             dataGridHorarios.Name = "dataGridHorarios";
             dataGridHorarios.ReadOnly = true;
             dataGridHorarios.RowHeadersWidth = 62;
             dataGridHorarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridHorarios.Size = new Size(812, 468);
+            dataGridHorarios.Size = new Size(1015, 585);
             dataGridHorarios.TabIndex = 0;
             // 
             // tabPageAgregarEditar
             // 
+            tabPageAgregarEditar.Controls.Add(BtnEditar);
             tabPageAgregarEditar.Controls.Add(cboAulas);
             tabPageAgregarEditar.Controls.Add(label10);
             tabPageAgregarEditar.Controls.Add(btnQuitarHora);
@@ -328,30 +338,48 @@
             tabPageAgregarEditar.Controls.Add(btnCancelar);
             tabPageAgregarEditar.Controls.Add(btnGuardar);
             tabPageAgregarEditar.Controls.Add(label2);
-            tabPageAgregarEditar.Location = new Point(4, 29);
+            tabPageAgregarEditar.Location = new Point(4, 34);
             tabPageAgregarEditar.Margin = new Padding(2);
             tabPageAgregarEditar.Name = "tabPageAgregarEditar";
             tabPageAgregarEditar.Padding = new Padding(2);
-            tabPageAgregarEditar.Size = new Size(953, 539);
+            tabPageAgregarEditar.Size = new Size(1193, 677);
             tabPageAgregarEditar.TabIndex = 1;
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
             // 
+            // BtnEditar
+            // 
+            BtnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BtnEditar.IconChar = FontAwesome.Sharp.IconChar.Pencil;
+            BtnEditar.IconColor = Color.Black;
+            BtnEditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            BtnEditar.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnEditar.Location = new Point(1031, 477);
+            BtnEditar.Margin = new Padding(2);
+            BtnEditar.Name = "BtnEditar";
+            BtnEditar.Size = new Size(141, 58);
+            BtnEditar.TabIndex = 19;
+            BtnEditar.Text = "Editar";
+            BtnEditar.TextAlign = ContentAlignment.MiddleRight;
+            BtnEditar.UseVisualStyleBackColor = true;
+            BtnEditar.Click += iconButton1_Click;
+            // 
             // cboAulas
             // 
             cboAulas.FormattingEnabled = true;
-            cboAulas.Location = new Point(90, 305);
+            cboAulas.Location = new Point(112, 381);
+            cboAulas.Margin = new Padding(4);
             cboAulas.Name = "cboAulas";
-            cboAulas.Size = new Size(204, 28);
+            cboAulas.Size = new Size(254, 33);
             cboAulas.TabIndex = 18;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(46, 308);
+            label10.Location = new Point(58, 385);
             label10.Margin = new Padding(2, 0, 2, 0);
             label10.Name = "label10";
-            label10.Size = new Size(42, 20);
+            label10.Size = new Size(51, 25);
             label10.TabIndex = 17;
             label10.Text = "Aula:";
             // 
@@ -362,10 +390,10 @@
             btnQuitarHora.IconColor = Color.Black;
             btnQuitarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnQuitarHora.ImageAlign = ContentAlignment.MiddleLeft;
-            btnQuitarHora.Location = new Point(824, 413);
+            btnQuitarHora.Location = new Point(1031, 548);
             btnQuitarHora.Margin = new Padding(2);
             btnQuitarHora.Name = "btnQuitarHora";
-            btnQuitarHora.Size = new Size(93, 46);
+            btnQuitarHora.Size = new Size(141, 58);
             btnQuitarHora.TabIndex = 16;
             btnQuitarHora.Text = "Quitar";
             btnQuitarHora.TextAlign = ContentAlignment.MiddleRight;
@@ -379,10 +407,10 @@
             btnQuitarDocente.IconColor = Color.Black;
             btnQuitarDocente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnQuitarDocente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnQuitarDocente.Location = new Point(824, 183);
+            btnQuitarDocente.Location = new Point(1030, 229);
             btnQuitarDocente.Margin = new Padding(2);
             btnQuitarDocente.Name = "btnQuitarDocente";
-            btnQuitarDocente.Size = new Size(93, 46);
+            btnQuitarDocente.Size = new Size(142, 58);
             btnQuitarDocente.TabIndex = 15;
             btnQuitarDocente.Text = "Quitar";
             btnQuitarDocente.TextAlign = ContentAlignment.MiddleRight;
@@ -396,13 +424,13 @@
             dataGridHoras.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridHoras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridHoras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridHoras.Location = new Point(44, 350);
+            dataGridHoras.Location = new Point(55, 438);
             dataGridHoras.Margin = new Padding(2);
             dataGridHoras.Name = "dataGridHoras";
             dataGridHoras.ReadOnly = true;
             dataGridHoras.RowHeadersWidth = 62;
             dataGridHoras.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridHoras.Size = new Size(774, 175);
+            dataGridHoras.Size = new Size(968, 219);
             dataGridHoras.TabIndex = 14;
             // 
             // btnAgregarHora
@@ -412,10 +440,10 @@
             btnAgregarHora.IconColor = Color.Black;
             btnAgregarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarHora.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarHora.Location = new Point(697, 292);
+            btnAgregarHora.Location = new Point(871, 365);
             btnAgregarHora.Margin = new Padding(2);
             btnAgregarHora.Name = "btnAgregarHora";
-            btnAgregarHora.Size = new Size(120, 46);
+            btnAgregarHora.Size = new Size(150, 58);
             btnAgregarHora.TabIndex = 13;
             btnAgregarHora.Text = "Agregar";
             btnAgregarHora.TextAlign = ContentAlignment.MiddleRight;
@@ -425,36 +453,38 @@
             // cboDias
             // 
             cboDias.FormattingEnabled = true;
-            cboDias.Location = new Point(339, 305);
+            cboDias.Location = new Point(424, 381);
+            cboDias.Margin = new Padding(4);
             cboDias.Name = "cboDias";
-            cboDias.Size = new Size(144, 28);
+            cboDias.Size = new Size(179, 33);
             cboDias.TabIndex = 12;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(299, 310);
+            label9.Location = new Point(374, 388);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(35, 20);
+            label9.Size = new Size(42, 25);
             label9.TabIndex = 11;
             label9.Text = "Día:";
             // 
             // cboHoras
             // 
             cboHoras.FormattingEnabled = true;
-            cboHoras.Location = new Point(547, 302);
+            cboHoras.Location = new Point(684, 378);
+            cboHoras.Margin = new Padding(4);
             cboHoras.Name = "cboHoras";
-            cboHoras.Size = new Size(140, 28);
+            cboHoras.Size = new Size(174, 33);
             cboHoras.TabIndex = 10;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(497, 308);
+            label8.Location = new Point(621, 385);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(45, 20);
+            label8.Size = new Size(55, 25);
             label8.TabIndex = 9;
             label8.Text = "Hora:";
             // 
@@ -465,13 +495,13 @@
             dataGridDocentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridDocentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridDocentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridDocentes.Location = new Point(46, 144);
+            dataGridDocentes.Location = new Point(58, 180);
             dataGridDocentes.Margin = new Padding(2);
             dataGridDocentes.Name = "dataGridDocentes";
             dataGridDocentes.ReadOnly = true;
             dataGridDocentes.RowHeadersWidth = 62;
             dataGridDocentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridDocentes.Size = new Size(771, 118);
+            dataGridDocentes.Size = new Size(964, 148);
             dataGridDocentes.TabIndex = 8;
             // 
             // btnAgregarDocente
@@ -481,10 +511,10 @@
             btnAgregarDocente.IconColor = Color.Black;
             btnAgregarDocente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarDocente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAgregarDocente.Location = new Point(521, 67);
+            btnAgregarDocente.Location = new Point(651, 84);
             btnAgregarDocente.Margin = new Padding(2);
             btnAgregarDocente.Name = "btnAgregarDocente";
-            btnAgregarDocente.Size = new Size(120, 46);
+            btnAgregarDocente.Size = new Size(150, 58);
             btnAgregarDocente.TabIndex = 7;
             btnAgregarDocente.Text = "Agregar";
             btnAgregarDocente.TextAlign = ContentAlignment.MiddleRight;
@@ -494,27 +524,29 @@
             // cboDocentes
             // 
             cboDocentes.FormattingEnabled = true;
-            cboDocentes.Location = new Point(122, 77);
+            cboDocentes.Location = new Point(152, 96);
+            cboDocentes.Margin = new Padding(4);
             cboDocentes.Name = "cboDocentes";
-            cboDocentes.Size = new Size(376, 28);
+            cboDocentes.Size = new Size(469, 33);
             cboDocentes.TabIndex = 6;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(46, 81);
+            label7.Location = new Point(58, 101);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(68, 20);
+            label7.Size = new Size(82, 25);
             label7.TabIndex = 5;
             label7.Text = "Docente:";
             // 
             // cboMaterias
             // 
             cboMaterias.FormattingEnabled = true;
-            cboMaterias.Location = new Point(122, 18);
+            cboMaterias.Location = new Point(152, 22);
+            cboMaterias.Margin = new Padding(4);
             cboMaterias.Name = "cboMaterias";
-            cboMaterias.Size = new Size(376, 28);
+            cboMaterias.Size = new Size(469, 33);
             cboMaterias.TabIndex = 4;
             // 
             // btnCancelar
@@ -523,10 +555,10 @@
             btnCancelar.IconColor = Color.Black;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(821, 105);
+            btnCancelar.Location = new Point(1026, 97);
             btnCancelar.Margin = new Padding(2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(122, 57);
+            btnCancelar.Size = new Size(152, 71);
             btnCancelar.TabIndex = 3;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
@@ -539,10 +571,10 @@
             btnGuardar.IconColor = Color.Black;
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(821, 18);
+            btnGuardar.Location = new Point(1026, 22);
             btnGuardar.Margin = new Padding(2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(122, 57);
+            btnGuardar.Size = new Size(152, 71);
             btnGuardar.TabIndex = 2;
             btnGuardar.Text = "Guardar";
             btnGuardar.TextAlign = ContentAlignment.MiddleRight;
@@ -552,18 +584,18 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(46, 22);
+            label2.Location = new Point(58, 28);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(63, 20);
+            label2.Size = new Size(75, 25);
             label2.TabIndex = 0;
             label2.Text = "Materia:";
             // 
             // HorariosView
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(963, 634);
+            ClientSize = new Size(1204, 792);
             Controls.Add(tabControl);
             Controls.Add(panel1);
             Margin = new Padding(2);
@@ -622,5 +654,6 @@
         private FontAwesome.Sharp.IconButton btnQuitarDocente;
         private ComboBox cboAulas;
         private Label label10;
+        private FontAwesome.Sharp.IconButton BtnEditar;
     }
 }

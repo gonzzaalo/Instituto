@@ -9,6 +9,14 @@ using InstitutoDesktop.Views.Commons;
 using InstitutoDesktop.Views.Commons.AnioCarreras;
 using InstitutoDesktop.Views.Commons.Materias;
 using InstitutoDesktop.Views.Commons.Aulas;
+using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.Caching.Memory;
+using InstitutoServices.Models.Commons;
+using InstitutoServices.Models.Inscripciones;
+using InstitutoServices.Models.Horarios;
+using InstitutoServices.Models.MesasExamenes;
+using Microsoft.Extensions.DependencyInjection;
+
 
 
 
@@ -18,18 +26,50 @@ namespace InstitutoDesktop
     public partial class MenuPrincipalView : Form
     {
         bool logueado = false;
+        private readonly MemoryCacheService _cacheService;
+        private readonly IServiceProvider _serviceProvider;
 
-        public MenuPrincipalView()
+
+        public MenuPrincipalView(MemoryCacheService memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _cacheService = memoryCacheService;
+            GetCacheData();
+            _serviceProvider = serviceProvider;
+        }
+
+        private void GetCacheData()
+        {
+            Task.WhenAll(new List<Task>
+            {
+                Task.Run(async () => _cacheService.GetAllCache<Alumno>("Alumnos")),
+                Task.Run(async () => _cacheService.GetAllCache<AnioCarrera>("AnioCarreras")),
+                Task.Run(async () =>_cacheService.GetAllCache<Aula>("Aulas")),
+                Task.Run(async () =>_cacheService.GetAllCache<Carrera>("Carreras")),
+                Task.Run(async () =>_cacheService.GetAllCache<CicloLectivo>("CiclosLectivos")),
+                Task.Run(async () =>_cacheService.GetAllCache<Docente>("Docentes")),
+                Task.Run(async () =>_cacheService.GetAllCache<Hora>("Horas")),
+                Task.Run(async () =>_cacheService.GetAllCache<Horario>("Horarios")),
+                Task.Run(async () =>_cacheService.GetAllCache<IntegranteHorario>("IntegrantesHorarios")),
+                Task.Run(async () =>_cacheService.GetAllCache<JefaturaSeccion>("JefaturasSecciones")),
+                Task.Run(async () =>_cacheService.GetAllCache<Materia>("Materias")),
+                Task.Run(async () =>_cacheService.GetAllCache<TurnoExamen>("TurnosExamenes")),
+                Task.Run(async () =>_cacheService.GetAllCache<Inscripcion>("Inscripciones")),
+                Task.Run(async () =>_cacheService.GetAllCache<DetalleInscripcion>("DetallesInscripciones")),
+                Task.Run(async () =>_cacheService.GetAllCache<MesaExamen>("MesasExamenes")),
+                Task.Run(async () =>_cacheService.GetAllCache<DetalleMesaExamen>("DetallesMesasExamenes")),
+                Task.Run(async () =>_cacheService.GetAllCache<InscripcionExamen>("InscripcionesExamenes")),
+                Task.Run(async () =>_cacheService.GetAllCache<DetalleInscripcionExamen>("DetallesInscripcionesExamenes")),
+
+            });
+            
 
         }
 
-
-
         private void iconMenuItem5_Click(object sender, EventArgs e)
         {
-            CarrerasView carrerasView = new CarrerasView();
+            CarrerasView carrerasView =  _serviceProvider.GetRequiredService<CarrerasView>();
+
             carrerasView.ShowDialog();
         }
 

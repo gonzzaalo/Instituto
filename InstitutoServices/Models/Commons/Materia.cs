@@ -1,10 +1,11 @@
-﻿using InstitutoServices.Interfaces.MesasExamenes;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Interfaces.MesasExamenes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstitutoServices.Models.Commons
 {
-    public class Materia : IEntityIdNombre
+    public class Materia : IEntityIdNombre, IEntityWithId
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;

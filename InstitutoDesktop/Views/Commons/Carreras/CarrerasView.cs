@@ -4,6 +4,7 @@ using InstitutoDesktop.Views.Commons;
 using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace InstitutoDesktop.Views
 {
@@ -11,18 +12,26 @@ namespace InstitutoDesktop.Views
     {
         IGenericService<Carrera> carreraService = new GenericService<Carrera>();
         BindingSource listaCarreras = new BindingSource();
+        private readonly MemoryCacheService _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
-        public CarrerasView()
+
+        public CarrerasView(MemoryCacheService memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            dataGridCarreras.DataSource=listaCarreras;
+            _memoryCache = memoryCacheService;
+            dataGridCarreras.DataSource = listaCarreras;
             CargarGrilla();
+            _serviceProvider = serviceProvider;
         }
 
         private async Task CargarGrilla()
         {
             ShowInActivity.Show("Descargando/actualizando la lista de carreras");
-            listaCarreras.DataSource = await carreraService.GetAllAsync();
+            listaCarreras.DataSource = null;
+            listaCarreras.DataSource = await _memoryCache.GetAllCache<Carrera>("Carreras");
+
+            //listaCarreras.DataSource = await carreraService.GetAllAsync();
             dataGridCarreras.OcultarColumnas(new string[] { "Eliminado" });
             ShowInActivity.Hide();
         }
@@ -34,7 +43,7 @@ namespace InstitutoDesktop.Views
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarEditarCarreraView agregarEditarCarreraView = new AgregarEditarCarreraView();
+            AgregarEditarCarreraView agregarEditarCarreraView = _serviceProvider.GetRequiredService<AgregarEditarCarreraView>();
             agregarEditarCarreraView.ShowDialog();
             CargarGrilla();
         }
@@ -45,7 +54,9 @@ namespace InstitutoDesktop.Views
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar a la carrera {carrera.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await carreraService.DeleteAsync(carrera.Id);
+                ShowInActivity.Show("Eliminando carrera");
+                await _memoryCache.DeleteCache<Carrera>(carrera.Id, "Carreras");
+                ShowInActivity.Hide();
                 await CargarGrilla();
             }
         }
@@ -53,7 +64,7 @@ namespace InstitutoDesktop.Views
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             var carrera = (Carrera)listaCarreras.Current;
-            AgregarEditarCarreraView agregarEditarCarreraView = new AgregarEditarCarreraView(carrera);
+            var agregarEditarCarreraView = ActivatorUtilities.CreateInstance<AgregarEditarCarreraView>(_serviceProvider, carrera);
             agregarEditarCarreraView.ShowDialog();
             await CargarGrilla();
         }
