@@ -1,7 +1,9 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
@@ -15,35 +17,32 @@ namespace InstitutoDesktop.Views.Commons.AnioCarreras
         BindingSource BindingAniosCarrera = new BindingSource();
         List<AnioCarrera> ListAniosCarreraFiltrada = new List<AnioCarrera>();
         BindingSource BindingCarreras = new BindingSource();
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
-        public AnioCarrerasView()
+        public AnioCarrerasView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            _serviceProvider = serviceProvider;
             ObtenerListas();
         }
 
         private async void ObtenerListas()
         {
-            ShowInActivity.Show("Descargando carreras y años de las carreras");
             var tareas = new List<Task>()
             {
-                Task.Run(async () => BindingCarreras.DataSource = await carreraService.GetAllAsync()),
-                Task.Run(async () => ListAniosCarreraFiltrada = await anioCarreraService.GetAllAsync())
+                Task.Run(async () => BindingCarreras.DataSource = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras")),
+                Task.Run(async () => ListAniosCarreraFiltrada = await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras"))
+
             };
             await Task.WhenAll(tareas);
-            ShowInActivity.Hide();
             BindingAniosCarrera.DataSource = ListAniosCarreraFiltrada;
             CargarCboCarreras();
         }
         private async void ActualizarLista()
         {
-            ShowInActivity.Show("Actualizando lista de años de carrera");
-            var tareas = new List<Task>()
-            {
-                Task.Run(async () => ListAniosCarreraFiltrada = await anioCarreraService.GetAllAsync())
-            };
-            await Task.WhenAll(tareas);
-            ShowInActivity.Hide();
+            ListAniosCarreraFiltrada = await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras");
             BindingAniosCarrera.DataSource = ListAniosCarreraFiltrada;
             CargarDatosGrilla();
         }
@@ -80,7 +79,7 @@ namespace InstitutoDesktop.Views.Commons.AnioCarreras
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             var carrera = (Carrera)BindingCarreras.Current;
-            NuevoEditarAnioCarreraView nuevoEditarAnioCarreraView = new NuevoEditarAnioCarreraView(carrera);
+            NuevoEditarAnioCarreraView nuevoEditarAnioCarreraView = ActivatorUtilities.CreateInstance<NuevoEditarAnioCarreraView>(_serviceProvider, carrera);
             nuevoEditarAnioCarreraView.ShowDialog();
             ActualizarLista();
         }
@@ -88,7 +87,7 @@ namespace InstitutoDesktop.Views.Commons.AnioCarreras
         private void btnEditar_Click(object sender, EventArgs e)
         {
             var anioCarrera = (AnioCarrera)BindingAniosCarrera.Current;
-            NuevoEditarAnioCarreraView nuevoEditarAnioCarreraView = new NuevoEditarAnioCarreraView(anioCarrera);
+            NuevoEditarAnioCarreraView nuevoEditarAnioCarreraView = ActivatorUtilities.CreateInstance<NuevoEditarAnioCarreraView>(_serviceProvider, anioCarrera);
             nuevoEditarAnioCarreraView.ShowDialog();
             ActualizarLista();
         }
@@ -99,7 +98,7 @@ namespace InstitutoDesktop.Views.Commons.AnioCarreras
             var respuesta = MessageBox.Show($"¿Está seguro/a que quiere borrar el Año {anioCarrera.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await anioCarreraService.DeleteAsync(anioCarrera.Id);
+                await _memoryCache.DeleteCacheAsync<AnioCarrera>(anioCarrera.Id, "AniosCarreras");
                 ActualizarLista();
             }
         }

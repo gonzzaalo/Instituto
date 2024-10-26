@@ -1,8 +1,11 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
+using InstitutoDesktop.Views.Commons.AnioCarreras;
 using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +20,17 @@ namespace InstitutoDesktop.Views.Commons.Aulas
 {
     public partial class AulasView : Form
     {
-
-        IGenericService<Aula> aulaService = new GenericService<Aula>();
         BindingSource BindingAula = new BindingSource();
         List<Aula> listAula = new List<Aula>();
-        public AulasView()
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
+
+        public AulasView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            _serviceProvider = serviceProvider;
+
             dataGridAulas.DataSource = BindingAula;
             CargarGrilla();
 
@@ -31,16 +38,15 @@ namespace InstitutoDesktop.Views.Commons.Aulas
 
         private async Task CargarGrilla()
         {
-            ShowInActivity.Show("Descargando/actualizando la lista de aulas");
-            listAula = await aulaService.GetAllAsync();
+            listAula = await _memoryCache.GetAllCacheAsync<Aula>("Aulas");
             dataGridAulas.OcultarColumnas(new string[] { "Eliminado" });
-            ShowInActivity.Hide();
+            BindingAula.DataSource = null;
             BindingAula.DataSource = listAula;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarEditarAulaView agregarEditarAulaView = new AgregarEditarAulaView();
+            AgregarEditarAulaView agregarEditarAulaView = ActivatorUtilities.CreateInstance<AgregarEditarAulaView>(_serviceProvider);
             agregarEditarAulaView.ShowDialog();
             CargarGrilla();
         }
@@ -48,7 +54,7 @@ namespace InstitutoDesktop.Views.Commons.Aulas
         private async void iconEditar_Click(object sender, EventArgs e)
         {
             var aula = (Aula)BindingAula.Current;
-            AgregarEditarAulaView agregarEditarAulaView = new AgregarEditarAulaView(aula);
+            AgregarEditarAulaView agregarEditarAulaView = ActivatorUtilities.CreateInstance<AgregarEditarAulaView>(_serviceProvider, aula);
             agregarEditarAulaView.ShowDialog();
            await CargarGrilla();
         }
@@ -57,12 +63,11 @@ namespace InstitutoDesktop.Views.Commons.Aulas
         {
 
             var aula = (Aula)BindingAula.Current;
-            var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar el aula{aula.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar el aula {aula.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await aulaService.DeleteAsync(aula.Id);
+                await _memoryCache.DeleteCacheAsync<Aula>(aula.Id, "Aulas");
                 await CargarGrilla();
-                dataGridAulas.SeleccionarFilaNuevaOEditada(aula.Id);
             }
         }
 

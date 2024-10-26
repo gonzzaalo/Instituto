@@ -1,24 +1,29 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
+using InstitutoDesktop.Views.Commons.Aulas;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace InstitutoDesktop.Views.Commons.Materias
 {
     public partial class MateriaView : Form
     {
-        GenericService<Carrera> carreraService = new GenericService<Carrera>();
-        AnioCarreraService anioCarreraService = new AnioCarreraService();
-        MateriaService materiaService = new MateriaService();
         BindingSource BindingAniosCarrera = new BindingSource();
         BindingSource BindingCarreras = new BindingSource();
         BindingSource BindingMaterias = new BindingSource();
         List<AnioCarrera>? ListAniosCarreraFiltrada = new List<AnioCarrera>();
         List<Materia>? ListMateriasFiltrada = new List<Materia>();
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
-        public MateriaView()
+
+        public MateriaView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            _serviceProvider = serviceProvider;
 
             ObtenerListas();
         }
@@ -28,9 +33,12 @@ namespace InstitutoDesktop.Views.Commons.Materias
             ShowInActivity.Show("Descargando carreras, años de la carrera y materias");
             var tareas = new List<Task>()
             {
-                Task.Run(async () => BindingCarreras.DataSource = await carreraService.GetAllAsync()),
-                Task.Run(async () => ListAniosCarreraFiltrada = await anioCarreraService.GetAllAsync()),
-                Task.Run(async () => ListMateriasFiltrada = await materiaService.GetAllAsync())
+                Task.Run(async () => BindingCarreras.DataSource = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras")),
+                //Task.Run(async () => BindingCarreras.DataSource = await carreraService.GetAllAsync()),
+                //Task.Run(async () => ListAniosCarreraFiltrada = await anioCarreraService.GetAllAsync()),
+                Task.Run(async () => ListAniosCarreraFiltrada = await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras")),
+                //Task.Run(async () => ListMateriasFiltrada = await materiaService.GetAllAsync())
+                Task.Run(async () => ListMateriasFiltrada = await _memoryCache.GetAllCacheAsync<Materia>("Materias"))
             };
             await Task.WhenAll(tareas);
             ShowInActivity.Hide();
@@ -41,13 +49,9 @@ namespace InstitutoDesktop.Views.Commons.Materias
 
         private async void ActualizarLista()
         {
-            ShowInActivity.Show("Actualizando la lista de materias");
-            var tareas = new List<Task>()
-            {
-                Task.Run(async () => ListMateriasFiltrada = await materiaService.GetAllAsync())
-            };
-            await Task.WhenAll(tareas);
-            ShowInActivity.Hide();
+
+            ListMateriasFiltrada = await _memoryCache.GetAllCacheAsync<Materia>("Materias");
+
             BindingMaterias.DataSource = ListMateriasFiltrada;
             CargarDatosEnGrilla();
         }
@@ -90,7 +94,7 @@ namespace InstitutoDesktop.Views.Commons.Materias
             var anioCarrera = (AnioCarrera)BindingAniosCarrera.Current;
 
             // Crear el formulario para agregar una nueva materia
-            NuevoEditarMateriaView nuevoEditarMateriaView = new NuevoEditarMateriaView(carrera, anioCarrera);
+            NuevoEditarMateriaView nuevoEditarMateriaView = ActivatorUtilities.CreateInstance<NuevoEditarMateriaView>(_serviceProvider, carrera, anioCarrera);
 
             // Mostrar el formulario como diálogo
             nuevoEditarMateriaView.ShowDialog();
@@ -104,7 +108,7 @@ namespace InstitutoDesktop.Views.Commons.Materias
         {
             var materia = (Materia)BindingMaterias.Current;
             var aniocarrera = (AnioCarrera)BindingAniosCarrera.Current;
-            NuevoEditarMateriaView nuevoEditarMateriaView = new NuevoEditarMateriaView(materia, aniocarrera);
+            NuevoEditarMateriaView nuevoEditarMateriaView = ActivatorUtilities.CreateInstance<NuevoEditarMateriaView>(_serviceProvider, materia, aniocarrera);
             nuevoEditarMateriaView.ShowDialog();
             ActualizarLista();
         }
@@ -115,7 +119,8 @@ namespace InstitutoDesktop.Views.Commons.Materias
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar la materia {materia.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await materiaService.DeleteAsync(materia.Id);
+                //await materiaService.DeleteAsync(materia.Id);
+                await _memoryCache.DeleteCacheAsync<Materia>(materia.Id, "Materias");
                 ActualizarLista();
             }
         }

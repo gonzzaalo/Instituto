@@ -13,18 +13,18 @@ using InstitutoServices.Models;
 using InstitutoServices.Services.Commons;
 using InstitutoServices.Models.Commons;
 using InstitutoDesktop.Util;
+using InstitutoDesktop.Services;
 
 namespace InstitutoDesktop.Views.Commons
 {
     public partial class AgregarEditarCarreraView : Form
     {
-        IGenericService<Carrera> carreraService = new GenericService<Carrera>();
-        private readonly MemoryCacheService _memoryCache;
+        private readonly MemoryCacheServiceWinForms _memoryCache;
 
         private Carrera carrera;
 
         //nuevo
-        public AgregarEditarCarreraView(MemoryCacheService memoryCache)
+        public AgregarEditarCarreraView(MemoryCacheServiceWinForms memoryCache)
         {
             InitializeComponent();
             carrera=new Carrera();
@@ -32,7 +32,7 @@ namespace InstitutoDesktop.Views.Commons
         }
 
         //editar
-        public AgregarEditarCarreraView(MemoryCacheService memoryCache,Carrera carrera)
+        public AgregarEditarCarreraView(MemoryCacheServiceWinForms memoryCache,Carrera carrera)
         {
             InitializeComponent();
             this.carrera = carrera;
@@ -51,20 +51,14 @@ namespace InstitutoDesktop.Views.Commons
             carrera.Nombre = txtNombre.Text;
             carrera.Sigla = txtSigla.Text;
             
-            ShowInActivity.Show("Guardando los cambios");
             if (carrera.Id == 0)
             {
-                await _memoryCache.AddCache(carrera, "Carreras");
-                //await carreraService.AddAsync(carrera);
+                await _memoryCache.AddCacheAsync<Carrera>(carrera, "Carreras");
             }
             else
             {
-                //UPDATE
-                await _memoryCache.UpdateCache<Carrera>(carrera, "Carreras");
-
-                //await carreraService.UpdateAsync(carrera);
+                await _memoryCache.UpdateCacheAsync<Carrera>(carrera, "Carreras");
             }
-            ShowInActivity.Hide();
             this.Close();
         }
     }

@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Interfaces;
+﻿using InstitutoDesktop.Services;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Horarios;
 using InstitutoServices.Services;
 using InstitutoServices.Services.Commons;
@@ -16,18 +17,20 @@ namespace InstitutoDesktop.Views.Horarios
 {
     public partial class AgregarEditarHoraView : Form
     {
-        IGenericService<Hora> horarioService = new GenericService<Hora>();
         private Hora hora;
+        private readonly MemoryCacheServiceWinForms _memoryCache;
 
-        public AgregarEditarHoraView()
+        public AgregarEditarHoraView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             hora = new Hora();
         }
 
-        public AgregarEditarHoraView(Hora hora)
+        public AgregarEditarHoraView(MemoryCacheServiceWinForms memoryCacheService, Hora hora)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.hora = hora;
             CargarDatosEnPantalla();
         }
@@ -46,12 +49,13 @@ namespace InstitutoDesktop.Views.Horarios
 
             if (hora.Id == 0)
             {
-                await horarioService.AddAsync(hora);
-
+                //await horarioService.AddAsync(hora);
+                await _memoryCache.AddCacheAsync<Hora>(hora, "Horas");
             }
             else
             {
-                await horarioService.UpdateAsync(hora);
+                //await horarioService.UpdateAsync(hora);
+                await _memoryCache.UpdateCacheAsync<Hora>(hora, "Horas");
             }
 
             this.Close();

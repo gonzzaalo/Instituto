@@ -12,23 +12,27 @@ using System.Windows.Forms;
 using InstitutoServices.Models;
 using InstitutoServices.Services.Commons;
 using InstitutoServices.Models.Commons;
+using InstitutoDesktop.Services;
 
 namespace InstitutoDesktop.Views.Commons
 {
     public partial class AgregarEditarDocenteView : Form
     {
-        IGenericService<Docente> docenteService = new GenericService<Docente>();
         private Docente docente;
-        public AgregarEditarDocenteView()
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+
+        public AgregarEditarDocenteView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             docente = new Docente();
         }
 
 
-        public AgregarEditarDocenteView(Docente docente)
+        public AgregarEditarDocenteView(MemoryCacheServiceWinForms memoryCacheService, Docente docente)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.docente = docente;
             CargarDatosDocenteAEditar();
         }
@@ -47,11 +51,13 @@ namespace InstitutoDesktop.Views.Commons
 
             if (docente.Id == 0)
             {
-                await docenteService.AddAsync(docente);
+                await _memoryCache.AddCacheAsync<Docente>(docente, "Docentes");
+                //await docenteService.AddAsync(docente);
             }
             else
             {
-                await docenteService.UpdateAsync(docente);
+                await _memoryCache.UpdateCacheAsync<Docente>(docente, "Docentes");
+                //await docenteService.UpdateAsync(docente);
             }
 
             this.Close();

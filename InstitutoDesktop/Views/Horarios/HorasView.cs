@@ -1,37 +1,42 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
+using InstitutoDesktop.Views.Commons.Materias;
 using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 using InstitutoServices.Models.Horarios;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace InstitutoDesktop.Views.Horarios
 {
     public partial class HorasView : Form
     {
-        IGenericService<Hora> horaService = new GenericService<Hora>();
         BindingSource BindingHoras = new BindingSource();
         List<Hora> listaHoras = new List<Hora>();
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
-        public HorasView()
+        public HorasView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            _serviceProvider = serviceProvider;
             dataGridHoras.DataSource = BindingHoras;
 
             CargarGrilla();
         }
         private async Task CargarGrilla()
         {
-            ShowInActivity.Show("Descargando/actualizando la lista de horas");
-            listaHoras = await horaService.GetAllAsync();
-            ShowInActivity.Hide();
-            BindingHoras.DataSource = listaHoras.ToList();
+            listaHoras = await _memoryCache.GetAllCacheAsync<Hora>("Horas");
+            BindingHoras.DataSource = listaHoras.OrderBy(h=>h.Desde).ToList();
             dataGridHoras.OcultarColumnas(new string[] { "Desde", "Hasta", "Eliminado" });
 
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarEditarHoraView agregarEditarHora = new AgregarEditarHoraView();
+            AgregarEditarHoraView agregarEditarHora = ActivatorUtilities.CreateInstance<AgregarEditarHoraView>(_serviceProvider);
             agregarEditarHora.ShowDialog();
             CargarGrilla();
         }
@@ -39,7 +44,7 @@ namespace InstitutoDesktop.Views.Horarios
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             var hora = (Hora)BindingHoras.Current;
-            AgregarEditarHoraView agregarEditarHoraView = new AgregarEditarHoraView(hora);
+            AgregarEditarHoraView agregarEditarHoraView = ActivatorUtilities.CreateInstance<AgregarEditarHoraView>(_serviceProvider, hora);
             agregarEditarHoraView.ShowDialog();
             await CargarGrilla();
         }
@@ -50,7 +55,8 @@ namespace InstitutoDesktop.Views.Horarios
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar a la carrera {hora.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await horaService.DeleteAsync(hora.Id);
+                //await horaService.DeleteAsync(hora.Id);
+                await _memoryCache.DeleteCacheAsync<Hora>(hora.Id, "Horas");
                 await CargarGrilla();
             }
         }
@@ -62,7 +68,7 @@ namespace InstitutoDesktop.Views.Horarios
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            BindingHoras.DataSource = listaHoras.Where(h => h.Nombre.Contains(txtFiltro.Text)).OrderBy(h => h.Nombre).ToList();
+            BindingHoras.DataSource = listaHoras.Where(h => h.Nombre.Contains(txtFiltro.Text)).OrderBy(h => h.Desde).ToList();
 
         }
 

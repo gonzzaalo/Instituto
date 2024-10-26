@@ -1,8 +1,12 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
+using InstitutoDesktop.Views.Commons.Materias;
 using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 using InstitutoServices.Models.Inscripciones;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace InstitutoDesktop.Views.Inscripciones
 {
@@ -10,21 +14,24 @@ namespace InstitutoDesktop.Views.Inscripciones
 
     public partial class CiclosLectivosView : Form
     {
-        IGenericService<CicloLectivo> ciclolectivoService = new GenericService<CicloLectivo>();
         BindingSource listaCicloLectivos = new BindingSource();
-        public CiclosLectivosView()
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
+
+        public CiclosLectivosView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            _serviceProvider = serviceProvider;
             dataGridCiclosLectivos.DataSource = listaCicloLectivos;
             CargarGrilla();
         }
 
         private async Task CargarGrilla()
         {
-            ShowInActivity.Show("Descargando/actualizando la lista de ciclos lectívos");
-            listaCicloLectivos.DataSource = await ciclolectivoService.GetAllAsync();
+            listaCicloLectivos.DataSource = null;
+            listaCicloLectivos.DataSource = await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos");
             dataGridCiclosLectivos.OcultarColumnas(new string[] { "Eliminado" });
-            ShowInActivity.Hide();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -34,7 +41,7 @@ namespace InstitutoDesktop.Views.Inscripciones
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarEditarCicloLectivoView agregarEditarCicloLectivoView = new AgregarEditarCicloLectivoView();
+            AgregarEditarCicloLectivoView agregarEditarCicloLectivoView = ActivatorUtilities.CreateInstance<AgregarEditarCicloLectivoView>(_serviceProvider);
             agregarEditarCicloLectivoView.ShowDialog();
 
             await CargarGrilla();
@@ -43,7 +50,8 @@ namespace InstitutoDesktop.Views.Inscripciones
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             var ciclolectivo = (CicloLectivo)listaCicloLectivos.Current;
-            AgregarEditarCicloLectivoView agregarEditarCicloLectivoView = new AgregarEditarCicloLectivoView(ciclolectivo);
+            AgregarEditarCicloLectivoView agregarEditarCicloLectivoView = 
+        ActivatorUtilities.CreateInstance<AgregarEditarCicloLectivoView>(_serviceProvider, ciclolectivo);
             agregarEditarCicloLectivoView.ShowDialog();
             await CargarGrilla();
         }
@@ -55,7 +63,8 @@ namespace InstitutoDesktop.Views.Inscripciones
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar el Ciclo Lectivo {ciclolectivo.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await ciclolectivoService.DeleteAsync(ciclolectivo.Id);
+                //await ciclolectivoService.DeleteAsync(ciclolectivo.Id);
+                await _memoryCache.DeleteCacheAsync<CicloLectivo>(ciclolectivo.Id, "CiclosLectivos");
                 await CargarGrilla();
             }
         }

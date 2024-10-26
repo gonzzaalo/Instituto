@@ -9,6 +9,7 @@ using InstitutoDesktop.Views.Inscripciones;
 using InstitutoDesktop.Views.Commons.Materias;
 using InstitutoDesktop.Views.Horarios;
 using InstitutoDesktop.Views.MesasExamenes;
+using InstitutoDesktop.Services;
 
 namespace InstitutoDesktop
 {
@@ -65,7 +66,7 @@ namespace InstitutoDesktop
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache(); // Agregar el servicio de caché en memoria
-            services.AddScoped<MemoryCacheService>();
+            services.AddScoped<MemoryCacheServiceWinForms>();
             services.AddScoped<MenuPrincipalView>(); // Registrar formularios
             services.AddScoped<CarrerasView>();
             services.AddScoped<AgregarEditarCarreraView>();

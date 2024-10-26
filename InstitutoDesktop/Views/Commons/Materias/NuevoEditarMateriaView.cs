@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Models;
+﻿using InstitutoDesktop.Services;
+using InstitutoServices.Models;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services;
 using InstitutoServices.Services.Commons;
@@ -16,13 +17,14 @@ namespace InstitutoDesktop.Views.Commons.Materias
 {
     public partial class NuevoEditarMateriaView : Form
     {
-        MateriaService materiaService = new MateriaService();
         Materia materia;
+        private readonly MemoryCacheServiceWinForms _memoryCache;
 
         // NUEVO
-        public NuevoEditarMateriaView(Carrera carrera, AnioCarrera anioCarrera)
+        public NuevoEditarMateriaView(MemoryCacheServiceWinForms memoryCacheService, Carrera carrera, AnioCarrera anioCarrera)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             materia = new Materia { AnioCarreraId = anioCarrera.Id };
 
             // Mostrar el año y carrera combinados en el TextBox
@@ -30,9 +32,10 @@ namespace InstitutoDesktop.Views.Commons.Materias
 
         }
         // EDITAR
-        public NuevoEditarMateriaView(Materia materia, AnioCarrera anioCarrera)
+        public NuevoEditarMateriaView(MemoryCacheServiceWinForms memoryCacheService, Materia materia, AnioCarrera anioCarrera)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.materia = materia;
             // Mostrar el año y carrera combinados en el TextBox
             if (anioCarrera != null)
@@ -53,12 +56,13 @@ namespace InstitutoDesktop.Views.Commons.Materias
 
             if (materia.Id == 0)
             {
-                await materiaService.AddAsync(materia);
-
+                await _memoryCache.AddCacheAsync<Materia>(materia, "Materias");
+                //await materiaService.AddAsync(materia);
             }
             else
             {
-                await materiaService.UpdateAsync(materia);
+                await _memoryCache.UpdateCacheAsync<Materia>(materia, "Materias");
+                //await materiaService.UpdateAsync(materia);
             }
 
             this.Close();

@@ -1,4 +1,5 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
 using InstitutoServices.Enums;
 using InstitutoServices.Interfaces;
@@ -16,15 +17,6 @@ namespace InstitutoDesktop.Views
 {
     public partial class HorariosView : Form
     {
-        IHorarioService horarioService = new HorarioService();
-        IGenericService<CicloLectivo> cicloLectivoService = new GenericService<CicloLectivo>();
-        IGenericService<Carrera> carreraService = new GenericService<Carrera>();
-        IAnioCarreraService anioCarreraService = new AnioCarreraService();
-        IMateriaService materiaService = new MateriaService();
-        IGenericService<Docente> docenteService = new GenericService<Docente>();
-        IGenericService<Hora> horaService = new GenericService<Hora>();
-        IGenericService<Aula> aulaService = new GenericService<Aula>();
-
         BindingSource bindingHorarios = new BindingSource();
         List<CicloLectivo>? listaCicloLectivos = new List<CicloLectivo>();
         List<Carrera>? listaCarreras = new List<Carrera>();
@@ -37,9 +29,12 @@ namespace InstitutoDesktop.Views
         Horario horarioCurrent;
         DetalleHorario detalleHorarioEdit;
 
-        public HorariosView()
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+
+        public HorariosView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             dataGridHorarios.DataSource = bindingHorarios;
             //tabPageAgregarEditar.Enabled= false;
             ObtenerListas();
@@ -108,14 +103,22 @@ namespace InstitutoDesktop.Views
             //pongo todos los métodos en paralelo para que se ejecuten al mismo tiempo
             var tareas = new List<Task>
             {
-                Task.Run(async () => listaCicloLectivos = await cicloLectivoService.GetAllAsync()),
-                Task.Run(async () => listaCarreras = await carreraService.GetAllAsync()),
-                Task.Run(async () => listaAnioCarreras = await anioCarreraService.GetAllAsync()),
-                Task.Run(async () => listaMaterias = await materiaService.GetAllAsync()),
-                Task.Run(async () => listaDocentes = await docenteService.GetAllAsync()),
-                Task.Run(async () => listaHoras = await horaService.GetAllAsync()),
-                Task.Run(async () => listaHorarios = await horarioService.GetAllAsync()),
-                Task.Run(async () => listaAulas = await aulaService.GetAllAsync())
+                Task.Run(async () => listaCicloLectivos = await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos")),
+                //Task.Run(async () => listaCicloLectivos = await cicloLectivoService.GetAllAsync()),
+                Task.Run(async () => listaCarreras = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras")),
+                //Task.Run(async () => listaCarreras = await carreraService.GetAllAsync()),
+                Task.Run(async () => listaAnioCarreras = await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras")),
+                //Task.Run(async () => listaAnioCarreras = await anioCarreraService.GetAllAsync()),
+                Task.Run(async () => listaMaterias = await _memoryCache.GetAllCacheAsync<Materia>("Materias")),
+                //Task.Run(async () => listaMaterias = await materiaService.GetAllAsync()),
+                Task.Run(async () => listaDocentes = await _memoryCache.GetAllCacheAsync<Docente>("Docentes")),
+                //Task.Run(async () => listaDocentes = await docenteService.GetAllAsync()),
+                Task.Run(async () => listaHoras = await _memoryCache.GetAllCacheAsync<Hora>("Horas")),
+                //Task.Run(async () => listaHoras = await horaService.GetAllAsync()),
+                Task.Run(async () => listaHorarios = await _memoryCache.GetAllCacheAsync<Horario>("Horarios")),
+                //Task.Run(async () => listaHorarios = await horarioService.GetAllAsync()),
+                Task.Run(async () => listaAulas = await _memoryCache.GetAllCacheAsync<Aula>("Aulas"))
+                //Task.Run(async () => listaAulas = await aulaService.GetAllAsync())
             };
             bindingHorarios.DataSource = listaHorarios;
             //cuando terminan todas las tareas, cierro el showInActivity y cargo los combos
@@ -128,9 +131,10 @@ namespace InstitutoDesktop.Views
         private async Task CargarGrilla()
         {
             if (listaHorarios != null && listaHorarios.Count > 0)
-                bindingHorarios.DataSource = listaHorarios.Where(h => h.CicloLectivoId.Equals((int)cboCiclosLectivos.SelectedValue) &&
-                                                                h.Materia.AnioCarrera.CarreraId.Equals((int)cboCarreras.SelectedValue) &&
-                                                                h.Materia.AnioCarreraId.Equals((int)cboAniosCarreras.SelectedValue));
+                bindingHorarios.DataSource = listaHorarios.
+                    Where(h => h.CicloLectivoId.Equals((int)cboCiclosLectivos.SelectedValue) &&
+                          h.Materia.AnioCarrera.CarreraId.Equals((int)cboCarreras.SelectedValue) &&
+                          h.Materia.AnioCarreraId.Equals((int)cboAniosCarreras.SelectedValue));
             dataGridHorarios.OcultarColumnas(new string[] { "Id", "CicloLectivo", "DetallesHorario", "IntegrantesHorario", "CicloLectivoId", "Eliminado" });
         }
 
@@ -171,11 +175,12 @@ namespace InstitutoDesktop.Views
 
                 if (horarioCurrent.Id == 0)
                 {
-                    await horarioService.AddAsync(horarioCurrent);
+                    await _memoryCache.AddCacheAsync<Horario>(horarioCurrent, "Horarios");
+                    //await horarioService.AddAsync(horarioCurrent);
                 }
                 else
                 {
-                    await horarioService.UpdateAsync(horarioCurrent);
+                    await _memoryCache.UpdateCacheAsync<Horario>(horarioCurrent, "Horarios");
                 }
             }
             await actualizarListaHorarios();
@@ -185,16 +190,7 @@ namespace InstitutoDesktop.Views
 
         private async Task actualizarListaHorarios()
         {
-            ShowInActivity.Show("Actualizando lista de horarios");
-            //pongo todos los métodos en paralelo para que se ejecuten al mismo tiempo
-            var tareas = new List<Task>
-            {
-                Task.Run(async () => listaHorarios = await horarioService.GetAllAsync())
-            };
-            //cuando terminan todas las tareas, cierro el showInActivity y cargo los combos
-            await Task.WhenAll(tareas);
-            ShowInActivity.Hide();
-
+            listaHorarios = await _memoryCache.GetAllCacheAsync<Horario>("Horarios");
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -220,9 +216,7 @@ namespace InstitutoDesktop.Views
             var result = MessageBox.Show($"¿Está seguro que desea eliminar el horario de {horarioCurrent.Materia.Nombre}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                ShowInActivity.Show("Eliminando horario");
-                await horarioService.DeleteAsync(horarioCurrent.Id);
-                ShowInActivity.Hide();
+                await _memoryCache.DeleteCacheAsync<Horario>(horarioCurrent.Id, "Horarios");
                 await actualizarListaHorarios();
                 await CargarGrilla();
             }
