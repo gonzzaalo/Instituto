@@ -1,8 +1,7 @@
 ﻿@page "/cicloslectivos"
 
-@inject IGenericService<CicloLectivo> cicloLectivoService
 @inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 <PageTitle>Ciclos Lectivos</PageTitle>
 <h1>Ciclos Lectivos</h1>
@@ -23,8 +22,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        ciclosLectivos = MemoryCacheService.CiclosLectivos;
-        //ciclosLectivos = await cicloLectivoService.GetAllAsync();
+        ciclosLectivos= await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos");
     }
 
     private async void Eliminar(IEntityIdNombre entity)
@@ -41,16 +39,14 @@ else
             });
         if (respuesta.IsConfirmed)
         {
-            await cicloLectivoService.DeleteAsync(cicloLectivo.Id);
-            MemoryCacheService.CiclosLectivos = await cicloLectivoService.GetAllAsync();
-            ciclosLectivos = MemoryCacheService.CiclosLectivos;
+            await _memoryCache.DeleteCacheAsync<CicloLectivo>(cicloLectivo.Id, "CiclosLectivos");
+            ciclosLectivos = await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos");
             StateHasChanged();
         }
     }
     private async Task Guardar()
     {
-        MemoryCacheService.CiclosLectivos = await cicloLectivoService.GetAllAsync();
-        ciclosLectivos = MemoryCacheService.CiclosLectivos;
+        ciclosLectivos = await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos");
         currentCicloLectivo = null;
         StateHasChanged();
 

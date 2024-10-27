@@ -1,8 +1,7 @@
 ﻿@page "/aulas"
 
-@inject IGenericService<Aula> aulaService
 @inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 
 <PageTitle>Aulas</PageTitle>
@@ -24,8 +23,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        aulas= MemoryCacheService.Aulas;
-        //aulas = await aulaService.GetAllAsync();
+        aulas = await _memoryCache.GetAllCacheAsync<Aula>("Aulas");
     }
 
     private async void Eliminar(IEntityIdNombre entity)
@@ -42,17 +40,15 @@ else
         });
         if (respuesta.IsConfirmed)
         {
-            await aulaService.DeleteAsync(aula.Id);
-            MemoryCacheService.Aulas = await aulaService.GetAllAsync();
-            aulas = MemoryCacheService.Aulas;
+            await _memoryCache.DeleteCacheAsync<Aula>(aula.Id, "Aulas");
+            aulas = await _memoryCache.GetAllCacheAsync<Aula>("Aulas");
             StateHasChanged();
         }
     }
 
     private async Task Guardar()
     {
-        MemoryCacheService.Aulas = await aulaService.GetAllAsync();
-        aulas = MemoryCacheService.Aulas;
+        aulas= await _memoryCache.GetAllCacheAsync<Aula>("Aulas");
         currentAula = null;
         StateHasChanged();
     }

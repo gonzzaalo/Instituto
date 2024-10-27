@@ -1,5 +1,5 @@
 ﻿@page "/nuevoaula"
-@inject IGenericService<Aula> aulaService
+@inject IMemoryCacheService _memoryCache
 @inject NavigationManager NavigationManager
 
 @if (aula == null)
@@ -27,7 +27,8 @@ else
 
     private async Task GuardarAula()
     {
-        await aulaService.AddAsync(aula);
+        //await aulaService.AddAsync(aula);
+        _memoryCache.AddCacheAsync<Aula>(aula, "Aulas");
         NavigationManager.NavigateTo("/aulas");
     }
 }

@@ -1,9 +1,8 @@
 ﻿@page "/carreras"
 
 
-@inject IGenericService<Carrera> carreraService
 @inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 <PageTitle>Carreras</PageTitle>
 <h1>Carreras</h1>
@@ -59,8 +58,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        //carreras = await carreraService.GetAllAsync();
-        carreras= MemoryCacheService.Carreras;
+        carreras = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras");
     }
 
     private async void Eliminar(Carrera carrera)
@@ -76,9 +74,8 @@ else
             });
         if (respuesta.IsConfirmed)
         {
-            await carreraService.DeleteAsync(carrera.Id);
-            MemoryCacheService.Carreras = await carreraService.GetAllAsync();
-            carreras = MemoryCacheService.Carreras;
+            await _memoryCache.DeleteCacheAsync<Carrera>(carrera.Id, "Carreras");
+            carreras = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras");
             StateHasChanged();
         }
     }

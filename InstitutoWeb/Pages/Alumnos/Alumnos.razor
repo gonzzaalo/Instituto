@@ -1,5 +1,5 @@
 ﻿@page "/alumnos"
-@inject IGenericService<Alumno> alumnoService
+@inject IMemoryCacheService _memoryCache
 
 <PageTitle>Alumnos</PageTitle>
 
@@ -7,7 +7,7 @@
 
 <p>Alumnos del sitio web.</p>
 
-@if (students == null)
+@if (alumnos == null)
 {
     <p><em>Cargando...</em></p>
 }
@@ -27,7 +27,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var student in students)
+            @foreach (var student in alumnos)
             {
                 <tr>
                     <td>@student.ApellidoNombre</td>
@@ -46,12 +46,13 @@ else
 }
 
 @code {
-    private List<Alumno>? students;
+    private List<Alumno>? alumnos;
 
 
     protected override async Task OnInitializedAsync()
     {
-        students =  await alumnoService.GetAllAsync();
+        alumnos = await _memoryCache.GetAllCacheAsync<Alumno>("Alumnos");
+
     }
 
 

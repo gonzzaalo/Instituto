@@ -1,5 +1,4 @@
-﻿@inject IGenericService<Aula> aulaService
-@inject IMemoryCacheService MemoryCacheService
+﻿@inject IMemoryCacheService _memoryCache
 
 
 @if (aulaEdit == null)
@@ -55,10 +54,9 @@ else
     private async Task Guardar()
     {
         if (isEditing)
-            await aulaService.UpdateAsync(aulaEdit);
+            await _memoryCache.UpdateCacheAsync<Aula>(aulaEdit, "Aulas");
         else
-            await aulaService.AddAsync(aulaEdit);
-        MemoryCacheService.Aulas = await aulaService.GetAllAsync();
+            await _memoryCache.AddCacheAsync<Aula>(aulaEdit, "Aulas");
         await OnGuardar.InvokeAsync();
     }
 

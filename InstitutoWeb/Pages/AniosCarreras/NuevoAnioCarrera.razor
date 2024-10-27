@@ -1,7 +1,6 @@
 ﻿@page "/nuevoaniocarrera"
-@inject IAnioCarreraService aniocarreraService
+@inject IMemoryCacheService _memoryCache 
 @inject NavigationManager NavigationManager
-@inject IMemoryCacheService MemoryCacheService
 
 
 @if (aniocarrera == null)
@@ -39,8 +38,8 @@ else
 
     private async Task GuardarAnioCarrera()
     {
-        var response = await aniocarreraService.AddAsync(aniocarrera);
-        MemoryCacheService.AniosCarreras= await aniocarreraService.GetAllAsync();
+        //var response = await aniocarreraService.AddAsync(aniocarrera);
+        await _memoryCache.AddCacheAsync<AnioCarrera>(aniocarrera, "AniosCarreras");
         NavigationManager.NavigateTo($"/anioscarreras?idCarrera={idCarrera}&nombreCarrera={nombreCarrera}");
     }
 }

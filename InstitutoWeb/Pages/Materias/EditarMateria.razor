@@ -1,7 +1,6 @@
 ﻿@page "/editarmateria"
-@inject IMateriaService materiaService
 @inject NavigationManager NavigationManager
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 @if (materia == null)
 {
@@ -42,14 +41,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        materia = MemoryCacheService.Materias.Where(m=>m.Id.Equals(idMateria)).FirstOrDefault();
+        materia = (await _memoryCache.GetAllCacheAsync<Materia>("Materias")).Where(m => m.Id.Equals(idMateria)).FirstOrDefault();
     }
 
     private async Task GuardarMateria()
     {
-        await materiaService.UpdateAsync(materia);
-        MemoryCacheService.Materias = await materiaService.GetAllAsync();
-
+        await _memoryCache.UpdateCacheAsync<Materia>(materia,"Materias");
         NavigationManager.NavigateTo($"/materias?idAnioCarrera={idAnioCarrera}&nombreAnioCarrera={nombreAnioCarrera}");
     }
 }

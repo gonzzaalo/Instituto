@@ -1,7 +1,6 @@
 ﻿@page "/nuevamateria"
-@inject IMateriaService materiaService
 @inject NavigationManager NavigationManager
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 @if (materia == null)
 {
@@ -44,9 +43,7 @@ else
 
     private async Task GuardarMateria()
     {
-        var response = await materiaService.AddAsync(materia);
-        MemoryCacheService.Materias = await materiaService.GetAllAsync();
-
+        await _memoryCache.AddCacheAsync<Materia>(materia, "Materias");
         NavigationManager.NavigateTo($"/materias?idAnioCarrera={idAnioCarrera}&nombreAnioCarrera={nombreAnioCarrera}");
     }
 }

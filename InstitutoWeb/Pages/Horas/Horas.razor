@@ -1,8 +1,7 @@
 ﻿@page "/horas"
 
-@inject IGenericService<Hora> horaService
 @inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 
 <PageTitle>Horas</PageTitle>
@@ -24,8 +23,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        horas= MemoryCacheService.Horas;
-        //horas = await horaService.GetAllAsync();
+        horas= await _memoryCache.GetAllCacheAsync<Hora>("Horas");
     }
 
     private async void Eliminar(Hora hora)
@@ -41,16 +39,14 @@ else
             });
         if (respuesta.IsConfirmed)
         {
-            await horaService.DeleteAsync(hora.Id);
-            MemoryCacheService.Horas = await horaService.GetAllAsync();
-            horas = MemoryCacheService.Horas;
+            await _memoryCache.DeleteCacheAsync<Hora>(hora.Id, "Horas");
+            horas = await _memoryCache.GetAllCacheAsync<Hora>("Horas");
             StateHasChanged();
         }
     }
     private async Task Guardar()
     {
-        MemoryCacheService.Horas = await horaService.GetAllAsync();
-        horas = MemoryCacheService.Horas;
+        horas = await _memoryCache.GetAllCacheAsync<Hora>("Horas");
         currentHora = null;
         StateHasChanged();
 

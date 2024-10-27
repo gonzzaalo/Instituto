@@ -1,5 +1,5 @@
 ﻿@page "/editarcarrera"
-@inject IGenericService<Carrera> carreraService
+@inject IMemoryCacheService _memoryCache
 @inject NavigationManager NavigationManager
 
 @if (carrera == null)
@@ -29,12 +29,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        carrera = await carreraService.GetByIdAsync(int.Parse(idCarrera));
+        carrera = (await _memoryCache.GetAllCacheAsync<Carrera>("Carreras")).Where(carrera => carrera.Id.Equals(int.Parse(idCarrera))).FirstOrDefault();
     }
 
     private async Task GuardarCarrera()
     {
-        await carreraService.UpdateAsync(carrera);
+        await _memoryCache.UpdateCacheAsync<Carrera>(carrera, "Carreras");
         NavigationManager.NavigateTo("/carreras");
     }
 }

@@ -1,6 +1,5 @@
-﻿@inject IGenericService<Hora> horaService
-@inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
+﻿@inject SweetAlertService SweetAlert
+@inject IMemoryCacheService _memoryCache
 
 
 @if (horaEdit == null )
@@ -77,10 +76,9 @@ else
         horaEdit.Hasta = new DateTime(1, 1, 1, currentHasta.Hour, currentHasta.Minute, 0);
         
         if (isEditing)
-                await horaService.UpdateAsync(horaEdit);
-            else
-            await horaService.AddAsync(horaEdit);
-        MemoryCacheService.Horas = await horaService.GetAllAsync();
+            await _memoryCache.UpdateCacheAsync<Hora>(horaEdit, "Horas");
+        else
+            await _memoryCache.AddCacheAsync<Hora>(horaEdit, "Horas");
        await OnGuardar.InvokeAsync();
     }
 

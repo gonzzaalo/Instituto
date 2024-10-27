@@ -1,12 +1,11 @@
 ﻿@using InstitutoServices.Models.Login
-@using InstitutoWeb.Services.Commons
 @inject AuthenticationService AuthService
 @inject NavigationManager NavigationManager
 @inject IUsuarioService usuarioService
 @inject IInscriptoCarreraService inscriptoCarreraService
 @inject ILogger<NavMenu> logger
 @inject IUsuarioStateService usuarioStateService
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 
 
@@ -139,9 +138,36 @@
             await AuthService.GetUserAuthenticated();
         }
         usuarioStateService.OnChange += ChequeoEstadoLogin;
+        GetCacheData();
+    }
+    private void GetCacheData()
+    {
+        Task.WhenAll(new List<Task>
+            {
+                Task.Run(async () => _memoryCache.GetAllCacheAsync<Alumno>("Alumnos")),
+                Task.Run(async () => _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Aula>("Aulas")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Carrera>("Carreras")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Docente>("Docentes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Hora>("Horas")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Horario>("Horarios")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleHorario>("DetallesHorarios")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<IntegranteHorario>("IntegrantesHorarios")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<JefaturaSeccion>("JefaturasSecciones")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Materia>("Materias")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Inscripcion>("Inscripciones")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleInscripcion>("DetallesInscripciones")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<MesaExamen>("MesasExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleMesaExamen>("DetallesMesasExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<InscripcionExamen>("InscripcionesExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleInscripcionExamen>("DetallesInscripcionesExamenes")),
+
+            });
+
 
     }
-
     public void Dispose()
     {
         usuarioStateService.OnChange -= ChequeoEstadoLogin;

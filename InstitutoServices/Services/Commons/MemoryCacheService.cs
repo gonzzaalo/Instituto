@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace InstitutoServices.Services.Commons
 {
-    public class MemoryCacheService
+    public class MemoryCacheService: IMemoryCacheService
     {
         protected readonly IMemoryCache _memoryCache;
 

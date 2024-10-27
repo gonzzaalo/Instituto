@@ -1,8 +1,7 @@
 ﻿@page "/anioscarreras"
 
-@inject IAnioCarreraService aniocarreraService
+@inject IMemoryCacheService _memoryCache
 @inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
 
 <PageTitle>Años carreras</PageTitle>
 <h1>@nombreCarrera</h1>
@@ -64,7 +63,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        anioscarreras = MemoryCacheService.AniosCarreras.Where(a => a.CarreraId.Equals(idCarrera)).ToList();
+        //anioscarreras = MemoryCacheService.AniosCarreras.Where(a => a.CarreraId.Equals(idCarrera)).ToList();
+        anioscarreras= await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras");
+        anioscarreras = anioscarreras.Where(aniocarrera=>aniocarrera.CarreraId.Equals(idCarrera)).ToList();
         //anioscarreras = await aniocarreraService.GetByCarreraAsync(idCarrera);
     }
 
@@ -81,9 +82,9 @@ else
             });
         if (respuesta.IsConfirmed)
         {
-            await aniocarreraService.DeleteAsync(anioCarrera.Id);
-            MemoryCacheService.AniosCarreras = await aniocarreraService.GetAllAsync();
-            anioscarreras = MemoryCacheService.AniosCarreras.Where(a => a.CarreraId.Equals(idCarrera)).ToList();
+            //await aniocarreraService.DeleteAsync(anioCarrera.Id);
+            await _memoryCache.DeleteCacheAsync<AnioCarrera>(anioCarrera.Id, "AniosCarreras");
+            anioscarreras = (await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras")).Where(aniocarrera => aniocarrera.CarreraId.Equals(idCarrera)).ToList();
             StateHasChanged();
         }
     }

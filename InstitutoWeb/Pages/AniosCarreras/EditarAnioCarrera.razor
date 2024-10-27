@@ -1,5 +1,5 @@
 ﻿@page "/editaraniocarrera"
-@inject IAnioCarreraService aniocarreraService
+@inject IMemoryCacheService _memoryCache
 @inject NavigationManager NavigationManager
 
 @if (aniocarrera == null)
@@ -31,12 +31,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        aniocarrera = await aniocarreraService.GetByIdAsync(idAnioCarrera);
+        //aniocarrera = await aniocarreraService.GetByIdAsync(idAnioCarrera);
+        aniocarrera = (await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras")).Where(aniocarrera => aniocarrera.Id.Equals(idAnioCarrera)).FirstOrDefault();
     }
 
     private async Task GuardarAnioCarrera()
     {
-        await aniocarreraService.UpdateAsync(aniocarrera);
+        //await aniocarreraService.UpdateAsync(aniocarrera);
+        _memoryCache.UpdateCacheAsync<AnioCarrera>(aniocarrera, "AniosCarreras");
         NavigationManager.NavigateTo($"/anioscarreras?idCarrera={aniocarrera.CarreraId}&nombreCarrera={nombreCarrera}");
     }
 }
