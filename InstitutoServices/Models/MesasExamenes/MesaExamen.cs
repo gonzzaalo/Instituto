@@ -1,5 +1,8 @@
-﻿using InstitutoServices.Interfaces;
+﻿using InstitutoServices.Enums;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
+using InstitutoServices.Models.Horarios;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstitutoServices.Models.MesasExamenes
 {
@@ -15,6 +18,23 @@ namespace InstitutoServices.Models.MesasExamenes
         public TurnoExamen? TurnoExamen { get; set; }
         public bool Eliminado { get; set; } = false;
 
+        [NotMapped]
+        public string Docentes
+        {
+            get
+            {
+                return string.Join(", ", DetallesMesaExamen.Where(d=>d.TipoIntegrante!=TipoIntegranteEnum.Suplente).Select(x => x.Docente?.Nombre));
+            }
+        }
+
+        [NotMapped]
+        public string Suplentes
+        {
+            get
+            {
+                return string.Join(", ", DetallesMesaExamen.Where(d => d.TipoIntegrante == TipoIntegranteEnum.Suplente).Select(x => x.Docente?.Nombre));
+            }
+        }
 
         public ICollection<DetalleMesaExamen> DetallesMesaExamen { get; set; }
 
