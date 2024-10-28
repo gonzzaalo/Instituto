@@ -81,9 +81,11 @@ namespace InstitutoDesktop.Views.MesasExamenes
             this.Close();
         }
 
+
         private void cbmBoxCicloLectivo_SelectedIndexChanged(object sender, EventArgs e)
         {
             
         }
+
     }
 }

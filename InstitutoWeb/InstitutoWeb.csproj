@@ -17,6 +17,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\Commons\**" />
+    <Content Remove="Services\Commons\**" />
+    <EmbeddedResource Remove="Services\Commons\**" />
+    <None Remove="Services\Commons\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\SweetAlert2.min.css" />
   </ItemGroup>
 
@@ -26,6 +33,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.10" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.23" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,7 +68,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Commons\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

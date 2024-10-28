@@ -17,6 +17,7 @@ using InstitutoServices.Models.Inscripciones;
 using InstitutoServices.Models.Horarios;
 using InstitutoServices.Models.MesasExamenes;
 using Microsoft.Extensions.DependencyInjection;
+using InstitutoDesktop.ViewReports;
 
 
 
@@ -157,6 +158,12 @@ namespace InstitutoDesktop
             aulasView.ShowDialog();
         }
 
+
+        private void mnuDocentes_Click(object sender, EventArgs e)
+        {
+            DocentesViewReport docentesViewReport = ActivatorUtilities.CreateInstance<DocentesViewReport>(_serviceProvider);
+            docentesViewReport.ShowDialog();
+        }
         private void iconMenuItem11_Click(object sender, EventArgs e)
         {
             MesasExamenesView mesasExamenesView = ActivatorUtilities.CreateInstance<MesasExamenesView>(_serviceProvider);

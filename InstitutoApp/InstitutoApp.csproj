@@ -67,6 +67,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Plugin.FirebaseAuth" Version="4.1.0" />
+		<PackageReference Include="ReportViewerCore.NETCore" Version="15.1.23" />
 	</ItemGroup>
 
 	<ItemGroup>
