@@ -1,10 +1,11 @@
 ﻿using InstitutoServices.Enums;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstitutoServices.Models.Inscripciones
 {
-    public class DetalleInscripcion
+    public class DetalleInscripcion : IEntityWithId
     {
         public int Id { get; set; }
         public ModalidadCursadoEnum ModalidadCursado { get; set; }

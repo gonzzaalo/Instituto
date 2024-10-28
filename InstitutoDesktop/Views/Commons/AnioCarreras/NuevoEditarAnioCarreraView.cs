@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Models;
+﻿using InstitutoDesktop.Services;
+using InstitutoServices.Models;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services;
 using InstitutoServices.Services.Commons;
@@ -16,13 +17,14 @@ namespace InstitutoDesktop.Views.Commons.AnioCarreras
 {
     public partial class NuevoEditarAnioCarreraView : Form
     {
-        AnioCarreraService anioCarreraService = new AnioCarreraService();
         AnioCarrera anioCarrera;
+        private readonly MemoryCacheServiceWinForms _memoryCache;
 
         // NUEVO
-        public NuevoEditarAnioCarreraView(Carrera carrera)
+        public NuevoEditarAnioCarreraView(MemoryCacheServiceWinForms memoryCacheService,Carrera carrera)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             anioCarrera = new AnioCarrera();
             anioCarrera.CarreraId = carrera.Id;
             txtCarrera.Text = carrera.Nombre;
@@ -30,9 +32,10 @@ namespace InstitutoDesktop.Views.Commons.AnioCarreras
 
         //EDITAR
 
-        public NuevoEditarAnioCarreraView(AnioCarrera anioCarrera)
+        public NuevoEditarAnioCarreraView(MemoryCacheServiceWinForms memoryCacheService, AnioCarrera anioCarrera)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.anioCarrera = anioCarrera;
             txtCarrera.Text = anioCarrera?.Carrera?.Nombre;
             txtNombreAnioCarrera.Text = anioCarrera.Nombre;
@@ -46,11 +49,13 @@ namespace InstitutoDesktop.Views.Commons.AnioCarreras
 
             if (anioCarrera.Id == 0)
             {
-                await anioCarreraService.AddAsync(anioCarrera);
+                await _memoryCache.AddCacheAsync<AnioCarrera>(anioCarrera, "AniosCarreras");
+                //await anioCarreraService.AddAsync(anioCarrera);
             }
             else
             {
-                await anioCarreraService.UpdateAsync(anioCarrera);
+                await _memoryCache.UpdateCacheAsync<AnioCarrera>(anioCarrera, "AniosCarreras");
+                //await anioCarreraService.UpdateAsync(anioCarrera);
             }
 
             this.Close();

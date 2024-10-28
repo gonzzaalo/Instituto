@@ -1055,6 +1055,9 @@ namespace InstitutoBack.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("TipoMateria")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AnioCarreraId");
@@ -1068,7 +1071,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Pedagogía"
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1076,7 +1080,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "UCCV Sociología"
+                            Nombre = "UCCV Sociología",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1084,7 +1089,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración General"
+                            Nombre = "Administración General",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1092,7 +1098,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Economía I"
+                            Nombre = "Economía I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1100,7 +1107,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Geografía Económica"
+                            Nombre = "Geografía Económica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1108,7 +1116,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia Económica"
+                            Nombre = "Historia Económica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1116,7 +1125,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Construcción de Ciudadanía"
+                            Nombre = "Construcción de Ciudadanía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1124,7 +1134,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistema de Información Contable I"
+                            Nombre = "Sistema de Información Contable I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1132,7 +1143,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática"
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1140,7 +1152,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente I"
+                            Nombre = "Práctica Docente I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1148,7 +1161,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Instituciones Educativas"
+                            Nombre = "Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1156,7 +1170,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica y Curriculum"
+                            Nombre = "Didáctica y Curriculum",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1164,7 +1179,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Psicología y Educación"
+                            Nombre = "Psicología y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1172,7 +1188,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Economía II"
+                            Nombre = "Economía II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1180,7 +1197,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistema de Información Contable II"
+                            Nombre = "Sistema de Información Contable II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1188,7 +1206,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Derecho I"
+                            Nombre = "Derecho I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1196,7 +1215,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Estadística Aplicada"
+                            Nombre = "Estadística Aplicada",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1204,7 +1224,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica de la Economía I"
+                            Nombre = "Didáctica de la Economía I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1212,7 +1233,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente II"
+                            Nombre = "Práctica Docente II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1220,7 +1242,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia y Política de la Educación Argentina"
+                            Nombre = "Historia y Política de la Educación Argentina",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1228,7 +1251,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Filosofía"
+                            Nombre = "Filosofía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1236,7 +1260,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Metodología de la Investigación"
+                            Nombre = "Metodología de la Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1244,7 +1269,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Economía III"
+                            Nombre = "Economía III",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1252,7 +1278,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Finanzas Públicas"
+                            Nombre = "Finanzas Públicas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1260,7 +1287,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Derecho II"
+                            Nombre = "Derecho II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1268,7 +1296,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sujetos de la Educación Secundaria"
+                            Nombre = "Sujetos de la Educación Secundaria",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1276,7 +1305,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente III"
+                            Nombre = "Práctica Docente III",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1284,7 +1314,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción de los Recursos Didácticos I"
+                            Nombre = "Producción de los Recursos Didácticos I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1292,7 +1323,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética y Trabajo Docente"
+                            Nombre = "Ética y Trabajo Docente",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1300,7 +1332,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Educación Sexual Integral"
+                            Nombre = "Educación Sexual Integral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1308,7 +1341,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "UCCV Comunicación Social"
+                            Nombre = "UCCV Comunicación Social",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1316,7 +1350,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Economía Social y Sostenible"
+                            Nombre = "Economía Social y Sostenible",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1324,7 +1359,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Economía Argentina Latinoamericana e Internacional"
+                            Nombre = "Economía Argentina Latinoamericana e Internacional",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1332,7 +1368,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Prácticas de Investigación"
+                            Nombre = "Prácticas de Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1340,7 +1377,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente IV (Residencia)"
+                            Nombre = "Práctica Docente IV (Residencia)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1348,7 +1386,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción de los Recursos Didácticos II"
+                            Nombre = "Producción de los Recursos Didácticos II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1356,7 +1395,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de Definición Institucional"
+                            Nombre = "Unidad de Definición Institucional",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1364,7 +1404,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Pedagogía"
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1372,7 +1413,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Movimiento y Cuerpo"
+                            Nombre = "Movimiento y Cuerpo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1380,7 +1422,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente I: Escenarios Educativos"
+                            Nombre = "Práctica Docente I: Escenarios Educativos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1388,7 +1431,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Introducción a la Tecnología"
+                            Nombre = "Introducción a la Tecnología",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1396,7 +1440,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia de la Tecnología"
+                            Nombre = "Historia de la Tecnología",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1404,7 +1449,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Diseño y Producción de la Tecnología I"
+                            Nombre = "Diseño y Producción de la Tecnología I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1412,7 +1458,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática"
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1420,7 +1467,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Física"
+                            Nombre = "Física",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1428,7 +1476,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Psicología de la Educación"
+                            Nombre = "Psicología de la Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1436,7 +1485,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica y Curriculum"
+                            Nombre = "Didáctica y Curriculum",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1444,7 +1494,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Instituciones Educativas"
+                            Nombre = "Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1452,7 +1503,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente II: La Institución Escolar"
+                            Nombre = "Práctica Docente II: La Institución Escolar",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1460,7 +1512,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sujetos de la Educación I"
+                            Nombre = "Sujetos de la Educación I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1468,7 +1521,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Tics para la Enseñanza"
+                            Nombre = "Tics para la Enseñanza",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1476,7 +1530,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Procesos Productivos"
+                            Nombre = "Procesos Productivos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1484,7 +1539,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Diseño y Producción Tecnológica II"
+                            Nombre = "Diseño y Producción Tecnológica II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1492,7 +1548,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica Específica I"
+                            Nombre = "Didáctica Específica I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1500,7 +1557,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Filosofía y Educación"
+                            Nombre = "Filosofía y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1508,7 +1566,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia Social de la Educación"
+                            Nombre = "Historia Social de la Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1516,7 +1575,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Metodología de la Investigación"
+                            Nombre = "Metodología de la Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1524,7 +1584,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente III: La Clase"
+                            Nombre = "Práctica Docente III: La Clase",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1532,7 +1593,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sujetos de la Educación II"
+                            Nombre = "Sujetos de la Educación II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1540,7 +1602,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Materiales"
+                            Nombre = "Materiales",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1548,7 +1611,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Química"
+                            Nombre = "Química",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1556,7 +1620,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Procesos de Control"
+                            Nombre = "Procesos de Control",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1564,7 +1629,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Tecnologías Regionales"
+                            Nombre = "Tecnologías Regionales",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1572,7 +1638,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Diseño y Producción Tecnológica III"
+                            Nombre = "Diseño y Producción Tecnológica III",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1580,7 +1647,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica Específica II"
+                            Nombre = "Didáctica Específica II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1588,7 +1656,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética y Trabajo Docente"
+                            Nombre = "Ética y Trabajo Docente",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1596,7 +1665,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Educación Sexual Integral"
+                            Nombre = "Educación Sexual Integral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1604,7 +1674,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidades de Definición Institucional I"
+                            Nombre = "Unidades de Definición Institucional I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1612,7 +1683,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidades de Definición Institucional II"
+                            Nombre = "Unidades de Definición Institucional II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1620,7 +1692,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Prácticas de Investigación"
+                            Nombre = "Prácticas de Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1628,7 +1701,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente IV: El Rol Docente y su Práctica"
+                            Nombre = "Práctica Docente IV: El Rol Docente y su Práctica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1636,7 +1710,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Biotecnología"
+                            Nombre = "Biotecnología",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1644,7 +1719,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Procesos de Comunicación"
+                            Nombre = "Procesos de Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1652,7 +1728,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Problemáticas Sociotécnicas"
+                            Nombre = "Problemáticas Sociotécnicas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1660,7 +1737,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Diseño y Producción Tecnológica IV"
+                            Nombre = "Diseño y Producción Tecnológica IV",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1668,7 +1746,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Taller de Producción Didáctica"
+                            Nombre = "Taller de Producción Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1676,7 +1755,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Comunicación (1° cuat.)"
+                            Nombre = "Comunicación (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1684,7 +1764,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1692,7 +1773,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática"
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1700,7 +1782,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Inglés Técnico I"
+                            Nombre = "Inglés Técnico I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1708,7 +1791,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración"
+                            Nombre = "Administración",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1716,7 +1800,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Tecnología de la Información"
+                            Nombre = "Tecnología de la Información",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1724,7 +1809,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Lógica y Estructura de Datos"
+                            Nombre = "Lógica y Estructura de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1732,7 +1818,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ingeniería de Software I"
+                            Nombre = "Ingeniería de Software I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1740,7 +1827,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistemas Operativos"
+                            Nombre = "Sistemas Operativos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1748,7 +1836,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)"
+                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1756,7 +1845,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1764,7 +1854,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Inglés Técnico II"
+                            Nombre = "Inglés Técnico II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1772,7 +1863,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Innovación y Desarrollo Emprendedor"
+                            Nombre = "Innovación y Desarrollo Emprendedor",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1780,7 +1872,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Estadística"
+                            Nombre = "Estadística",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1788,7 +1881,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Programación I"
+                            Nombre = "Programación I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1796,7 +1890,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ingeniería de Software II"
+                            Nombre = "Ingeniería de Software II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1804,7 +1899,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Base de Datos I"
+                            Nombre = "Base de Datos I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1812,7 +1908,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1820,7 +1917,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1828,7 +1926,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Derecho y Legislación Laboral"
+                            Nombre = "Derecho y Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1836,7 +1935,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Redes y Comunicación"
+                            Nombre = "Redes y Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1844,7 +1944,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Programación II"
+                            Nombre = "Programación II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1852,7 +1953,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión de Proyectos de Software"
+                            Nombre = "Gestión de Proyectos de Software",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1860,7 +1962,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Base de Datos II"
+                            Nombre = "Base de Datos II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1868,7 +1971,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante II"
+                            Nombre = "Práctica Profesionalizante II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1876,7 +1980,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Comunicación"
+                            Nombre = "Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1884,7 +1989,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de Definición Institucional I"
+                            Nombre = "Unidad de Definición Institucional I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1892,7 +1998,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Salud Pública"
+                            Nombre = "Salud Pública",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1900,7 +2007,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Biología Humana I"
+                            Nombre = "Biología Humana I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1908,7 +2016,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sujeto, Cultura y Sociedad"
+                            Nombre = "Sujeto, Cultura y Sociedad",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1916,7 +2025,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Fundamentos del Cuidado en Enfermería"
+                            Nombre = "Fundamentos del Cuidado en Enfermería",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1924,7 +2034,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Cuidados de Enfermería en la Comunidad y en la Familia"
+                            Nombre = "Cuidados de Enfermería en la Comunidad y en la Familia",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1932,7 +2043,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1940,7 +2052,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Problemáticas Socio Contemporáneas"
+                            Nombre = "Problemáticas Socio Contemporáneas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1948,7 +2061,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de Definición Institucional II"
+                            Nombre = "Unidad de Definición Institucional II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1956,7 +2070,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Informática en Salud"
+                            Nombre = "Informática en Salud",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1964,7 +2079,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sujeto, Cultura y Sociedad II"
+                            Nombre = "Sujeto, Cultura y Sociedad II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1972,7 +2088,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Biología Humana II"
+                            Nombre = "Biología Humana II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1980,7 +2097,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Bioseguridad y Medio Ambiente en el Trabajo"
+                            Nombre = "Bioseguridad y Medio Ambiente en el Trabajo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1988,7 +2106,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Farmacología en Enfermería"
+                            Nombre = "Farmacología en Enfermería",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -1996,7 +2115,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Cuidados de Enfermería a los Adultos y Adultos Mayores"
+                            Nombre = "Cuidados de Enfermería a los Adultos y Adultos Mayores",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2004,7 +2124,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante II"
+                            Nombre = "Práctica Profesionalizante II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2012,7 +2133,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2020,7 +2142,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Derecho y Legislación Laboral"
+                            Nombre = "Derecho y Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2028,7 +2151,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Inglés Técnico"
+                            Nombre = "Inglés Técnico",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2036,7 +2160,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Organización y Gestión en Instituciones de Salud"
+                            Nombre = "Organización y Gestión en Instituciones de Salud",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2044,7 +2169,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Investigación en Enfermería"
+                            Nombre = "Investigación en Enfermería",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2052,7 +2178,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Cuidados de Enfermería en Salud Mental"
+                            Nombre = "Cuidados de Enfermería en Salud Mental",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2060,7 +2187,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Cuidados de Enfermería al Niño y al Adolescente"
+                            Nombre = "Cuidados de Enfermería al Niño y al Adolescente",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2068,7 +2196,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante III"
+                            Nombre = "Práctica Profesionalizante III",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2076,7 +2205,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Comunicación (1º cuatr.)"
+                            Nombre = "Comunicación (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2084,7 +2214,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de Definición Institucional (2º cuatr.)"
+                            Nombre = "Unidad de Definición Institucional (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2092,7 +2223,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Economía"
+                            Nombre = "Economía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2100,7 +2232,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática y Estadística"
+                            Nombre = "Matemática y Estadística",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2108,7 +2241,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Contabilidad"
+                            Nombre = "Contabilidad",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2116,7 +2250,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Informática"
+                            Nombre = "Informática",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2124,7 +2259,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración"
+                            Nombre = "Administración",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2132,7 +2268,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión de la Producción"
+                            Nombre = "Gestión de la Producción",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2140,7 +2277,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión del Talento Humano"
+                            Nombre = "Gestión del Talento Humano",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2148,7 +2286,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Problemáticas Contemporáneas (1º cuatr.)"
+                            Nombre = "Problemáticas Contemporáneas (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2156,7 +2295,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de Definición Institucional (2º cuatr.)"
+                            Nombre = "Unidad de Definición Institucional (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2164,7 +2304,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Innovación y Desarrollo Emprendedor"
+                            Nombre = "Innovación y Desarrollo Emprendedor",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2172,7 +2313,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Inglés Técnico"
+                            Nombre = "Inglés Técnico",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2180,7 +2322,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Legislación Comercial y Tributaria"
+                            Nombre = "Legislación Comercial y Tributaria",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2188,7 +2331,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión de Comercialización e Investigación Comercial"
+                            Nombre = "Gestión de Comercialización e Investigación Comercial",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2196,7 +2340,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión de Costos"
+                            Nombre = "Gestión de Costos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2204,7 +2349,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión Contable"
+                            Nombre = "Gestión Contable",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2212,7 +2358,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2220,7 +2367,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión de Seguridad, Salud Ocupacional y Medio Ambiente"
+                            Nombre = "Gestión de Seguridad, Salud Ocupacional y Medio Ambiente",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2228,7 +2376,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2236,7 +2385,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Legislación Laboral"
+                            Nombre = "Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2244,7 +2394,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Estrategia Empresarial"
+                            Nombre = "Estrategia Empresarial",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2252,7 +2403,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistema de Información para la Gestión de las Organizaciones"
+                            Nombre = "Sistema de Información para la Gestión de las Organizaciones",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2260,7 +2412,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión Financiera"
+                            Nombre = "Gestión Financiera",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2268,7 +2421,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Evaluación y Administración de Proyectos de Inversión"
+                            Nombre = "Evaluación y Administración de Proyectos de Inversión",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2276,7 +2430,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Control de Gestión"
+                            Nombre = "Control de Gestión",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2284,7 +2439,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Prácticas Profesionalizantes II"
+                            Nombre = "Prácticas Profesionalizantes II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2292,7 +2448,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Comunicación (1° cuat.)"
+                            Nombre = "Comunicación (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2300,7 +2457,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2308,7 +2466,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática"
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2316,7 +2475,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Física Aplicada a las Tecnologías de la Información"
+                            Nombre = "Física Aplicada a las Tecnologías de la Información",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2324,7 +2484,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración"
+                            Nombre = "Administración",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2332,7 +2493,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Inglés Técnico"
+                            Nombre = "Inglés Técnico",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2340,7 +2502,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Arquitectura de las Computadoras"
+                            Nombre = "Arquitectura de las Computadoras",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2348,7 +2511,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Lógica y Programación"
+                            Nombre = "Lógica y Programación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2356,7 +2520,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Infraestructura de Redes I"
+                            Nombre = "Infraestructura de Redes I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2364,7 +2529,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)"
+                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2372,7 +2538,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2380,7 +2547,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Innovación y Desarrollo Emprendedor"
+                            Nombre = "Innovación y Desarrollo Emprendedor",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2388,7 +2556,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Estadística"
+                            Nombre = "Estadística",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2396,7 +2565,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistemas Operativos"
+                            Nombre = "Sistemas Operativos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2404,7 +2574,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Algoritmos y Estructuras de Datos"
+                            Nombre = "Algoritmos y Estructuras de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2412,7 +2583,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Base de Datos"
+                            Nombre = "Base de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2420,7 +2592,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Infraestructura de Redes II"
+                            Nombre = "Infraestructura de Redes II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2428,7 +2601,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2436,7 +2610,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2444,7 +2619,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Derecho y Legislación Laboral"
+                            Nombre = "Derecho y Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2452,7 +2628,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración de Base de Datos"
+                            Nombre = "Administración de Base de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2460,7 +2637,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Integridad y Migración de Datos"
+                            Nombre = "Integridad y Migración de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2468,7 +2646,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Seguridad de los Sistemas"
+                            Nombre = "Seguridad de los Sistemas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2476,7 +2655,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración de Sistemas Operativos y Redes"
+                            Nombre = "Administración de Sistemas Operativos y Redes",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2484,7 +2664,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Profesionalizante II"
+                            Nombre = "Práctica Profesionalizante II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2492,7 +2673,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Psicología y Educación"
+                            Nombre = "Psicología y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2500,7 +2682,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Pedagogía"
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2508,7 +2691,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sociología de la Educación"
+                            Nombre = "Sociología de la Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2516,7 +2700,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia Argentina y Latinoamericana (1º cuatr.)"
+                            Nombre = "Historia Argentina y Latinoamericana (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2524,7 +2709,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Movimiento y Cuerpo I"
+                            Nombre = "Movimiento y Cuerpo I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2532,7 +2718,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Taller de Práctica I"
+                            Nombre = "Taller de Práctica I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2540,7 +2727,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial I"
+                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2548,7 +2736,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Comunicación y Expresión Oral y Escrita"
+                            Nombre = "Comunicación y Expresión Oral y Escrita",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2556,7 +2745,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Resolución de Problemas y Creatividad (1º cuatr.)"
+                            Nombre = "Resolución de Problemas y Creatividad (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2564,7 +2754,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ambiente y Sociedad (2º cuatr.)"
+                            Nombre = "Ambiente y Sociedad (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2572,7 +2763,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Área Estético-Expresiva I"
+                            Nombre = "Área Estético-Expresiva I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2580,7 +2772,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2588,7 +2781,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción Pedagógica"
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2596,7 +2790,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica General"
+                            Nombre = "Didáctica General",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2604,7 +2799,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Filosofía de la Educación (1º cuatr.)"
+                            Nombre = "Filosofía de la Educación (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2612,7 +2808,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Conocimiento y Educación (2º cuatr.)"
+                            Nombre = "Conocimiento y Educación (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2620,7 +2817,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Movimiento y Cuerpo II"
+                            Nombre = "Movimiento y Cuerpo II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2628,7 +2826,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Taller de Práctica II: Seminario de lo Grupal y los Grupos de Aprendizaje"
+                            Nombre = "Taller de Práctica II: Seminario de lo Grupal y los Grupos de Aprendizaje",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2636,7 +2835,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sujeto de la Educación Inicial"
+                            Nombre = "Sujeto de la Educación Inicial",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2644,7 +2844,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica de Educación Inicial I"
+                            Nombre = "Didáctica de Educación Inicial I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2652,7 +2853,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática y su Didáctica I"
+                            Nombre = "Matemática y su Didáctica I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2660,7 +2862,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Literatura y su Didáctica"
+                            Nombre = "Literatura y su Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2668,7 +2871,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ciencias Naturales y su Didáctica"
+                            Nombre = "Ciencias Naturales y su Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2676,7 +2880,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2684,7 +2889,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción Pedagógica"
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2692,7 +2898,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Tecnologías de la Información y de la Comunicación"
+                            Nombre = "Tecnologías de la Información y de la Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2700,7 +2907,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia Social de la Educación y Política Educativa Argentina"
+                            Nombre = "Historia Social de la Educación y Política Educativa Argentina",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2708,7 +2916,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Trayecto de Práctica III: Seminario de Instituciones Educativas"
+                            Nombre = "Trayecto de Práctica III: Seminario de Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2716,7 +2925,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática y su Didáctica II"
+                            Nombre = "Matemática y su Didáctica II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2724,7 +2934,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Lengua y su Didáctica (1º cuatr.)"
+                            Nombre = "Lengua y su Didáctica (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2732,7 +2943,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Alfabetización Inicial (2º cuatr.)"
+                            Nombre = "Alfabetización Inicial (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2740,7 +2952,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ciencias Sociales y su Didáctica"
+                            Nombre = "Ciencias Sociales y su Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2748,7 +2961,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Área Estético-Expresiva II"
+                            Nombre = "Área Estético-Expresiva II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2756,7 +2970,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial II (1º cuatr.)"
+                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial II (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2764,7 +2979,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica de la Educación Inicial II (2º cuatr.)"
+                            Nombre = "Didáctica de la Educación Inicial II (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2772,7 +2988,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Espacios de Definición Institucional (1º cuatr.)"
+                            Nombre = "Espacios de Definición Institucional (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2780,7 +2997,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Espacios de Definición Institucional (2º cuatr.)"
+                            Nombre = "Espacios de Definición Institucional (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2788,7 +3006,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2796,7 +3015,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción Pedagógica"
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2804,7 +3024,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 20,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética, Trabajo Docente, Derechos Humanos y Ciudadanos"
+                            Nombre = "Ética, Trabajo Docente, Derechos Humanos y Ciudadanos",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2812,7 +3033,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 20,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Taller de Práctica IV"
+                            Nombre = "Taller de Práctica IV",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2820,7 +3042,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 20,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ateneo: (Matemática- Ambiente y Sociedad (Ciencias Naturales- Ciencias Sociales) Lengua y Literatura- Formación Ética y Ciudadana)"
+                            Nombre = "Ateneo: (Matemática- Ambiente y Sociedad (Ciencias Naturales- Ciencias Sociales) Lengua y Literatura- Formación Ética y Ciudadana)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2828,7 +3051,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 20,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sexualidad Humana y Educación (1º cuatr.)"
+                            Nombre = "Sexualidad Humana y Educación (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2836,7 +3060,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 20,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2844,7 +3069,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 20,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción Pedagógica"
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2852,7 +3078,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Pedagogía"
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2860,7 +3087,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "UCCV Sociología"
+                            Nombre = "UCCV Sociología",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2868,7 +3096,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración General"
+                            Nombre = "Administración General",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2876,7 +3105,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración I"
+                            Nombre = "Administración I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2884,7 +3114,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistema de Información Contable I"
+                            Nombre = "Sistema de Información Contable I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2892,7 +3123,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Construcción de Ciudadanía"
+                            Nombre = "Construcción de Ciudadanía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2900,7 +3132,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia Económica"
+                            Nombre = "Historia Económica",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2908,7 +3141,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática"
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2916,7 +3150,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente I"
+                            Nombre = "Práctica Docente I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2924,7 +3159,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Instituciones Educativas"
+                            Nombre = "Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2932,7 +3168,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica y Curriculum"
+                            Nombre = "Didáctica y Curriculum",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2940,7 +3177,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Psicología y Educación"
+                            Nombre = "Psicología y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2948,7 +3186,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración II"
+                            Nombre = "Administración II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2956,7 +3195,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistema de Información Contable II"
+                            Nombre = "Sistema de Información Contable II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2964,7 +3204,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Derecho I"
+                            Nombre = "Derecho I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2972,7 +3213,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Economía"
+                            Nombre = "Economía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2980,7 +3222,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Estadística Aplicada"
+                            Nombre = "Estadística Aplicada",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2988,7 +3231,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica de la Administración I"
+                            Nombre = "Didáctica de la Administración I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -2996,7 +3240,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docencia II"
+                            Nombre = "Práctica Docencia II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3004,7 +3249,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Historia y Política de la Educación Argentina"
+                            Nombre = "Historia y Política de la Educación Argentina",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3012,7 +3258,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Filosofía"
+                            Nombre = "Filosofía",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3020,7 +3267,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Metodología de la Investigación"
+                            Nombre = "Metodología de la Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3028,7 +3276,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración III"
+                            Nombre = "Administración III",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3036,7 +3285,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sistema de Información Contable III"
+                            Nombre = "Sistema de Información Contable III",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3044,7 +3294,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Impositiva y Laboral"
+                            Nombre = "Práctica Impositiva y Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3052,7 +3303,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Derecho II"
+                            Nombre = "Derecho II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3060,7 +3312,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Didáctica de la Administración II"
+                            Nombre = "Didáctica de la Administración II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3068,7 +3321,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Sujetos de la Educación Secundaria"
+                            Nombre = "Sujetos de la Educación Secundaria",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3076,7 +3330,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente III"
+                            Nombre = "Práctica Docente III",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3084,7 +3339,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción de los Recursos Didácticos I"
+                            Nombre = "Producción de los Recursos Didácticos I",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3092,7 +3348,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Ética y Trabajo Docente"
+                            Nombre = "Ética y Trabajo Docente",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3100,7 +3357,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Educación Sexual Integral"
+                            Nombre = "Educación Sexual Integral",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3108,7 +3366,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "UCCV Comunicación Social"
+                            Nombre = "UCCV Comunicación Social",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3116,7 +3375,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Administración IV"
+                            Nombre = "Administración IV",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3124,7 +3384,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Gestión Organizacional"
+                            Nombre = "Gestión Organizacional",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3132,7 +3393,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Matemática Financiera"
+                            Nombre = "Matemática Financiera",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3140,7 +3402,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Prácticas de Investigación"
+                            Nombre = "Prácticas de Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3148,7 +3411,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Práctica Docente IV (Residencia)"
+                            Nombre = "Práctica Docente IV (Residencia)",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3156,7 +3420,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Producción de los Recursos Didácticos II"
+                            Nombre = "Producción de los Recursos Didácticos II",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3164,7 +3429,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Unidad de Definición Institucional"
+                            Nombre = "Unidad de Definición Institucional",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3172,7 +3438,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 1,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3180,7 +3447,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 2,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3188,7 +3456,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 3,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3196,7 +3465,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 4,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3204,7 +3474,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 5,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3212,7 +3483,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 6,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3220,7 +3492,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 7,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3228,7 +3501,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 8,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3236,7 +3510,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 9,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3244,7 +3519,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 10,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3252,7 +3528,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 11,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3260,7 +3537,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 12,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3268,7 +3546,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 13,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3276,7 +3555,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 14,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3284,7 +3564,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 15,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3292,7 +3573,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 16,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3300,7 +3582,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 17,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3308,7 +3591,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 18,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3316,7 +3600,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 19,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3324,7 +3609,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 20,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3332,7 +3618,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 21,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3340,7 +3627,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 22,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3348,7 +3636,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 23,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3356,7 +3645,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 24,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3364,7 +3654,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 25,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3372,7 +3663,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 26,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3380,7 +3672,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 27,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
@@ -3388,7 +3681,8 @@ namespace InstitutoBack.Migrations
                             AnioCarreraId = 28,
                             Eliminado = false,
                             EsRecreo = false,
-                            Nombre = "Recreo"
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         });
                 });
 
@@ -3556,6 +3850,44 @@ namespace InstitutoBack.Migrations
                     b.ToTable("integranteshorarios");
                 });
 
+            modelBuilder.Entity("InstitutoServices.Models.Horarios.PeriodoHorario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Actual")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("CicloLectivoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CicloLectivoId");
+
+                    b.ToTable("periodoshorarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Actual = true,
+                            CicloLectivoId = 1,
+                            Eliminado = false,
+                            Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre"
+                        });
+                });
+
             modelBuilder.Entity("InstitutoServices.Models.Inscripciones.CicloLectivo", b =>
                 {
                     b.Property<int>("Id")
@@ -3641,14 +3973,14 @@ namespace InstitutoBack.Migrations
                     b.Property<int>("CarreraId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CicloLectivoId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("PeriodoInscripcionId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -3656,7 +3988,7 @@ namespace InstitutoBack.Migrations
 
                     b.HasIndex("CarreraId");
 
-                    b.HasIndex("CicloLectivoId");
+                    b.HasIndex("PeriodoInscripcionId");
 
                     b.ToTable("inscripciones");
 
@@ -3666,9 +3998,60 @@ namespace InstitutoBack.Migrations
                             Id = 1,
                             AlumnoId = 1,
                             CarreraId = 1,
+                            Eliminado = false,
+                            Fecha = new DateTime(2024, 10, 28, 2, 1, 46, 710, DateTimeKind.Local).AddTicks(4632),
+                            PeriodoInscripcionId = 1
+                        });
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CicloLectivoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("InscripcionHabilitada")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("SoloMaterias2doCuatrimestre")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CicloLectivoId");
+
+                    b.ToTable("periodosinscripciones");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
                             CicloLectivoId = 1,
                             Eliminado = false,
-                            Fecha = new DateTime(2024, 10, 24, 10, 59, 19, 580, DateTimeKind.Local).AddTicks(8001)
+                            InscripcionHabilitada = true,
+                            Nombre = "Ciclo lectivo 2024 - Inicio año",
+                            SoloMaterias2doCuatrimestre = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CicloLectivoId = 1,
+                            Eliminado = false,
+                            InscripcionHabilitada = true,
+                            Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre",
+                            SoloMaterias2doCuatrimestre = true
                         });
                 });
 
@@ -9608,7 +9991,13 @@ namespace InstitutoBack.Migrations
                     b.Property<bool>("Actual")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<int?>("CicloLectivoId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("InscripcionHabilitada")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Nombre")
@@ -9616,6 +10005,8 @@ namespace InstitutoBack.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CicloLectivoId");
 
                     b.ToTable("turnosexamenes");
 
@@ -9625,6 +10016,7 @@ namespace InstitutoBack.Migrations
                             Id = 1,
                             Actual = false,
                             Eliminado = false,
+                            InscripcionHabilitada = false,
                             Nombre = "Julio/Agosto 2024"
                         });
                 });
@@ -9747,6 +10139,15 @@ namespace InstitutoBack.Migrations
                     b.Navigation("Horario");
                 });
 
+            modelBuilder.Entity("InstitutoServices.Models.Horarios.PeriodoHorario", b =>
+                {
+                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                        .WithMany()
+                        .HasForeignKey("CicloLectivoId");
+
+                    b.Navigation("CicloLectivo");
+                });
+
             modelBuilder.Entity("InstitutoServices.Models.Inscripciones.DetalleInscripcion", b =>
                 {
                     b.HasOne("InstitutoServices.Models.Inscripciones.Inscripcion", "Inscripcion")
@@ -9780,15 +10181,22 @@ namespace InstitutoBack.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                    b.HasOne("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", "PeriodoInscripcion")
                         .WithMany()
-                        .HasForeignKey("CicloLectivoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PeriodoInscripcionId");
 
                     b.Navigation("Alumno");
 
                     b.Navigation("Carrera");
+
+                    b.Navigation("PeriodoInscripcion");
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", b =>
+                {
+                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                        .WithMany()
+                        .HasForeignKey("CicloLectivoId");
 
                     b.Navigation("CicloLectivo");
                 });
@@ -9875,6 +10283,15 @@ namespace InstitutoBack.Migrations
                     b.Navigation("Materia");
 
                     b.Navigation("TurnoExamen");
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.MesasExamenes.TurnoExamen", b =>
+                {
+                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                        .WithMany()
+                        .HasForeignKey("CicloLectivoId");
+
+                    b.Navigation("CicloLectivo");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Commons.Alumno", b =>

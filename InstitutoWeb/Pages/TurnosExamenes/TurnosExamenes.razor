@@ -1,8 +1,7 @@
 ﻿@page "/turnosexamenes"
 
-@inject IGenericService<TurnoExamen> turnoExamenService
 @inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 
 <PageTitle>Turnos de exámenes</PageTitle>
@@ -24,8 +23,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        turnosExamenes = MemoryCacheService.TurnosExamenes;
-        //turnosExamenes = await turnoExamenService.GetAllAsync();
+        turnosExamenes = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
     }
 
     private async void Eliminar(IEntityIdNombre entity)
@@ -42,16 +40,14 @@ else
             });
         if (respuesta.IsConfirmed)
         {
-            await turnoExamenService.DeleteAsync(turnoExamen.Id);
-            MemoryCacheService.TurnosExamenes = await turnoExamenService.GetAllAsync();
-            turnosExamenes = MemoryCacheService.TurnosExamenes;
+            await _memoryCache.DeleteCacheAsync<TurnoExamen>(turnoExamen.Id, "TurnosExamenes");
+            turnosExamenes = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
             StateHasChanged();
         }
     }
     private async Task Guardar()
     {
-        MemoryCacheService.TurnosExamenes = await turnoExamenService.GetAllAsync();
-        turnosExamenes = MemoryCacheService.TurnosExamenes;
+        turnosExamenes = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
         currentTurnoExamen = null;
         StateHasChanged();
 

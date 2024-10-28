@@ -1,6 +1,5 @@
-﻿@inject IGenericService<TurnoExamen> turnoExamenService
-@inject ILogger<NuevoEditarTurnoExamen> logger
-@inject IMemoryCacheService MemoryCacheService
+﻿@inject ILogger<NuevoEditarTurnoExamen> logger
+@inject IMemoryCacheService _memoryCache
 
 
 @if (turnoExamenEdit == null )
@@ -61,11 +60,10 @@ else
     {
         logger.LogInformation($"la variable isEditing={isEditing} y el turno de examen={turnoExamenEdit?.ToString()}");
         if (isEditing)
-                await turnoExamenService.UpdateAsync(turnoExamenEdit);
-            else
-            await turnoExamenService.AddAsync(turnoExamenEdit);
-        MemoryCacheService.TurnosExamenes= await turnoExamenService.GetAllAsync();
-            await OnGuardar.InvokeAsync();
+            await _memoryCache.UpdateCacheAsync<TurnoExamen>(turnoExamenEdit, "TurnosExamenes");
+        else
+            await _memoryCache.AddCacheAsync<TurnoExamen>(turnoExamenEdit, "TurnosExamenes");
+        await OnGuardar.InvokeAsync();
     }
 
     private async Task HandleCancelar()

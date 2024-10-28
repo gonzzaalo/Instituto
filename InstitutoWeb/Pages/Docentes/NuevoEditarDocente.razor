@@ -1,5 +1,5 @@
 ﻿@inject IGenericService<Docente> docenteService
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 
 @if (docenteEdit == null )
@@ -58,10 +58,9 @@ else
     private async Task Guardar()
     {
         if (isEditing)
-            await docenteService.UpdateAsync(docenteEdit);
+            await _memoryCache.UpdateCacheAsync<Docente>(docenteEdit, "Docentes");
         else
-            await docenteService.AddAsync(docenteEdit);
-        MemoryCacheService.Docentes = await docenteService.GetAllAsync();
+            await _memoryCache.AddCacheAsync<Docente>(docenteEdit, "Docentes");
         await OnGuardar.InvokeAsync();
     }
 

@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Interfaces;
+﻿using InstitutoDesktop.Services;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Inscripciones;
 using InstitutoServices.Services;
 using InstitutoServices.Services.Commons;
@@ -17,16 +18,21 @@ namespace InstitutoDesktop.Views.Inscripciones
 {
     public partial class AgregarEditarCicloLectivoView : Form
     {
-        IGenericService<CicloLectivo> ciclolectivoService = new GenericService<CicloLectivo>();
         private CicloLectivo cicloLectivo;
-        public AgregarEditarCicloLectivoView()
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+
+        public AgregarEditarCicloLectivoView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             cicloLectivo = new CicloLectivo();
+            CargarDatosCicloLectivoAEditar();
         }
-        public AgregarEditarCicloLectivoView(CicloLectivo cicloLectivo)
+        public AgregarEditarCicloLectivoView(MemoryCacheServiceWinForms memoryCacheService, CicloLectivo cicloLectivo)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            this.cicloLectivo=null;
             this.cicloLectivo = cicloLectivo;
             CargarDatosCicloLectivoAEditar();
         }
@@ -48,11 +54,13 @@ namespace InstitutoDesktop.Views.Inscripciones
 
             if (cicloLectivo.Id == 0)
             {
-                await ciclolectivoService.AddAsync(cicloLectivo);
+                await _memoryCache.AddCacheAsync<CicloLectivo>(cicloLectivo, "CiclosLectivos");
+                //await ciclolectivoService.AddAsync(cicloLectivo);
             }
             else
             {
-                await ciclolectivoService.UpdateAsync(cicloLectivo);
+                await _memoryCache.UpdateCacheAsync<CicloLectivo>(cicloLectivo, "CiclosLectivos");
+                //await ciclolectivoService.UpdateAsync(cicloLectivo);
             }
 
             this.Close();

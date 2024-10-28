@@ -1,5 +1,6 @@
 ﻿@page "/editaralumno"
-@inject IGenericService<Alumno> alumnoService
+@inject IMemoryCacheService _memoryCache
+
 @inject NavigationManager NavigationManager
 
 @if (alumno == null)
@@ -34,12 +35,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        alumno = await alumnoService.GetByIdAsync(idAlumno);
+        alumno = (await _memoryCache.GetAllCacheAsync<Alumno>("Alumnos"))
+                .Where(a => a.Id.Equals(idAlumno)).FirstOrDefault();
     }
 
     private async Task GuardarAlumno()
     {
-        await alumnoService.UpdateAsync(alumno);
+        await _memoryCache.UpdateCacheAsync<Alumno>(alumno, "Alumnos");
         NavigationManager.NavigateTo($"/alumnos");
     }
 }

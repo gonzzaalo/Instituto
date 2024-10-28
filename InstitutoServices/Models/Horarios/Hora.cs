@@ -1,9 +1,10 @@
-﻿using InstitutoServices.Interfaces.MesasExamenes;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Interfaces.MesasExamenes;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstitutoServices.Models.Horarios
 {
-    public class Hora
+    public class Hora : IEntityWithId
     {
         public int Id { get; set; }
 

@@ -1,8 +1,9 @@
-﻿using InstitutoServices.Models.Inscripciones;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Inscripciones;
 
 namespace InstitutoServices.Models.Commons
 {
-    public class Alumno
+    public class Alumno : IEntityWithId
     {
         public int Id { get; set; }
         public string ApellidoNombre { get; set; } = string.Empty;

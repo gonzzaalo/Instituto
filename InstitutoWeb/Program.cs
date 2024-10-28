@@ -14,7 +14,6 @@ using InstitutoWeb.Services.Login;
 using InstitutoServices.Services.MesasExamenes;
 using InstitutoServices.Services.Inscripciones;
 using InstitutoWeb.Interfaces;
-using InstitutoWeb.Services.Commons;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -24,6 +23,7 @@ string urlApi = builder.Configuration.GetValue<string>("UrlApiLocal");
 if (builder.Configuration.GetValue<bool>("Remoto")==true)
      urlApi = builder.Configuration.GetValue<string>("UrlApiRemoto");
 
+builder.Services.AddMemoryCache();
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(urlApi) });
 builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
 builder.Services.AddScoped<IAnioCarreraService, AnioCarreraService>();

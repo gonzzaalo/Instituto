@@ -50,7 +50,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        inscripcion = new Inscripcion() { Fecha = DateTime.Now, CicloLectivoId= idCicloLectivo};
+        inscripcion = new Inscripcion() { Fecha = DateTime.Now, PeriodoInscripcionId= idCicloLectivo};
         carreras = await carreraService.GetAllAsync();
         alumnos = await alumnoService.GetAllAsync();
         //logger.LogInformation(inscripcion.CicloLectivoId.ToString());

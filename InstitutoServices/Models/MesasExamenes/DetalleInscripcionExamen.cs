@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Models.Commons;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InstitutoServices.Models.MesasExamenes
 {
-    public class DetalleInscripcionExamen
+    public class DetalleInscripcionExamen: IEntityWithId
     {
         public int Id { get; set; }
         public int InscripcionExamenId { get; set; }

@@ -1,29 +1,33 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
 using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace InstitutoDesktop.Views.Commons.Alumnos
 {
     public partial class AlumnosView : Form
     {
-        IGenericService<Alumno> alumnoService = new GenericService<Alumno>();
         BindingSource listaAlumnos=new BindingSource();
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
-        public AlumnosView()
+        public AlumnosView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            _serviceProvider = serviceProvider;
             dataGridAlumnos.DataSource = listaAlumnos;
             CargarGrilla();
         }
 
         private async Task CargarGrilla()
         {
-            ShowInActivity.Show("Descargando/actualizando la lista de alumnos");
-            listaAlumnos.DataSource = await alumnoService.GetAllAsync();
+            listaAlumnos.DataSource = null;
+            listaAlumnos.DataSource = await _memoryCache.GetAllCacheAsync<Alumno>("Alumnos");
             dataGridAlumnos.OcultarColumnas(new string[] { "Eliminado" });
-            ShowInActivity.Hide();
         }
 
         private void iconButton3_Click(object sender, EventArgs e)
@@ -33,7 +37,7 @@ namespace InstitutoDesktop.Views.Commons.Alumnos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarEditarAlumnosView agregarEditarAlumnosView = new AgregarEditarAlumnosView();
+            AgregarEditarAlumnosView agregarEditarAlumnosView = ActivatorUtilities.CreateInstance<AgregarEditarAlumnosView>(_serviceProvider);
             agregarEditarAlumnosView.ShowDialog();
             CargarGrilla();
         }
@@ -44,7 +48,8 @@ namespace InstitutoDesktop.Views.Commons.Alumnos
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar a el alumno {alumno.ApellidoNombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await alumnoService.DeleteAsync(alumno.Id);
+                await _memoryCache.DeleteCacheAsync<Alumno>(alumno.Id, "Alumnos");
+                //await alumnoService.DeleteAsync(alumno.Id);
                 await CargarGrilla();
             }
         }
@@ -52,7 +57,7 @@ namespace InstitutoDesktop.Views.Commons.Alumnos
         private async void iconButton1_Click(object sender, EventArgs e)
         {
             var alumno = (Alumno)listaAlumnos.Current;
-            AgregarEditarAlumnosView agregarEditarAlumnosView = new AgregarEditarAlumnosView(alumno);
+            AgregarEditarAlumnosView agregarEditarAlumnosView = ActivatorUtilities.CreateInstance<AgregarEditarAlumnosView>(_serviceProvider, alumno);
             agregarEditarAlumnosView.ShowDialog();
             await CargarGrilla();
         }

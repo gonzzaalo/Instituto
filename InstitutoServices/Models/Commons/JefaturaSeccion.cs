@@ -1,6 +1,8 @@
-﻿namespace InstitutoServices.Models.Commons
+﻿using InstitutoServices.Interfaces;
+
+namespace InstitutoServices.Models.Commons
 {
-    public class JefaturaSeccion
+    public class JefaturaSeccion : IEntityWithId
     {
         public int Id { get; set; }
         public int? DocenteId { get; set; }

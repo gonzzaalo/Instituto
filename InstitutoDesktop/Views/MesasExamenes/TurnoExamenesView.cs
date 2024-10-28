@@ -1,8 +1,13 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
+using InstitutoDesktop.Views.Commons.Materias;
+using InstitutoDesktop.Views.Inscripciones;
 using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 using InstitutoServices.Models.MesasExamenes;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,22 +16,24 @@ namespace InstitutoDesktop.Views.MesasExamenes
 {
     public partial class TurnoExamenesView : Form
     {
-        private readonly IGenericService<TurnoExamen> turnoexamenesService = new GenericService<TurnoExamen>();
         private BindingSource listaTurnos = new BindingSource();
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
-        public TurnoExamenesView()
+        public TurnoExamenesView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
+            _serviceProvider = serviceProvider;
             dataGridTurnoExamenes.DataSource = listaTurnos;
             CargarGrilla();
         }
 
         private async Task CargarGrilla()
         {
-            ShowInActivity.Show("Descargando/actualizando la lista de turnos de exámenes");
-            listaTurnos.DataSource = await turnoexamenesService.GetAllAsync();
+            listaTurnos.DataSource = null;
+            listaTurnos.DataSource = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
             dataGridTurnoExamenes.OcultarColumnas(new string[] { "Eliminado" });
-            ShowInActivity.Hide();
         }
 
         private async void btnEliminar_Click(object sender, EventArgs e)
@@ -41,20 +48,18 @@ namespace InstitutoDesktop.Views.MesasExamenes
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar el Ciclo Lectivo {turnoexamen.Nombre}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await turnoexamenesService.DeleteAsync(turnoexamen.Id);
+                await _memoryCache.DeleteCacheAsync<TurnoExamen>(turnoexamen.Id, "TurnosExamenes");
                 await CargarGrilla();
             }
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
-            using (AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = new AgregarEditarTurnoExamenesView())
-            {
-                if (agregarEditarTurnoExamenesView.ShowDialog() == DialogResult.OK)
-                {
-                    await CargarGrilla();
-                }
-            }
+            AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = ActivatorUtilities.CreateInstance<AgregarEditarTurnoExamenesView>(_serviceProvider);
+
+             await CargarGrilla();
+
+            
         }
 
         private async void btnEditar_Click(object sender, EventArgs e)
@@ -65,8 +70,7 @@ namespace InstitutoDesktop.Views.MesasExamenes
                 MessageBox.Show("Debe seleccionar un valor de la grilla");
                 return;
             }
-
-            AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = new AgregarEditarTurnoExamenesView(turnoexamen);
+            AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = ActivatorUtilities.CreateInstance<AgregarEditarTurnoExamenesView>(_serviceProvider, turnoexamen);
             agregarEditarTurnoExamenesView.ShowDialog();
 
                     await CargarGrilla();
