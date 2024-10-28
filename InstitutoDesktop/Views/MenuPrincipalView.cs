@@ -61,15 +61,16 @@ namespace InstitutoDesktop
                 Task.Run(async () =>_cacheService.GetAllCacheAsync<DetalleMesaExamen>("DetallesMesasExamenes")),
                 Task.Run(async () =>_cacheService.GetAllCacheAsync<InscripcionExamen>("InscripcionesExamenes")),
                 Task.Run(async () =>_cacheService.GetAllCacheAsync<DetalleInscripcionExamen>("DetallesInscripcionesExamenes")),
+                Task.Run(async () =>_cacheService.GetAllCacheAsync<PeriodoHorario>("PeriodosHorarios")),
 
             });
-            
+
 
         }
 
         private void iconMenuItem5_Click(object sender, EventArgs e)
         {
-            CarrerasView carrerasView =  ActivatorUtilities.CreateInstance<CarrerasView>(_serviceProvider);
+            CarrerasView carrerasView = ActivatorUtilities.CreateInstance<CarrerasView>(_serviceProvider);
 
             carrerasView.ShowDialog();
         }
@@ -155,6 +156,12 @@ namespace InstitutoDesktop
         {
             AulasView aulasView = ActivatorUtilities.CreateInstance<AulasView>(_serviceProvider);
             aulasView.ShowDialog();
+        }
+
+        private void iconMenuPeriodoHorario_Click(object sender, EventArgs e)
+        {
+            PeriodoHorarioView periodoHorarioView = ActivatorUtilities.CreateInstance<PeriodoHorarioView>(_serviceProvider);
+            periodoHorarioView.ShowDialog();
         }
     }
 }

@@ -89,6 +89,9 @@ namespace InstitutoDesktop
             //turnos examenes
             services.AddScoped<TurnoExamenesView>();
             services.AddScoped<AgregarEditarTurnoExamenesView>();
+            //Periodo Horario
+            services.AddScoped<PeriodoHorarioView>();
+            services.AddScoped<AgregarEditarPeriodoHorarioView>();
 
 
 
