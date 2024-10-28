@@ -32,13 +32,16 @@
             label1 = new Label();
             btnCancelar = new FontAwesome.Sharp.IconButton();
             btnGuardar = new FontAwesome.Sharp.IconButton();
-            checkBox1 = new CheckBox();
+            chkActual = new CheckBox();
+            chkInscripcionHabilitada = new CheckBox();
+            cbmBoxCicloLectivo = new ComboBox();
+            label2 = new Label();
             SuspendLayout();
             // 
             // txtNombre
             // 
             txtNombre.Font = new Font("Segoe UI", 11F);
-            txtNombre.Location = new Point(378, 208);
+            txtNombre.Location = new Point(376, 113);
             txtNombre.Margin = new Padding(2, 3, 2, 3);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(257, 32);
@@ -48,7 +51,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F);
-            label1.Location = new Point(280, 213);
+            label1.Location = new Point(239, 113);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(90, 25);
@@ -87,22 +90,55 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // checkBox1
+            // chkActual
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(421, 286);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(73, 24);
-            checkBox1.TabIndex = 17;
-            checkBox1.Text = "Actual";
-            checkBox1.UseVisualStyleBackColor = true;
+            chkActual.AutoSize = true;
+            chkActual.Location = new Point(535, 282);
+            chkActual.Name = "chkActual";
+            chkActual.Size = new Size(73, 24);
+            chkActual.TabIndex = 17;
+            chkActual.Text = "Actual";
+            chkActual.UseVisualStyleBackColor = true;
+            // 
+            // chkInscripcionHabilitada
+            // 
+            chkInscripcionHabilitada.AutoSize = true;
+            chkInscripcionHabilitada.Location = new Point(291, 282);
+            chkInscripcionHabilitada.Name = "chkInscripcionHabilitada";
+            chkInscripcionHabilitada.Size = new Size(183, 24);
+            chkInscripcionHabilitada.TabIndex = 18;
+            chkInscripcionHabilitada.Text = "Inscripccion Habilitada";
+            chkInscripcionHabilitada.UseVisualStyleBackColor = true;
+            // 
+            // cbmBoxCicloLectivo
+            // 
+            cbmBoxCicloLectivo.FormattingEnabled = true;
+            cbmBoxCicloLectivo.Location = new Point(376, 189);
+            cbmBoxCicloLectivo.Name = "cbmBoxCicloLectivo";
+            cbmBoxCicloLectivo.Size = new Size(257, 28);
+            cbmBoxCicloLectivo.TabIndex = 19;
+            cbmBoxCicloLectivo.SelectedIndexChanged += cbmBoxCicloLectivo_SelectedIndexChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 11F);
+            label2.Location = new Point(202, 192);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(127, 25);
+            label2.TabIndex = 20;
+            label2.Text = "Ciclo Lectivo :";
             // 
             // AgregarEditarTurnoExamenesView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
-            Controls.Add(checkBox1);
+            Controls.Add(label2);
+            Controls.Add(cbmBoxCicloLectivo);
+            Controls.Add(chkInscripcionHabilitada);
+            Controls.Add(chkActual);
             Controls.Add(txtNombre);
             Controls.Add(label1);
             Controls.Add(btnCancelar);
@@ -121,6 +157,9 @@
         private Label label1;
         private FontAwesome.Sharp.IconButton btnCancelar;
         private FontAwesome.Sharp.IconButton btnGuardar;
-        private CheckBox checkBox1;
+        private CheckBox chkActual;
+        private CheckBox chkInscripcionHabilitada;
+        private ComboBox cbmBoxCicloLectivo;
+        private Label label2;
     }
 }

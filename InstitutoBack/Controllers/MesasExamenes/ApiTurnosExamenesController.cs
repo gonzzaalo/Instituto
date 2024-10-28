@@ -54,7 +54,7 @@ namespace InstitutoBack.Controllers.MesasExamenes
             }
             if (turnoExamen.Actual)
             {
-                var turnos = _context.turnosexamenes.Where(x => x.Actual).ToList();
+                var turnos = _context.turnosexamenes.Where(x => x.Actual&&x.Id!=turnoExamen.Id).ToList();
                 foreach (var item in turnos)
                 {
                     item.Actual = false;
