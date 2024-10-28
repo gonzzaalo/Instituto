@@ -4,6 +4,7 @@ using InstitutoBack.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InstitutoBack.Migrations
 {
     [DbContext(typeof(InstitutoContext))]
-    partial class InstitutoContextModelSnapshot : ModelSnapshot
+    [Migration("20241028045455_tablasPeriodos")]
+    partial class tablasPeriodos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3973,14 +3976,14 @@ namespace InstitutoBack.Migrations
                     b.Property<int>("CarreraId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CicloLectivoId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("PeriodoInscripcionId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -3988,7 +3991,7 @@ namespace InstitutoBack.Migrations
 
                     b.HasIndex("CarreraId");
 
-                    b.HasIndex("PeriodoInscripcionId");
+                    b.HasIndex("CicloLectivoId");
 
                     b.ToTable("inscripciones");
 
@@ -3998,9 +4001,9 @@ namespace InstitutoBack.Migrations
                             Id = 1,
                             AlumnoId = 1,
                             CarreraId = 1,
+                            CicloLectivoId = 1,
                             Eliminado = false,
-                            Fecha = new DateTime(2024, 10, 28, 2, 1, 46, 710, DateTimeKind.Local).AddTicks(4632),
-                            PeriodoInscripcionId = 1
+                            Fecha = new DateTime(2024, 10, 28, 1, 54, 55, 3, DateTimeKind.Local).AddTicks(1022)
                         });
                 });
 
@@ -10181,15 +10184,17 @@ namespace InstitutoBack.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", "PeriodoInscripcion")
+                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
                         .WithMany()
-                        .HasForeignKey("PeriodoInscripcionId");
+                        .HasForeignKey("CicloLectivoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Alumno");
 
                     b.Navigation("Carrera");
 
-                    b.Navigation("PeriodoInscripcion");
+                    b.Navigation("CicloLectivo");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", b =>

@@ -15,8 +15,8 @@ namespace InstitutoServices.Models.Inscripciones
         public Alumno? Alumno { get; set; }
         public int CarreraId { get; set; }
         public Carrera? Carrera { get; set; }
-        public int CicloLectivoId { get; set; }
-        public CicloLectivo? CicloLectivo { get; set; }
+        public int? PeriodoInscripcionId { get; set; }
+        public PeriodoInscripcion? PeriodoInscripcion { get; set; }
         public bool Eliminado { get; set; } = false;
 
 

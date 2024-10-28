@@ -493,6 +493,9 @@ namespace InstitutoBack.DataContext
             modelBuilder.Entity<InscripcionExamen>().HasQueryFilter(m => !m.Eliminado);
             modelBuilder.Entity<DetalleInscripcionExamen>().HasQueryFilter(m => !m.Eliminado);
             modelBuilder.Entity<Aula>().HasQueryFilter(m => !m.Eliminado);
+            modelBuilder.Entity<PeriodoHorario>().HasQueryFilter(m => !m.Eliminado);
+            modelBuilder.Entity<PeriodoInscripcion>().HasQueryFilter(m => !m.Eliminado);
+
             #endregion
 
             #region datos semillas turnosExamenes
@@ -506,7 +509,7 @@ namespace InstitutoBack.DataContext
             modelBuilder.Entity<CicloLectivo>().HasData(ciclo);
             #endregion
             #region datos semillas Inscripcion
-            var inscripcion = new Inscripcion { Id = 1, AlumnoId = 1, CarreraId = 1, Fecha = DateTime.Now, CicloLectivoId = 1 };
+            var inscripcion = new Inscripcion { Id = 1, AlumnoId = 1, CarreraId = 1, Fecha = DateTime.Now, PeriodoInscripcionId = 1 };
 
             modelBuilder.Entity<Inscripcion>().HasData(inscripcion);
             #endregion
@@ -1055,6 +1058,18 @@ namespace InstitutoBack.DataContext
 
 
             #endregion
+            #region datos semillas PeriodoInscripcion
+            modelBuilder.Entity<PeriodoInscripcion>().HasData(
+             new PeriodoInscripcion { Id = 1, Nombre = "Ciclo lectivo 2024 - Inicio año", InscripcionHabilitada=true, CicloLectivoId=1 },
+             new PeriodoInscripcion { Id = 2, Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre", InscripcionHabilitada = true, CicloLectivoId=1, SoloMaterias2doCuatrimestre=true }
+            );
+            #endregion
+            #region datos semillas PeriodoHorario
+            modelBuilder.Entity<PeriodoHorario>().HasData(
+             new PeriodoHorario { Id = 1, Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre", CicloLectivoId = 1, Actual=true }
+
+            );
+            #endregion
         }
 
         public virtual DbSet<Alumno> alumnos { get; set; }
@@ -1077,7 +1092,9 @@ namespace InstitutoBack.DataContext
         public virtual DbSet<JefaturaSeccion> jefaturassecciones { get; set; }
         public virtual DbSet<InscripcionExamen> inscripcionesExamenes { get; set; }
         public virtual DbSet<DetalleInscripcionExamen> detallesInscripcionesExamenes { get; set; }
-        public DbSet<Aula> aulas { get; set; }
+        public virtual DbSet<Aula> aulas { get; set; }
+        public virtual DbSet<PeriodoHorario> periodoshorarios { get; set; }
+        public virtual DbSet<PeriodoInscripcion> periodosinscripciones { get; set; }
 
 
     }
