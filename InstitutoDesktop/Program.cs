@@ -10,6 +10,7 @@ using InstitutoDesktop.Views.Commons.Materias;
 using InstitutoDesktop.Views.Horarios;
 using InstitutoDesktop.Views.MesasExamenes;
 using InstitutoDesktop.Services;
+using InstitutoDesktop.ViewReports;
 
 namespace InstitutoDesktop
 {
@@ -80,7 +81,7 @@ namespace InstitutoDesktop
             services.AddScoped<AgregarEditarAulaView>();
             services.AddScoped<DocentesView>();
             services.AddScoped<AgregarEditarDocenteView>();
-            services.AddScoped<HorariosView>();
+            services.AddScoped<MesasExamenesView>();
             services.AddScoped<CiclosLectivosView>();
             services.AddScoped<AgregarEditarCicloLectivoView>();
             //horas
@@ -89,6 +90,7 @@ namespace InstitutoDesktop
             //turnos examenes
             services.AddScoped<TurnoExamenesView>();
             services.AddScoped<AgregarEditarTurnoExamenesView>();
+            services.AddScoped<DocentesViewReport>();
 
 
 

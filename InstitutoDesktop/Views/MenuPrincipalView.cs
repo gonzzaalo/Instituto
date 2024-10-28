@@ -17,6 +17,7 @@ using InstitutoServices.Models.Inscripciones;
 using InstitutoServices.Models.Horarios;
 using InstitutoServices.Models.MesasExamenes;
 using Microsoft.Extensions.DependencyInjection;
+using InstitutoDesktop.ViewReports;
 
 
 
@@ -63,13 +64,13 @@ namespace InstitutoDesktop
                 Task.Run(async () =>_cacheService.GetAllCacheAsync<DetalleInscripcionExamen>("DetallesInscripcionesExamenes")),
 
             });
-            
+
 
         }
 
         private void iconMenuItem5_Click(object sender, EventArgs e)
         {
-            CarrerasView carrerasView =  ActivatorUtilities.CreateInstance<CarrerasView>(_serviceProvider);
+            CarrerasView carrerasView = ActivatorUtilities.CreateInstance<CarrerasView>(_serviceProvider);
 
             carrerasView.ShowDialog();
         }
@@ -129,25 +130,25 @@ namespace InstitutoDesktop
 
         private void MenuPrincipalView_Activated(object sender, EventArgs e)
         {
-            if (!logueado)
-            {
-                IniciarSesionView iniciarSesionView = new IniciarSesionView();
-                iniciarSesionView.ShowDialog();
-                if (!iniciarSesionView.loginSuccessfull)
-                {
-                    Application.Exit();
-                }
-                else
-                {
-                    logueado = true;
-                }
-            }
+            //if (!logueado)
+            //{
+            //    IniciarSesionView iniciarSesionView = new IniciarSesionView();
+            //    iniciarSesionView.ShowDialog();
+            //    if (!iniciarSesionView.loginSuccessfull)
+            //    {
+            //        Application.Exit();
+            //    }
+            //    else
+            //    {
+            //        logueado = true;
+            //    }
+            //}
 
         }
 
         private void iconMenuItem8_Click(object sender, EventArgs e)
         {
-            HorariosView horariosView = ActivatorUtilities.CreateInstance<HorariosView>(_serviceProvider);
+            MesasExamenesView horariosView = ActivatorUtilities.CreateInstance<MesasExamenesView>(_serviceProvider);
             horariosView.ShowDialog();
         }
 
@@ -155,6 +156,18 @@ namespace InstitutoDesktop
         {
             AulasView aulasView = ActivatorUtilities.CreateInstance<AulasView>(_serviceProvider);
             aulasView.ShowDialog();
+        }
+
+
+        private void mnuDocentes_Click(object sender, EventArgs e)
+        {
+            DocentesViewReport docentesViewReport = ActivatorUtilities.CreateInstance<DocentesViewReport>(_serviceProvider);
+            docentesViewReport.ShowDialog();
+        }
+        private void iconMenuItem11_Click(object sender, EventArgs e)
+        {
+            MesasExamenesView mesasExamenesView = ActivatorUtilities.CreateInstance<MesasExamenesView>(_serviceProvider);
+            mesasExamenesView.ShowDialog();
         }
     }
 }
