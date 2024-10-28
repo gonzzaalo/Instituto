@@ -129,19 +129,19 @@ namespace InstitutoDesktop
 
         private void MenuPrincipalView_Activated(object sender, EventArgs e)
         {
-            if (!logueado)
-            {
-                IniciarSesionView iniciarSesionView = new IniciarSesionView();
-                iniciarSesionView.ShowDialog();
-                if (!iniciarSesionView.loginSuccessfull)
-                {
-                    Application.Exit();
-                }
-                else
-                {
-                    logueado = true;
-                }
-            }
+            //if (!logueado)
+            //{
+            //    IniciarSesionView iniciarSesionView = new IniciarSesionView();
+            //    iniciarSesionView.ShowDialog();
+            //    if (!iniciarSesionView.loginSuccessfull)
+            //    {
+            //        Application.Exit();
+            //    }
+            //    else
+            //    {
+            //        logueado = true;
+            //    }
+            //}
 
         }
 
