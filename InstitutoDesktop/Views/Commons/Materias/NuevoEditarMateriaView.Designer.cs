@@ -110,6 +110,7 @@
             // chkEsRecreo
             // 
             chkEsRecreo.AutoSize = true;
+
             chkEsRecreo.Font = new Font("Bahnschrift SemiCondensed", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chkEsRecreo.Location = new Point(342, 414);
             chkEsRecreo.Margin = new Padding(2, 2, 2, 2);
@@ -142,7 +143,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
-            ClientSize = new Size(861, 584);
+
+            ClientSize = new Size(1000, 562);
+
             Controls.Add(label1);
             Controls.Add(cmbTipoMateria);
             Controls.Add(chkEsRecreo);

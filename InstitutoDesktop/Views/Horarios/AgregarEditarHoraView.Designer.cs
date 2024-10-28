@@ -94,7 +94,11 @@
             // dateTimeDesde
             // 
             dateTimeDesde.Format = DateTimePickerFormat.Time;
+<<<<<<< HEAD
+            dateTimeDesde.Location = new Point(308, 64);
+=======
             dateTimeDesde.Location = new Point(385, 80);
+>>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
             dateTimeDesde.Margin = new Padding(2);
             dateTimeDesde.Name = "dateTimeDesde";
             dateTimeDesde.ShowUpDown = true;
@@ -105,7 +109,11 @@
             // dateTimeHasta
             // 
             dateTimeHasta.Format = DateTimePickerFormat.Time;
+<<<<<<< HEAD
+            dateTimeHasta.Location = new Point(308, 116);
+=======
             dateTimeHasta.Location = new Point(385, 145);
+>>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
             dateTimeHasta.Margin = new Padding(2);
             dateTimeHasta.Name = "dateTimeHasta";
             dateTimeHasta.ShowUpDown = true;
