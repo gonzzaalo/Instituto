@@ -1,0 +1,121 @@
+[33mcommit 70cb0c0da156f740ff07863859b1f8b9db83343d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 3e52834 5a0d905
+Author: Sofiarey88 <sofiarey02@gmail.com>
+Date:   Mon Oct 28 13:58:52 2024 -0300
+
+    MemoryCache
+
+[33mcommit 3e528341f10ce4cff586911de7d715fb68340ce5[m
+Merge: b5f48fa 53c52fa
+Author: Sofiarey88 <sofiarey02@gmail.com>
+Date:   Mon Oct 28 13:37:07 2024 -0300
+
+    Merge branch 'master' of https://github.com/Sofiarey88/Instituto
+
+[33mcommit b5f48fad93f6dc0dc47ea6885415ce4cf83cb9fd[m
+Merge: 3437845 1418181
+Author: Sofiarey88 <sofiarey02@gmail.com>
+Date:   Mon Oct 28 13:36:24 2024 -0300
+
+    Merge branch 'master' of https://github.com/Sofiarey88/Instituto
+
+[33mcommit 53c52fabbfceefe07c51d98aadda4305d0a68d96[m
+Merge: 3437845 1418181
+Author: Sofiarey88 <sofiarey02@gmail.com>
+Date:   Mon Oct 28 13:36:24 2024 -0300
+
+    Merge branch 'master' of https://github.com/Sofiarey88/Instituto
+
+[33mcommit 343784542b27fbe2a6f5f9c15eb88acf90b81ab3[m
+Merge: 2a2b9a4 6f9a75f
+Author: Rubén Alejandro Ramirez <aleramirezsj@gmail.com>
+Date:   Mon Oct 21 17:29:17 2024 -0300
+
+    Merge pull request #8 from Sofiarey88/master
+    
+    checkBox turnoExamen
+
+[33mcommit 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b[m
+Author: Rubén Alejandro Ramirez <aleramirezsj@gmail.com>
+Date:   Mon Oct 28 02:30:38 2024 -0300
+
+    Refactorización y expansión del modelo de datos
+    
+    Se han realizado varias modificaciones importantes en el modelo de datos:
+    
+    - Se han añadido filtros de consulta para excluir registros eliminados en las entidades `PeriodoHorario` y `PeriodoInscripcion`.
+    - La entidad `Inscripcion` ahora incluye un campo `PeriodoInscripcionId` en lugar de `CicloLectivoId`.
+    - Se han añadido datos de semillas para `PeriodoInscripcion` y `PeriodoHorario`.
+    - La propiedad `aulas` ahora es `virtual`.
+    - Se han añadido las propiedades `periodoshorarios` y `periodosinscripciones` al contexto de datos.
+    - Se ha añadido la propiedad `TipoMateria` a la entidad `Materia`.
+    - Se han añadido nuevas entidades `PeriodoHorario` y `PeriodoInscripcion` con sus respectivas propiedades y relaciones.
+    - Se han añadido nuevas columnas a la tabla `turnosexamenes` y se han actualizado registros en las tablas `inscripciones` y `turnosexamenes`.
+    - Se han eliminado varias entradas de contenido y enlaces de navegación relacionados con `cicloslectivos`, `horas`, `docentes`, `carreras` y `aulas`.
+    - Se han añadido nuevos controladores para gestionar `periodoshorarios` y `periodosinscripciones` en la API.
+    - Se han añadido nuevas tablas `periodoshorarios` y `periodosinscripciones` con sus respectivas columnas y relaciones.
+    - Se ha actualizado un registro en la tabla `inscripciones`.
+    
+    Estos cambios reflejan una expansión y reestructuración del modelo de datos para incluir nuevas entidades y propiedades, así como la actualización de las relaciones entre las entidades existentes.
+
+[33mcommit 645b36724262aeadcc270dbb224a8f5c0d373bdb[m
+Author: Rubén Alejandro Ramirez <aleramirezsj@gmail.com>
+Date:   Sun Oct 27 00:54:58 2024 -0300
+
+    Cambio de configuración a entorno remoto
+    
+    Se han modificado los archivos de configuración `Resources.resx` y `appsettings.json` para cambiar el valor de la clave `Remoto` de `false` a `true`. Esto indica que la configuración ha pasado de un entorno local a un entorno remoto.
+
+[33mcommit c651035cd999327f93a29e7fab5d62f98505f581[m
+Author: Rubén Alejandro Ramirez <aleramirezsj@gmail.com>
+Date:   Sun Oct 27 00:49:26 2024 -0300
+
+    Migración a IMemoryCacheService y mejoras en caché
+    
+    Se ha añadido la interfaz `IMemoryCacheService` y se ha inyectado en varios componentes de Razor, reemplazando el uso de `MemoryCacheService` por `_memoryCache`. Se ha actualizado la lógica de inicialización para utilizar métodos asíncronos de caché, mejorando el rendimiento. Se han actualizado las referencias de paquetes en `InstitutoWeb.csproj` y se ha eliminado la interfaz antigua `IMemoryCacheService`. Se han realizado cambios en varios componentes para utilizar métodos de `_memoryCache` y se han añadido verificaciones adicionales para asegurar la integridad de los datos en caché. Se ha mejorado el manejo de errores y se han añadido componentes condicionales en `MesasExamenes.razor`.
+
+[33mcommit fc327bfe3ad0f12c97100ae8ab3505b3afd4b7e8[m
+Author: Rubén Alejandro Ramirez <aleramirezsj@gmail.com>
+Date:   Sat Oct 26 04:26:15 2024 -0300
+
+    Refactorización para uso de MemoryCacheServiceWinForms
+    
+    Se ha añadido la referencia `using InstitutoDesktop.Services` en varios archivos para utilizar los servicios de caché. En `Program.cs`, se ha reemplazado el servicio `MemoryCacheService` por `MemoryCacheServiceWinForms` en la configuración de servicios.
+    
+    Se han actualizado múltiples vistas (`AgregarEditarAlumnosView.cs`, `AlumnosView.cs`, `AnioCarrerasView.cs`, `NuevoEditarAnioCarreraView.cs`, `AgregarEditarAulaView.cs`, `AulasView.cs`, `AgregarEditarCarreraView.cs`, `CarrerasView.cs`, `AgregarEditarDocenteView.cs`, `DocentesView.cs`, `MateriaView`, `NuevoEditarMateriaView`, `AgregarEditarHoraView`, `HorariosView`, `HorasView`, `AgregarEditarCicloLectivoView`, `CiclosLectivosView`) para inyectar `MemoryCacheServiceWinForms` y `IServiceProvider`, y se han modificado los métodos para utilizar el servicio de caché.
+    
+    En `MenuPrincipalView.cs`, `AgregarEditarTurnoExamenesView.cs` y `TurnoExamenesView.cs`, se ha cambiado la inyección de dependencias de `MemoryCacheService` a `MemoryCacheServiceWinForms` y se han actualizado las llamadas a métodos de caché para usar métodos asíncronos.
+    
+    Se ha añadido la clase `MemoryCacheServiceWinForms` que hereda de `MemoryCacheService` y sobrescribe métodos para mostrar mensajes de actividad. También se ha añadido un método `ClearCache` en `MemoryCacheService.cs` para vaciar la caché de una determinada clave.
+    
+    Estos cambios refactorizan el código para mejorar el rendimiento y la gestión de dependencias mediante el uso de un servicio de caché en memoria.
+
+[33mcommit e849096058f59c1ef14ec9ad9d302c049634e2ed[m
+Author: Rubén Alejandro Ramirez <aleramirezsj@gmail.com>
+Date:   Fri Oct 25 04:24:43 2024 -0300
+
+    Integración de DI y caché, mejoras en vistas y lógica
+    
+    Se han agregado referencias a los paquetes `Microsoft.Extensions.Caching.Memory` y `Microsoft.Extensions.DependencyInjection` en `InstitutoDesktop.csproj`.
+    
+    En `Program.cs`, se ha configurado un contenedor de dependencias y se ha añadido el método `ConfigureServices` para registrar servicios y vistas.
+    
+    Se ha añadido el servicio de caché en memoria (`MemoryCacheService`) como dependencia en `AgregarEditarCarreraView.cs` y `CarrerasView.cs`, actualizando sus constructores y métodos para utilizar la inyección de dependencias.
+    
+    En `NuevoEditarMateriaView.Designer.cs` y `NuevoEditarMateriaView.cs`, se ha añadido un `CheckBox` para indicar si una materia es recreo y se ha ajustado el diseño de la vista.
+    
+    En `AgregarEditarHoraView.Designer.cs` y `AgregarEditarHoraView.cs`, se ha eliminado el `CheckBox` que indicaba si una hora es recreo y se ha ajustado el diseño de la vista.
+    
+    Se ha añadido un nuevo botón `BtnEditar` y se han realizado múltiples ajustes de diseño en `HorariosView.Designer.cs` y `HorariosView.cs` para mejorar la funcionalidad y la interfaz de usuario.
+    
+    Se han añadido referencias a servicios y modelos en `MenuPrincipalView`, incluyendo la inyección de `MemoryCacheService` y `IServiceProvider`.
+    
+    Se ha añadido la interfaz `IEntityWithId` y se ha implementado en varias clases de modelos para estandarizar entidades con un identificador.
+    
+    Se ha añadido la clase `MemoryCacheService` para manejar operaciones de caché genéricas.
+    
+    Se han corregido errores de formato y se ha mejorado la legibilidad del código en varios archivos.
+
+[33mcommit 08829f135b182756a0918256e3b6b27c41e9d8fc[m
+Author: Rubén Alejandro Ramirez <aleramirezsj@gmail.com>
+Date:   T

@@ -38,7 +38,7 @@
             // txtNombre
             // 
             txtNombre.Font = new Font("Segoe UI", 11F);
-            txtNombre.Location = new Point(378, 208);
+            txtNombre.Location = new Point(393, 190);
             txtNombre.Margin = new Padding(2, 3, 2, 3);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(257, 32);
@@ -48,7 +48,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F);
-            label1.Location = new Point(280, 213);
+            label1.Location = new Point(215, 197);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(90, 25);
@@ -62,7 +62,7 @@
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             btnCancelar.IconSize = 30;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar.Location = new Point(481, 352);
+            btnCancelar.Location = new Point(481, 403);
             btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(127, 40);
@@ -78,7 +78,7 @@
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             btnGuardar.IconSize = 30;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(320, 352);
+            btnGuardar.Location = new Point(312, 403);
             btnGuardar.Margin = new Padding(3, 4, 3, 4);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(127, 40);
@@ -90,7 +90,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(421, 286);
+            checkBox1.Location = new Point(421, 344);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(73, 24);
             checkBox1.TabIndex = 17;

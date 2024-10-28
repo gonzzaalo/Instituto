@@ -64,6 +64,6 @@ namespace InstitutoDesktop.Views.MesasExamenes
             this.Close();
         }
 
-    
+       
     }
 }
