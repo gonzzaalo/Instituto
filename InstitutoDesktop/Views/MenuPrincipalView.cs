@@ -17,6 +17,7 @@ using InstitutoServices.Models.Inscripciones;
 using InstitutoServices.Models.Horarios;
 using InstitutoServices.Models.MesasExamenes;
 using Microsoft.Extensions.DependencyInjection;
+using InstitutoDesktop.ViewReports;
 
 
 
@@ -63,13 +64,13 @@ namespace InstitutoDesktop
                 Task.Run(async () =>_cacheService.GetAllCacheAsync<DetalleInscripcionExamen>("DetallesInscripcionesExamenes")),
 
             });
-            
+
 
         }
 
         private void iconMenuItem5_Click(object sender, EventArgs e)
         {
-            CarrerasView carrerasView =  ActivatorUtilities.CreateInstance<CarrerasView>(_serviceProvider);
+            CarrerasView carrerasView = ActivatorUtilities.CreateInstance<CarrerasView>(_serviceProvider);
 
             carrerasView.ShowDialog();
         }
@@ -155,6 +156,12 @@ namespace InstitutoDesktop
         {
             AulasView aulasView = ActivatorUtilities.CreateInstance<AulasView>(_serviceProvider);
             aulasView.ShowDialog();
+        }
+
+        private void mnuDocentes_Click(object sender, EventArgs e)
+        {
+            DocentesViewReport docentesViewReport = ActivatorUtilities.CreateInstance<DocentesViewReport>(_serviceProvider);
+            docentesViewReport.ShowDialog();
         }
     }
 }

@@ -15,10 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Reports\DocentesReport.rdlc" />
     <None Remove="Resources\loading.gif" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Reports\DocentesReport.rdlc" />
     <EmbeddedResource Include="Resources\loading.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -30,9 +32,15 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.23" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DataSet\InstitutoDataSet.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InstitutoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -41,6 +49,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DataSet\InstitutoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InstitutoDataSet.Designer.cs</LastGenOutput>
+    </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -56,6 +68,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InstitutoServices\InstitutoServices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common">
+      <HintPath>Paquetes\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms">
+      <HintPath>Paquetes\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

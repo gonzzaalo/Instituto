@@ -40,16 +40,18 @@
             turnoExamenesToolStripMenuItem = new ToolStripMenuItem();
             iconMenuItem9 = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem8 = new FontAwesome.Sharp.IconMenuItem();
+            iconMenuItem10 = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
-            iconMenuItem10 = new FontAwesome.Sharp.IconMenuItem();
+            btnInforme = new FontAwesome.Sharp.IconMenuItem();
+            mnuDocentes = new FontAwesome.Sharp.IconMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { iconMenuItem1, iconMenuItem2, iconMenuItem3 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { iconMenuItem1, iconMenuItem2, iconMenuItem3, btnInforme });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 2, 0, 2);
@@ -83,7 +85,7 @@
             iconMenuItem7.IconColor = Color.Black;
             iconMenuItem7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem7.Name = "iconMenuItem7";
-            iconMenuItem7.Size = new Size(228, 30);
+            iconMenuItem7.Size = new Size(224, 26);
             iconMenuItem7.Text = "Horas";
             iconMenuItem7.Click += iconMenuItem7_Click;
             // 
@@ -93,7 +95,7 @@
             iconMenuItem6.IconColor = Color.Black;
             iconMenuItem6.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem6.Name = "iconMenuItem6";
-            iconMenuItem6.Size = new Size(228, 30);
+            iconMenuItem6.Size = new Size(224, 26);
             iconMenuItem6.Text = "Ciclo Lectivo";
             iconMenuItem6.Click += iconMenuItem6_Click;
             // 
@@ -103,7 +105,7 @@
             btnAlumnos.IconColor = Color.Black;
             btnAlumnos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAlumnos.Name = "btnAlumnos";
-            btnAlumnos.Size = new Size(228, 30);
+            btnAlumnos.Size = new Size(224, 26);
             btnAlumnos.Text = "Alumnos";
             btnAlumnos.Click += btnAlumnos_Click;
             // 
@@ -113,7 +115,7 @@
             iconMenuItem5.IconColor = Color.Black;
             iconMenuItem5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem5.Name = "iconMenuItem5";
-            iconMenuItem5.Size = new Size(228, 30);
+            iconMenuItem5.Size = new Size(224, 26);
             iconMenuItem5.Text = "Carreras";
             iconMenuItem5.Click += iconMenuItem5_Click;
             // 
@@ -123,7 +125,7 @@
             iconDocente.IconColor = Color.Pink;
             iconDocente.IconFont = FontAwesome.Sharp.IconFont.Solid;
             iconDocente.Name = "iconDocente";
-            iconDocente.Size = new Size(228, 30);
+            iconDocente.Size = new Size(224, 26);
             iconDocente.Text = "Docentes";
             iconDocente.Click += iconDocente_Click;
             // 
@@ -133,14 +135,14 @@
             iconMenuItemAniosCarrera.IconColor = Color.Black;
             iconMenuItemAniosCarrera.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItemAniosCarrera.Name = "iconMenuItemAniosCarrera";
-            iconMenuItemAniosCarrera.Size = new Size(228, 30);
+            iconMenuItemAniosCarrera.Size = new Size(224, 26);
             iconMenuItemAniosCarrera.Text = "Años de las carreras";
             iconMenuItemAniosCarrera.Click += iconMenuItemAniosCarrera_Click;
             // 
             // turnoExamenesToolStripMenuItem
             // 
             turnoExamenesToolStripMenuItem.Name = "turnoExamenesToolStripMenuItem";
-            turnoExamenesToolStripMenuItem.Size = new Size(228, 30);
+            turnoExamenesToolStripMenuItem.Size = new Size(224, 26);
             turnoExamenesToolStripMenuItem.Text = "Turno Examenes";
             turnoExamenesToolStripMenuItem.Click += turnoExamenesToolStripMenuItem_Click;
             // 
@@ -150,7 +152,7 @@
             iconMenuItem9.IconColor = Color.Black;
             iconMenuItem9.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem9.Name = "iconMenuItem9";
-            iconMenuItem9.Size = new Size(228, 30);
+            iconMenuItem9.Size = new Size(224, 26);
             iconMenuItem9.Text = "Materias";
             iconMenuItem9.Click += iconMenuItem9_Click;
             // 
@@ -160,9 +162,19 @@
             iconMenuItem8.IconColor = Color.Black;
             iconMenuItem8.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem8.Name = "iconMenuItem8";
-            iconMenuItem8.Size = new Size(228, 30);
+            iconMenuItem8.Size = new Size(224, 26);
             iconMenuItem8.Text = "Horarios";
             iconMenuItem8.Click += iconMenuItem8_Click;
+            // 
+            // iconMenuItem10
+            // 
+            iconMenuItem10.IconChar = FontAwesome.Sharp.IconChar.ShopLock;
+            iconMenuItem10.IconColor = Color.Black;
+            iconMenuItem10.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconMenuItem10.Name = "iconMenuItem10";
+            iconMenuItem10.Size = new Size(224, 26);
+            iconMenuItem10.Text = "Aulas";
+            iconMenuItem10.Click += iconMenuItem10_Click;
             // 
             // iconMenuItem3
             // 
@@ -184,15 +196,25 @@
             iconMenuItem4.Text = "Salir del sistema";
             iconMenuItem4.Click += iconMenuItem4_Click;
             // 
-            // iconMenuItem10
+            // btnInforme
             // 
-            iconMenuItem10.IconChar = FontAwesome.Sharp.IconChar.ShopLock;
-            iconMenuItem10.IconColor = Color.Black;
-            iconMenuItem10.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconMenuItem10.Name = "iconMenuItem10";
-            iconMenuItem10.Size = new Size(228, 30);
-            iconMenuItem10.Text = "Aulas";
-            iconMenuItem10.Click += iconMenuItem10_Click;
+            btnInforme.DropDownItems.AddRange(new ToolStripItem[] { mnuDocentes });
+            btnInforme.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnInforme.IconColor = Color.Black;
+            btnInforme.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnInforme.Name = "btnInforme";
+            btnInforme.Size = new Size(105, 28);
+            btnInforme.Text = "Informes";
+            // 
+            // mnuDocentes
+            // 
+            mnuDocentes.IconChar = FontAwesome.Sharp.IconChar.None;
+            mnuDocentes.IconColor = Color.Black;
+            mnuDocentes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            mnuDocentes.Name = "mnuDocentes";
+            mnuDocentes.Size = new Size(228, 30);
+            mnuDocentes.Text = "Docentes";
+            mnuDocentes.Click += mnuDocentes_Click;
             // 
             // MenuPrincipalView
             // 
@@ -236,5 +258,7 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem9;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem8;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem10;
+        private FontAwesome.Sharp.IconMenuItem btnInforme;
+        private FontAwesome.Sharp.IconMenuItem mnuDocentes;
     }
 }
