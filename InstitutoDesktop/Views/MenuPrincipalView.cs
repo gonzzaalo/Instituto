@@ -147,7 +147,7 @@ namespace InstitutoDesktop
 
         private void iconMenuItem8_Click(object sender, EventArgs e)
         {
-            HorariosView horariosView = ActivatorUtilities.CreateInstance<HorariosView>(_serviceProvider);
+            MesasExamenesView horariosView = ActivatorUtilities.CreateInstance<MesasExamenesView>(_serviceProvider);
             horariosView.ShowDialog();
         }
 
