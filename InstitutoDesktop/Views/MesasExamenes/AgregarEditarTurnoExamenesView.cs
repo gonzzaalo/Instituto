@@ -52,6 +52,7 @@ namespace InstitutoDesktop.Views.MesasExamenes
             txtNombre.Text = turnoexamen.Nombre;
             chkActual.Checked = turnoexamen.Actual; // Cargar el estado del checkbox
             chkInscripcionHabilitada.Checked = turnoexamen.InscripcionHabilitada;
+            chkSegundoLlamado.Checked = turnoexamen.TieneLLamado2;
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
@@ -60,6 +61,7 @@ namespace InstitutoDesktop.Views.MesasExamenes
             turnoexamen.CicloLectivoId=(int)cbmBoxCicloLectivo.SelectedValue  ;
             turnoexamen.Actual = chkActual.Checked;
             turnoexamen.InscripcionHabilitada = chkInscripcionHabilitada.Checked;
+            turnoexamen.TieneLLamado2 = chkSegundoLlamado.Checked;
             if (turnoexamen.Id == 0)
             {
                 //await turnoexamenesService.AddAsync(turnoexamen);

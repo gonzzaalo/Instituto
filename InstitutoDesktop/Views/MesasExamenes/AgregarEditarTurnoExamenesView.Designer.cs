@@ -36,6 +36,7 @@
             chkInscripcionHabilitada = new CheckBox();
             cbmBoxCicloLectivo = new ComboBox();
             label2 = new Label();
+            chkSegundoLlamado = new CheckBox();
             SuspendLayout();
             // 
             // txtNombre
@@ -93,7 +94,7 @@
             // chkActual
             // 
             chkActual.AutoSize = true;
-            chkActual.Location = new Point(535, 282);
+            chkActual.Location = new Point(535, 245);
             chkActual.Name = "chkActual";
             chkActual.Size = new Size(73, 24);
             chkActual.TabIndex = 17;
@@ -103,7 +104,7 @@
             // chkInscripcionHabilitada
             // 
             chkInscripcionHabilitada.AutoSize = true;
-            chkInscripcionHabilitada.Location = new Point(291, 282);
+            chkInscripcionHabilitada.Location = new Point(264, 245);
             chkInscripcionHabilitada.Name = "chkInscripcionHabilitada";
             chkInscripcionHabilitada.Size = new Size(183, 24);
             chkInscripcionHabilitada.TabIndex = 18;
@@ -130,11 +131,22 @@
             label2.TabIndex = 20;
             label2.Text = "Ciclo Lectivo :";
             // 
+            // chkSegundoLlamado
+            // 
+            chkSegundoLlamado.AutoSize = true;
+            chkSegundoLlamado.Location = new Point(358, 300);
+            chkSegundoLlamado.Name = "chkSegundoLlamado";
+            chkSegundoLlamado.Size = new Size(192, 24);
+            chkSegundoLlamado.TabIndex = 21;
+            chkSegundoLlamado.Text = "Tiene Segundo Llamado";
+            chkSegundoLlamado.UseVisualStyleBackColor = true;
+            // 
             // AgregarEditarTurnoExamenesView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
+            Controls.Add(chkSegundoLlamado);
             Controls.Add(label2);
             Controls.Add(cbmBoxCicloLectivo);
             Controls.Add(chkInscripcionHabilitada);
@@ -161,5 +173,6 @@
         private CheckBox chkInscripcionHabilitada;
         private ComboBox cbmBoxCicloLectivo;
         private Label label2;
+        private CheckBox chkSegundoLlamado;
     }
 }
