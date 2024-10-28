@@ -81,7 +81,7 @@ namespace InstitutoDesktop
             services.AddScoped<AgregarEditarAulaView>();
             services.AddScoped<DocentesView>();
             services.AddScoped<AgregarEditarDocenteView>();
-            services.AddScoped<HorariosView>();
+            services.AddScoped<MesasExamenesView>();
             services.AddScoped<CiclosLectivosView>();
             services.AddScoped<AgregarEditarCicloLectivoView>();
             //horas

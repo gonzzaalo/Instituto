@@ -46,6 +46,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Update="Views\MesasExamenes\MesasExamenesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,8 +64,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Inscripciones\" />
-
-    <Folder Include="Views\MesasExamenes\" />
 
   </ItemGroup>
 

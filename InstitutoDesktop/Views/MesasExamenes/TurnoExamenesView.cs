@@ -56,8 +56,8 @@ namespace InstitutoDesktop.Views.MesasExamenes
         private async void btnAgregar_Click(object sender, EventArgs e)
         {
             AgregarEditarTurnoExamenesView agregarEditarTurnoExamenesView = ActivatorUtilities.CreateInstance<AgregarEditarTurnoExamenesView>(_serviceProvider);
-
-             await CargarGrilla();
+            agregarEditarTurnoExamenesView.ShowDialog();
+            await CargarGrilla();
 
             
         }
