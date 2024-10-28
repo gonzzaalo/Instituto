@@ -40,18 +40,20 @@
             // txtMateria
             // 
             txtMateria.Font = new Font("Bahnschrift SemiCondensed", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtMateria.Location = new Point(136, 243);
+            txtMateria.Location = new Point(170, 275);
+            txtMateria.Margin = new Padding(4, 4, 4, 4);
             txtMateria.Name = "txtMateria";
-            txtMateria.Size = new Size(640, 35);
+            txtMateria.Size = new Size(799, 41);
             txtMateria.TabIndex = 18;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Bahnschrift SemiCondensed", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(24, 244);
+            label2.Location = new Point(30, 276);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(103, 34);
+            label2.Size = new Size(122, 40);
             label2.TabIndex = 16;
             label2.Text = "Materia:";
             // 
@@ -61,10 +63,10 @@
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Bahnschrift SemiCondensed", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = SystemColors.ControlLightLight;
-            btnCancelar.Location = new Point(632, 368);
-            btnCancelar.Margin = new Padding(3, 4, 3, 4);
+            btnCancelar.Location = new Point(790, 460);
+            btnCancelar.Margin = new Padding(4, 5, 4, 5);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(144, 46);
+            btnCancelar.Size = new Size(180, 58);
             btnCancelar.TabIndex = 14;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -77,10 +79,10 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Bahnschrift SemiCondensed", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnGuardar.ForeColor = SystemColors.ControlLightLight;
-            btnGuardar.Location = new Point(25, 368);
-            btnGuardar.Margin = new Padding(3, 4, 3, 4);
+            btnGuardar.Location = new Point(31, 460);
+            btnGuardar.Margin = new Padding(4, 5, 4, 5);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(144, 46);
+            btnGuardar.Size = new Size(180, 58);
             btnGuardar.TabIndex = 13;
             btnGuardar.Text = "GUARDAR";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -89,39 +91,54 @@
             // txtAnioYCarrera
             // 
             txtAnioYCarrera.Font = new Font("Bahnschrift SemiCondensed", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAnioYCarrera.Location = new Point(168, 143);
+            txtAnioYCarrera.Location = new Point(210, 179);
+            txtAnioYCarrera.Margin = new Padding(4, 4, 4, 4);
             txtAnioYCarrera.Name = "txtAnioYCarrera";
             txtAnioYCarrera.ReadOnly = true;
-            txtAnioYCarrera.Size = new Size(608, 35);
+            txtAnioYCarrera.Size = new Size(759, 41);
             txtAnioYCarrera.TabIndex = 20;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Bahnschrift SemiCondensed", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(1, 142);
+            label3.Location = new Point(1, 178);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(173, 34);
+            label3.Size = new Size(203, 40);
             label3.TabIndex = 19;
             label3.Text = "Año y Carrera:";
             // 
             // chkEsRecreo
             // 
             chkEsRecreo.AutoSize = true;
+<<<<<<< HEAD
             chkEsRecreo.Font = new Font("Bahnschrift SemiCondensed", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chkEsRecreo.Location = new Point(136, 307);
             chkEsRecreo.Name = "chkEsRecreo";
             chkEsRecreo.Size = new Size(145, 38);
             chkEsRecreo.TabIndex = 21;
             chkEsRecreo.Text = "Es Recreo";
+=======
+            chkEsRecreo.Font = new Font("Bahnschrift SemiCondensed", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkEsRecreo.Location = new Point(170, 357);
+            chkEsRecreo.Name = "chkEsRecreo";
+            chkEsRecreo.Size = new Size(164, 43);
+            chkEsRecreo.TabIndex = 22;
+            chkEsRecreo.Text = "Es recreo";
+>>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
             chkEsRecreo.UseVisualStyleBackColor = true;
             // 
             // NuevoEditarMateriaView
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
+<<<<<<< HEAD
             ClientSize = new Size(800, 450);
+=======
+            ClientSize = new Size(1000, 562);
+>>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
             Controls.Add(chkEsRecreo);
             Controls.Add(txtAnioYCarrera);
             Controls.Add(label3);
@@ -129,6 +146,7 @@
             Controls.Add(label2);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "NuevoEditarMateriaView";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Nuevo Editar Materias";

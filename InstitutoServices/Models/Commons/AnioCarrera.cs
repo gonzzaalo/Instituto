@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using InstitutoServices.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstitutoServices.Models.Commons
 {
-    public class AnioCarrera
+    public class AnioCarrera : IEntityWithId
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;

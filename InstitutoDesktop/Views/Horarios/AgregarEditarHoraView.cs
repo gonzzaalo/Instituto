@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Interfaces;
+﻿using InstitutoDesktop.Services;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Horarios;
 using InstitutoServices.Services;
 using InstitutoServices.Services.Commons;
@@ -16,18 +17,20 @@ namespace InstitutoDesktop.Views.Horarios
 {
     public partial class AgregarEditarHoraView : Form
     {
-        IGenericService<Hora> horarioService = new GenericService<Hora>();
         private Hora hora;
+        private readonly MemoryCacheServiceWinForms _memoryCache;
 
-        public AgregarEditarHoraView()
+        public AgregarEditarHoraView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             hora = new Hora();
         }
 
-        public AgregarEditarHoraView(Hora hora)
+        public AgregarEditarHoraView(MemoryCacheServiceWinForms memoryCacheService, Hora hora)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.hora = hora;
             CargarDatosEnPantalla();
         }
@@ -38,7 +41,10 @@ namespace InstitutoDesktop.Views.Horarios
             //definimos el valor de la fecha como actual y la hora y minutos como los de la hora
             dateTimeDesde.Value = new DateTime(1800, 1, 1, hora.Desde.Hour, hora.Desde.Minute, 0);
             dateTimeHasta.Value = new DateTime(1800, 1, 1, hora.Hasta.Hour, hora.Hasta.Minute, 0);
+<<<<<<< HEAD
             
+=======
+>>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
@@ -47,12 +53,13 @@ namespace InstitutoDesktop.Views.Horarios
 
             if (hora.Id == 0)
             {
-                await horarioService.AddAsync(hora);
-
+                //await horarioService.AddAsync(hora);
+                await _memoryCache.AddCacheAsync<Hora>(hora, "Horas");
             }
             else
             {
-                await horarioService.UpdateAsync(hora);
+                //await horarioService.UpdateAsync(hora);
+                await _memoryCache.UpdateCacheAsync<Hora>(hora, "Horas");
             }
 
             this.Close();
@@ -65,7 +72,10 @@ namespace InstitutoDesktop.Views.Horarios
             hora.Hasta = new DateTime(1, 1, 1, dateTimeHasta.Value.Hour, dateTimeHasta.Value.Minute, 0);
 
 
+<<<<<<< HEAD
       
+=======
+>>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
             txtNombre.Text = hora.Nombre;
         }
 

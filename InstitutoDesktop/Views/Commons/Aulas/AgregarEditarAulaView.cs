@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Interfaces;
+﻿using InstitutoDesktop.Services;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services.Commons;
 using System;
@@ -15,17 +16,20 @@ namespace InstitutoDesktop.Views.Commons.Aulas
 {
     public partial class AgregarEditarAulaView : Form
     {
-        IGenericService<Aula> aulaService = new GenericService<Aula>();
         private Aula aula;
-        public AgregarEditarAulaView()
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+
+        public AgregarEditarAulaView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             aula = new Aula();
         }
 
-        public AgregarEditarAulaView(Aula aula)
+        public AgregarEditarAulaView(MemoryCacheServiceWinForms memoryCacheService, Aula aula)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.aula = aula;
             CargarDatosAulaAEditar();
         }
@@ -41,11 +45,13 @@ namespace InstitutoDesktop.Views.Commons.Aulas
 
             if (aula.Id == 0)
             {
-                await aulaService.AddAsync(aula);
+                await _memoryCache.AddCacheAsync<Aula>(aula, "Aulas");
+                //await aulaService.AddAsync(aula);
             }
             else
             {
-                await aulaService.UpdateAsync(aula);
+                await _memoryCache.UpdateCacheAsync<Aula>(aula, "Aulas");
+                //await aulaService.UpdateAsync(aula);
             }
 
             this.Close();

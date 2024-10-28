@@ -11,7 +11,7 @@ namespace InstitutoDesktop.Util
     public static class ShowInActivity
     {
         static ShowInActivityView showInActivityView;
-        static Stopwatch watch;
+        //static Stopwatch watch;
         public static void Show(string message)
         {
             //singleton
@@ -20,16 +20,16 @@ namespace InstitutoDesktop.Util
             showInActivityView.Message = message;
             if (!showInActivityView.Visible)
             {
-                watch = System.Diagnostics.Stopwatch.StartNew();
+                //watch = System.Diagnostics.Stopwatch.StartNew();
                 showInActivityView.Show();
             }
         }
         public static void Hide()
         {
             showInActivityView.Hide();
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            Debug.Print($"Tiempo de ejecución: {elapsedMs} ms");
+            //watch.Stop();
+            //var elapsedMs = watch.ElapsedMilliseconds;
+            //Debug.Print($"Tiempo de ejecución: {elapsedMs} ms");
         }
     }
 }

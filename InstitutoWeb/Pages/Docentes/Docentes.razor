@@ -1,8 +1,7 @@
 ﻿@page "/docentes"
 
-@inject IGenericService<Docente> docenteService
 @inject SweetAlertService SweetAlert
-@inject IMemoryCacheService MemoryCacheService
+@inject IMemoryCacheService _memoryCache
 
 <PageTitle>Docentes</PageTitle>
 <h1>Docentes</h1>
@@ -23,8 +22,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        docentes= MemoryCacheService.Docentes;
-        //docentes = await docenteService.GetAllAsync();
+        docentes = await _memoryCache.GetAllCacheAsync<Docente>("Docentes");
     }
 
     private async void Eliminar(IEntityIdNombre entity)
@@ -41,16 +39,14 @@ else
             });
         if (respuesta.IsConfirmed)
         {
-            await docenteService.DeleteAsync(docente.Id);
-            MemoryCacheService.Docentes = await docenteService.GetAllAsync();
-            docentes = MemoryCacheService.Docentes;
+            await _memoryCache.DeleteCacheAsync<Docente>(docente.Id, "Docentes");
+            docentes = await _memoryCache.GetAllCacheAsync<Docente>("Docentes");
             StateHasChanged();
         }
     }
     private async Task Guardar()
     {
-        MemoryCacheService.Docentes = await docenteService.GetAllAsync();
-        docentes = MemoryCacheService.Docentes;
+        docentes = await _memoryCache.GetAllCacheAsync<Docente>("Docentes");
         currentDocente = null;
         StateHasChanged();
 

@@ -1,8 +1,9 @@
-﻿using InstitutoServices.Models.Commons;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 
 namespace InstitutoServices.Models.MesasExamenes
 {
-    public class MesaExamen
+    public class MesaExamen: IEntityWithId
     {
         public int Id { get; set; }
         public DateTime Llamado1 { get; set; }

@@ -1,8 +1,9 @@
 ﻿using InstitutoServices.Enums;
+using InstitutoServices.Interfaces;
 
 namespace InstitutoServices.Models.Commons
 {
-    public class Usuario
+    public class Usuario : IEntityWithId
     {
         public int Id { get; set; }
         public string User { get; set; } = string.Empty;

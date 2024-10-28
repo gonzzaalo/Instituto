@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using InstitutoServices.Enums;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 
 namespace InstitutoServices.Models.MesasExamenes
 {
-    public class DetalleMesaExamen
+    public class DetalleMesaExamen : IEntityWithId
     {
         public int Id { get; set; }
         public int MesaExamenId { get; set; }

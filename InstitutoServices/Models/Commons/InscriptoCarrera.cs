@@ -1,6 +1,8 @@
-﻿namespace InstitutoServices.Models.Commons
+﻿using InstitutoServices.Interfaces;
+
+namespace InstitutoServices.Models.Commons
 {
-    public class InscriptoCarrera
+    public class InscriptoCarrera : IEntityWithId
     {
         public int Id { get; set; }
         public int? AlumnoId { get; set; }

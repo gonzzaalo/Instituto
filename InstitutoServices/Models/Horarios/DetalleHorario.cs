@@ -1,9 +1,10 @@
 ﻿using InstitutoServices.Enums;
+using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 
 namespace InstitutoServices.Models.Horarios
 {
-    public class DetalleHorario
+    public class DetalleHorario : IEntityWithId
     {
         public int Id { get; set; }
         public int? HorarioId { get; set; }

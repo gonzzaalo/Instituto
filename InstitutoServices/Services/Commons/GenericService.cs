@@ -44,7 +44,7 @@ namespace InstitutoServices.Services.Commons
             {
                 throw new ApplicationException(content?.ToString());
             }
-            return JsonSerializer.Deserialize<List<T>>(content, options); ;
+            return JsonSerializer.Deserialize<List<T>>(content, options); 
         }
 
         public async Task<T?> GetByIdAsync(int id)
@@ -69,7 +69,7 @@ namespace InstitutoServices.Services.Commons
             return JsonSerializer.Deserialize<T>(content, options);
         }  
         
-        public async Task UpdateAsync(T? entity)
+        public async Task<bool> UpdateAsync(T? entity)
         {
             var idValue = entity.GetType().GetProperty("Id").GetValue(entity);
 
@@ -78,15 +78,17 @@ namespace InstitutoServices.Services.Commons
             {
                 throw new ApplicationException(response?.ToString());
             }
+            return response.IsSuccessStatusCode;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var response=await client.DeleteAsync($"{_endpoint}/{id}");
             if(!response.IsSuccessStatusCode)
             {
                 throw new ApplicationException(response.ToString());
             }
+            return response.IsSuccessStatusCode;
         }
     }
 
