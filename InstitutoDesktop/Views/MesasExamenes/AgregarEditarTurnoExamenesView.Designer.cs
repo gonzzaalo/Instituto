@@ -98,14 +98,8 @@
             // chkActual
             // 
 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(421, 344);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(73, 24);
-            checkBox1.TabIndex = 17;
-            checkBox1.Text = "Actual";
-            checkBox1.UseVisualStyleBackColor = true;
-=======
+
+
             chkActual.AutoSize = true;
             chkActual.Location = new Point(535, 245);
             chkActual.Name = "chkActual";
@@ -131,7 +125,7 @@
             cbmBoxCicloLectivo.Name = "cbmBoxCicloLectivo";
             cbmBoxCicloLectivo.Size = new Size(257, 28);
             cbmBoxCicloLectivo.TabIndex = 19;
-            cbmBoxCicloLectivo.SelectedIndexChanged += cbmBoxCicloLectivo_SelectedIndexChanged;
+            //cbmBoxCicloLectivo.SelectedIndexChanged += cbmBoxCicloLectivo_SelectedIndexChanged;
             // 
             // label2
             // 

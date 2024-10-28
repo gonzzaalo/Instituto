@@ -47,11 +47,8 @@
             btnAgregar = new FontAwesome.Sharp.IconButton();
             dataGridHorarios = new DataGridView();
             tabPageAgregarEditar = new TabPage();
-<<<<<<< HEAD
+
             btnEditar = new FontAwesome.Sharp.IconButton();
-=======
-            BtnEditar = new FontAwesome.Sharp.IconButton();
->>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
             cboAulas = new ComboBox();
             label10 = new Label();
             btnQuitarHora = new FontAwesome.Sharp.IconButton();
@@ -323,11 +320,9 @@
             // 
             // tabPageAgregarEditar
             // 
-<<<<<<< HEAD
+
             tabPageAgregarEditar.Controls.Add(btnEditar);
-=======
-            tabPageAgregarEditar.Controls.Add(BtnEditar);
->>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
+
             tabPageAgregarEditar.Controls.Add(cboAulas);
             tabPageAgregarEditar.Controls.Add(label10);
             tabPageAgregarEditar.Controls.Add(btnQuitarHora);
@@ -355,7 +350,6 @@
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
             // 
-<<<<<<< HEAD
             // btnEditar
             // 
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -372,24 +366,7 @@
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
             btnEditar.UseVisualStyleBackColor = true;
             btnEditar.Click += btnEditar_Click;
-=======
-            // BtnEditar
-            // 
-            BtnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BtnEditar.IconChar = FontAwesome.Sharp.IconChar.Pencil;
-            BtnEditar.IconColor = Color.Black;
-            BtnEditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            BtnEditar.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnEditar.Location = new Point(1031, 477);
-            BtnEditar.Margin = new Padding(2);
-            BtnEditar.Name = "BtnEditar";
-            BtnEditar.Size = new Size(141, 58);
-            BtnEditar.TabIndex = 19;
-            BtnEditar.Text = "Editar";
-            BtnEditar.TextAlign = ContentAlignment.MiddleRight;
-            BtnEditar.UseVisualStyleBackColor = true;
-            BtnEditar.Click += iconButton1_Click;
->>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
+
             // 
             // cboAulas
             // 
@@ -417,17 +394,12 @@
             btnQuitarHora.IconColor = Color.Black;
             btnQuitarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnQuitarHora.ImageAlign = ContentAlignment.MiddleLeft;
-<<<<<<< HEAD
-            btnQuitarHora.Location = new Point(824, 479);
-            btnQuitarHora.Margin = new Padding(2);
-            btnQuitarHora.Name = "btnQuitarHora";
-            btnQuitarHora.Size = new Size(119, 46);
-=======
+
             btnQuitarHora.Location = new Point(1031, 548);
             btnQuitarHora.Margin = new Padding(2);
             btnQuitarHora.Name = "btnQuitarHora";
             btnQuitarHora.Size = new Size(141, 58);
->>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
+
             btnQuitarHora.TabIndex = 16;
             btnQuitarHora.Text = "Quitar";
             btnQuitarHora.TextAlign = ContentAlignment.MiddleRight;
@@ -688,11 +660,8 @@
         private FontAwesome.Sharp.IconButton btnQuitarDocente;
         private ComboBox cboAulas;
         private Label label10;
-<<<<<<< HEAD
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton btnEditar;
-=======
-        private FontAwesome.Sharp.IconButton BtnEditar;
->>>>>>> 5a0d9051b4859f0ec7a4f4d5965afa15721bcb4b
+
     }
 }
