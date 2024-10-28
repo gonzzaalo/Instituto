@@ -5,6 +5,8 @@
 @inject IInscriptoCarreraService inscriptoCarreraService
 @inject ILogger<NavMenu> logger
 @inject IUsuarioStateService usuarioStateService
+@inject IMemoryCacheService _memoryCache
+
 
 
 <div class="top-row ps-3 navbar navbar-dark">
@@ -29,40 +31,24 @@
         @if (usuarioStateService.Usuario != null)
         {
             <div class="nav-item px-3">
+                <NavLink class="nav-link" href="inscripcionmesasexamenes">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Inscripción mesas de exámenes
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
                 <NavLink class="nav-link" href="turnosexamenes">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Turnos exámenes
                 </NavLink>
             </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="cicloslectivos">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Ciclos lectivos
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="horas">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Horas
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="docentes">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Docentes
-                </NavLink>
-            </div>
+
+
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="alumnos">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Alumnos
                 </NavLink>
             </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="carreras">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Carreras
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="aulas">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Aulas
-                </NavLink>
-            </div>
+
+
 
 
 
@@ -77,23 +63,13 @@
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Mesas de exámenes
             </NavLink>
         </div>
-        @if (usuarioStateService.Usuario?.TipoUsuario == TipoUsuarioEnum.Alumno)
-        {
-            var idcarrera=inscripcionesACarreras?.FirstOrDefault()?.CarreraId;
-            <div class="nav-item px-3">
-                <a class="nav-link" href="horarios?IdCicloLectivo=1&IdCarrera=@idcarrera">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Horarios
-                </a>
-            </div>
-        }
-        else
-        {
+
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="horarios">
                     <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Horarios
                 </NavLink>
             </div>
-        }
+     
 
         <div class="nav-item px-3">
             @if (usuarioStateService.Usuario != null)
@@ -141,9 +117,36 @@
             await AuthService.GetUserAuthenticated();
         }
         usuarioStateService.OnChange += ChequeoEstadoLogin;
+        GetCacheData();
+    }
+    private void GetCacheData()
+    {
+        Task.WhenAll(new List<Task>
+            {
+                Task.Run(async () => _memoryCache.GetAllCacheAsync<Alumno>("Alumnos")),
+                Task.Run(async () => _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Aula>("Aulas")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Carrera>("Carreras")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Docente>("Docentes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Hora>("Horas")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Horario>("Horarios")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleHorario>("DetallesHorarios")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<IntegranteHorario>("IntegrantesHorarios")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<JefaturaSeccion>("JefaturasSecciones")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Materia>("Materias")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<Inscripcion>("Inscripciones")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleInscripcion>("DetallesInscripciones")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<MesaExamen>("MesasExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleMesaExamen>("DetallesMesasExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<InscripcionExamen>("InscripcionesExamenes")),
+                Task.Run(async () =>_memoryCache.GetAllCacheAsync<DetalleInscripcionExamen>("DetallesInscripcionesExamenes")),
+
+            });
+
 
     }
-
     public void Dispose()
     {
         usuarioStateService.OnChange -= ChequeoEstadoLogin;

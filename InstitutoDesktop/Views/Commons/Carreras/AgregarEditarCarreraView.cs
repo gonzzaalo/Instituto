@@ -12,26 +12,31 @@ using System.Windows.Forms;
 using InstitutoServices.Models;
 using InstitutoServices.Services.Commons;
 using InstitutoServices.Models.Commons;
+using InstitutoDesktop.Util;
+using InstitutoDesktop.Services;
 
 namespace InstitutoDesktop.Views.Commons
 {
     public partial class AgregarEditarCarreraView : Form
     {
-        IGenericService<Carrera> carreraService = new GenericService<Carrera>();
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+
         private Carrera carrera;
 
         //nuevo
-        public AgregarEditarCarreraView()
+        public AgregarEditarCarreraView(MemoryCacheServiceWinForms memoryCache)
         {
             InitializeComponent();
             carrera=new Carrera();
+            _memoryCache = memoryCache;
         }
 
         //editar
-        public AgregarEditarCarreraView(Carrera carrera)
+        public AgregarEditarCarreraView(MemoryCacheServiceWinForms memoryCache,Carrera carrera)
         {
             InitializeComponent();
             this.carrera = carrera;
+            _memoryCache = memoryCache;
             CargarDatosCarreraAEditar();
         }
 
@@ -48,11 +53,11 @@ namespace InstitutoDesktop.Views.Commons
             
             if (carrera.Id == 0)
             {
-                await carreraService.AddAsync(carrera);
+                await _memoryCache.AddCacheAsync<Carrera>(carrera, "Carreras");
             }
             else
             {
-                await carreraService.UpdateAsync(carrera);
+                await _memoryCache.UpdateCacheAsync<Carrera>(carrera, "Carreras");
             }
             this.Close();
         }

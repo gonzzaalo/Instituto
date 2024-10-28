@@ -1,8 +1,9 @@
-﻿using InstitutoServices.Models.Commons;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 
 namespace InstitutoServices.Models.Horarios
 {
-    public class IntegranteHorario
+    public class IntegranteHorario : IEntityWithId
     {
         public int Id { get; set; }
         public int? HorarioId { get; set; }

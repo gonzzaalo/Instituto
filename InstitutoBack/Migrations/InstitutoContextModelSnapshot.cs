@@ -1048,9 +1048,15 @@ namespace InstitutoBack.Migrations
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<bool>("EsRecreo")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("TipoMateria")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1064,2037 +1070,2619 @@ namespace InstitutoBack.Migrations
                             Id = 1,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Pedagogía"
+                            EsRecreo = false,
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 2,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "UCCV Sociología"
+                            EsRecreo = false,
+                            Nombre = "UCCV Sociología",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 3,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Administración General"
+                            EsRecreo = false,
+                            Nombre = "Administración General",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 4,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Economía I"
+                            EsRecreo = false,
+                            Nombre = "Economía I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 5,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Geografía Económica"
+                            EsRecreo = false,
+                            Nombre = "Geografía Económica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 6,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Historia Económica"
+                            EsRecreo = false,
+                            Nombre = "Historia Económica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 7,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Construcción de Ciudadanía"
+                            EsRecreo = false,
+                            Nombre = "Construcción de Ciudadanía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 8,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Sistema de Información Contable I"
+                            EsRecreo = false,
+                            Nombre = "Sistema de Información Contable I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 9,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Matemática"
+                            EsRecreo = false,
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 10,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Práctica Docente I"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 11,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Instituciones Educativas"
+                            EsRecreo = false,
+                            Nombre = "Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 12,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Didáctica y Curriculum"
+                            EsRecreo = false,
+                            Nombre = "Didáctica y Curriculum",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 13,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Psicología y Educación"
+                            EsRecreo = false,
+                            Nombre = "Psicología y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 14,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Economía II"
+                            EsRecreo = false,
+                            Nombre = "Economía II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 15,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Sistema de Información Contable II"
+                            EsRecreo = false,
+                            Nombre = "Sistema de Información Contable II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 16,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Derecho I"
+                            EsRecreo = false,
+                            Nombre = "Derecho I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 17,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Estadística Aplicada"
+                            EsRecreo = false,
+                            Nombre = "Estadística Aplicada",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 18,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Didáctica de la Economía I"
+                            EsRecreo = false,
+                            Nombre = "Didáctica de la Economía I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 19,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Práctica Docente II"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 20,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Historia y Política de la Educación Argentina"
+                            EsRecreo = false,
+                            Nombre = "Historia y Política de la Educación Argentina",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 21,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Filosofía"
+                            EsRecreo = false,
+                            Nombre = "Filosofía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 22,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Metodología de la Investigación"
+                            EsRecreo = false,
+                            Nombre = "Metodología de la Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 23,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Economía III"
+                            EsRecreo = false,
+                            Nombre = "Economía III",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 24,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Finanzas Públicas"
+                            EsRecreo = false,
+                            Nombre = "Finanzas Públicas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 25,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Derecho II"
+                            EsRecreo = false,
+                            Nombre = "Derecho II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 26,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Sujetos de la Educación Secundaria"
+                            EsRecreo = false,
+                            Nombre = "Sujetos de la Educación Secundaria",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 27,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Práctica Docente III"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente III",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 28,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Producción de los Recursos Didácticos I"
+                            EsRecreo = false,
+                            Nombre = "Producción de los Recursos Didácticos I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 29,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Ética y Trabajo Docente"
+                            EsRecreo = false,
+                            Nombre = "Ética y Trabajo Docente",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 30,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Educación Sexual Integral"
+                            EsRecreo = false,
+                            Nombre = "Educación Sexual Integral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 31,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "UCCV Comunicación Social"
+                            EsRecreo = false,
+                            Nombre = "UCCV Comunicación Social",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 32,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Economía Social y Sostenible"
+                            EsRecreo = false,
+                            Nombre = "Economía Social y Sostenible",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 33,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Economía Argentina Latinoamericana e Internacional"
+                            EsRecreo = false,
+                            Nombre = "Economía Argentina Latinoamericana e Internacional",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 34,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Prácticas de Investigación"
+                            EsRecreo = false,
+                            Nombre = "Prácticas de Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 35,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Práctica Docente IV (Residencia)"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente IV (Residencia)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 36,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Producción de los Recursos Didácticos II"
+                            EsRecreo = false,
+                            Nombre = "Producción de los Recursos Didácticos II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 37,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Unidad de Definición Institucional"
+                            EsRecreo = false,
+                            Nombre = "Unidad de Definición Institucional",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 38,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Pedagogía"
+                            EsRecreo = false,
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 39,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Movimiento y Cuerpo"
+                            EsRecreo = false,
+                            Nombre = "Movimiento y Cuerpo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 40,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Práctica Docente I: Escenarios Educativos"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente I: Escenarios Educativos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 41,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Introducción a la Tecnología"
+                            EsRecreo = false,
+                            Nombre = "Introducción a la Tecnología",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 42,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Historia de la Tecnología"
+                            EsRecreo = false,
+                            Nombre = "Historia de la Tecnología",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 43,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Diseño y Producción de la Tecnología I"
+                            EsRecreo = false,
+                            Nombre = "Diseño y Producción de la Tecnología I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 44,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Matemática"
+                            EsRecreo = false,
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 45,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Física"
+                            EsRecreo = false,
+                            Nombre = "Física",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 46,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Psicología de la Educación"
+                            EsRecreo = false,
+                            Nombre = "Psicología de la Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 47,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Didáctica y Curriculum"
+                            EsRecreo = false,
+                            Nombre = "Didáctica y Curriculum",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 48,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Instituciones Educativas"
+                            EsRecreo = false,
+                            Nombre = "Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 49,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Práctica Docente II: La Institución Escolar"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente II: La Institución Escolar",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 50,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Sujetos de la Educación I"
+                            EsRecreo = false,
+                            Nombre = "Sujetos de la Educación I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 51,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Tics para la Enseñanza"
+                            EsRecreo = false,
+                            Nombre = "Tics para la Enseñanza",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 52,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Procesos Productivos"
+                            EsRecreo = false,
+                            Nombre = "Procesos Productivos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 53,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Diseño y Producción Tecnológica II"
+                            EsRecreo = false,
+                            Nombre = "Diseño y Producción Tecnológica II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 54,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Didáctica Específica I"
+                            EsRecreo = false,
+                            Nombre = "Didáctica Específica I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 55,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Filosofía y Educación"
+                            EsRecreo = false,
+                            Nombre = "Filosofía y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 56,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Historia Social de la Educación"
+                            EsRecreo = false,
+                            Nombre = "Historia Social de la Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 57,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Metodología de la Investigación"
+                            EsRecreo = false,
+                            Nombre = "Metodología de la Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 58,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Práctica Docente III: La Clase"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente III: La Clase",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 59,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Sujetos de la Educación II"
+                            EsRecreo = false,
+                            Nombre = "Sujetos de la Educación II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 60,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Materiales"
+                            EsRecreo = false,
+                            Nombre = "Materiales",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 61,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Química"
+                            EsRecreo = false,
+                            Nombre = "Química",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 62,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Procesos de Control"
+                            EsRecreo = false,
+                            Nombre = "Procesos de Control",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 63,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Tecnologías Regionales"
+                            EsRecreo = false,
+                            Nombre = "Tecnologías Regionales",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 64,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Diseño y Producción Tecnológica III"
+                            EsRecreo = false,
+                            Nombre = "Diseño y Producción Tecnológica III",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 65,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Didáctica Específica II"
+                            EsRecreo = false,
+                            Nombre = "Didáctica Específica II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 66,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Ética y Trabajo Docente"
+                            EsRecreo = false,
+                            Nombre = "Ética y Trabajo Docente",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 67,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Educación Sexual Integral"
+                            EsRecreo = false,
+                            Nombre = "Educación Sexual Integral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 68,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Unidades de Definición Institucional I"
+                            EsRecreo = false,
+                            Nombre = "Unidades de Definición Institucional I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 69,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Unidades de Definición Institucional II"
+                            EsRecreo = false,
+                            Nombre = "Unidades de Definición Institucional II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 70,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Prácticas de Investigación"
+                            EsRecreo = false,
+                            Nombre = "Prácticas de Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 71,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Práctica Docente IV: El Rol Docente y su Práctica"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente IV: El Rol Docente y su Práctica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 72,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Biotecnología"
+                            EsRecreo = false,
+                            Nombre = "Biotecnología",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 73,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Procesos de Comunicación"
+                            EsRecreo = false,
+                            Nombre = "Procesos de Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 74,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Problemáticas Sociotécnicas"
+                            EsRecreo = false,
+                            Nombre = "Problemáticas Sociotécnicas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 75,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Diseño y Producción Tecnológica IV"
+                            EsRecreo = false,
+                            Nombre = "Diseño y Producción Tecnológica IV",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 76,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Taller de Producción Didáctica"
+                            EsRecreo = false,
+                            Nombre = "Taller de Producción Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 77,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Comunicación (1° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Comunicación (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 78,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 79,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Matemática"
+                            EsRecreo = false,
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 80,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Inglés Técnico I"
+                            EsRecreo = false,
+                            Nombre = "Inglés Técnico I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 81,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Administración"
+                            EsRecreo = false,
+                            Nombre = "Administración",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 82,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Tecnología de la Información"
+                            EsRecreo = false,
+                            Nombre = "Tecnología de la Información",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 83,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Lógica y Estructura de Datos"
+                            EsRecreo = false,
+                            Nombre = "Lógica y Estructura de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 84,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Ingeniería de Software I"
+                            EsRecreo = false,
+                            Nombre = "Ingeniería de Software I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 85,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Sistemas Operativos"
+                            EsRecreo = false,
+                            Nombre = "Sistemas Operativos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 86,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 87,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 88,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Inglés Técnico II"
+                            EsRecreo = false,
+                            Nombre = "Inglés Técnico II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 89,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Innovación y Desarrollo Emprendedor"
+                            EsRecreo = false,
+                            Nombre = "Innovación y Desarrollo Emprendedor",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 90,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Estadística"
+                            EsRecreo = false,
+                            Nombre = "Estadística",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 91,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Programación I"
+                            EsRecreo = false,
+                            Nombre = "Programación I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 92,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Ingeniería de Software II"
+                            EsRecreo = false,
+                            Nombre = "Ingeniería de Software II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 93,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Base de Datos I"
+                            EsRecreo = false,
+                            Nombre = "Base de Datos I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 94,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 95,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            EsRecreo = false,
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 96,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Derecho y Legislación Laboral"
+                            EsRecreo = false,
+                            Nombre = "Derecho y Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 97,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Redes y Comunicación"
+                            EsRecreo = false,
+                            Nombre = "Redes y Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 98,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Programación II"
+                            EsRecreo = false,
+                            Nombre = "Programación II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 99,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Gestión de Proyectos de Software"
+                            EsRecreo = false,
+                            Nombre = "Gestión de Proyectos de Software",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 100,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Base de Datos II"
+                            EsRecreo = false,
+                            Nombre = "Base de Datos II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 101,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante II"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 102,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Comunicación"
+                            EsRecreo = false,
+                            Nombre = "Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 103,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Unidad de Definición Institucional I"
+                            EsRecreo = false,
+                            Nombre = "Unidad de Definición Institucional I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 104,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Salud Pública"
+                            EsRecreo = false,
+                            Nombre = "Salud Pública",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 105,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Biología Humana I"
+                            EsRecreo = false,
+                            Nombre = "Biología Humana I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 106,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Sujeto, Cultura y Sociedad"
+                            EsRecreo = false,
+                            Nombre = "Sujeto, Cultura y Sociedad",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 107,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Fundamentos del Cuidado en Enfermería"
+                            EsRecreo = false,
+                            Nombre = "Fundamentos del Cuidado en Enfermería",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 108,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Cuidados de Enfermería en la Comunidad y en la Familia"
+                            EsRecreo = false,
+                            Nombre = "Cuidados de Enfermería en la Comunidad y en la Familia",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 109,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 110,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Problemáticas Socio Contemporáneas"
+                            EsRecreo = false,
+                            Nombre = "Problemáticas Socio Contemporáneas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 111,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Unidad de Definición Institucional II"
+                            EsRecreo = false,
+                            Nombre = "Unidad de Definición Institucional II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 112,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Informática en Salud"
+                            EsRecreo = false,
+                            Nombre = "Informática en Salud",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 113,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Sujeto, Cultura y Sociedad II"
+                            EsRecreo = false,
+                            Nombre = "Sujeto, Cultura y Sociedad II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 114,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Biología Humana II"
+                            EsRecreo = false,
+                            Nombre = "Biología Humana II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 115,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Bioseguridad y Medio Ambiente en el Trabajo"
+                            EsRecreo = false,
+                            Nombre = "Bioseguridad y Medio Ambiente en el Trabajo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 116,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Farmacología en Enfermería"
+                            EsRecreo = false,
+                            Nombre = "Farmacología en Enfermería",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 117,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Cuidados de Enfermería a los Adultos y Adultos Mayores"
+                            EsRecreo = false,
+                            Nombre = "Cuidados de Enfermería a los Adultos y Adultos Mayores",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 118,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante II"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 119,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            EsRecreo = false,
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 120,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Derecho y Legislación Laboral"
+                            EsRecreo = false,
+                            Nombre = "Derecho y Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 121,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Inglés Técnico"
+                            EsRecreo = false,
+                            Nombre = "Inglés Técnico",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 122,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Organización y Gestión en Instituciones de Salud"
+                            EsRecreo = false,
+                            Nombre = "Organización y Gestión en Instituciones de Salud",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 123,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Investigación en Enfermería"
+                            EsRecreo = false,
+                            Nombre = "Investigación en Enfermería",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 124,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Cuidados de Enfermería en Salud Mental"
+                            EsRecreo = false,
+                            Nombre = "Cuidados de Enfermería en Salud Mental",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 125,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Cuidados de Enfermería al Niño y al Adolescente"
+                            EsRecreo = false,
+                            Nombre = "Cuidados de Enfermería al Niño y al Adolescente",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 126,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante III"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante III",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 127,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Comunicación (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Comunicación (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 128,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Unidad de Definición Institucional (2º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Unidad de Definición Institucional (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 129,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Economía"
+                            EsRecreo = false,
+                            Nombre = "Economía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 130,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Matemática y Estadística"
+                            EsRecreo = false,
+                            Nombre = "Matemática y Estadística",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 131,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Contabilidad"
+                            EsRecreo = false,
+                            Nombre = "Contabilidad",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 132,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Informática"
+                            EsRecreo = false,
+                            Nombre = "Informática",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 133,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Administración"
+                            EsRecreo = false,
+                            Nombre = "Administración",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 134,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Gestión de la Producción"
+                            EsRecreo = false,
+                            Nombre = "Gestión de la Producción",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 135,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Gestión del Talento Humano"
+                            EsRecreo = false,
+                            Nombre = "Gestión del Talento Humano",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 136,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Problemáticas Contemporáneas (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Problemáticas Contemporáneas (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 137,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Unidad de Definición Institucional (2º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Unidad de Definición Institucional (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 138,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Innovación y Desarrollo Emprendedor"
+                            EsRecreo = false,
+                            Nombre = "Innovación y Desarrollo Emprendedor",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 139,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Inglés Técnico"
+                            EsRecreo = false,
+                            Nombre = "Inglés Técnico",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 140,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Legislación Comercial y Tributaria"
+                            EsRecreo = false,
+                            Nombre = "Legislación Comercial y Tributaria",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 141,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Gestión de Comercialización e Investigación Comercial"
+                            EsRecreo = false,
+                            Nombre = "Gestión de Comercialización e Investigación Comercial",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 142,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Gestión de Costos"
+                            EsRecreo = false,
+                            Nombre = "Gestión de Costos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 143,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Gestión Contable"
+                            EsRecreo = false,
+                            Nombre = "Gestión Contable",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 144,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 145,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Gestión de Seguridad, Salud Ocupacional y Medio Ambiente"
+                            EsRecreo = false,
+                            Nombre = "Gestión de Seguridad, Salud Ocupacional y Medio Ambiente",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 146,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            EsRecreo = false,
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 147,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Legislación Laboral"
+                            EsRecreo = false,
+                            Nombre = "Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 148,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Estrategia Empresarial"
+                            EsRecreo = false,
+                            Nombre = "Estrategia Empresarial",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 149,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Sistema de Información para la Gestión de las Organizaciones"
+                            EsRecreo = false,
+                            Nombre = "Sistema de Información para la Gestión de las Organizaciones",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 150,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Gestión Financiera"
+                            EsRecreo = false,
+                            Nombre = "Gestión Financiera",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 151,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Evaluación y Administración de Proyectos de Inversión"
+                            EsRecreo = false,
+                            Nombre = "Evaluación y Administración de Proyectos de Inversión",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 152,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Control de Gestión"
+                            EsRecreo = false,
+                            Nombre = "Control de Gestión",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 153,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Prácticas Profesionalizantes II"
+                            EsRecreo = false,
+                            Nombre = "Prácticas Profesionalizantes II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 154,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Comunicación (1° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Comunicación (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 155,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 156,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Matemática"
+                            EsRecreo = false,
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 157,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Física Aplicada a las Tecnologías de la Información"
+                            EsRecreo = false,
+                            Nombre = "Física Aplicada a las Tecnologías de la Información",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 158,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Administración"
+                            EsRecreo = false,
+                            Nombre = "Administración",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 159,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Inglés Técnico"
+                            EsRecreo = false,
+                            Nombre = "Inglés Técnico",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 160,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Arquitectura de las Computadoras"
+                            EsRecreo = false,
+                            Nombre = "Arquitectura de las Computadoras",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 161,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Lógica y Programación"
+                            EsRecreo = false,
+                            Nombre = "Lógica y Programación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 162,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Infraestructura de Redes I"
+                            EsRecreo = false,
+                            Nombre = "Infraestructura de Redes I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 163,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Problemáticas Socio Contemporáneas (1° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 164,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Unidad de definición Institucional (2° cuat.)"
+                            EsRecreo = false,
+                            Nombre = "Unidad de definición Institucional (2° cuat.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 165,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Innovación y Desarrollo Emprendedor"
+                            EsRecreo = false,
+                            Nombre = "Innovación y Desarrollo Emprendedor",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 166,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Estadística"
+                            EsRecreo = false,
+                            Nombre = "Estadística",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 167,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Sistemas Operativos"
+                            EsRecreo = false,
+                            Nombre = "Sistemas Operativos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 168,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Algoritmos y Estructuras de Datos"
+                            EsRecreo = false,
+                            Nombre = "Algoritmos y Estructuras de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 169,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Base de Datos"
+                            EsRecreo = false,
+                            Nombre = "Base de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 170,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Infraestructura de Redes II"
+                            EsRecreo = false,
+                            Nombre = "Infraestructura de Redes II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 171,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante I"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 172,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Ética y Responsabilidad Social"
+                            EsRecreo = false,
+                            Nombre = "Ética y Responsabilidad Social",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 173,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Derecho y Legislación Laboral"
+                            EsRecreo = false,
+                            Nombre = "Derecho y Legislación Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 174,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Administración de Base de Datos"
+                            EsRecreo = false,
+                            Nombre = "Administración de Base de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 175,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Integridad y Migración de Datos"
+                            EsRecreo = false,
+                            Nombre = "Integridad y Migración de Datos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 176,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Seguridad de los Sistemas"
+                            EsRecreo = false,
+                            Nombre = "Seguridad de los Sistemas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 177,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Administración de Sistemas Operativos y Redes"
+                            EsRecreo = false,
+                            Nombre = "Administración de Sistemas Operativos y Redes",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 178,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Práctica Profesionalizante II"
+                            EsRecreo = false,
+                            Nombre = "Práctica Profesionalizante II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 179,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Psicología y Educación"
+                            EsRecreo = false,
+                            Nombre = "Psicología y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 180,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Pedagogía"
+                            EsRecreo = false,
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 181,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Sociología de la Educación"
+                            EsRecreo = false,
+                            Nombre = "Sociología de la Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 182,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Historia Argentina y Latinoamericana (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Historia Argentina y Latinoamericana (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 183,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Movimiento y Cuerpo I"
+                            EsRecreo = false,
+                            Nombre = "Movimiento y Cuerpo I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 184,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Taller de Práctica I"
+                            EsRecreo = false,
+                            Nombre = "Taller de Práctica I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 185,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial I"
+                            EsRecreo = false,
+                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 186,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Comunicación y Expresión Oral y Escrita"
+                            EsRecreo = false,
+                            Nombre = "Comunicación y Expresión Oral y Escrita",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 187,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Resolución de Problemas y Creatividad (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Resolución de Problemas y Creatividad (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 188,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Ambiente y Sociedad (2º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Ambiente y Sociedad (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 189,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Área Estético-Expresiva I"
+                            EsRecreo = false,
+                            Nombre = "Área Estético-Expresiva I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 190,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            EsRecreo = false,
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 191,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Producción Pedagógica"
+                            EsRecreo = false,
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 192,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Didáctica General"
+                            EsRecreo = false,
+                            Nombre = "Didáctica General",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 193,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Filosofía de la Educación (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Filosofía de la Educación (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 194,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Conocimiento y Educación (2º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Conocimiento y Educación (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 195,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Movimiento y Cuerpo II"
+                            EsRecreo = false,
+                            Nombre = "Movimiento y Cuerpo II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 196,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Taller de Práctica II: Seminario de lo Grupal y los Grupos de Aprendizaje"
+                            EsRecreo = false,
+                            Nombre = "Taller de Práctica II: Seminario de lo Grupal y los Grupos de Aprendizaje",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 197,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Sujeto de la Educación Inicial"
+                            EsRecreo = false,
+                            Nombre = "Sujeto de la Educación Inicial",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 198,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Didáctica de Educación Inicial I"
+                            EsRecreo = false,
+                            Nombre = "Didáctica de Educación Inicial I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 199,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Matemática y su Didáctica I"
+                            EsRecreo = false,
+                            Nombre = "Matemática y su Didáctica I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 200,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Literatura y su Didáctica"
+                            EsRecreo = false,
+                            Nombre = "Literatura y su Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 201,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Ciencias Naturales y su Didáctica"
+                            EsRecreo = false,
+                            Nombre = "Ciencias Naturales y su Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 202,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            EsRecreo = false,
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 203,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Producción Pedagógica"
+                            EsRecreo = false,
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 204,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Tecnologías de la Información y de la Comunicación"
+                            EsRecreo = false,
+                            Nombre = "Tecnologías de la Información y de la Comunicación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 205,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Historia Social de la Educación y Política Educativa Argentina"
+                            EsRecreo = false,
+                            Nombre = "Historia Social de la Educación y Política Educativa Argentina",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 206,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Trayecto de Práctica III: Seminario de Instituciones Educativas"
+                            EsRecreo = false,
+                            Nombre = "Trayecto de Práctica III: Seminario de Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 207,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Matemática y su Didáctica II"
+                            EsRecreo = false,
+                            Nombre = "Matemática y su Didáctica II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 208,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Lengua y su Didáctica (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Lengua y su Didáctica (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 209,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Alfabetización Inicial (2º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Alfabetización Inicial (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 210,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Ciencias Sociales y su Didáctica"
+                            EsRecreo = false,
+                            Nombre = "Ciencias Sociales y su Didáctica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 211,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Área Estético-Expresiva II"
+                            EsRecreo = false,
+                            Nombre = "Área Estético-Expresiva II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 212,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial II (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Problemáticas Contemporáneas de la Educación Inicial II (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 213,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Didáctica de la Educación Inicial II (2º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Didáctica de la Educación Inicial II (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 214,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Espacios de Definición Institucional (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Espacios de Definición Institucional (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 215,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Espacios de Definición Institucional (2º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Espacios de Definición Institucional (2º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 216,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            EsRecreo = false,
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 217,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Producción Pedagógica"
+                            EsRecreo = false,
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 218,
                             AnioCarreraId = 20,
                             Eliminado = false,
-                            Nombre = "Ética, Trabajo Docente, Derechos Humanos y Ciudadanos"
+                            EsRecreo = false,
+                            Nombre = "Ética, Trabajo Docente, Derechos Humanos y Ciudadanos",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 219,
                             AnioCarreraId = 20,
                             Eliminado = false,
-                            Nombre = "Taller de Práctica IV"
+                            EsRecreo = false,
+                            Nombre = "Taller de Práctica IV",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 220,
                             AnioCarreraId = 20,
                             Eliminado = false,
-                            Nombre = "Ateneo: (Matemática- Ambiente y Sociedad (Ciencias Naturales- Ciencias Sociales) Lengua y Literatura- Formación Ética y Ciudadana)"
+                            EsRecreo = false,
+                            Nombre = "Ateneo: (Matemática- Ambiente y Sociedad (Ciencias Naturales- Ciencias Sociales) Lengua y Literatura- Formación Ética y Ciudadana)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 221,
                             AnioCarreraId = 20,
                             Eliminado = false,
-                            Nombre = "Sexualidad Humana y Educación (1º cuatr.)"
+                            EsRecreo = false,
+                            Nombre = "Sexualidad Humana y Educación (1º cuatr.)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 222,
                             AnioCarreraId = 20,
                             Eliminado = false,
-                            Nombre = "Itinerarios por el Mundo de la Cultura"
+                            EsRecreo = false,
+                            Nombre = "Itinerarios por el Mundo de la Cultura",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 223,
                             AnioCarreraId = 20,
                             Eliminado = false,
-                            Nombre = "Producción Pedagógica"
+                            EsRecreo = false,
+                            Nombre = "Producción Pedagógica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 224,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Pedagogía"
+                            EsRecreo = false,
+                            Nombre = "Pedagogía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 225,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "UCCV Sociología"
+                            EsRecreo = false,
+                            Nombre = "UCCV Sociología",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 226,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Administración General"
+                            EsRecreo = false,
+                            Nombre = "Administración General",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 227,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Administración I"
+                            EsRecreo = false,
+                            Nombre = "Administración I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 228,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Sistema de Información Contable I"
+                            EsRecreo = false,
+                            Nombre = "Sistema de Información Contable I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 229,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Construcción de Ciudadanía"
+                            EsRecreo = false,
+                            Nombre = "Construcción de Ciudadanía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 230,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Historia Económica"
+                            EsRecreo = false,
+                            Nombre = "Historia Económica",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 231,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Matemática"
+                            EsRecreo = false,
+                            Nombre = "Matemática",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 232,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Práctica Docente I"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 233,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Instituciones Educativas"
+                            EsRecreo = false,
+                            Nombre = "Instituciones Educativas",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 234,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Didáctica y Curriculum"
+                            EsRecreo = false,
+                            Nombre = "Didáctica y Curriculum",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 235,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Psicología y Educación"
+                            EsRecreo = false,
+                            Nombre = "Psicología y Educación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 236,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Administración II"
+                            EsRecreo = false,
+                            Nombre = "Administración II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 237,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Sistema de Información Contable II"
+                            EsRecreo = false,
+                            Nombre = "Sistema de Información Contable II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 238,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Derecho I"
+                            EsRecreo = false,
+                            Nombre = "Derecho I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 239,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Economía"
+                            EsRecreo = false,
+                            Nombre = "Economía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 240,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Estadística Aplicada"
+                            EsRecreo = false,
+                            Nombre = "Estadística Aplicada",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 241,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Didáctica de la Administración I"
+                            EsRecreo = false,
+                            Nombre = "Didáctica de la Administración I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 242,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Práctica Docencia II"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docencia II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 243,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Historia y Política de la Educación Argentina"
+                            EsRecreo = false,
+                            Nombre = "Historia y Política de la Educación Argentina",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 244,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Filosofía"
+                            EsRecreo = false,
+                            Nombre = "Filosofía",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 245,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Metodología de la Investigación"
+                            EsRecreo = false,
+                            Nombre = "Metodología de la Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 246,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Administración III"
+                            EsRecreo = false,
+                            Nombre = "Administración III",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 247,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Sistema de Información Contable III"
+                            EsRecreo = false,
+                            Nombre = "Sistema de Información Contable III",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 248,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Práctica Impositiva y Laboral"
+                            EsRecreo = false,
+                            Nombre = "Práctica Impositiva y Laboral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 249,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Derecho II"
+                            EsRecreo = false,
+                            Nombre = "Derecho II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 250,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Didáctica de la Administración II"
+                            EsRecreo = false,
+                            Nombre = "Didáctica de la Administración II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 251,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Sujetos de la Educación Secundaria"
+                            EsRecreo = false,
+                            Nombre = "Sujetos de la Educación Secundaria",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 252,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Práctica Docente III"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente III",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 253,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Producción de los Recursos Didácticos I"
+                            EsRecreo = false,
+                            Nombre = "Producción de los Recursos Didácticos I",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 254,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Ética y Trabajo Docente"
+                            EsRecreo = false,
+                            Nombre = "Ética y Trabajo Docente",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 255,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Educación Sexual Integral"
+                            EsRecreo = false,
+                            Nombre = "Educación Sexual Integral",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 256,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "UCCV Comunicación Social"
+                            EsRecreo = false,
+                            Nombre = "UCCV Comunicación Social",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 257,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Administración IV"
+                            EsRecreo = false,
+                            Nombre = "Administración IV",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 258,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Gestión Organizacional"
+                            EsRecreo = false,
+                            Nombre = "Gestión Organizacional",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 259,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Matemática Financiera"
+                            EsRecreo = false,
+                            Nombre = "Matemática Financiera",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 260,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Prácticas de Investigación"
+                            EsRecreo = false,
+                            Nombre = "Prácticas de Investigación",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 261,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Práctica Docente IV (Residencia)"
+                            EsRecreo = false,
+                            Nombre = "Práctica Docente IV (Residencia)",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 262,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Producción de los Recursos Didácticos II"
+                            EsRecreo = false,
+                            Nombre = "Producción de los Recursos Didácticos II",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 263,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Unidad de Definición Institucional"
+                            EsRecreo = false,
+                            Nombre = "Unidad de Definición Institucional",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 264,
                             AnioCarreraId = 1,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 265,
                             AnioCarreraId = 2,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 266,
                             AnioCarreraId = 3,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 267,
                             AnioCarreraId = 4,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 268,
                             AnioCarreraId = 5,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 269,
                             AnioCarreraId = 6,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 270,
                             AnioCarreraId = 7,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 271,
                             AnioCarreraId = 8,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 272,
                             AnioCarreraId = 9,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 273,
                             AnioCarreraId = 10,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 274,
                             AnioCarreraId = 11,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 275,
                             AnioCarreraId = 12,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 276,
                             AnioCarreraId = 13,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 277,
                             AnioCarreraId = 14,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 278,
                             AnioCarreraId = 15,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 279,
                             AnioCarreraId = 16,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 280,
                             AnioCarreraId = 17,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 281,
                             AnioCarreraId = 18,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 282,
                             AnioCarreraId = 19,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 283,
                             AnioCarreraId = 20,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 284,
                             AnioCarreraId = 21,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 285,
                             AnioCarreraId = 22,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 286,
                             AnioCarreraId = 23,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 287,
                             AnioCarreraId = 24,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 288,
                             AnioCarreraId = 25,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 289,
                             AnioCarreraId = 26,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 290,
                             AnioCarreraId = 27,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         },
                         new
                         {
                             Id = 291,
                             AnioCarreraId = 28,
                             Eliminado = false,
-                            Nombre = "Recreo"
+                            EsRecreo = false,
+                            Nombre = "Recreo",
+                            TipoMateria = 0
                         });
                 });
 
@@ -3199,9 +3787,6 @@ namespace InstitutoBack.Migrations
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("EsRecreo")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<DateTime>("Hasta")
                         .HasColumnType("datetime(6)");
 
@@ -3263,6 +3848,44 @@ namespace InstitutoBack.Migrations
                     b.HasIndex("HorarioId");
 
                     b.ToTable("integranteshorarios");
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Horarios.PeriodoHorario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Actual")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("CicloLectivoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CicloLectivoId");
+
+                    b.ToTable("periodoshorarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Actual = true,
+                            CicloLectivoId = 1,
+                            Eliminado = false,
+                            Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre"
+                        });
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Inscripciones.CicloLectivo", b =>
@@ -3350,14 +3973,14 @@ namespace InstitutoBack.Migrations
                     b.Property<int>("CarreraId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CicloLectivoId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Eliminado")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("PeriodoInscripcionId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -3365,7 +3988,7 @@ namespace InstitutoBack.Migrations
 
                     b.HasIndex("CarreraId");
 
-                    b.HasIndex("CicloLectivoId");
+                    b.HasIndex("PeriodoInscripcionId");
 
                     b.ToTable("inscripciones");
 
@@ -3375,13 +3998,60 @@ namespace InstitutoBack.Migrations
                             Id = 1,
                             AlumnoId = 1,
                             CarreraId = 1,
+                            Eliminado = false,
+                            Fecha = new DateTime(2024, 10, 28, 2, 1, 46, 710, DateTimeKind.Local).AddTicks(4632),
+                            PeriodoInscripcionId = 1
+                        });
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CicloLectivoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("InscripcionHabilitada")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("SoloMaterias2doCuatrimestre")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CicloLectivoId");
+
+                    b.ToTable("periodosinscripciones");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
                             CicloLectivoId = 1,
                             Eliminado = false,
-
-
-                            Fecha = new DateTime(2024, 10, 21, 14, 59, 35, 807, DateTimeKind.Local).AddTicks(4700)
-
-
+                            InscripcionHabilitada = true,
+                            Nombre = "Ciclo lectivo 2024 - Inicio año",
+                            SoloMaterias2doCuatrimestre = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CicloLectivoId = 1,
+                            Eliminado = false,
+                            InscripcionHabilitada = true,
+                            Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre",
+                            SoloMaterias2doCuatrimestre = true
                         });
                 });
 
@@ -9321,7 +9991,13 @@ namespace InstitutoBack.Migrations
                     b.Property<bool>("Actual")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<int?>("CicloLectivoId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Eliminado")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("InscripcionHabilitada")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Nombre")
@@ -9329,6 +10005,8 @@ namespace InstitutoBack.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CicloLectivoId");
 
                     b.ToTable("turnosexamenes");
 
@@ -9338,6 +10016,7 @@ namespace InstitutoBack.Migrations
                             Id = 1,
                             Actual = false,
                             Eliminado = false,
+                            InscripcionHabilitada = false,
                             Nombre = "Julio/Agosto 2024"
                         });
                 });
@@ -9356,7 +10035,7 @@ namespace InstitutoBack.Migrations
             modelBuilder.Entity("InstitutoServices.Models.Commons.InscriptoCarrera", b =>
                 {
                     b.HasOne("InstitutoServices.Models.Commons.Alumno", "Alumno")
-                        .WithMany()
+                        .WithMany("InscripcionesACarreras")
                         .HasForeignKey("AlumnoId");
 
                     b.HasOne("InstitutoServices.Models.Commons.Carrera", "Carrera")
@@ -9411,7 +10090,7 @@ namespace InstitutoBack.Migrations
 
             modelBuilder.Entity("InstitutoServices.Models.Horarios.DetalleHorario", b =>
                 {
-                    b.HasOne("InstitutoServices.Models.Commons.Aula", "aula")
+                    b.HasOne("InstitutoServices.Models.Commons.Aula", "Aula")
                         .WithMany()
                         .HasForeignKey("AulaId");
 
@@ -9423,11 +10102,11 @@ namespace InstitutoBack.Migrations
                         .WithMany("DetallesHorario")
                         .HasForeignKey("HorarioId");
 
+                    b.Navigation("Aula");
+
                     b.Navigation("Hora");
 
                     b.Navigation("Horario");
-
-                    b.Navigation("aula");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Horarios.Horario", b =>
@@ -9458,6 +10137,15 @@ namespace InstitutoBack.Migrations
                     b.Navigation("Docente");
 
                     b.Navigation("Horario");
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Horarios.PeriodoHorario", b =>
+                {
+                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                        .WithMany()
+                        .HasForeignKey("CicloLectivoId");
+
+                    b.Navigation("CicloLectivo");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Inscripciones.DetalleInscripcion", b =>
@@ -9493,15 +10181,22 @@ namespace InstitutoBack.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                    b.HasOne("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", "PeriodoInscripcion")
                         .WithMany()
-                        .HasForeignKey("CicloLectivoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PeriodoInscripcionId");
 
                     b.Navigation("Alumno");
 
                     b.Navigation("Carrera");
+
+                    b.Navigation("PeriodoInscripcion");
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Inscripciones.PeriodoInscripcion", b =>
+                {
+                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                        .WithMany()
+                        .HasForeignKey("CicloLectivoId");
 
                     b.Navigation("CicloLectivo");
                 });
@@ -9588,6 +10283,20 @@ namespace InstitutoBack.Migrations
                     b.Navigation("Materia");
 
                     b.Navigation("TurnoExamen");
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.MesasExamenes.TurnoExamen", b =>
+                {
+                    b.HasOne("InstitutoServices.Models.Inscripciones.CicloLectivo", "CicloLectivo")
+                        .WithMany()
+                        .HasForeignKey("CicloLectivoId");
+
+                    b.Navigation("CicloLectivo");
+                });
+
+            modelBuilder.Entity("InstitutoServices.Models.Commons.Alumno", b =>
+                {
+                    b.Navigation("InscripcionesACarreras");
                 });
 
             modelBuilder.Entity("InstitutoServices.Models.Horarios.Horario", b =>

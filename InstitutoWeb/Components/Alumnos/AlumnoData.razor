@@ -1,6 +1,10 @@
 @inject IInscriptoCarreraService inscriptoCarreraService
 @inject IGenericService<Carrera> carreraService
 @inject ILogger<AlumnoData> logger
+@inject NavigationManager NavigationManager
+@inject SweetAlertService SweetAlert
+@inject IMemoryCacheService _memoryCache
+
 
 <div>
     <h4>Datos del Alumno</h4>
@@ -8,7 +12,7 @@
     <p>Dirección: @alumno.Direccion</p>
     <p>Teléfono: @alumno.Telefono</p>
 </div>
-
+<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
 <button class="btn btn-primary" @onclick="()=>HandleInscribirseACarrera()">Seleccionar @tituloTableCarrera</button>
 @if (inscripcionesACarreras==null||inscripcionesACarreras.Count==0)
 {
@@ -36,25 +40,25 @@ else
 
 
 @code {
-    [Parameter]
-    public Alumno alumno { get; set; }
-    public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
-    bool seleccionarCarreras { get; set; }=false;
-    List<Carrera> carreras { get; set; }
-    string tituloTableCarrera => inscripcionesACarreras?.Count > 1 ? "Carreras" : "Carrera";
+        [Parameter]
+        public Alumno? alumno { get; set; }
+        public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
+        bool seleccionarCarreras { get; set; }=false;
+        List<Carrera>? carreras { get; set; }
+        string tituloTableCarrera => inscripcionesACarreras?.Count > 1 ? "Carreras" : "Carrera";
 
 
     protected override async Task OnInitializedAsync()
     {
-        carreras = await carreraService.GetAllAsync();
-        inscripcionesACarreras = await inscriptoCarreraService.GetByAlumno(alumno.Id);
-        logger.LogInformation(inscripcionesACarreras.Count().ToString());
+        carreras = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras");
+        inscripcionesACarreras = (List<InscriptoCarrera>) alumno.InscripcionesACarreras;
+        //inscripcionesACarreras = await inscriptoCarreraService.GetByAlumno(alumno.Id);
+        logger.LogInformation("inscripciones "+inscripcionesACarreras.Count().ToString());
         //marco las carreras que ya están inscriptas usando el campo Eliminado
         foreach (var carrera in carreras)
         {
             carrera.Eliminado = inscripcionesACarreras.Any(i => i.CarreraId == carrera.Id);
         }
-
 
     }
 
@@ -86,4 +90,24 @@ else
         
         StateHasChanged();
     }
+
+    private  Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        if(inscripcionesACarreras.Count==0)
+        {
+            SweetAlert.FireAsync("Error perfil incompleto", "Debes definir la o las carreras en las que estás inscripto.", SweetAlertIcon.Warning);
+            context.PreventNavigation();
+        }  
+        return Task.CompletedTask;
+    }
+    // private Task OnBeforeInternalNavigation(LocationChangingContext context)
+    // {
+    //     // Lógica para evitar la navegación si es necesario.
+    //     if (context.TargetLocation.Contains("restricted"))
+    //     {
+    //         context.PreventNavigation(); // Evita la navegación si es necesario.
+    //     }
+
+    //     return Task.CompletedTask;
+    // }
 }

@@ -1,16 +1,17 @@
 ﻿@if (DetallesHorarios == null)
 {
-    <h5>cargando...</h5>
+    <h5>cargando detalles de horarios...</h5>
 }
 else
 {
-    //var horariosAgrupadosPorAnio = Horarios.OrderBy(h=>h.DetallesHorario).GroupBy(m => m.Materia.AnioCarreraId);
     var horariosAgrupadosPorAnio = DetallesHorarios
-    .OrderBy(d => d.Horario.Materia.AnioCarreraId) // 
-    .ThenBy(h => h.Hora.Desde)
-    .ThenBy(h=>h.Dia)// Ordena por la primera hora de cada horario
-    .GroupBy(h=>h.Horario.Materia.AnioCarreraId)
-    .ToList();
+        .Where(d => d.Horario != null && d.Horario.Materia != null && d.Horario.Materia.AnioCarrera != null)
+        .OrderBy(d => d.Horario.Materia.AnioCarreraId)
+        .ThenBy(h => h.Hora?.Desde)
+        .ThenBy(h => h.Dia)
+        .GroupBy(h => h.Horario.Materia.AnioCarreraId)
+        .ToList();
+
     foreach (var grupoAnio in horariosAgrupadosPorAnio)
     {
         var primerHorario = grupoAnio.First();
@@ -28,20 +29,24 @@ else
             </thead>
             <tbody>
                 @{
-                    var horariosAgrupadosPorHora = grupoAnio.OrderBy(h => h.Hora.Desde)
-                                            .GroupBy(h=>h.HoraId).ToList();
-                    string hora,lunes, martes, miercoles, jueves, viernes;
+                    var horariosAgrupadosPorHora = grupoAnio
+                        .Where(h => h.Hora != null)
+                        .OrderBy(h => h.Hora.Desde)
+                        .GroupBy(h => h.HoraId)
+                        .ToList();
+
+                    string hora, lunes, martes, miercoles, jueves, viernes;
                 }
                 @foreach (var grupoHora in horariosAgrupadosPorHora)
                 {
-                    hora=lunes = martes = miercoles = jueves = viernes = string.Empty;
+                    hora = lunes = martes = miercoles = jueves = viernes = string.Empty;
 
                     @foreach (var detalleHorario in grupoHora)
                     {
                         var nombresDocentes = string.Join(" | ", detalleHorario.Horario.IntegrantesHorario
-                        .Select(d => d.Docente.Nombre));
+                            ?.Select(d => d.Docente?.Nombre) ?? Enumerable.Empty<string>());
                         var primerElemento = grupoHora.First();
-                        hora = primerElemento.Hora.Nombre;
+                        hora = primerElemento.Hora?.Nombre ?? string.Empty;
                         if (detalleHorario.Dia == DiaEnum.Lunes)
                             lunes = detalleHorario.Horario.Materia.Nombre + Environment.NewLine + nombresDocentes;
                         if (detalleHorario.Dia == DiaEnum.Martes)
@@ -54,7 +59,6 @@ else
                             viernes = detalleHorario.Horario.Materia.Nombre + Environment.NewLine + nombresDocentes;
                     }
                     <tr>
-
                         <td>@hora</td>
                         <td>@lunes</td>
                         <td>@martes</td>
@@ -70,5 +74,4 @@ else
 @code {
     [Parameter]
     public List<DetalleHorario> DetallesHorarios { get; set; }
-
 }

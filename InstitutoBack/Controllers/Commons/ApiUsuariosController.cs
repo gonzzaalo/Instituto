@@ -54,7 +54,10 @@ namespace InstitutoBack.Controllers.Commons
                 return BadRequest("no se recibió un email o no es válido.");
             }
 
-            var user = await _context.usuarios.Include(u=>u.Alumno).Include(u=>u.Docente).Where(u=>u.Email.Equals(email)).FirstOrDefaultAsync();
+            var user = await _context.usuarios.
+                Include(u=>u.Alumno).ThenInclude(u => u.InscripcionesACarreras).
+                                    ThenInclude(u => u.Carrera).
+                Include(u=>u.Docente).Where(u=>u.Email.Equals(email)).FirstOrDefaultAsync();
 
             if (user == null)
             {

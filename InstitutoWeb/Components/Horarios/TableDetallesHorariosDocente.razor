@@ -1,0 +1,72 @@
+﻿@inject IUsuarioStateService usuarioStateService
+@if (DetallesHorarios == null)
+{
+    <h5>cargando detalles de horarios...</h5>
+}
+else
+{
+    var horariosOrdenadosPorHoraYDia = DetallesHorarios
+        .Where(d => d.Horario != null && d.Horario.Materia != null && d.Horario.Materia.AnioCarrera != null)
+        .OrderBy(h => h.Hora?.Desde)
+        .ThenBy(h => h.Dia)
+        .ToList();
+
+    <h3>Horario del docente @usuarioStateService.Usuario.User</h3>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Hora</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miércoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var horariosAgrupadosPorHora = horariosOrdenadosPorHoraYDia
+                .Where(h => h.Hora != null)
+                .OrderBy(h => h.Hora.Desde)
+                .GroupBy(h => h.HoraId)
+                .ToList();
+
+                string hora, lunes, martes, miercoles, jueves, viernes;
+            }
+            @foreach (var grupoHora in horariosAgrupadosPorHora)
+            {
+                hora = lunes = martes = miercoles = jueves = viernes = string.Empty;
+
+                @foreach (var detalleHorario in grupoHora)
+                {
+
+                    var primerElemento = grupoHora.First();
+                    hora = primerElemento.Hora?.Nombre ?? string.Empty;
+                    if (detalleHorario.Dia == DiaEnum.Lunes)
+                        lunes = detalleHorario.Horario.Materia.Nombre + "<br />" + $"{detalleHorario.Horario.Materia.AnioCarrera.Nombre} {detalleHorario.Horario.Materia.AnioCarrera.Carrera.Sigla}";
+                    if (detalleHorario.Dia == DiaEnum.Martes)
+                        martes = detalleHorario.Horario.Materia.Nombre + "<br />" + $"{detalleHorario.Horario.Materia.AnioCarrera.Nombre} {detalleHorario.Horario.Materia.AnioCarrera.Carrera.Sigla}";
+                    if (detalleHorario.Dia == DiaEnum.Miércoles)
+                        miercoles = detalleHorario.Horario.Materia.Nombre + "<br />" + $"{detalleHorario.Horario.Materia.AnioCarrera.Nombre} {detalleHorario.Horario.Materia.AnioCarrera.Carrera.Sigla}";
+                    if (detalleHorario.Dia == DiaEnum.Jueves)
+                        jueves = detalleHorario.Horario.Materia.Nombre + "<br />" + $"{detalleHorario.Horario.Materia.AnioCarrera.Nombre} {detalleHorario.Horario.Materia.AnioCarrera.Carrera.Sigla}";
+                    if (detalleHorario.Dia == DiaEnum.Viernes)
+                        viernes = detalleHorario.Horario.Materia.Nombre + "<br />" + $"{detalleHorario.Horario.Materia.AnioCarrera.Nombre} {detalleHorario.Horario.Materia.AnioCarrera.Carrera.Sigla}";
+                }
+                <tr>
+                    <td>@hora</td>
+                    <td>@(new MarkupString(lunes))</td>
+                    <td>@(new MarkupString(martes))</td>
+                    <td>@(new MarkupString(miercoles))</td>
+                    <td>@(new MarkupString(jueves))</td>
+                    <td>@(new MarkupString(viernes))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+@code {
+    [Parameter]
+    public List<DetalleHorario> DetallesHorarios { get; set; }
+}

@@ -1,10 +1,10 @@
 ﻿@page "/mesasexamenes"
 
-@inject IGenericService<TurnoExamen> turnoExamenService
-@inject IGenericService<Carrera> carreraService
-@inject IMesaExamenService mesaExamenService
 @inject SweetAlertService SweetAlert
 @inject ILogger<MesasExamenes> logger
+@inject IMemoryCacheService _memoryCache
+@inject IUsuarioStateService usuarioStateService
+
 
 <PageTitle>Mesas de exámenes</PageTitle>
 <h1>Mesas de exámenes</h1>
@@ -22,7 +22,7 @@ else
     }
     else
     {
-        if(idCarreraSeleccionada==null)
+        if(idCarreraSeleccionada==null&&usuarioStateService?.Usuario?.TipoUsuario==TipoUsuarioEnum.Alumno)
         {
             <ListCard ListEntity="@(carreras.Cast<IEntityIdNombre>().ToList())" OnSeleccionar="SeleccionarCarrera" TituloCard="Carrera" />
         }else
@@ -30,7 +30,14 @@ else
             <div class="text-end">
                 <button class="btn btn-info" @onclick="VolverAListaCarreras">Volver a lista de carreras</button>
             </div>
-            <TableMesaExamen MesasExamenes="mesasExamenes"/>
+            if (usuarioStateService.Usuario.TipoUsuario == TipoUsuarioEnum.Alumno)
+            {
+                <TableMesaExamen MesasExamenes="mesasExamenes"/>
+            } else
+            {
+                <TableMesaExamenDocente MesasExamenes="mesasExamenes"/>
+            }
+
         }
         
     }
@@ -46,9 +53,28 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        turnosExamenes = await turnoExamenService.GetAllAsync();
-        carreras = await carreraService.GetAllAsync();
-
+        turnosExamenes = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
+        carreras = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras");
+        if(turnosExamenes.Any(turno=>turno.Actual))
+        {
+            idTurnoExamenSeleccionado = turnosExamenes.FirstOrDefault(turno=>turno.Actual).Id;
+        }
+        logger.LogInformation($"turnoSeleccionado {idTurnoExamenSeleccionado}");
+        if(usuarioStateService.Usuario.TipoUsuario==TipoUsuarioEnum.Alumno)
+        {
+            mesasExamenes = await _memoryCache.GetAllCacheAsync<MesaExamen>("MesasExamenes");
+        }
+        else
+        {
+            if(idTurnoExamenSeleccionado!=null)
+            {
+                //filtro las mesas de examenes por el turno seleccionado y por el docente logueado
+                mesasExamenes = (await _memoryCache.GetAllCacheAsync<MesaExamen>("MesasExamenes"))
+                                .Where(m => m.TurnoExamenId == idTurnoExamenSeleccionado &&
+                                m.DetallesMesaExamen.Any(detalle => detalle.DocenteId == usuarioStateService.Usuario.DocenteId)).ToList();
+            }
+        }
+        logger.LogInformation($"mesasExamenes {mesasExamenes?.Count}");
     }
 
     private async Task SeleccionarTurnoExamem(int idTurno)
@@ -60,7 +86,8 @@ else
     private async Task SeleccionarCarrera(int idCarrera)
     {
         idCarreraSeleccionada = idCarrera;
-        mesasExamenes = await mesaExamenService.GetByTurnoAndCarreraAsync(idTurnoExamenSeleccionado, idCarreraSeleccionada);
+        mesasExamenes = mesasExamenes.Where(m => m.TurnoExamenId == idTurnoExamenSeleccionado && m.Materia.AnioCarrera.CarreraId == idCarreraSeleccionada).ToList();
+        //mesasExamenes = await mesaExamenService.GetByTurnoAndCarreraAsync(idTurnoExamenSeleccionado, idCarreraSeleccionada);
         logger.LogInformation(mesasExamenes.Count.ToString());
         StateHasChanged();
     }

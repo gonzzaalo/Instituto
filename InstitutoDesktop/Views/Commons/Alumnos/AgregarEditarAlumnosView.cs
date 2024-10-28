@@ -13,25 +13,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using InstitutoDesktop.Services;
 
 namespace InstitutoDesktop.Views.Commons.Alumnos
 {
     public partial class AgregarEditarAlumnosView : Form
     {
-        IGenericService<Alumno> alumnoService = new GenericService<Alumno>();
         Alumno alumno;
-
+        private readonly MemoryCacheServiceWinForms _memoryCache;
         //nuevo
-        public AgregarEditarAlumnosView()
+        public AgregarEditarAlumnosView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             alumno=new Alumno();
         }
 
         //editar
-        public AgregarEditarAlumnosView(Alumno alumno)
+        public AgregarEditarAlumnosView(MemoryCacheServiceWinForms memoryCacheService, Alumno alumno)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.alumno=alumno;
             CargarDatosAlumnosAEditar();
         }
@@ -53,11 +55,13 @@ namespace InstitutoDesktop.Views.Commons.Alumnos
 
             if (alumno.Id == 0)
             {
-                await alumnoService.AddAsync(alumno);
+                await _memoryCache.AddCacheAsync<Alumno>(alumno, "Alumnos");
+                //await alumnoService.AddAsync(alumno);
             }
             else
             {
-                await alumnoService.UpdateAsync(alumno);
+                await _memoryCache.UpdateCacheAsync<Alumno>(alumno, "Alumnos");
+                //await alumnoService.UpdateAsync(alumno);
             }
 
             this.Close();

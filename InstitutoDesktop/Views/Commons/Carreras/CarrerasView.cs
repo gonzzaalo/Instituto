@@ -1,30 +1,36 @@
 ﻿using InstitutoDesktop.ExtensionMethods;
+using InstitutoDesktop.Services;
 using InstitutoDesktop.Util;
 using InstitutoDesktop.Views.Commons;
 using InstitutoServices.Interfaces;
 using InstitutoServices.Models.Commons;
 using InstitutoServices.Services.Commons;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace InstitutoDesktop.Views
 {
     public partial class CarrerasView : Form
     {
-        IGenericService<Carrera> carreraService = new GenericService<Carrera>();
         BindingSource listaCarreras = new BindingSource();
+        private readonly MemoryCacheServiceWinForms _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
-        public CarrerasView()
+
+        public CarrerasView(MemoryCacheServiceWinForms memoryCacheService, IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            dataGridCarreras.DataSource=listaCarreras;
+            _memoryCache = memoryCacheService;
+            dataGridCarreras.DataSource = listaCarreras;
             CargarGrilla();
+            _serviceProvider = serviceProvider;
         }
 
         private async Task CargarGrilla()
         {
-            ShowInActivity.Show("Descargando/actualizando la lista de carreras");
-            listaCarreras.DataSource = await carreraService.GetAllAsync();
+            listaCarreras.DataSource = null;
+            listaCarreras.DataSource = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras");
+
             dataGridCarreras.OcultarColumnas(new string[] { "Eliminado" });
-            ShowInActivity.Hide();
         }
 
         private void iconButton3_Click(object sender, EventArgs e)
@@ -34,7 +40,7 @@ namespace InstitutoDesktop.Views
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarEditarCarreraView agregarEditarCarreraView = new AgregarEditarCarreraView();
+            AgregarEditarCarreraView agregarEditarCarreraView = ActivatorUtilities.CreateInstance<AgregarEditarCarreraView>(_serviceProvider);
             agregarEditarCarreraView.ShowDialog();
             CargarGrilla();
         }
@@ -45,7 +51,7 @@ namespace InstitutoDesktop.Views
             var respuesta = MessageBox.Show($"¿Está seguro que quiere borrar a la carrera {carrera.Nombre}", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-                await carreraService.DeleteAsync(carrera.Id);
+                await _memoryCache.DeleteCacheAsync<Carrera>(carrera.Id, "Carreras");
                 await CargarGrilla();
             }
         }
@@ -53,7 +59,7 @@ namespace InstitutoDesktop.Views
         private async void btnEditar_Click(object sender, EventArgs e)
         {
             var carrera = (Carrera)listaCarreras.Current;
-            AgregarEditarCarreraView agregarEditarCarreraView = new AgregarEditarCarreraView(carrera);
+            var agregarEditarCarreraView = ActivatorUtilities.CreateInstance<AgregarEditarCarreraView>(_serviceProvider, carrera);
             agregarEditarCarreraView.ShowDialog();
             await CargarGrilla();
         }

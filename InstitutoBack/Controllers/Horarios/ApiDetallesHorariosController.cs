@@ -29,6 +29,7 @@ namespace InstitutoBack.Controllers.Horarios
             if (idAnioCarrera != null && idCicloLectivo != null)
             {
                 return await _context.detalleshorarios
+                    .Include(d => d.Aula)
                     .Include(d => d.Hora)
                     .Include(d => d.Horario)
                         .ThenInclude(h => h.Materia)
@@ -45,6 +46,7 @@ namespace InstitutoBack.Controllers.Horarios
                 if (idCarrera != null && idCicloLectivo != null)
                 {
                     return await _context.detalleshorarios
+                        .Include(d => d.Aula)
                         .Include(d => d.Hora)
                         .Include(d => d.Horario)
                             .ThenInclude(h => h.Materia)
@@ -61,6 +63,7 @@ namespace InstitutoBack.Controllers.Horarios
                     if (idCicloLectivo != null)
                     {
                         return await _context.detalleshorarios
+                            .Include(d => d.Aula)
                             .Include(d => d.Hora)
                             .Include(d => d.Horario)
                                 .ThenInclude(h => h.Materia)
@@ -73,7 +76,17 @@ namespace InstitutoBack.Controllers.Horarios
                     }
                 }
             }
-            return await _context.detalleshorarios.ToListAsync();
+            return await _context.detalleshorarios
+                .Include(d => d.Aula)
+                .Include(d => d.Hora)
+                .Include(d => d.Horario)
+                        .ThenInclude(h => h.Materia)
+                            .ThenInclude(m => m.AnioCarrera)
+                                  .ThenInclude(a => a.Carrera)
+                .Include(d => d.Horario)
+                        .ThenInclude(h => h.IntegrantesHorario)
+                                    .ThenInclude(i => i.Docente)
+                .ToListAsync();
         }
 
         // GET: api/ApiDetallesHorarios/5

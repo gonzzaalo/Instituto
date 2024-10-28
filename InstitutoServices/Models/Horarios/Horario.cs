@@ -1,10 +1,11 @@
-﻿using InstitutoServices.Models.Commons;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Models.Commons;
 using InstitutoServices.Models.Inscripciones;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InstitutoServices.Models.Horarios
 {
-    public class Horario
+    public class Horario : IEntityWithId
     {
         public int Id { get; set; }
         public int? MateriaId { get; set; }

@@ -1,4 +1,5 @@
-﻿using InstitutoServices.Interfaces.MesasExamenes;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Interfaces.MesasExamenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InstitutoServices.Models.Commons
 {
-    public class Aula : IEntityIdNombre
+    public class Aula : IEntityIdNombre, IEntityWithId
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;

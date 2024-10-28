@@ -6,7 +6,7 @@ namespace InstitutoServices.Interfaces
         public Task<List<T>?> GetAllAsync();
         public Task<T?> GetByIdAsync(int id);
         public Task<T?> AddAsync(T? entity);
-        public Task UpdateAsync(T? entity);
-        public Task DeleteAsync(int id);
+        public Task<bool> UpdateAsync(T? entity);
+        public Task<bool> DeleteAsync(int id);
     }
 }

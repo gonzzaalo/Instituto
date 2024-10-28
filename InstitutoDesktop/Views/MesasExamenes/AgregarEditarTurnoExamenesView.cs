@@ -12,17 +12,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using InstitutoServices.Services.Commons;
 using InstitutoServices.Models.MesasExamenes;
+using InstitutoDesktop.Services;
 
 namespace InstitutoDesktop.Views.MesasExamenes
 {
     public partial class AgregarEditarTurnoExamenesView : Form
     {
-        IGenericService<TurnoExamen> turnoexamenesService = new GenericService<TurnoExamen>();
         private TurnoExamen turnoexamen;
+        private readonly MemoryCacheServiceWinForms _memoryCache;
 
-        public AgregarEditarTurnoExamenesView()
+        public AgregarEditarTurnoExamenesView(MemoryCacheServiceWinForms memoryCacheService)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             turnoexamen = new TurnoExamen();
         }
 
@@ -45,11 +47,13 @@ namespace InstitutoDesktop.Views.MesasExamenes
             turnoexamen.Actual = checkBox1.Checked;
             if (turnoexamen.Id == 0)
             {
-                await turnoexamenesService.AddAsync(turnoexamen);
+                //await turnoexamenesService.AddAsync(turnoexamen);
+                await _memoryCache.AddCacheAsync<TurnoExamen>(turnoexamen, "TurnosExamenes");
             }
             else
             {
-                await turnoexamenesService.UpdateAsync(turnoexamen);
+                await _memoryCache.UpdateCacheAsync<TurnoExamen>(turnoexamen, "TurnosExamenes");
+                //await turnoexamenesService.UpdateAsync(turnoexamen);
             }
 
             this.Close();
