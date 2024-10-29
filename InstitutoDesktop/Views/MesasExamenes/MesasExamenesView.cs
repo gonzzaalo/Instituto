@@ -107,12 +107,15 @@ namespace InstitutoDesktop.Views
 
         private async Task CargarGrilla()
         {
+            bindingMesasExamenes.DataSource = null;
             if (listaMesasExamenes != null && listaMesasExamenes.Count > 0)
                 bindingMesasExamenes.DataSource = listaMesasExamenes.
                     Where(h => h.TurnoExamenId.Equals((int)cboTurnosExamenes.SelectedValue) &&
                           h.Materia.AnioCarrera.CarreraId.Equals((int)cboCarreras.SelectedValue) &&
                           h.Materia.AnioCarreraId.Equals((int)cboAniosCarreras.SelectedValue));
-            dataGridMesasExamenes.OcultarColumnas(new string[] { "Id","MateriaId", "TurnoExamen", "DetallesMesaExamen",  "TurnoExamenId", "Eliminado" });
+            var columnaOcultar = (cboTurnosExamenes.SelectedItem as TurnoExamen).TieneLLamado2 ? "" : "Llamado2";
+
+            dataGridMesasExamenes.OcultarColumnas(new string[] { "Id", "MateriaId", "TurnoExamen", "DetallesMesaExamen", "TurnoExamenId", "Eliminado", columnaOcultar });
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -128,15 +131,29 @@ namespace InstitutoDesktop.Views
                 MessageBox.Show("Debe seleccionar una materia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (mesaExamenCurrent?.DetallesMesaExamen?.Count < 3 )
+            if (cboTurnosExamenes.SelectedValue == null)
             {
-                MessageBox.Show("Debe definirse al menos tres docente para la mesa de examen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un turno de examen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }else
+            }
+            if (txtHorario.Text == string.Empty)
+            {
+                MessageBox.Show("Debe ingresar un horario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (mesaExamenCurrent?.DetallesMesaExamen?.Count < 3)
+            {
+                MessageBox.Show("Debe definirse al menos tres docentes para la mesa de examen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
             {
                 mesaExamenCurrent.MateriaId = (int)cboMaterias.SelectedValue;
-                mesaExamenCurrent.TurnoExamenId = (int)cboTurnosExamenes.SelectedValue;
                 mesaExamenCurrent.Materia = (Materia)cboMaterias.SelectedItem;
+                mesaExamenCurrent.Llamado1 = dateTime1erLlamado.Value;
+                mesaExamenCurrent.Llamado2 = dateTime2doLlamado.Value;
+                mesaExamenCurrent.Horario = txtHorario.Text;
+                mesaExamenCurrent.TurnoExamenId = (int)cboTurnosExamenes.SelectedValue;
                 mesaExamenCurrent.TurnoExamen = (TurnoExamen)cboTurnosExamenes.SelectedItem;
 
                 if (mesaExamenCurrent.Id == 0)
@@ -169,7 +186,10 @@ namespace InstitutoDesktop.Views
         private void ActualizarTabAgregarEditar()
         {
             cboMaterias.SelectedValue = mesaExamenCurrent?.MateriaId ?? 0;
-            dataGridDetallesMesa.DataSource = mesaExamenCurrent?.DetallesMesaExamen ?? null;
+            dateTime1erLlamado.Value = mesaExamenCurrent?.Llamado1 ?? DateTime.Now;
+            dateTime2doLlamado.Value = mesaExamenCurrent?.Llamado2 ?? DateTime.Now;
+            txtHorario.Text = mesaExamenCurrent?.Horario ?? string.Empty;
+            dataGridDetallesMesa.DataSource = mesaExamenCurrent?.DetallesMesaExamen?.OrderBy(d => d.TipoIntegrante).ToList() ?? null;
             dataGridDetallesMesa.OcultarColumnas(new string[] { "MesaExamen", "MesaExamenId", "Id", "Eliminado" });
 
         }
@@ -215,17 +235,42 @@ namespace InstitutoDesktop.Views
             }
         }
 
-        private void btnAgregarDocente_Click(object sender, EventArgs e)
+        private void btnAgregarDetalleMesaExamen_Click(object sender, EventArgs e)
         {
             var docente = (Docente)cboDocentes.SelectedItem;
-            if (mesaExamenCurrent.DetallesMesaExamen.Any(d => d.DocenteId.Equals(docente.Id)))
+            if (mesaExamenCurrent.DetallesMesaExamen.Count>0&&mesaExamenCurrent.DetallesMesaExamen.Any(d => d.DocenteId.Equals(docente.Id)))
             {
                 MessageBox.Show("El docente ya se encuentra asignado a la mesa de examen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            mesaExamenCurrent.DetallesMesaExamen.Add(new DetalleMesaExamen { DocenteId = docente.Id, Docente = docente, TipoIntegrante=(TipoIntegranteEnum)cboTipoIntegrante.SelectedItem });
+            if(cboTipoIntegrante.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar un tipo de integrante", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if(mesaExamenCurrent.DetallesMesaExamen.Any(d => d.TipoIntegrante.Equals((TipoIntegranteEnum)cboTipoIntegrante.SelectedItem))&&detalleMesaExamenEdit==null&&(TipoIntegranteEnum)cboTipoIntegrante.SelectedItem != TipoIntegranteEnum.Suplente)
+            {
+                MessageBox.Show($"Ya existe un docente definido como {cboTipoIntegrante.SelectedItem}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (detalleMesaExamenEdit != null)
+            {
+                detalleMesaExamenEdit.DocenteId = docente.Id;
+                detalleMesaExamenEdit.Docente = docente;
+                detalleMesaExamenEdit.TipoIntegrante = (TipoIntegranteEnum)cboTipoIntegrante.SelectedItem;
+                var detalleToDelete = (DetalleMesaExamen)dataGridDetallesMesa.CurrentRow.DataBoundItem;
+                mesaExamenCurrent.DetallesMesaExamen.Remove(detalleToDelete);
+                mesaExamenCurrent.DetallesMesaExamen.Add(detalleMesaExamenEdit);
+                btnAgregarDetalleMesa.Text = "Agregar";
+                detalleMesaExamenEdit = null;
+            }
+            else
+            {
+                mesaExamenCurrent.DetallesMesaExamen.Add(new DetalleMesaExamen { DocenteId = docente.Id, Docente = docente, TipoIntegrante = (TipoIntegranteEnum)cboTipoIntegrante.SelectedItem });
+            }
+
             dataGridDetallesMesa.DataSource = null;
-            dataGridDetallesMesa.DataSource = mesaExamenCurrent.DetallesMesaExamen;
+            dataGridDetallesMesa.DataSource = mesaExamenCurrent.DetallesMesaExamen.OrderBy(d => d.TipoIntegrante).ToList();
             dataGridDetallesMesa.OcultarColumnas(new string[] { "MesaExamen", "MesaExamenId", "Id", "Eliminado" });
             btnAgregarDetalleMesa.Text = "Agregar";
 
@@ -250,7 +295,7 @@ namespace InstitutoDesktop.Views
 
         }
 
-        
+
 
         private void cboAniosCarreras_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -275,8 +320,25 @@ namespace InstitutoDesktop.Views
             }
             detalleMesaExamenEdit = (DetalleMesaExamen)dataGridDetallesMesa.CurrentRow.DataBoundItem;
             cboDocentes.SelectedValue = detalleMesaExamenEdit.DocenteId;
+            cboTipoIntegrante.SelectedItem = detalleMesaExamenEdit.TipoIntegrante;
             btnAgregarDetalleMesa.Text = "Actualizar";
 
+        }
+
+        private void cboTurnosExamenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboTurnosExamenes.SelectedValue != null && cboTurnosExamenes.SelectedValue.GetType() == typeof(int))
+            {
+                CargarGrilla();
+                dateTime2doLlamado.Visible = (cboTurnosExamenes.SelectedItem as TurnoExamen).TieneLLamado2;
+                lbl2doLlamado.Visible = (cboTurnosExamenes.SelectedItem as TurnoExamen).TieneLLamado2;
+                lblPrimerLlamado.Text = (cboTurnosExamenes.SelectedItem as TurnoExamen).TieneLLamado2 ? "Primer llamado" : "Fecha mesa:";
+            }
+        }
+
+        private void dateTime1erLlamado_ValueChanged(object sender, EventArgs e)
+        {
+            dateTime2doLlamado.Value = dateTime1erLlamado.Value.AddDays(15);
         }
     }
 }

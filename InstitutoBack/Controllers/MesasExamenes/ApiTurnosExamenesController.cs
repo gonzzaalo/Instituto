@@ -26,7 +26,7 @@ namespace InstitutoBack.Controllers.MesasExamenes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TurnoExamen>>> Getturnosexamenes()
         {
-            return await _context.turnosexamenes.ToListAsync();
+            return await _context.turnosexamenes.Include(t=>t.CicloLectivo).ToListAsync();
         }
 
         // GET: api/ApiTurnosExamenes/5
@@ -52,6 +52,8 @@ namespace InstitutoBack.Controllers.MesasExamenes
             {
                 return BadRequest();
             }
+            //attach ciclos lectivos
+            _context.Attach(turnoExamen.CicloLectivo);
             if (turnoExamen.Actual)
             {
                 var turnos = _context.turnosexamenes.Where(x => x.Actual&&x.Id!=turnoExamen.Id).ToList();

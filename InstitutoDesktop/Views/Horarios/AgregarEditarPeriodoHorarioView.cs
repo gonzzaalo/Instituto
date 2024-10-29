@@ -17,7 +17,6 @@ namespace InstitutoDesktop.Views.Horarios
 {
     public partial class AgregarEditarPeriodoHorarioView : Form
     {
-        private BindingSource listaPeriodoHorario = new BindingSource();
         private PeriodoHorario periodoHorario;
         private readonly MemoryCacheServiceWinForms _memoryCache;
 
@@ -27,19 +26,19 @@ namespace InstitutoDesktop.Views.Horarios
             _memoryCache = memoryCacheService;
             periodoHorario = new PeriodoHorario();
         }
-        public AgregarEditarPeriodoHorarioView(PeriodoHorario periodoHorario)
+        public AgregarEditarPeriodoHorarioView(MemoryCacheServiceWinForms memoryCacheService, PeriodoHorario periodoHorario)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.periodoHorario = periodoHorario;
             CargarDatosEnPantalla();
         }
 
         private async void CargarDatosEnPantalla()
         {
-            var Datos = listaPeriodoHorario; // Suponiendo que tienes un método para obtener esta lista
-            comboBoxCicloLectivo.DataSource = Datos;
-            comboBoxCicloLectivo.DisplayMember = "CicloLectivo"; // Nombre de la propiedad a mostrar
-            comboBoxCicloLectivo.ValueMember = "CicloLectivoId"; // Nombre de la propiedad de valor único
+            comboBoxCicloLectivo.DataSource = await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos");
+            comboBoxCicloLectivo.DisplayMember = "Nombre"; // Nombre de la propiedad a mostrar
+            comboBoxCicloLectivo.ValueMember = "Id"; // Nombre de la propiedad de valor único
 
             // Asigna los valores al resto de controles
             txtNombre.Text = periodoHorario.Nombre;
@@ -48,7 +47,7 @@ namespace InstitutoDesktop.Views.Horarios
             // Selecciona el ciclo lectivo predefinido en el ComboBox
             if (periodoHorario.CicloLectivo != null)
             {
-                comboBoxCicloLectivo.SelectedValue = periodoHorario.CicloLectivo.Id;
+                comboBoxCicloLectivo.SelectedValue = periodoHorario.CicloLectivoId;
             }
 
 
@@ -61,7 +60,8 @@ namespace InstitutoDesktop.Views.Horarios
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            //periodoHorario.CicloLectivo = comboBoxCicloLectivo.Text;
+            periodoHorario.CicloLectivo = comboBoxCicloLectivo.SelectedItem as CicloLectivo;
+            periodoHorario.CicloLectivoId = (int)comboBoxCicloLectivo.SelectedValue;
             periodoHorario.Nombre = txtNombre.Text;
             periodoHorario.Actual = chkActual.Checked;
             if (periodoHorario.Id == 0)

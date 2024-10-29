@@ -32,8 +32,8 @@ namespace InstitutoDesktop.Views.MesasExamenes
         private async Task CargarGrilla()
         {
             listaTurnos.DataSource = null;
-            listaTurnos.DataSource = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
-            dataGridTurnoExamenes.OcultarColumnas(new string[] { "Eliminado" });
+            listaTurnos.DataSource = (await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes")).OrderBy(turno=>turno.Id);
+            dataGridTurnoExamenes.OcultarColumnas(new string[] {"Id", "Eliminado" });
         }
 
         private async void btnEliminar_Click(object sender, EventArgs e)

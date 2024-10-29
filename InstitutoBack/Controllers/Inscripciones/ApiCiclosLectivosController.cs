@@ -55,7 +55,7 @@ namespace InstitutoBack.Controllers.Inscripciones
             }
             if (cicloLectivo.Actual)
             {
-                var ciclos = _context.cicloslectivos.Where(x => x.Actual).ToList();
+                var ciclos = _context.cicloslectivos.Where(x => x.Actual&&x.Id!=cicloLectivo.Id).ToList();
                 foreach (var item in ciclos)
                 {
                     item.Actual = false;

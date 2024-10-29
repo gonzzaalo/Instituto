@@ -38,6 +38,11 @@ namespace InstitutoServices.Models.MesasExamenes
 
         public ICollection<DetalleMesaExamen> DetallesMesaExamen { get; set; }
 
+        public MesaExamen()
+        {
+            DetallesMesaExamen = new List<DetalleMesaExamen>();
+        }
+
         public override string ToString()
         {
             return $"{Materia?.Nombre} {Llamado1.Date} / {Llamado2.Date}" ?? string.Empty;

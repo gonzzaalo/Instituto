@@ -53,7 +53,8 @@ namespace InstitutoDesktop.Views.Horarios
 
         private async void btnEditar_Click(object sender, EventArgs e)
         {
-            AgregarEditarPeriodoHorarioView agregarEditarPeriodoHorarioView = ActivatorUtilities.CreateInstance<AgregarEditarPeriodoHorarioView>(_serviceProvider);
+            var periodo = listaPeriodoHorario.Current;
+            AgregarEditarPeriodoHorarioView agregarEditarPeriodoHorarioView = ActivatorUtilities.CreateInstance<AgregarEditarPeriodoHorarioView>(_serviceProvider,periodo);
             agregarEditarPeriodoHorarioView.ShowDialog();
             await CargarGrilla();
         }

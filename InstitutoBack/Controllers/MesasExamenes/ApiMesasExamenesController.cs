@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using InstitutoServices.Models;
 using InstitutoBack.DataContext;
 using InstitutoServices.Models.MesasExamenes;
+using InstitutoServices.Models.Horarios;
 
 namespace InstitutoBack.Controllers.MesasExamenes
 {
@@ -74,6 +75,42 @@ namespace InstitutoBack.Controllers.MesasExamenes
             {
                 return BadRequest();
             }
+            #region attach materia turno y detalles
+            _context.Attach(mesaExamen.Materia);
+            //attach turno
+            _context.Attach(mesaExamen.TurnoExamen);
+            //attach detalles
+            foreach (var detalle in mesaExamen.DetallesMesaExamen)
+            {
+                _context.Attach(detalle.Docente);
+            }
+            #endregion
+
+            //busco los detalles existentes
+            var detallesExistentes = _context.detallesmesasexamenes.Where(d => d.MesaExamenId.Equals(mesaExamen.Id)).AsNoTracking().ToList();
+            
+
+            //busco los detalles que se eliminaron
+            var detallesEliminados = detallesExistentes.Where(d => !mesaExamen.DetallesMesaExamen.Any(dm => dm.Id == d.Id)).ToList();
+
+
+            foreach (var detalle in mesaExamen.DetallesMesaExamen)
+            {
+                if (detalle.Id == 0)
+                {
+                    _context.detallesmesasexamenes.Add(detalle);
+                }
+                else
+                {
+                    _context.Entry(detalle).State = EntityState.Modified;
+                }
+            }
+
+            
+            foreach (var detalle in detallesEliminados)
+            {
+                _context.detallesmesasexamenes.Remove(detalle);
+            }
 
             _context.Entry(mesaExamen).State = EntityState.Modified;
 
@@ -81,6 +118,8 @@ namespace InstitutoBack.Controllers.MesasExamenes
             {
                 await _context.SaveChangesAsync();
             }
+           
+
             catch (DbUpdateConcurrencyException)
             {
                 if (!MesaExamenExists(id))
@@ -101,6 +140,15 @@ namespace InstitutoBack.Controllers.MesasExamenes
         [HttpPost]
         public async Task<ActionResult<MesaExamen>> PostMesaExamen(MesaExamen mesaExamen)
         {
+            //attach materia
+            _context.Attach(mesaExamen.Materia);
+            //attach turno
+            _context.Attach(mesaExamen.TurnoExamen);
+            //attach detalles
+            foreach (var detalle in mesaExamen.DetallesMesaExamen)
+            {
+                _context.Attach(detalle.Docente);
+            }
             _context.mesasexamenes.Add(mesaExamen);
             await _context.SaveChangesAsync();
 

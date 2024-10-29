@@ -51,6 +51,7 @@ namespace InstitutoDesktop.Views.MesasExamenes
         {
             txtNombre.Text = turnoexamen.Nombre;
             chkActual.Checked = turnoexamen.Actual; // Cargar el estado del checkbox
+            cbmBoxCicloLectivo.SelectedValue = turnoexamen.CicloLectivoId;
             chkInscripcionHabilitada.Checked = turnoexamen.InscripcionHabilitada;
             chkSegundoLlamado.Checked = turnoexamen.TieneLLamado2;
         }
@@ -59,6 +60,7 @@ namespace InstitutoDesktop.Views.MesasExamenes
         {
             turnoexamen.Nombre = txtNombre.Text;
             turnoexamen.CicloLectivoId=(int)cbmBoxCicloLectivo.SelectedValue  ;
+            turnoexamen.CicloLectivo = (CicloLectivo)cbmBoxCicloLectivo.SelectedItem;
             turnoexamen.Actual = chkActual.Checked;
             turnoexamen.InscripcionHabilitada = chkInscripcionHabilitada.Checked;
             turnoexamen.TieneLLamado2 = chkSegundoLlamado.Checked;
