@@ -10,6 +10,7 @@ using InstitutoDesktop.Views.Commons.Materias;
 using InstitutoDesktop.Views.Horarios;
 using InstitutoDesktop.Views.MesasExamenes;
 using InstitutoDesktop.Services;
+using InstitutoDesktop.ViewReports;
 
 namespace InstitutoDesktop
 {
@@ -40,7 +41,7 @@ namespace InstitutoDesktop
             //configuro el paquete  Microsoft.Extensions.Caching.Memory;
 
 
-            // Iniciar la aplicación con la inyección de dependencias
+            // Iniciar la aplicaciÃ³n con la inyecciÃ³n de dependencias
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(ServiceProvider.GetRequiredService<MenuPrincipalView>());
@@ -65,7 +66,7 @@ namespace InstitutoDesktop
 
         private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddMemoryCache(); // Agregar el servicio de caché en memoria
+            services.AddMemoryCache(); // Agregar el servicio de cachÃ© en memoria
             services.AddScoped<MemoryCacheServiceWinForms>();
             services.AddScoped<MenuPrincipalView>(); // Registrar formularios
             services.AddScoped<CarrerasView>();
@@ -80,7 +81,7 @@ namespace InstitutoDesktop
             services.AddScoped<AgregarEditarAulaView>();
             services.AddScoped<DocentesView>();
             services.AddScoped<AgregarEditarDocenteView>();
-            services.AddScoped<HorariosView>();
+            services.AddScoped<MesasExamenesView>();
             services.AddScoped<CiclosLectivosView>();
             services.AddScoped<AgregarEditarCicloLectivoView>();
             //horas
@@ -92,6 +93,7 @@ namespace InstitutoDesktop
             //Periodo Horario
             services.AddScoped<PeriodoHorarioView>();
             services.AddScoped<AgregarEditarPeriodoHorarioView>();
+            services.AddScoped<DocentesViewReport>();
 
 
 

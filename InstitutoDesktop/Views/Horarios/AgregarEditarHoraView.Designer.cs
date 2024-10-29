@@ -94,6 +94,7 @@
             // dateTimeDesde
             // 
             dateTimeDesde.Format = DateTimePickerFormat.Time;
+
             dateTimeDesde.Location = new Point(385, 80);
             dateTimeDesde.Margin = new Padding(2);
             dateTimeDesde.Name = "dateTimeDesde";
@@ -105,6 +106,7 @@
             // dateTimeHasta
             // 
             dateTimeHasta.Format = DateTimePickerFormat.Time;
+
             dateTimeHasta.Location = new Point(385, 145);
             dateTimeHasta.Margin = new Padding(2);
             dateTimeHasta.Name = "dateTimeHasta";

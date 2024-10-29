@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InstitutoServices.Interfaces;
+using InstitutoServices.Interfaces.MesasExamenes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InstitutoServices.Models.Inscripciones
 {
-    public class PeriodoInscripcion
+    public class PeriodoInscripcion: IEntityWithId
     {
         public int Id{ get; set; }
         public string Nombre { get; set; } = string.Empty;

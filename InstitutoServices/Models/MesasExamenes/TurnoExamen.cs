@@ -11,7 +11,8 @@ namespace InstitutoServices.Models.MesasExamenes
         public bool Actual { get; set; } = false;
         public int? CicloLectivoId { get; set; }
         public CicloLectivo? CicloLectivo { get; set; }
-        public bool InscripcionHabilitada { get; set; }
+        public bool InscripcionHabilitada { get; set; } = false;
+        public bool TieneLLamado2 { get; set; } = false;
         public bool Eliminado { get; set; } = false;
 
 

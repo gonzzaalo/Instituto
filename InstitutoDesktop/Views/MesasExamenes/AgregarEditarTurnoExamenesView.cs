@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using InstitutoServices.Services.Commons;
 using InstitutoServices.Models.MesasExamenes;
 using InstitutoDesktop.Services;
+using InstitutoServices.Models.Inscripciones;
 
 namespace InstitutoDesktop.Views.MesasExamenes
 {
@@ -26,25 +27,41 @@ namespace InstitutoDesktop.Views.MesasExamenes
             InitializeComponent();
             _memoryCache = memoryCacheService;
             turnoexamen = new TurnoExamen();
+           CargarCombo();
         }
 
-        public AgregarEditarTurnoExamenesView(TurnoExamen turnoexamen)
+        public AgregarEditarTurnoExamenesView(MemoryCacheServiceWinForms memoryCacheService, TurnoExamen turnoexamen)
         {
             InitializeComponent();
+            _memoryCache = memoryCacheService;
             this.turnoexamen = turnoexamen;
             CargarDatosEnPantalla();
+            CargarCombo();
+            cbmBoxCicloLectivo.SelectedItem = turnoexamen.CicloLectivo;
+        }
+
+        private async void CargarCombo()
+        {
+            cbmBoxCicloLectivo.DataSource = await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos");
+            cbmBoxCicloLectivo.DisplayMember = "Nombre";
+            cbmBoxCicloLectivo.ValueMember = "Id";
         }
 
         private async void CargarDatosEnPantalla()
         {
             txtNombre.Text = turnoexamen.Nombre;
-            checkBox1.Checked = turnoexamen.Actual; // Cargar el estado del checkbox
+            chkActual.Checked = turnoexamen.Actual; // Cargar el estado del checkbox
+            chkInscripcionHabilitada.Checked = turnoexamen.InscripcionHabilitada;
+            chkSegundoLlamado.Checked = turnoexamen.TieneLLamado2;
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
             turnoexamen.Nombre = txtNombre.Text;
-            turnoexamen.Actual = checkBox1.Checked;
+            turnoexamen.CicloLectivoId=(int)cbmBoxCicloLectivo.SelectedValue  ;
+            turnoexamen.Actual = chkActual.Checked;
+            turnoexamen.InscripcionHabilitada = chkInscripcionHabilitada.Checked;
+            turnoexamen.TieneLLamado2 = chkSegundoLlamado.Checked;
             if (turnoexamen.Id == 0)
             {
                 //await turnoexamenesService.AddAsync(turnoexamen);
@@ -64,6 +81,11 @@ namespace InstitutoDesktop.Views.MesasExamenes
             this.Close();
         }
 
-    
+
+        private void cbmBoxCicloLectivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

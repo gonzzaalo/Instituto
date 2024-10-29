@@ -3999,7 +3999,7 @@ namespace InstitutoBack.Migrations
                             AlumnoId = 1,
                             CarreraId = 1,
                             Eliminado = false,
-                            Fecha = new DateTime(2024, 10, 28, 2, 1, 46, 710, DateTimeKind.Local).AddTicks(4632),
+                            Fecha = new DateTime(2024, 10, 28, 15, 58, 20, 233, DateTimeKind.Local).AddTicks(4),
                             PeriodoInscripcionId = 1
                         });
                 });
@@ -10004,6 +10004,9 @@ namespace InstitutoBack.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("TieneLLamado2")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CicloLectivoId");
@@ -10017,7 +10020,8 @@ namespace InstitutoBack.Migrations
                             Actual = false,
                             Eliminado = false,
                             InscripcionHabilitada = false,
-                            Nombre = "Julio/Agosto 2024"
+                            Nombre = "Julio/Agosto 2024",
+                            TieneLLamado2 = false
                         });
                 });
 
