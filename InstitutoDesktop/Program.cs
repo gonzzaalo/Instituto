@@ -41,7 +41,7 @@ namespace InstitutoDesktop
             //configuro el paquete  Microsoft.Extensions.Caching.Memory;
 
 
-            // Iniciar la aplicación con la inyección de dependencias
+            // Iniciar la aplicaciÃ³n con la inyecciÃ³n de dependencias
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(ServiceProvider.GetRequiredService<MenuPrincipalView>());
@@ -66,7 +66,7 @@ namespace InstitutoDesktop
 
         private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddMemoryCache(); // Agregar el servicio de caché en memoria
+            services.AddMemoryCache(); // Agregar el servicio de cachÃ© en memoria
             services.AddScoped<MemoryCacheServiceWinForms>();
             services.AddScoped<MenuPrincipalView>(); // Registrar formularios
             services.AddScoped<CarrerasView>();
@@ -90,6 +90,9 @@ namespace InstitutoDesktop
             //turnos examenes
             services.AddScoped<TurnoExamenesView>();
             services.AddScoped<AgregarEditarTurnoExamenesView>();
+            //Periodo Horario
+            services.AddScoped<PeriodoHorarioView>();
+            services.AddScoped<AgregarEditarPeriodoHorarioView>();
             services.AddScoped<DocentesViewReport>();
 
 
