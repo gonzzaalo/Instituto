@@ -39,6 +39,7 @@ namespace InstitutoDesktop.Views.Horarios
             comboBoxCicloLectivo.DataSource = await _memoryCache.GetAllCacheAsync<CicloLectivo>("CiclosLectivos");
             comboBoxCicloLectivo.DisplayMember = "Nombre"; // Nombre de la propiedad a mostrar
             comboBoxCicloLectivo.ValueMember = "Id"; // Nombre de la propiedad de valor único
+            chMaterias2doCuatrimestre.Checked = periodoHorario.Es2doCuatrimestre;
 
             // Asigna los valores al resto de controles
             txtNombre.Text = periodoHorario.Nombre;
@@ -62,6 +63,7 @@ namespace InstitutoDesktop.Views.Horarios
         {
             periodoHorario.CicloLectivo = comboBoxCicloLectivo.SelectedItem as CicloLectivo;
             periodoHorario.CicloLectivoId = (int)comboBoxCicloLectivo.SelectedValue;
+            periodoHorario.Es2doCuatrimestre = chMaterias2doCuatrimestre.Checked;
             periodoHorario.Nombre = txtNombre.Text;
             periodoHorario.Actual = chkActual.Checked;
             if (periodoHorario.Id == 0)

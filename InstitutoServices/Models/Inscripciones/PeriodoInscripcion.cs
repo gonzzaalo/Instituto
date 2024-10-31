@@ -15,7 +15,7 @@ namespace InstitutoServices.Models.Inscripciones
         public int? CicloLectivoId { get; set; }
         public CicloLectivo? CicloLectivo { get; set; }
         public bool InscripcionHabilitada { get; set; }
-        public bool SoloMaterias2doCuatrimestre { get; set; }
+        public bool Es2doCuatrimestre { get; set; } = false;
         public bool Eliminado { get; set; } = false;
 
     }

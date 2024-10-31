@@ -15,6 +15,7 @@ namespace InstitutoServices.Models.Horarios
         public bool Actual { get; set; } = false;
         public int? CicloLectivoId { get; set; }
         public CicloLectivo? CicloLectivo { get; set; }
+        public bool Es2doCuatrimestre { get; set; } = false;
         public bool Eliminado { get; set; } = false;
     }
 }

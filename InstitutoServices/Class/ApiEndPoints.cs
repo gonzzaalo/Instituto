@@ -24,7 +24,7 @@ namespace InstitutoServices.Class
         public static string InscriptoCarrera { get; set; } = "apiinscriptoscarreras";
         public static string JefaturaSeccion { get; set; } = "apijefaturassecciones";
         public static string Aula { get; set; } = "apiaulas";
-
+        public static string PeriodoInscripcion { get; set; } = "apiperiodosinscripciones";
         public static string PeriodoHorario { get; set; } = "apiperiodoshorarios";
 
 
@@ -55,6 +55,7 @@ namespace InstitutoServices.Class
                 nameof(JefaturaSeccion) => JefaturaSeccion,
                 nameof(Aula) => Aula,
                 nameof(PeriodoHorario) => PeriodoHorario,
+                nameof(PeriodoInscripcion) => PeriodoInscripcion,
                 _ => throw new ArgumentException($"Endpoint '{name}' no está definido.")
             };
         }

@@ -78,11 +78,11 @@
             // chMaterias2doCuatrimestre
             // 
             chMaterias2doCuatrimestre.AutoSize = true;
-            chMaterias2doCuatrimestre.Location = new Point(515, 239);
+            chMaterias2doCuatrimestre.Location = new Point(380, 239);
             chMaterias2doCuatrimestre.Name = "chMaterias2doCuatrimestre";
-            chMaterias2doCuatrimestre.Size = new Size(208, 24);
+            chMaterias2doCuatrimestre.Size = new Size(381, 24);
             chMaterias2doCuatrimestre.TabIndex = 5;
-            chMaterias2doCuatrimestre.Text = "Materias 2do Cuatrimentre";
+            chMaterias2doCuatrimestre.Text = "Visualizar únicamente materias del 2do Cuatrimentre";
             chMaterias2doCuatrimestre.UseVisualStyleBackColor = true;
             // 
             // LabelTitulo

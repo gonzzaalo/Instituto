@@ -1061,7 +1061,7 @@ namespace InstitutoBack.DataContext
             #region datos semillas PeriodoInscripcion
             modelBuilder.Entity<PeriodoInscripcion>().HasData(
              new PeriodoInscripcion { Id = 1, Nombre = "Ciclo lectivo 2024 - Inicio año", InscripcionHabilitada=true, CicloLectivoId=1 },
-             new PeriodoInscripcion { Id = 2, Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre", InscripcionHabilitada = true, CicloLectivoId=1, SoloMaterias2doCuatrimestre=true }
+             new PeriodoInscripcion { Id = 2, Nombre = "Ciclo lectivo 2024 - 2do cuatrimestre", InscripcionHabilitada = true, CicloLectivoId=1, Es2doCuatrimestre=true }
             );
             #endregion
             #region datos semillas PeriodoHorario

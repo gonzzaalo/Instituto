@@ -66,7 +66,7 @@ namespace InstitutoDesktop.Views.Inscripciones
             }
 
             chInscripcionActiva.Checked = periodoInscripcion.InscripcionHabilitada;
-            chMaterias2doCuatrimestre.Checked = periodoInscripcion.SoloMaterias2doCuatrimestre;
+            chMaterias2doCuatrimestre.Checked = periodoInscripcion.Es2doCuatrimestre;
         }
 
         private async void btnAgregar_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace InstitutoDesktop.Views.Inscripciones
             periodoInscripcion.CicloLectivo = (CicloLectivo)cboCiclosLectivos.SelectedItem;
             periodoInscripcion.CicloLectivoId=(int)cboCiclosLectivos.SelectedValue;
             periodoInscripcion.InscripcionHabilitada = chInscripcionActiva.Checked;
-            periodoInscripcion.SoloMaterias2doCuatrimestre = chMaterias2doCuatrimestre.Checked;
+            periodoInscripcion.Es2doCuatrimestre = chMaterias2doCuatrimestre.Checked;
 
 
             if (periodoInscripcion.Id == 0)
