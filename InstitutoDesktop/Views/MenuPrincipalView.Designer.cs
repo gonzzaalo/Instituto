@@ -39,6 +39,8 @@
             subMenuCarreras = new FontAwesome.Sharp.IconMenuItem();
             subMenuAñosCarreras = new FontAwesome.Sharp.IconMenuItem();
             subMenuMaterias = new FontAwesome.Sharp.IconMenuItem();
+            toolStripSeparator4 = new ToolStripSeparator();
+            subMenuUsuarios = new FontAwesome.Sharp.IconMenuItem();
             menuHorarios = new FontAwesome.Sharp.IconMenuItem();
             subMenuHoras = new FontAwesome.Sharp.IconMenuItem();
             subMenuPeriodosHorarios = new FontAwesome.Sharp.IconMenuItem();
@@ -53,8 +55,6 @@
             subMenuInformeDocentes = new FontAwesome.Sharp.IconMenuItem();
             menuSalir = new FontAwesome.Sharp.IconMenuItem();
             subMenuSalirDelSistema = new FontAwesome.Sharp.IconMenuItem();
-            toolStripSeparator4 = new ToolStripSeparator();
-            subMenuUsuarios = new FontAwesome.Sharp.IconMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -159,6 +159,20 @@
             subMenuMaterias.Size = new Size(272, 34);
             subMenuMaterias.Text = "Materias";
             subMenuMaterias.Click += subMenuMaterias_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(269, 6);
+            // 
+            // subMenuUsuarios
+            // 
+            subMenuUsuarios.IconChar = FontAwesome.Sharp.IconChar.PeopleArrowsLeftRight;
+            subMenuUsuarios.IconColor = Color.Black;
+            subMenuUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuUsuarios.Name = "subMenuUsuarios";
+            subMenuUsuarios.Size = new Size(272, 34);
+            subMenuUsuarios.Text = "Usuarios";
             // 
             // menuHorarios
             // 
@@ -270,7 +284,7 @@
             subMenuInformeDocentes.IconColor = Color.Pink;
             subMenuInformeDocentes.IconFont = FontAwesome.Sharp.IconFont.Solid;
             subMenuInformeDocentes.Name = "subMenuInformeDocentes";
-            subMenuInformeDocentes.Size = new Size(270, 34);
+            subMenuInformeDocentes.Size = new Size(188, 34);
             subMenuInformeDocentes.Text = "Docentes";
             subMenuInformeDocentes.Click += mnuDocentes_Click;
             // 
@@ -290,23 +304,9 @@
             subMenuSalirDelSistema.IconColor = Color.Black;
             subMenuSalirDelSistema.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuSalirDelSistema.Name = "subMenuSalirDelSistema";
-            subMenuSalirDelSistema.Size = new Size(270, 34);
+            subMenuSalirDelSistema.Size = new Size(241, 34);
             subMenuSalirDelSistema.Text = "Salir del sistema";
             subMenuSalirDelSistema.Click += iconMenuItem4_Click;
-            // 
-            // toolStripSeparator4
-            // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(269, 6);
-            // 
-            // subMenuUsuarios
-            // 
-            subMenuUsuarios.IconChar = FontAwesome.Sharp.IconChar.PeopleArrowsLeftRight;
-            subMenuUsuarios.IconColor = Color.Black;
-            subMenuUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            subMenuUsuarios.Name = "subMenuUsuarios";
-            subMenuUsuarios.Size = new Size(272, 34);
-            subMenuUsuarios.Text = "Usuarios";
             // 
             // MenuPrincipalView
             // 
@@ -314,6 +314,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1364, 828);
             Controls.Add(menuStrip1);
+            IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4, 5, 4, 5);
             Name = "MenuPrincipalView";

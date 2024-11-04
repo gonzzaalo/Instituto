@@ -30,6 +30,7 @@ namespace InstitutoBack.Controllers.MesasExamenes
             if (idCarrera != null && idTurno != null)
             {
                 return await _context.mesasexamenes
+                    .Include(m => m.TurnoExamen)
                     .Include(m => m.DetallesMesaExamen)
                             .ThenInclude(d => d.Docente)
                     .Include(m => m.Materia)
@@ -38,6 +39,7 @@ namespace InstitutoBack.Controllers.MesasExamenes
                     .Where(m => m.Materia.AnioCarrera.CarreraId == idCarrera && m.TurnoExamenId == idTurno).ToListAsync();
             }
             return await _context.mesasexamenes
+                .Include(m=>m.TurnoExamen)
                 .Include(m => m.DetallesMesaExamen)
                             .ThenInclude(d => d.Docente)
                     .Include(m => m.Materia)

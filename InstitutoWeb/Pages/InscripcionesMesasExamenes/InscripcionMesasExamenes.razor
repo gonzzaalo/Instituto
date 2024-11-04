@@ -19,6 +19,10 @@
 else
 {
     <h1>Turno: @turnoExamenSeleccionado.Nombre</h1>
+    @if (carreraSeleccionada == null)
+    {
+        <ListCard ListEntity="@(carreras.Cast<IEntityIdNombre>().ToList())" OnSeleccionar="SeleccionarCarrera" TituloCard="Carrera" />
+    }
     if(carreraSeleccionada!=null&&materias!=null)
     {
         <ListCardInscripcionMesasExamenes Materias="@materias" OnFinalizarInscripcion="FinalizarInscripcion"  />
@@ -40,45 +44,35 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        carreras = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras");
         turnosExamenes = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
-        logger.LogInformation($"turnosExamenes {turnosExamenes.Count}");
-        //carreras = MemoryCacheService.Carreras;
-        logger.LogInformation($"carreras {carreras.Count}");
         if (turnosExamenes.Any(c => c.Actual))
         {
             turnoExamenSeleccionado = turnosExamenes.Where(c => c.Actual).FirstOrDefault();
         }
-        else
-        {
-            logger.LogError("No hay turno examen seleccionado como actual");
-        }
-        logger.LogInformation($"turnoSeleccionado {turnoExamenSeleccionado.Nombre}");
         if(usuarioStateService.Usuario!=null&&usuarioStateService.Usuario.TipoUsuario==TipoUsuarioEnum.Alumno)
         {
             if(usuarioStateService.Usuario.Alumno.InscripcionesACarreras.Count>1)
             {
-                logger.LogInformation($"hasta aca llega / inscripciones {usuarioStateService.Usuario.Alumno.InscripcionesACarreras.Count}");
-                carreras = (await _memoryCache.GetAllCacheAsync<Carrera>("Carreras"))
+                carreras = carreras
                             .Where(c => usuarioStateService.Usuario.Alumno.InscripcionesACarreras.Select(i => i.CarreraId).Contains(c.Id)).ToList();
                 logger.LogInformation($"carreras del alumno {carreras.Count}");
             }
+            else
+            {
+                carreraSeleccionada = usuarioStateService.Usuario.Alumno.InscripcionesACarreras.FirstOrDefault().Carrera;
+                logger.LogInformation($"carrera seleccionada {carreraSeleccionada.Nombre}");
+
+                aniosCarrera = (await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras"))
+                                .Where(a => a.CarreraId == carreraSeleccionada.Id).ToList();
+                //muestros cuantos anios carrera tiene la carrera seleccionada con el logger
+                logger.LogInformation($"anios carrera {aniosCarrera.Count}");
+                materias = (await _memoryCache.GetAllCacheAsync<Materia>("Materias"))
+                    .Where(m => m.AnioCarrera.CarreraId == carreraSeleccionada.Id).ToList();
+            }
 
         }
-        carreraSeleccionada = usuarioStateService.Usuario.Alumno.InscripcionesACarreras.FirstOrDefault().Carrera;
-        logger.LogInformation($"carrera seleccionada {carreraSeleccionada.Nombre}");
-
-        aniosCarrera = (await _memoryCache.GetAllCacheAsync<AnioCarrera>("AniosCarreras"))
-                        .Where(a => a.CarreraId == carreraSeleccionada.Id).ToList();
-        //muestros cuantos anios carrera tiene la carrera seleccionada con el logger
-        logger.LogInformation($"anios carrera {aniosCarrera.Count}");
-
-
-        materias = (await _memoryCache.GetAllCacheAsync<Materia>("Materias"))
-                    .Where(m => m.AnioCarrera.CarreraId == carreraSeleccionada.Id).ToList();
-        //muestros cuantas materias tiene la carrera seleccionada con el logger
-        logger.LogInformation($"materias {materias.Count}");
-
-
+        
     }
 
     private async Task FinalizarInscripcion()
@@ -86,6 +80,15 @@ else
         StateHasChanged();
     }
 
+    private async Task SeleccionarCarrera(int idCarrera)
+    {
+        idCarreraSeleccionada = idCarrera;
+
+        carreraSeleccionada= carreras.FirstOrDefault(c => c.Id == idCarreraSeleccionada);
+        materias = (await _memoryCache.GetAllCacheAsync<Materia>("Materias"))
+                    .Where(m => m.AnioCarrera.CarreraId == carreraSeleccionada.Id).ToList();
+        StateHasChanged();
+    }
 
 
 

@@ -5,9 +5,14 @@
 }
 else
 {
+    var primerMesa= MesasExamenes.OrderBy(m=>m.Llamado1).FirstOrDefault();
     <h3> Docente: @usuarioStateService.Usuario.User</h3>
-    <h1>Primer llamado</h1>
-        <table class="table table-striped table-hover">
+    <h3> Turno de examen: @primerMesa.TurnoExamen.Nombre</h3>
+    @if (primerMesa.TurnoExamen.TieneLLamado2)
+    {
+        <h1>Primer llamado</h1>
+    }
+    <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>Fecha</th>
@@ -46,7 +51,8 @@ else
                 }
             </tbody>
         </table>
-
+    @if(primerMesa.TurnoExamen.TieneLLamado2)
+    {
     <h1>Segundo llamado</h1>
     <table class="table table-striped table-hover">
         <thead class="table-dark">
@@ -87,7 +93,7 @@ else
             }
         </tbody>
     </table>
-    
+    }
 }
 @code {
     [Parameter]

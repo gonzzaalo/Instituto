@@ -47,7 +47,6 @@
             btnAgregar = new FontAwesome.Sharp.IconButton();
             dataGridHorarios = new DataGridView();
             tabPageAgregarEditar = new TabPage();
-
             btnEditar = new FontAwesome.Sharp.IconButton();
             cboAulas = new ComboBox();
             label10 = new Label();
@@ -198,7 +197,7 @@
             iconButtonSalir.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             iconButtonSalir.BackColor = Color.OrangeRed;
             iconButtonSalir.ForeColor = Color.White;
-            iconButtonSalir.IconChar = FontAwesome.Sharp.IconChar.Close;
+            iconButtonSalir.IconChar = FontAwesome.Sharp.IconChar.ArrowLeft;
             iconButtonSalir.IconColor = Color.White;
             iconButtonSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButtonSalir.IconSize = 44;
@@ -238,13 +237,14 @@
             label3.Location = new Point(34, 26);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(143, 25);
+            label3.Size = new Size(67, 25);
             label3.TabIndex = 12;
-            label3.Text = "Buscar localidad:";
+            label3.Text = "Buscar:";
             // 
             // txtFiltro
             // 
-            txtFiltro.Location = new Point(224, 22);
+            txtFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtFiltro.Location = new Point(121, 20);
             txtFiltro.Margin = new Padding(4);
             txtFiltro.Name = "txtFiltro";
             txtFiltro.Size = new Size(603, 31);
@@ -254,7 +254,8 @@
             // btnEliminar
             // 
             btnEliminar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEliminar.IconChar = FontAwesome.Sharp.IconChar.Close;
+            btnEliminar.BackColor = Color.DarkGray;
+            btnEliminar.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
             btnEliminar.IconColor = Color.Black;
             btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
@@ -265,12 +266,13 @@
             btnEliminar.TabIndex = 5;
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
             btnModificar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnModificar.BackColor = Color.LightGray;
             btnModificar.IconChar = FontAwesome.Sharp.IconChar.Pen;
             btnModificar.IconColor = Color.Black;
             btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -282,12 +284,13 @@
             btnModificar.TabIndex = 4;
             btnModificar.Text = "Modificar";
             btnModificar.TextAlign = ContentAlignment.MiddleRight;
-            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
             // 
             // btnAgregar
             // 
             btnAgregar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAgregar.BackColor = Color.DarkGray;
             btnAgregar.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
             btnAgregar.IconColor = Color.Black;
             btnAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -299,7 +302,7 @@
             btnAgregar.TabIndex = 3;
             btnAgregar.Text = "Agregar";
             btnAgregar.TextAlign = ContentAlignment.MiddleRight;
-            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.UseVisualStyleBackColor = false;
             btnAgregar.Click += btnAgregar_Click;
             // 
             // dataGridHorarios
@@ -320,9 +323,7 @@
             // 
             // tabPageAgregarEditar
             // 
-
             tabPageAgregarEditar.Controls.Add(btnEditar);
-
             tabPageAgregarEditar.Controls.Add(cboAulas);
             tabPageAgregarEditar.Controls.Add(label10);
             tabPageAgregarEditar.Controls.Add(btnQuitarHora);
@@ -352,21 +353,21 @@
             // 
             // btnEditar
             // 
-            btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEditar.IconChar = FontAwesome.Sharp.IconChar.Pager;
+            btnEditar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEditar.BackColor = Color.LightGray;
+            btnEditar.IconChar = FontAwesome.Sharp.IconChar.Pencil;
             btnEditar.IconColor = Color.Black;
             btnEditar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditar.Location = new Point(824, 350);
+            btnEditar.Location = new Point(1031, 482);
             btnEditar.Margin = new Padding(2);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(118, 46);
+            btnEditar.Size = new Size(141, 46);
             btnEditar.TabIndex = 19;
-            btnEditar.Text = "Modificar";
+            btnEditar.Text = "Editar";
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
-            btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.UseVisualStyleBackColor = false;
             btnEditar.Click += btnEditar_Click;
-
             // 
             // cboAulas
             // 
@@ -389,28 +390,30 @@
             // 
             // btnQuitarHora
             // 
-            btnQuitarHora.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnQuitarHora.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnQuitarHora.BackColor = Color.OrangeRed;
+            btnQuitarHora.ForeColor = Color.White;
             btnQuitarHora.IconChar = FontAwesome.Sharp.IconChar.Close;
-            btnQuitarHora.IconColor = Color.Black;
+            btnQuitarHora.IconColor = Color.White;
             btnQuitarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnQuitarHora.ImageAlign = ContentAlignment.MiddleLeft;
-
             btnQuitarHora.Location = new Point(1031, 548);
             btnQuitarHora.Margin = new Padding(2);
             btnQuitarHora.Name = "btnQuitarHora";
             btnQuitarHora.Size = new Size(141, 58);
-
             btnQuitarHora.TabIndex = 16;
             btnQuitarHora.Text = "Quitar";
             btnQuitarHora.TextAlign = ContentAlignment.MiddleRight;
-            btnQuitarHora.UseVisualStyleBackColor = true;
+            btnQuitarHora.UseVisualStyleBackColor = false;
             btnQuitarHora.Click += btnQuitarHora_Click;
             // 
             // btnQuitarDocente
             // 
             btnQuitarDocente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnQuitarDocente.BackColor = Color.OrangeRed;
+            btnQuitarDocente.ForeColor = Color.White;
             btnQuitarDocente.IconChar = FontAwesome.Sharp.IconChar.Close;
-            btnQuitarDocente.IconColor = Color.Black;
+            btnQuitarDocente.IconColor = Color.White;
             btnQuitarDocente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnQuitarDocente.ImageAlign = ContentAlignment.MiddleLeft;
             btnQuitarDocente.Location = new Point(1030, 229);
@@ -420,7 +423,7 @@
             btnQuitarDocente.TabIndex = 15;
             btnQuitarDocente.Text = "Quitar";
             btnQuitarDocente.TextAlign = ContentAlignment.MiddleRight;
-            btnQuitarDocente.UseVisualStyleBackColor = true;
+            btnQuitarDocente.UseVisualStyleBackColor = false;
             btnQuitarDocente.Click += btnQuitarDocente_Click;
             // 
             // dataGridHoras
@@ -441,7 +444,7 @@
             // 
             // btnAgregarHora
             // 
-            btnAgregarHora.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAgregarHora.BackColor = Color.DarkGray;
             btnAgregarHora.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
             btnAgregarHora.IconColor = Color.Black;
             btnAgregarHora.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -453,7 +456,7 @@
             btnAgregarHora.TabIndex = 13;
             btnAgregarHora.Text = "Agregar";
             btnAgregarHora.TextAlign = ContentAlignment.MiddleRight;
-            btnAgregarHora.UseVisualStyleBackColor = true;
+            btnAgregarHora.UseVisualStyleBackColor = false;
             btnAgregarHora.Click += btnAgregarHora_Click;
             // 
             // cboDias
@@ -498,7 +501,7 @@
             // 
             dataGridDocentes.AllowUserToAddRows = false;
             dataGridDocentes.AllowUserToDeleteRows = false;
-            dataGridDocentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridDocentes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridDocentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridDocentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridDocentes.Location = new Point(58, 180);
@@ -512,7 +515,7 @@
             // 
             // btnAgregarDocente
             // 
-            btnAgregarDocente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAgregarDocente.BackColor = Color.DarkGray;
             btnAgregarDocente.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
             btnAgregarDocente.IconColor = Color.Black;
             btnAgregarDocente.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -524,7 +527,7 @@
             btnAgregarDocente.TabIndex = 7;
             btnAgregarDocente.Text = "Agregar";
             btnAgregarDocente.TextAlign = ContentAlignment.MiddleRight;
-            btnAgregarDocente.UseVisualStyleBackColor = true;
+            btnAgregarDocente.UseVisualStyleBackColor = false;
             btnAgregarDocente.Click += btnAgregarDocente_Click;
             // 
             // cboDocentes
@@ -557,6 +560,8 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.LightGray;
             btnCancelar.IconChar = FontAwesome.Sharp.IconChar.Cancel;
             btnCancelar.IconColor = Color.Black;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -568,11 +573,13 @@
             btnCancelar.TabIndex = 3;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGuardar
             // 
+            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGuardar.BackColor = Color.DarkGray;
             btnGuardar.IconChar = FontAwesome.Sharp.IconChar.Save;
             btnGuardar.IconColor = Color.Black;
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -584,7 +591,7 @@
             btnGuardar.TabIndex = 2;
             btnGuardar.Text = "Guardar";
             btnGuardar.TextAlign = ContentAlignment.MiddleRight;
-            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
             // label2

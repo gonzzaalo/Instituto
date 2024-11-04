@@ -14,6 +14,8 @@ using InstitutoWeb.Services.Login;
 using InstitutoServices.Services.MesasExamenes;
 using InstitutoServices.Services.Inscripciones;
 using InstitutoWeb.Interfaces;
+using Microsoft.Extensions.Logging;
+
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -43,10 +45,24 @@ builder.Services.AddScoped<AuthenticationService>();
 
 
 builder.Services.AddSweetAlert2();
+
+
 AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
 {
     var exception = eventArgs.ExceptionObject as Exception;
-    // Aquí puedes personalizar el mensaje o registrar la excepción
+    // muestro el mensaje, la fuente y la pila de llamada de la excepcion no manejada
     Console.WriteLine($"Excepción no manejada: {exception?.Message}");
+    Console.WriteLine($"Origen: {exception?.Source}");
+    Console.WriteLine($"Pila de llamadas: {exception?.StackTrace}");
+    //si la innerException no es nula, muestro el mensaje, la fuente y la pila de llamada de la innerException  
+    if (exception?.InnerException != null)
+    {
+        Console.WriteLine($"InnerException: {exception.InnerException.Message}");
+        Console.WriteLine($"Origen: {exception.InnerException.Source}");
+        Console.WriteLine($"Pila de llamadas: {exception.InnerException.StackTrace}");
+
+    }
+
+
 };
 await builder.Build().RunAsync();

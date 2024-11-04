@@ -39,7 +39,7 @@ else
     TipoUsuarioEnum tipoUsuario { get; set; } 
 
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         userFirebaseAuthenticate = usuarioStateService.FirebaseUser;
         //usuario = await usuarioService.GetUserByEmail(userFirebaseAuthenticate?.Email);
@@ -54,7 +54,7 @@ else
 
 
     }
-    public async void ChequeoEstadoLogin()
+    public void ChequeoEstadoLogin()
     {
         if (usuarioStateService.Usuario == null)
         {
@@ -65,7 +65,7 @@ else
     }
 
 
-    private async Task HandleSeleccionarTipoUsuario(Enum value)
+    private void HandleSeleccionarTipoUsuario(Enum value)
     {
         if (value is TipoUsuarioEnum tipoUsuario)
         {

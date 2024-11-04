@@ -40,12 +40,12 @@ else
 
 
 @code {
-        [Parameter]
-        public Alumno? alumno { get; set; }
-        public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
-        bool seleccionarCarreras { get; set; }=false;
-        List<Carrera>? carreras { get; set; }
-        string tituloTableCarrera => inscripcionesACarreras?.Count > 1 ? "Carreras" : "Carrera";
+    [Parameter]
+    public Alumno? alumno { get; set; }
+    public List<InscriptoCarrera>? inscripcionesACarreras { get; set; }
+    bool seleccionarCarreras { get; set; }=false;
+    List<Carrera>? carreras { get; set; }
+    string tituloTableCarrera => inscripcionesACarreras?.Count > 1 ? "Carreras" : "Carrera";
 
 
     protected override async Task OnInitializedAsync()
@@ -72,21 +72,37 @@ else
     {
         //comparo listSelected con inscripcionesACarreras y dejo 2 nuevas listas, una con las carreras a agregar y otra con las carreras a eliminar
 
-
-        foreach (var carreraSelected in listSelected)
+        try
         {
-            if(!inscripcionesACarreras.Any(i=>i.CarreraId==carreraSelected.Id))
-                await inscriptoCarreraService.AddAsync(new InscriptoCarrera { AlumnoId = alumno.Id, CarreraId = carreraSelected.Id });
-        }
+            foreach (var carreraSelected in listSelected)
+            {
+                if (!inscripcionesACarreras.Any(i => i.CarreraId == carreraSelected.Id))
+                {
+                    var inscripcionACarrera = new InscriptoCarrera { AlumnoId = alumno.Id, CarreraId = carreraSelected.Id };
+                    await _memoryCache.AddCacheAsync<InscriptoCarrera>(inscripcionACarrera, "InscriptosCarreras");
+                    //await inscriptoCarreraService.AddAsync(new InscriptoCarrera { AlumnoId = alumno.Id, CarreraId = carreraSelected.Id });
+                }
+            }
 
-        foreach (var inscripcion in inscripcionesACarreras)
-        {
-            if(listSelected.All(c=>c.Id!=inscripcion.CarreraId))
-                await inscriptoCarreraService.DeleteAsync(inscripcion.Id);
+            foreach (var inscripcion in inscripcionesACarreras)
+            {
+                if (listSelected.All(c => c.Id != inscripcion.CarreraId))
+                    await _memoryCache.DeleteCacheAsync<InscriptoCarrera>(inscripcion.Id, "InscriptosCarreras");
+
+                //await inscriptoCarreraService.DeleteAsync(inscripcion.Id);
+            }
+            seleccionarCarreras = false;
+            inscripcionesACarreras = (await _memoryCache.GetAllCacheAsync<InscriptoCarrera>("InscriptosCarreras"))
+                                .Where(inscripcion => inscripcion.AlumnoId.Equals(alumno.Id)).ToList();
+            logger.LogInformation("inscripciones " + inscripcionesACarreras.Count().ToString());
         }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error al inscribirse a una carrera");
+        }
+ 
         
-        seleccionarCarreras = false;
-        inscripcionesACarreras = await inscriptoCarreraService.GetByAlumno(alumno.Id);
+        
         
         StateHasChanged();
     }

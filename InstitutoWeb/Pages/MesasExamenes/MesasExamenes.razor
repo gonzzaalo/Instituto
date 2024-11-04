@@ -50,11 +50,13 @@ else
 
     private int? idTurnoExamenSeleccionado;
     private int? idCarreraSeleccionada;
+    private Carrera carreraSeleccionada;
 
     protected override async Task OnInitializedAsync()
     {
         turnosExamenes = await _memoryCache.GetAllCacheAsync<TurnoExamen>("TurnosExamenes");
         carreras = await _memoryCache.GetAllCacheAsync<Carrera>("Carreras");
+        mesasExamenes = await _memoryCache.GetAllCacheAsync<MesaExamen>("MesasExamenes");
         if(turnosExamenes.Any(turno=>turno.Actual))
         {
             idTurnoExamenSeleccionado = turnosExamenes.FirstOrDefault(turno=>turno.Actual).Id;
@@ -62,7 +64,18 @@ else
         logger.LogInformation($"turnoSeleccionado {idTurnoExamenSeleccionado}");
         if(usuarioStateService.Usuario.TipoUsuario==TipoUsuarioEnum.Alumno)
         {
-            mesasExamenes = await _memoryCache.GetAllCacheAsync<MesaExamen>("MesasExamenes");
+            if (usuarioStateService.Usuario.Alumno.InscripcionesACarreras.Count > 1)
+            {
+                carreras = carreras
+                            .Where(c => usuarioStateService.Usuario.Alumno.InscripcionesACarreras.Select(i => i.CarreraId).Contains(c.Id)).ToList();
+            }
+            else
+            {
+                idCarreraSeleccionada = usuarioStateService.Usuario.Alumno.InscripcionesACarreras.FirstOrDefault().Carrera.Id;
+                logger.LogInformation($"carrera seleccionada {carreraSeleccionada.Nombre}");
+                mesasExamenes= mesasExamenes.Where(m => m.TurnoExamenId == idTurnoExamenSeleccionado && m.Materia.AnioCarrera.CarreraId == idCarreraSeleccionada).ToList();
+
+            }
         }
         else
         {

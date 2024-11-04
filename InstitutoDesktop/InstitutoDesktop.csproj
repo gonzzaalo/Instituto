@@ -31,7 +31,6 @@
     <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
     <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.23" />
   </ItemGroup>
 
@@ -45,6 +44,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Inscripciones\CiclosLectivosView.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\MesasExamenes\MesasExamenesView.cs">
       <SubType>Form</SubType>

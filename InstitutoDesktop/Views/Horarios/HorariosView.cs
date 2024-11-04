@@ -31,9 +31,10 @@ namespace InstitutoDesktop.Views
 
         private readonly MemoryCacheServiceWinForms _memoryCache;
 
-        public HorariosView(MemoryCacheServiceWinForms memoryCacheService)
+        public HorariosView(MemoryCacheServiceWinForms memoryCacheService, MenuPrincipalView menuPrincipal)
         {
             InitializeComponent();
+            this.MdiParent = menuPrincipal;
             _memoryCache = memoryCacheService;
             dataGridHorarios.DataSource = bindingHorarios;
             //tabPageAgregarEditar.Enabled= false;
@@ -94,7 +95,7 @@ namespace InstitutoDesktop.Views
 
             cboDias.DataSource = Enum.GetValues(typeof(DiaEnum));
 
-            CargarGrilla();
+            LoadGrid();
         }
 
         private async void ObtenerListas()
@@ -128,13 +129,23 @@ namespace InstitutoDesktop.Views
         }
 
 
-        private async Task CargarGrilla()
+        private async Task LoadGrid()
         {
             if (listaHorarios != null && listaHorarios.Count > 0)
                 bindingHorarios.DataSource = listaHorarios.
                     Where(h => h.CicloLectivoId.Equals((int)cboCiclosLectivos.SelectedValue) &&
                           h.Materia.AnioCarrera.CarreraId.Equals((int)cboCarreras.SelectedValue) &&
                           h.Materia.AnioCarreraId.Equals((int)cboAniosCarreras.SelectedValue));
+            dataGridHorarios.OcultarColumnas(new string[] { "Id", "CicloLectivo", "DetallesHorario", "IntegrantesHorario", "CicloLectivoId", "Eliminado" });
+        }
+        private async Task LoadGridFilter()
+        {
+            if (listaHorarios != null && listaHorarios.Count > 0)
+                bindingHorarios.DataSource = listaHorarios.
+                    Where(h => h.CicloLectivoId.Equals((int)cboCiclosLectivos.SelectedValue) &&
+                          h.Materia.AnioCarrera.CarreraId.Equals((int)cboCarreras.SelectedValue) &&
+                          h.Materia.AnioCarreraId.Equals((int)cboAniosCarreras.SelectedValue) &&
+                          h.Materia.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
             dataGridHorarios.OcultarColumnas(new string[] { "Id", "CicloLectivo", "DetallesHorario", "IntegrantesHorario", "CicloLectivoId", "Eliminado" });
         }
 
@@ -185,7 +196,7 @@ namespace InstitutoDesktop.Views
                 }
             }
             await actualizarListaHorarios();
-            await CargarGrilla();
+            await LoadGrid();
             tabControl.SelectTab(tabPageLista);
         }
 
@@ -219,7 +230,7 @@ namespace InstitutoDesktop.Views
             {
                 await _memoryCache.DeleteCacheAsync<Horario>(horarioCurrent.Id, "Horarios");
                 await actualizarListaHorarios();
-                await CargarGrilla();
+                await LoadGrid();
             }
             horarioCurrent = null;
 
@@ -235,13 +246,21 @@ namespace InstitutoDesktop.Views
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-
+            if (txtFiltro.Text == "")
+            {
+                LoadGrid();
+            }
+            else
+            {
+                LoadGridFilter();
+            }
         }
 
 
 
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
+            BtnBuscar.PerformClick();
         }
 
         private void cboCarreras_SelectedIndexChanged(object sender, EventArgs e)
@@ -343,7 +362,7 @@ namespace InstitutoDesktop.Views
             if (cboAniosCarreras.SelectedValue != null && cboAniosCarreras.SelectedValue.GetType() == typeof(int))
             {
                 cboMaterias.DataSource = listaMaterias.Where(m => m.AnioCarreraId.Equals(cboAniosCarreras.SelectedValue)).ToList();
-                CargarGrilla();
+                LoadGrid();
             }
         }
 
