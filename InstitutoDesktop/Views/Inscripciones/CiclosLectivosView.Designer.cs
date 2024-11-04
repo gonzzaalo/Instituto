@@ -342,24 +342,24 @@
 
         #endregion
 
-        private Panel panel1;
+        public Panel panel1;
         private Label label1;
-        private TabControl tabControl;
-        private TabPage tabPageLista;
-        private DataGridView Grilla;
-        private TabPage tabPageAgregarEditar;
-        private FontAwesome.Sharp.IconButton btnCancelar;
-        private FontAwesome.Sharp.IconButton btnGuardar;
-        private FontAwesome.Sharp.IconButton btnAgregar;
-        private FontAwesome.Sharp.IconButton btnModificar;
-        private FontAwesome.Sharp.IconButton btnEliminar;
-        private FontAwesome.Sharp.IconButton iconButtonSalir;
-        private FontAwesome.Sharp.IconButton BtnBuscar;
+        public TabControl tabControl;
+        public TabPage tabPageLista;
+        public DataGridView Grilla;
+        public TabPage tabPageAgregarEditar;
+        public FontAwesome.Sharp.IconButton btnCancelar;
+        public FontAwesome.Sharp.IconButton btnGuardar;
+        public FontAwesome.Sharp.IconButton btnAgregar;
+        public FontAwesome.Sharp.IconButton btnModificar;
+        public FontAwesome.Sharp.IconButton btnEliminar;
+        public FontAwesome.Sharp.IconButton iconButtonSalir;
+        public FontAwesome.Sharp.IconButton BtnBuscar;
         private Label label3;
-        private TextBox txtFiltro;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private CheckBox chkActual;
-        private TextBox txtNombre;
+        public TextBox txtFiltro;
+        public FontAwesome.Sharp.IconButton iconButton1;
+        public CheckBox chkActual;
+        public TextBox txtNombre;
         private Label label2;
     }
 }
